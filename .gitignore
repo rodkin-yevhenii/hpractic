@@ -1,0 +1,27 @@
+# Ignore IDE folder
+.idea/*
+
+# Ignore wp-config
+wp-config.php
+.htaccess
+
+# Ignore composer files
+vendor/*
+composer.lock
+
+# Ignore node files
+node_modules/*
+package-lock.json
+
+# Ignore upgrade and uploads directories in the "wp-content" directory.
+wp-content/upgrade/*
+wp-content/uploads/*
+
+# Ignore everything in the "themes" directory, except screenpro
+wp-content/themes/*
+!wp-content/themes/hpractic/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
