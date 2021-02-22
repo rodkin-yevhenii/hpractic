@@ -6,7 +6,7 @@ namespace Hpr\Admin;
  * Class AcfFieldsInit
  *
  * @author Rodkin Yevhenii <rodkin.yevhenii@gmail.com>
- * @package SPro\Admin
+ * @package Hpr\Admin
  */
 class AcfFieldsInit
 {

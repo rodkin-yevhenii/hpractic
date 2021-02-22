@@ -2,11 +2,13 @@
 
 namespace Hpr\Admin;
 
+use Hpr\Admin\ProductInit;
+
 /**
  * Class ThemeInit
  *
  * @author Rodkin Yevhenii <rodkin.yevhenii@gmail.com>
- * @package SPro\Admin
+ * @package Hpr\Admin
  */
 class ThemeInit
 {
@@ -18,6 +20,7 @@ class ThemeInit
     public function __construct()
     {
         $this->initAcfFields();
+        $this->initProduct();
 
         $this->registerThemeSettings();
         $this->registerMenuLocations();
@@ -28,6 +31,8 @@ class ThemeInit
 
         // Disable auto <br/> for CF7.
         add_filter('wpcf7_autop_or_not', '__return_false');
+
+        flush_rewrite_rules();
     }
 
     /**
@@ -42,6 +47,11 @@ class ThemeInit
         }
 
         return self::$instance;
+    }
+
+    private function initProduct(): void
+    {
+        new ProductInit();
     }
 
     /**
