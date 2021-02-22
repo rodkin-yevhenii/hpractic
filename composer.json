@@ -1,0 +1,16 @@
+{
+  "name": "rodkin-yevhenii/hpractic",
+  "authors": [
+    {
+      "name": "Rodkin Yevhenii",
+      "email": "rodkin.yevhenii@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Hpr\\": "wp-content/themes/hpractic/inc/"
+    }
+  }
+}
