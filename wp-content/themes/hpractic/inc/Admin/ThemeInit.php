@@ -2,8 +2,6 @@
 
 namespace Hpr\Admin;
 
-use Hpr\Admin\ProductInit;
-
 /**
  * Class ThemeInit
  *
@@ -21,6 +19,7 @@ class ThemeInit
     {
         $this->initAcfFields();
         $this->initProduct();
+        $this->initService();
 
         $this->registerThemeSettings();
         $this->registerMenuLocations();
@@ -49,9 +48,20 @@ class ThemeInit
         return self::$instance;
     }
 
+    /**
+     * Product post-type initialization.
+     */
     private function initProduct(): void
     {
         new ProductInit();
+    }
+
+    /**
+     * Service post-type initialization.
+     */
+    private function initService(): void
+    {
+        new ServiceInit();
     }
 
     /**
