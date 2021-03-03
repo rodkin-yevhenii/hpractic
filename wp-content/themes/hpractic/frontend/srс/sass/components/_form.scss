@@ -1,0 +1,213 @@
+%field-default {
+  font-family: $font-primary;
+  font-size: 1.7rem;
+  line-height: normal;
+  padding: .8rem 1.6rem;
+  width: 100%;
+  margin: 0;
+  display: block;
+  min-width: 0;
+  border-radius: 4px;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-tap-highlight-color: transparent;
+  color: currentColor;
+  border: 1px solid rgba($color-dark-blue, 0.5);
+  background: transparent;
+  font-weight: normal;
+  font-style: normal;
+  transition: all .2s;
+  outline: none;
+  
+  &:focus {
+    border-color: $color-dark-blue;
+  }
+  
+  &:active {
+    border-color: $color-dark-blue;
+  }
+  
+  &.error {
+    border-color: $color-red;
+  }
+  
+  @include placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    color: $color-grey-dark;
+    line-height: inherit;
+  }
+}
+
+.form {
+  $form: &;
+  
+  @media only screen and(max-width: 992px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  &--inline {
+    @media only screen and(max-width: 992px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    #{$form} {
+      &__field {
+        width: 100%;
+      }
+  
+      &__row {
+        margin: 0;
+        
+        & > div[class*="form__"] {
+          margin: 0;
+        }
+  
+        & > div[class*="form__actions"] {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+  
+  &__title {
+    font-family: $font-primary;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: $color-primary-dark;
+    margin: 0 0 20px;
+    
+  
+    @media only screen and(max-width: 992px) {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    
+    &--center {
+      text-align: center;
+    }
+    
+    &--uppercase {
+      text-transform: uppercase;
+    }
+    
+    &--sm {
+      font-size: 2rem;
+      
+    }
+  }
+  
+  &__field {
+    
+    $filed: &;
+    
+    position: relative;
+    color: $color-grey-dark2;
+    
+    &:not(:last-child){
+      margin: 0 0 2rem;
+    }
+    
+    &-icon {
+      font-size: 1.6rem;
+      position: absolute;
+      left: 1.2rem;
+      top: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1em;
+      
+      img, svg {
+        display: block;
+        max-width: 100%;
+      }
+      
+      img {
+        width: 1em;
+      }
+      
+      svg {
+        width: 1em;
+        height: 1em;
+      }
+      
+      & + input {
+        padding-left: 4.4rem;
+      }
+    }
+  
+    input {
+      height: 4.6rem;
+      @extend %field-default;
+    }
+    
+    textarea {
+      @extend %field-default;
+      resize: none;
+      height: 18rem;
+    }
+  }
+  
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 -1.5rem;
+  
+    @media only screen and(max-width: 992px) {
+      display: block;
+      margin: 0;
+    }
+    
+    & > div[class*="form__"] {
+      margin: 0 1.5rem;
+  
+      @media only screen and(max-width: 992px) {
+        margin: 0 0 1.5rem;
+      }
+    }
+    
+  }
+  
+  &__note {
+    text-align: center;
+    color: $color-grey-dark;
+    font-size: 1.2rem;
+    font-family: $font-primary;
+    line-height: 1.5;
+    font-weight: normal;
+    margin: 2rem 0;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  
+    @media only screen and(max-width: 992px) {
+      margin: 1rem 0;
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    justify-content: center;
+    
+    @media only screen and(max-width: 992px) {
+      margin: 1rem 0;
+    }
+  }
+}
+
+label.error {
+  font-size: 1.2rem;
+  color: $color-red;
+  font-weight: 500;
+}

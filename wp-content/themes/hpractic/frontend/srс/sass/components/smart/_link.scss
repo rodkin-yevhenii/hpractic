@@ -1,0 +1,55 @@
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+  color: $color-dark;
+  transition: all .3s linear;
+  
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+  
+  svg, img {
+    width: 1.2em;
+    height: 1.2em;
+    display: block;
+    margin-right: 0.6em;
+  }
+  
+  &:hover {
+    border-bottom-color: currentColor;
+  }
+  
+  &--primary {
+    color: $color-primary-dark;
+  }
+  
+  &--secondary {
+    color: $color-white;
+  }
+  
+  &--bold {
+    font-weight: 600;
+  }
+  
+  &--md {
+    font-size: 1.7rem;
+  }
+  
+  &--sm {
+    font-size: 1.4rem;
+  }
+  
+  &--bordered {
+    border-bottom: 1px dashed currentColor;
+    
+    &:hover {
+      border-bottom-color: transparent;
+    }
+  }
+}

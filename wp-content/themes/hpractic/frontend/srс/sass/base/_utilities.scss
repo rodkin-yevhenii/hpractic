@@ -1,0 +1,75 @@
+.u-text {
+  &-gradient-orange {
+    color: $color-orange-dark;
+    
+    @supports (-webkit-background-clip: text) or ( -webkit-text-fill-color: transparent) {
+      background: $gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  
+  &-gradient-blue-hover {
+    transition: all .3s;
+    
+    &:hover, &.active {
+      color: $color-blue;
+  
+      @supports (-webkit-background-clip: text) or ( -webkit-text-fill-color: transparent) {
+        background: $gradient-secondary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+  
+  &-center {
+    text-align: center;
+  }
+  
+  &-yellow-bg {
+    background-color: $color-yellow-2;
+  }
+}
+
+.u-mobile {
+  &-hidden {
+    @media screen and (max-width: 992px) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: 992px) {
+      display: none !important;
+    }
+  }
+}
+
+.u-desktop-sm {
+  &-hidden {
+    @media screen and (max-width: 1320px) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: 1320px) {
+      display: none !important;
+    }
+  }
+}
+
+.u-tablet-lg {
+  &-hidden {
+    @media screen and (max-width: 1199px) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: 1199px) {
+      display: none !important;
+    }
+  }
+}

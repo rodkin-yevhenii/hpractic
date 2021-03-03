@@ -1,0 +1,124 @@
+.footer {
+  padding: 0;
+  width: 100%;
+  z-index: 100;
+  background: $color-grey-light;
+  
+  @media only screen and(max-width: 992px) {
+  
+  }
+  
+  &__content {
+    padding: 4.6rem 0;
+    border-top: 1px solid rgba($color-primary, 0.1);
+    border-bottom: 1px solid rgba($color-primary, 0.1);
+    
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 -1.5rem;
+      
+      @media only screen and(max-width: 1320px) {
+        flex-wrap: wrap;
+      }
+  
+      @media only screen and(max-width: 599px) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  
+  &__item {
+    max-width: 25%;
+    padding: 0 1.5rem;
+  
+    @media only screen and(max-width: 1700px) {
+      max-width: 30%;
+    }
+  
+    ul {
+      list-style: none;
+      li {
+        &:not(:last-child) {
+          margin-bottom: 0.8rem;
+        }
+      }
+    }
+  }
+  
+  &__logo {
+    padding: 3rem 0;
+  
+    @media only screen and(max-width: 1199px) {
+    
+    }
+  
+    @media only screen and(max-width: 599px) {
+    
+    }
+  }
+  
+  &__about {
+    @media only screen and(max-width: 1320px) {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 6rem;
+    }
+  }
+  
+  &__nav {
+    .nav {
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+      color: $color-primary;
+      
+      ul {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        
+        li {
+          margin: 0;
+          
+          &:not(:last-child){
+            margin: 0 0 1.5rem;
+          }
+        }
+      }
+      
+      a {
+        text-decoration: none;
+        text-transform: none;
+      }
+    }
+  
+    @media only screen and(max-width: 992px) {
+    }
+    
+  }
+  
+  &__copyright {
+    padding: 1.8rem 0;
+    color: $color-grey-dark;
+    
+  
+    @media only screen and(max-width: 992px) {
+    
+    }
+  
+    @media only screen and(max-width: 599px) {
+    
+    }
+    
+    a {
+      color: currentColor;
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      
+      &:hover {
+        border-color: currentColor;
+      }
+    }
+  }
+}

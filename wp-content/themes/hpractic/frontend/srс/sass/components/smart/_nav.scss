@@ -1,0 +1,126 @@
+.nav {
+  $nav: &;
+  display: flex;
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2.8rem;
+  text-transform: uppercase;
+  color: $color-dark;
+  text-decoration: none;
+  
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: currentColor;
+    transition: color .3s linear;
+    --iconColor: currentColor;
+    
+    &:hover {
+      color: $color-primary;
+      --iconColor: $color-primary;
+    }
+    
+    &:not(:first-child) {
+      margin-left: 4rem;
+    }
+    
+    .icon {
+      margin-left: 0.5em;
+      position: relative;
+      transform: rotate(90deg);
+    }
+  }
+  
+  & > ul {
+    display: flex;
+    list-style: none;
+    
+    & > li {
+      position: relative;
+      
+      &:hover {
+        #{$nav}{
+          &__sub {
+            pointer-events: all;
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+      
+      &:not(:first-child) {
+        margin-left: 4rem;
+  
+        @media only screen and (max-width: 1700px){
+          margin-left: 3rem;
+        }
+        
+        
+        @media only screen and(max-width: 1199px) {
+          margin-left: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  &__sub {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-30%);
+    top: 100%;
+    padding: 2rem 0;
+    background: $color-white;
+    box-shadow: 0 12px 20px rgba(27, 55, 88, 0.1);
+    max-width: 42rem;
+    width: 100vw;
+    text-align: left;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s .3s;
+    
+    & > ul {
+      flex-direction: column;
+      
+      & > li {
+        position: relative;
+        padding: 0 5rem;
+        margin: 1rem 0;
+        
+        & > a {
+          padding: 0.2rem 0;
+          position: static;
+          text-transform: none;
+          font-size: 1.7rem;
+          font-weight: normal;
+          justify-content: flex-start;
+          
+          &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 4px;
+            background: $color-primary;
+            border-radius: 0 2px 2px 0;
+            opacity: 0;
+            transition: opacity .3s;
+          }
+          
+          &:hover {
+            &::before {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

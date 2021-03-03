@@ -1,0 +1,65 @@
+.slider {
+  &__item {
+    padding: 4.2rem 1.6rem;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    
+    @media only screen and (max-width: 1320px) {
+      padding: 1rem 1.6rem;
+    }
+  }
+  
+  .slick-list {
+    margin: 0 -1.6rem;
+    padding: 0 1.6rem;
+  }
+  
+  .slick-active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    
+    .card {
+      
+      &::after {
+        box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.1);
+      }
+      
+      &:hover {
+        
+        &::after {
+          @media only screen and (min-width: 1320px) {
+            max-height: 100%;
+            box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.15);
+          }
+        }
+  
+        @media only screen and (min-width: 1320px) {
+          .card__actions {
+            opacity: 1;
+            transition: opacity .2s .4s;
+          }
+        }
+        
+      }
+      
+      &--secondary {
+        
+        &::after {
+          box-shadow: none;
+          
+          @media only screen and (min-width: 1320px) {
+            box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0);
+          }
+        }
+        
+        &:hover {
+          @media only screen and (min-width: 1320px) {
+            box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.15);
+          }
+        }
+      }
+    }
+  }
+}

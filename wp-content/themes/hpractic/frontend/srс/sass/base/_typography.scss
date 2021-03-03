@@ -1,0 +1,255 @@
+%title {
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-dark;
+  position: relative;
+}
+
+.heading {
+  $heading: &;
+  
+  @extend %title;
+  text-transform: uppercase;
+  
+  &:not(:last-child) {
+    margin: 0 0 1.6rem;
+    
+    @media only screen and(max-width: 599px) {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  &__overlay {
+    position: absolute;
+    left: -0.88em;
+    top: -0.54em;
+    font-family: $font-secondary;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2.25em;
+    line-height: .8;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    z-index: 1;
+  
+    @media only screen and(max-width: 1700px) {
+      font-size: 1.92em;
+      left: -0.76em;
+      top: -0.4em;
+    }
+    
+    
+    &--primary {
+      color: $color-grey-light3;
+    }
+    
+    &--secondary {
+      color: rgba($color-dark-blue, 0.05);
+    }
+  }
+  
+  &--lg {
+    font-size: 4.8rem;
+    line-height: 1;
+  
+    #{$heading} {
+      &__overlay {
+        font-size: 2.7em;
+        left: -0.74em;
+        top: -1.34em;
+  
+        @media only screen and(max-width: 1700px) {
+          font-size: 2.2em;
+          left: -0.6em;
+          top: -1.2em;
+        }
+  
+        @media only screen and(max-width: 1320px) {
+          font-size: 2em;
+          left: -0.2em;
+          top: -0.6em;
+        }
+      }
+    }
+  
+    @media only screen and(max-width: 1700px) {
+      font-size: 4rem;
+    }
+    
+  
+    @media only screen and(max-width: 992px) {
+    
+    }
+  
+    @media only screen and(max-width: 599px) {
+    
+    }
+  }
+  
+  &--md {
+    font-size: 3.2rem;
+  
+    @media only screen and(max-width: 1700px) {
+      font-size: 2.8rem;
+    }
+  
+    @media only screen and(max-width: 992px) {
+    
+    }
+  
+    @media only screen and(max-width: 599px) {
+    
+    }
+    
+  }
+  
+  &--sm {
+    font-size: 2.4rem;
+    
+  
+    @media only screen and(max-width: 992px) {
+    
+    }
+  
+    @media only screen and(max-width: 599px) {
+    
+    }
+  }
+  
+  &--primary {
+    text-transform: uppercase;
+  }
+  
+  &--secondary {
+    text-transform: none;
+  }
+  
+  &--white {
+    color: $color-white;
+  }
+  
+  &--center {
+    text-align: center;
+    
+    #{$heading} {
+      &__overlay {
+        left: 50%;
+        transform: translateX(-50%);
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
+  
+  &--mb-lg {
+    &:not(:last-child) {
+      margin: 0 0 7.2rem;
+    
+      @media only screen and(max-width: 599px) {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+}
+
+.subheading {
+  @extend %title;
+  
+  &:not(:last-child) {
+    margin: 0 0 2rem;
+    
+    @media only screen and(max-width: 599px) {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  &--md {
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    
+    @media only screen and(max-width: 992px) {
+    
+    }
+    
+    @media only screen and(max-width: 599px) {
+    
+    }
+    
+  }
+  
+  &--sm {
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    
+    
+    @media only screen and(max-width: 992px) {
+    
+    }
+    
+    @media only screen and(max-width: 599px) {
+    
+    }
+  }
+}
+
+.text {
+  font-family: $font-primary;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 1.64em;
+  
+  
+  @media only screen and(max-width: 992px) {
+    
+  }
+  
+  &:not(:last-child) {
+    margin: 0 0 2rem;
+  
+    @media only screen and(max-width: 599px) {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  &--sm {
+    font-size: 1.5rem;
+    
+  
+    @media only screen and(max-width: 992px) {
+      
+    }
+  }
+  
+  &--primary {
+    color: $color-dark;
+  }
+  
+  &--secondary {
+    color: $color-white;
+  }
+  
+  &--bold {
+    font-weight: 600;
+  }
+  
+  &--center {
+    text-align: center;
+  }
+  
+  &--mb-md {
+    &:not(:last-child){
+      margin-bottom: 2rem;
+    }
+  }
+  
+  &--mb-sm {
+    &:not(:last-child){
+      margin-bottom: 1rem;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import 'base/mixins';
+@import 'base/variables';
+@import 'base/typography';
+@import 'base/base';
+@import 'base/icons';
+@import 'base/article';
+
+@import 'fonts';
+
+@import 'layout';
+
+@import 'components';
+@import 'components/header';
+
+@import 'components/hero';
+@import 'components/form';
+@import 'components/sections';
+@import 'components/sliders';
+@import 'components/card';
+//@import 'components/works';
+//@import 'components/team';
+//@import 'components/questions';
+@import 'components/about';
+@import 'components/advantages';
+//@import 'components/contacts';
+@import 'components/popup';
+@import 'components/menu-mobile';
+@import 'components/counters.scss';
+
+@import 'components/footer';
+
+@import 'base/utilities';
+

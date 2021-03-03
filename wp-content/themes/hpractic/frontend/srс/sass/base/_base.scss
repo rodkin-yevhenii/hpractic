@@ -1,0 +1,183 @@
+::selection {
+  background: $color-dark-blue;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: $color-dark-blue;
+  color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+* {
+  &,
+  &::after,
+  &::before {
+    box-sizing: inherit;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px 10px / 16px = 62.5%;
+
+  @media only screen and(max-width: 320px) {
+    font-size: 50%; // 1rem = 8px 8px / 16px = 50%;
+  }
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-dark;
+  font-size: 1.7rem;
+  line-height: 2.8rem;
+  font-weight: $font-weight;
+  font-style: $font-style;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: $color-white;
+  min-height: 100vh;
+  min-width: 280px;
+}
+
+.root {
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a[data-fancybox] {
+  display: block;
+  text-decoration: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.main {
+  padding-top: 10rem;
+
+  @media only screen and(max-width: 1366px) {
+  
+  }
+
+  @media only screen and (max-width: 992px){
+    padding-top: 68px;
+  }
+
+  @media only screen and (max-width: 599px){
+    padding-top: 50px;
+  }
+}
+
+.slick {
+
+  &-track {
+    display: flex;
+  }
+
+  &-slide {
+    float: none;
+    height: auto;
+  }
+
+  &-slider {
+    @media only screen and (max-width: 599px){
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      display: flex;
+    }
+
+    &.grid-container {
+      @media only screen and (max-width: 599px){
+        margin-left: 0;
+        margin-right: 0;
+        justify-content: flex-end;
+      }
+    }
+
+  }
+
+  &-arrow {
+    flex-shrink: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0;
+    width: 3rem;
+    height: 3rem;
+    color: transparent;
+    border: 0 none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 5px;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 2;
+
+    @media only screen and (max-width: 599px){
+      position: relative;
+      height: 3.2rem;
+      width: 3.2rem;
+      top: 0;
+      transform: none;
+      background-size: 1.2rem;
+      background-position: center;
+      align-self: flex-end;
+      order: -2;
+      margin: 0 0 .2rem;
+    }
+  }
+
+  &-prev {
+    left: -1.5rem;
+    transform: translateY(-50%);
+    background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-left.svg");
+
+    @media only screen and (max-width: 599px){
+      left: 0;
+      transform: none;
+      order: -2;
+    }
+  }
+
+  &-next {
+    right: -1.5rem;
+    transform: translateY(-50%);
+    background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-right.svg");
+
+    @media only screen and (max-width: 599px){
+      right: 0;
+      transform: none;
+      order: -1;
+    }
+  }
+
+  &-slide {
+    &, &:focus, &:active {
+      box-shadow: none;
+      outline: none;
+      border: none;
+    }
+  }
+}

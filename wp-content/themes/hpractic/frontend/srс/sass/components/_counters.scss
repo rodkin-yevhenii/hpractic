@@ -1,0 +1,59 @@
+.counters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8rem 0 0;
+  
+  @media only screen and(max-width: 1700px) {
+    margin: 5.2rem -3rem 0;
+  }
+  
+  @media only screen and(max-width: 1320px) {
+    justify-content: center;
+  }
+  
+  &__item {
+    padding: 0 6.5rem;
+    max-width: 25%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-family: $font-primary;
+  
+    @media only screen and(max-width: 1700px) {
+      padding: 0 3rem;
+    }
+  
+    @media only screen and(max-width: 1320px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    &-count {
+      font-size: 6rem;
+      line-height: 1;
+      color: $color-primary;
+      font-weight: 700;
+      font-style: normal;
+      
+      strong {
+        font-style: inherit;
+        font-weight: inherit;
+        display: block;
+      }
+    }
+    
+    &-text {
+      padding-left: 1.6rem;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.8rem;
+      line-height: 1.06;
+      color: $color-grey-dark;
+  
+      @media only screen and(max-width: 1320px) {
+        padding: 1rem 0 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import 'components/smart/btn';
+@import 'components/smart/link';
+@import 'components/smart/logo';
+@import 'components/smart/nav';
+@import 'components/smart/breadcrumbs';
+
+.cards {
+  @media only screen and(max-width: 1320px) {
+    padding: 0 5rem;
+  }
+}
