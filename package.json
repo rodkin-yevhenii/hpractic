@@ -4,10 +4,10 @@
   "description": "House Practice App",
   "main": "index.js",
   "scripts": {
-    "watch:sass": "node-sass wp-content/themes/hpractic/frontend/srс/sass/main.scss wp-content/themes/hpractic/frontend/dist/css/style.css -w",
-    "devserver": "live-server --open=wp-content/themes/hpractic/frontend/srс --watch=wp-content/themes/hpractic/frontend/srс",
+    "watch:sass": "node-sass wp-content/themes/hpractic/frontend/src/sass/main.scss wp-content/themes/hpractic/frontend/dist/css/style.css -w",
+    "devserver": "live-server --open=wp-content/themes/hpractic/frontend/src --watch=wp-content/themes/hpractic/frontend/src",
     "start": "npm-run-all --parallel devserver watch:sass",
-    "compile:sass": "node-sass wp-content/themes/hpractic/frontend/srс/sass/main.scss wp-content/themes/hpractic/frontend/dist/css/style.comp.css",
+    "compile:sass": "node-sass wp-content/themes/hpractic/frontend/src/sass/main.scss wp-content/themes/hpractic/frontend/dist/css/style.comp.css",
     "concat:css": "concat -o wp-content/themes/hpractic/frontend/dist/css/style.concat.css wp-content/themes/hpractic/frontend/dist/css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" wp-content/themes/hpractic/frontend/dist/css/style.comp.css -o wp-content/themes/hpractic/frontend/dist/css/style.prefix.css",
     "compress:css": "node-sass wp-content/themes/hpractic/frontend/dist/css/style.prefix.css wp-content/themes/hpractic/frontend/dist/css/style.css --output-style compressed",

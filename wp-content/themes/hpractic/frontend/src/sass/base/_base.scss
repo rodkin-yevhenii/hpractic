@@ -152,7 +152,7 @@ ul, li {
   &-prev {
     left: -1.5rem;
     transform: translateY(-50%);
-    background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-left.svg");
+    background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-left.svg");
 
     @media only screen and (max-width: 599px){
       left: 0;
@@ -164,7 +164,7 @@ ul, li {
   &-next {
     right: -1.5rem;
     transform: translateY(-50%);
-    background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-right.svg");
+    background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-right.svg");
 
     @media only screen and (max-width: 599px){
       right: 0;

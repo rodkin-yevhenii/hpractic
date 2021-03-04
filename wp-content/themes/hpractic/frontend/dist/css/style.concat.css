@@ -231,7 +231,7 @@ ul, li {
 .slick-prev {
   left: -1.5rem;
   transform: translateY(-50%);
-  background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-left.svg"); }
+  background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-left.svg"); }
   @media only screen and (max-width: 599px) {
     .slick-prev {
       left: 0;
@@ -241,7 +241,7 @@ ul, li {
 .slick-next {
   right: -1.5rem;
   transform: translateY(-50%);
-  background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/chevron-right.svg"); }
+  background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-right.svg"); }
   @media only screen and (max-width: 599px) {
     .slick-next {
       right: 0;
@@ -781,7 +781,7 @@ ul, li {
   border: none;
   outline: none;
   background-color: transparent;
-  background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/circle-arrow-top.svg");
+  background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/circle-arrow-top.svg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -1767,7 +1767,7 @@ input[class*="wpcf7-not-valid"] {
       .screen__tooltip-show::after {
         content: '';
         display: block;
-        background-image: url("/wp-content/themes/hpractic/frontend/srс/img/screen-arrow.svg");
+        background-image: url("/wp-content/themes/hpractic/frontend/src/img/screen-arrow.svg");
         background-size: contain;
         background-repeat: no-repeat;
         width: 50px;
@@ -2233,7 +2233,7 @@ button.mfp-close {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 2rem;
-  background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/close.svg"); }
+  background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/close.svg"); }
 
 .mfp-container {
   overflow: auto; }
@@ -2272,7 +2272,7 @@ button.mfp-close {
     height: 3rem;
     background-color: transparent;
     background-size: 2rem;
-    background-image: url("/wp-content/themes/hpractic/frontend/srс/img/icons/close.svg");
+    background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/close.svg");
     cursor: pointer; }
   .menu-mobile__inner {
     height: 100%;
