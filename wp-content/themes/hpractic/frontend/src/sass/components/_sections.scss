@@ -33,6 +33,16 @@
     @media only screen and(max-width: 1320px) {
       padding: 0 0;
     }
+  
+    @media only screen and(max-width: 1023px) {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10rem;
+    }
+  
+    @media only screen and(max-width: 599px) {
+      padding: 0 0;
+    }
   }
   
   &__form {
@@ -42,6 +52,11 @@
     @media only screen and(max-width: 1700px) {
       width: 40rem;
     }
+  
+    @media only screen and(max-width: 1023px) {
+      width: 100%;
+      margin: 3rem 0 0;
+    }
   }
   
   &__text {
@@ -50,6 +65,12 @@
     @media only screen and(max-width: 1700px) {
       padding-right: 6rem;
     }
+    
+    @media only screen and(max-width: 1023px) {
+      padding: 0;
+      text-align: center;
+    }
+    
   }
   
   &__main {
@@ -85,9 +106,14 @@
     }
   
     @media only screen and(max-width: 1320px) {
-      width: calc(100% + 3rem);
+      width: calc(100% + 1.5rem + (100vw - 100%) / 2);
       margin: 0 -1.5rem;
       padding-left: 0;
+    }
+  
+    @media only screen and(max-width: 1320px) {
+      width: calc(100% + 0.8rem + (100vw - 100%) / 2);
+      margin: 0 -0.8rem;
     }
     
     .slider {
@@ -142,6 +168,10 @@
       position: relative;
       z-index: 2;
     }
+  
+    @media only screen and(max-width: 599px) {
+      justify-content: center;
+    }
     
     &-group {
       display: flex;
@@ -157,6 +187,10 @@
         margin: 0 0 0 4rem;
         width: auto;
         order: 1;
+      }
+  
+      @media only screen and(max-width: 599px) {
+        display: none;
       }
       
       .btn {

@@ -1,6 +1,6 @@
 .header {
   padding: 0 0;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 100;
@@ -13,23 +13,18 @@
     padding: 2.3rem 0;
   }
   
-  @media only screen and (max-width: 992px){
-    padding: 1rem 0;
-    box-shadow: 1px 1px 12px rgba(37, 56, 84, 0.2);
-  }
-  
-  @media only screen and (max-width: 599px){
-    padding: .6rem 0;
+  @media only screen and (max-width: 699px){
+    padding: 1.6rem 0;
   }
   
   .container {
-    @media only screen and (min-width: 1320px) and (max-width: 1700px){
+    @media only screen and (min-width: 1320px) and (max-width: 1700px) {
       max-width: 100%;
     }
   }
   
   &.sticky {
-    box-shadow: 5px 5px 20px rgba(37, 56, 84, 0.2);
+    //box-shadow: 5px 5px 20px rgba(37, 56, 84, 0.2);
   }
   
   &__content {
@@ -37,7 +32,7 @@
     justify-content: space-between;
     align-items: center;
     
-    @media only screen and (max-width: 992px){
+    @media only screen and (max-width: 1023px){
       align-items: center;
     }
   }
@@ -54,18 +49,13 @@
       margin-right: 3rem;
     }
   
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 699px){
       margin-right: 0.5rem;
     }
     
     .logo {
-  
-      @media only screen and (max-width: 992px){
-      
-      }
-  
-      @media only screen and (max-width: 599px){
-      
+      @media only screen and(max-width: 1023px) {
+        width: 11.5rem;
       }
     }
   }
@@ -82,13 +72,14 @@
     line-height: 2.6rem;
     text-transform: uppercase;
     color: $color-dark;
+    white-space: nowrap;
     
     &:not(:last-child){
       margin-right: 3.2rem;
-    }
-    
-    @media only screen and (max-width: 992px){
-    
+  
+      @media only screen and (max-width: 1023px){
+        margin-right: 2rem;
+      }
     }
     
     ul {
@@ -131,7 +122,25 @@
     
     &:not(:last-child){
       margin-right: 3.2rem;
+  
+      @media only screen and (max-width: 1023px){
+        margin-right: 2rem;
+      }
+      
+      @media only screen and (max-width: 699px) {
+        margin-right: 0;
+        margin-left: auto;
+        width: auto;
+      }
     }
+    
+    .form {
+      @media only screen and (max-width: 699px){
+        display: none;
+      }
+    }
+  
+    
   }
   
   &__btn {
@@ -157,6 +166,7 @@
             background-color: $color-primary;
             border-radius: 0 0 2px 2px;
             height: 0.4rem;
+            display: none;
           }
         }
         &.active {

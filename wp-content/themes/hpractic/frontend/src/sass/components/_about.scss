@@ -3,6 +3,11 @@
   display: flex;
   justify-content: space-between;
   
+  @media only screen and(max-width: 1023px) {
+    flex-direction: column;
+    padding: 0;
+  }
+  
   &__content {
     padding-left: 16rem;
     padding-right: 6rem;
@@ -15,6 +20,11 @@
     @media only screen and(max-width: 1320px) {
       padding-left: 5rem;
     }
+  
+    @media only screen and(max-width: 1023px) {
+      padding: 0;
+    }
+    
   }
   
   &__img {
@@ -30,8 +40,13 @@
       margin-top: 5.8rem;
     }
   
-    @media only screen and(max-width: 599px) {
-    
+    @media only screen and(max-width: 1023px) {
+      margin: 0 auto 6.2rem;
+    }
+  
+    @media only screen and(max-width: 699px) {
+      width: 100%;
+      max-width: 28rem;
     }
     
     .img {

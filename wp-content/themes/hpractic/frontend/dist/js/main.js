@@ -48,21 +48,21 @@ jQuery(document).ready(function($){
             }
           },
           {
-            breakpoint: 992,
+            breakpoint: 1023,
             settings: {
               slidesToShow: 3
             }
           },
           {
-            breakpoint: 768,
+            breakpoint: 767,
             settings: {
-              slidesToShow: 2
+              slidesToShow: 3
             }
           },
           {
-            breakpoint: 599,
+            breakpoint: 699,
             settings: {
-              slidesToShow: 1
+              slidesToShow: 2
             }
           }
         ]

@@ -15,10 +15,16 @@
   }
   
   svg, img {
-    width: 1.2em;
-    height: 1.2em;
     display: block;
-    margin-right: 0.6em;
+    margin: 0 0.6em;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    
+    &:last-child {
+      margin-right: 0;
+    }
   }
   
   &:hover {
@@ -26,11 +32,19 @@
   }
   
   &--primary {
-    color: $color-primary-dark;
+    color: $color-primary;
+    
+    .icon {
+      --iconColor: $color-primary;
+    }
   }
   
   &--secondary {
-    color: $color-white;
+    color: $color-primary-dark;
+    
+    .icon {
+      --iconColor: $color-primary-dark;
+    }
   }
   
   &--bold {

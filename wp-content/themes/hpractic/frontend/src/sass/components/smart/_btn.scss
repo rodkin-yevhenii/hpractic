@@ -23,9 +23,8 @@
   min-width: 16rem;
   
   
-  @media only screen and(max-width: 599px) {
-    width: 100%;
-    min-width: 100%;
+  @media only screen and(max-width: 699px) {
+  
   }
   
   & > * {
@@ -89,6 +88,31 @@
       &:active {
         color: $color-white;
         background-color: $color-darker-blue2;
+        --iconColor: $color-darker-blue;
+      }
+    }
+  }
+  
+  &--bordered {
+    &,
+    &:link,
+    &:visited {
+      border: 1px solid rgba($color-dark-blue, 0.5);
+      color: $color-dark-blue;
+      background: $color-white;
+      --iconColor: $color-darker-blue;
+      
+      &:hover {
+        color: $color-white;
+        background-color: $color-darker-blue;
+        border-color: $color-darker-blue;
+        --iconColor: $color-darker-blue;
+      }
+      
+      &:active {
+        color: $color-white;
+        background-color: $color-darker-blue2;
+        border-color: $color-darker-blue2;
         --iconColor: $color-darker-blue;
       }
     }

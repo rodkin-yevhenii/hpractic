@@ -73,17 +73,10 @@ ul, li {
 
 .main {
   padding-top: 10rem;
-
-  @media only screen and(max-width: 1366px) {
   
-  }
 
-  @media only screen and (max-width: 992px){
-    padding-top: 68px;
-  }
-
-  @media only screen and (max-width: 599px){
-    padding-top: 50px;
+  @media only screen and (max-width: 699px){
+    padding-top: 7.8rem;
   }
 }
 
@@ -99,14 +92,14 @@ ul, li {
   }
 
   &-slider {
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 699px){
       flex-wrap: wrap;
       justify-content: flex-end;
       display: flex;
     }
 
     &.grid-container {
-      @media only screen and (max-width: 599px){
+      @media only screen and (max-width: 699px){
         margin-left: 0;
         margin-right: 0;
         justify-content: flex-end;
@@ -135,7 +128,7 @@ ul, li {
     cursor: pointer;
     z-index: 2;
 
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 699px){
       position: relative;
       height: 3.2rem;
       width: 3.2rem;
@@ -154,7 +147,7 @@ ul, li {
     transform: translateY(-50%);
     background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-left.svg");
 
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 699px){
       left: 0;
       transform: none;
       order: -2;
@@ -166,7 +159,7 @@ ul, li {
     transform: translateY(-50%);
     background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-right.svg");
 
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 699px){
       right: 0;
       transform: none;
       order: -1;

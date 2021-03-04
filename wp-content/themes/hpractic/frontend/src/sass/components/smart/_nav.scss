@@ -83,6 +83,11 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity .3s .3s;
+  
+    @media only screen and (max-width: 1700px) {
+      max-width: 36rem;
+      padding: 1rem 0;
+    }
     
     & > ul {
       flex-direction: column;
@@ -91,6 +96,10 @@
         position: relative;
         padding: 0 5rem;
         margin: 1rem 0;
+  
+        @media only screen and (max-width: 1700px) {
+          padding: 0 3rem;
+        }
         
         & > a {
           padding: 0.2rem 0;
@@ -99,6 +108,10 @@
           font-size: 1.7rem;
           font-weight: normal;
           justify-content: flex-start;
+  
+          @media only screen and (max-width: 1700px) {
+            font-size: 1.5rem;
+          }
           
           &:before {
             content: '';

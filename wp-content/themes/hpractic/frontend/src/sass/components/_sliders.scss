@@ -8,11 +8,20 @@
     @media only screen and (max-width: 1320px) {
       padding: 1rem 1.6rem;
     }
+  
+    @media only screen and (max-width: 1024px) {
+      padding: 1rem 0.8rem;
+    }
   }
   
   .slick-list {
     margin: 0 -1.6rem;
     padding: 0 1.6rem;
+  
+    @media only screen and (max-width: 1024px) {
+      margin: 0 -0.8rem;
+      padding: 0 0.8rem;
+    }
   }
   
   .slick-active {
@@ -38,7 +47,8 @@
         @media only screen and (min-width: 1320px) {
           .card__actions {
             opacity: 1;
-            transition: opacity .2s .4s;
+            transform: translateY(0);
+            transition: opacity .3s .3s, transform .3s .3s;
           }
         }
         
