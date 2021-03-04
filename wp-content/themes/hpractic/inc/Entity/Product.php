@@ -2,8 +2,6 @@
 
 namespace Hpr\Entity;
 
-use PHPMailer\PHPMailer\Exception;
-
 /**
  * Class Product
  *
