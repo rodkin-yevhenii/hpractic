@@ -9,6 +9,10 @@
   fill: currentColor;
   flex-shrink: 0;
   
+  &--md {
+    font-size: 0.8em;
+  }
+  
   img {
     display: block;
     width: 100%;

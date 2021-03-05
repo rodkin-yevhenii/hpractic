@@ -3,28 +3,33 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
-  height: 100%;
+  top: 10rem;
+  height: calc(100% - 10rem);
   width: 100%;
-  background: rgba(0 ,0, 0, 0.33);
+  background: rgba(255 ,255, 255, 0.22);
   overflow: hidden;
-  z-index: 1000;
-  transition: all 1s;
+  z-index: 99;
+  transition: opacity .3s linear, transform .3s linear;
   display: none;
   opacity: 0;
-
+  transform: translateX(-120%);
+  
+  @media only screen and (max-width: 1023px){
+    top: 8.6rem;
+    height: calc(100% - 8.6rem);
+  }
+  
+  @media only screen and (max-width: 699px){
+    top: 7.8rem;
+    height: calc(100% - 7.8rem);
+  }
+  
   &.open {
     opacity: 1;
-
-    #{$menu}{
-      &__content {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+    box-shadow: 0 4px 20px rgba(48, 96, 154, 0.1);
+    transform: translateX(0);
   }
-
-
+  
   &__close {
     border: none;
     outline: none;
@@ -49,21 +54,20 @@
 
   &__inner {
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
   }
 
   &__content {
     min-height: 100%;
-    width: 38rem;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
     background: $color-white;
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    padding: 2rem 4rem 2em;
-    box-shadow: 5px 5px 20px rgba(37, 56, 84, 0.2);
-    transition: all .6s;
-    opacity: 0;
-    transform: translateX(120%);
+    margin-right: auto;
+    padding: 0;
+    position: relative;
   }
 
   &__logo {
@@ -75,29 +79,124 @@
       width: 100%;
     }
   }
-
-  .link {
-    font-size: 1.8rem;
+  
+  &__nav {
+    padding: 3.2rem 3.2rem;
+    flex: 1;
+    width: 30.6rem;
+    border-right: 1px solid rgba($color-secondary-dark, 0.1);
+    overflow: auto;
+  
+    @media only screen and (max-width: 699px){
+      border: none;
+      width: 100%;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+    }
   }
-
+  
   .nav {
     display: block;
-    font-size: 1.8rem;
     text-align: left;
+    
+    &__sub {
+      top: 0;
+      right: 0;
+      transform: none;
+      left: auto;
+      box-shadow: none;
+      height: 100%;
+      max-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: calc(100% - 30.6rem);
+      max-width: unset;
+      padding: 3.2rem 3.2rem;
+  
+      @media only screen and (max-width: 699px){
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        transition: max-height .48s linear;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        max-height: 0;
+        padding: 0;
+      }
+  
+      & > ul {
+        @media only screen and (max-width: 699px){
+          padding: 2rem 0 2rem 2rem;
+        }
+        
+        & > li {
+          padding: 0;
+          & > a {
+            &::before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
 
     ul {
       display: block;
-      margin: 0 0 6rem;
 
       li {
-        display: block;
-        margin: 0 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 2rem;
+        position: static;
+  
+        @media only screen and (max-width: 699px){
+          flex-wrap: wrap;
+        }
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    .visible-submenu {
+      
+      & > .btn {
+        color: $color-white;
+        background: $color-primary;
+        border-color: $color-primary;
+        --iconColor: $color-primary;
+  
+        @media only screen and (max-width: 699px){
+          transform: rotate(-90deg);
+        }
+      }
+      
+      .nav__sub {
+        @media only screen and (max-width: 699px){
+          max-height: 800vh;
+          transition: max-height 1s linear;
+        }
+      }
+    }
+    
+    .btn {
+      @media only screen and (max-width: 699px){
+        position: relative;
+        transform: rotate(90deg);
       }
     }
 
     a {
       display: inline-block;
-      padding: 1rem 0;
+      padding: 0;
 
       &:not(:first-child){
         margin: 0;

@@ -150,7 +150,7 @@
       & > li {
         padding: 0 0 0 30px;
       
-        &:before {
+        &::before {
           content: '';
           position: absolute;
           left: 0;
@@ -177,7 +177,7 @@
     
       & > li {
       
-        &:before {
+        &::before {
           counter-increment: section;
           content: counters(section, ".") ".";
           color: $color-primary-dark;
@@ -189,7 +189,7 @@
       
         ol {
           li {
-            &:before {
+            &::before {
               content: counters(section, ".") "";
             }
           }

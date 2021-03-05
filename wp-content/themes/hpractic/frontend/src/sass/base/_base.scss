@@ -74,6 +74,9 @@ ul, li {
 .main {
   padding-top: 10rem;
   
+  @media only screen and (max-width: 1023px){
+    padding-top: 8.6rem;
+  }
 
   @media only screen and (max-width: 699px){
     padding-top: 7.8rem;
@@ -173,4 +176,9 @@ ul, li {
       border: none;
     }
   }
+}
+
+
+.not-scrolling {
+  overflow: hidden !important;
 }

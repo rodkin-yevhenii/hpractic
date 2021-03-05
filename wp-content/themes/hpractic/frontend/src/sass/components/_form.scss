@@ -119,9 +119,14 @@
     
     position: relative;
     color: $color-grey-dark2;
+    border-radius: 4px;
     
     &:not(:last-child){
       margin: 0 0 2rem;
+    }
+    
+    button {
+      cursor: pointer;
     }
     
     &-icon {
@@ -133,6 +138,10 @@
       align-items: center;
       justify-content: center;
       width: 1em;
+      box-shadow: none;
+      outline: none;
+      border: none;
+      background: transparent;
       
       img, svg {
         display: block;

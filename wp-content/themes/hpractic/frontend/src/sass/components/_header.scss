@@ -3,7 +3,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 102;
   background: $color-white;
   left: 0;
   right: 0;
@@ -13,11 +13,17 @@
     padding: 2.3rem 0;
   }
   
+  @media only screen and (max-width: 1023px){
+    padding: 2rem 0;
+  }
+  
   @media only screen and (max-width: 699px){
     padding: 1.6rem 0;
   }
   
   .container {
+    position: static;
+    
     @media only screen and (min-width: 1320px) and (max-width: 1700px) {
       max-width: 100%;
     }
@@ -25,6 +31,10 @@
   
   &.sticky {
     //box-shadow: 5px 5px 20px rgba(37, 56, 84, 0.2);
+  }
+  
+  &.active {
+    box-shadow: 0 4px 20px rgba(48, 96, 154, 0.1);
   }
   
   &__content {
@@ -67,20 +77,13 @@
   &__languages {
     font-family: $font-primary;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 1.5rem;
     line-height: 2.6rem;
     text-transform: uppercase;
     color: $color-dark;
     white-space: nowrap;
     
-    &:not(:last-child){
-      margin-right: 3.2rem;
-  
-      @media only screen and (max-width: 1023px){
-        margin-right: 2rem;
-      }
-    }
     
     ul {
       list-style: none;
@@ -90,9 +93,10 @@
         
         &:not(:last-child) {
           &::after {
-            content: '/';
+            content: '|';
             display: inline-block;
             padding: 0 0.2em;
+            font-weight: inherit;
           }
         }
       }
@@ -136,7 +140,33 @@
     
     .form {
       @media only screen and (max-width: 699px){
-        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        top: 100%;
+        padding: 1rem 1rem;
+        transform: translateY(2rem);
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .3s, opacity .3s linear, transform .3s linear;
+        pointer-events: none;
+        
+        &.visible {
+          transform: translateY(0);
+          visibility: visible;
+          pointer-events: all;
+          opacity: 1;
+          transition: opacity .3s linear, transform .3s linear;
+        }
+      }
+  
+      &__field {
+        background: $color-white;
+  
+        @media only screen and (max-width: 699px){
+          box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.08);
+        }
       }
     }
   

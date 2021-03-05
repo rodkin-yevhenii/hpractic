@@ -17,7 +17,7 @@
     justify-content: center;
     text-decoration: none;
     color: currentColor;
-    transition: color .3s linear;
+    transition: color .08s linear;
     --iconColor: currentColor;
     
     &:hover {
@@ -36,6 +36,7 @@
     }
   }
   
+  
   & > ul {
     display: flex;
     list-style: none;
@@ -46,9 +47,23 @@
       &:hover {
         #{$nav}{
           &__sub {
-            pointer-events: all;
-            visibility: visible;
-            opacity: 1;
+            @media screen and (min-width: 1320px){
+              pointer-events: all;
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      
+      &.visible-submenu {
+        #{$nav}{
+          &__sub {
+            @media screen and (max-width: 1320px){
+              pointer-events: all;
+              visibility: visible;
+              opacity: 1;
+            }
           }
         }
       }
@@ -106,14 +121,14 @@
           position: static;
           text-transform: none;
           font-size: 1.7rem;
-          font-weight: normal;
+          font-weight: 600;
           justify-content: flex-start;
   
           @media only screen and (max-width: 1700px) {
             font-size: 1.5rem;
           }
           
-          &:before {
+          &::before {
             content: '';
             position: absolute;
             left: 0;
@@ -124,7 +139,7 @@
             background: $color-primary;
             border-radius: 0 2px 2px 0;
             opacity: 0;
-            transition: opacity .3s;
+            transition: opacity .08s;
           }
           
           &:hover {
