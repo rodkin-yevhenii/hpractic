@@ -18,7 +18,7 @@
   line-height: 2.2rem;
   font-family: $font-primary;
   transition: all .3s ease-out;
-  font-weight: bold;
+  font-weight: 600;
   font-style: normal;
   min-width: 16rem;
   
@@ -267,5 +267,43 @@
     white-space: nowrap;
     color: $color-white;
     background-color: $color-dark-blue;
+  }
+}
+
+.btn-to-top {
+  position: fixed;
+  bottom: 8rem;
+  right: 4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .2s;
+  z-index: 100;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  background-color: $color-white;
+  box-shadow: 0 0 40px rgba(27, 55, 88, 0.15);
+  border-radius: 8px;
+  
+  .icon {
+    position: relative;
+    transform: rotate(-90deg);
+  }
+  
+  
+  @media only screen and (max-width: 699px){
+    bottom: 6.6rem;
+    right: 2rem;
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+  
+  &.visible {
+    pointer-events: initial;
+    opacity: 1;
+    
+    &:hover {
+    }
   }
 }

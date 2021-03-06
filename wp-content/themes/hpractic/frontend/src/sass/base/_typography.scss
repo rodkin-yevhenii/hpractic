@@ -3,13 +3,12 @@
   font-style: normal;
   font-weight: 700;
   line-height: 1.2;
-  color: $color-dark;
+  color: $color-secondary-dark;
   position: relative;
 }
 
 .heading {
   $heading: &;
-  color: $color-secondary-dark;
   
   @extend %title;
   text-transform: uppercase;

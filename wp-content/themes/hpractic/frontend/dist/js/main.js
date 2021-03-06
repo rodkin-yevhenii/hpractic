@@ -262,10 +262,15 @@ jQuery(document).ready(function($){
 
     if(!target.is('a')) {
       e.preventDefault();
+      const item =  submenu.closest('li');
+      target.closest('.nav').find('li').not(item[0]).removeClass('visible-submenu');
+
       if(submenu.length > 0){
-        submenu.closest('li').toggleClass('visible-submenu');
-      } else {
-        target.closest('.nav').find('li').removeClass('visible-submenu');
+        if(!item.hasClass('visible-submenu')) {
+          item.addClass('visible-submenu');
+        } else {
+          item.removeClass('visible-submenu');
+        }
       }
     }
   });
