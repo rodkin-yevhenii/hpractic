@@ -26,8 +26,9 @@ class Menu
     {
         register_nav_menus(
             [
-                'primary-menu' => esc_html__('Primary Menu', 'hpractice'),
-                'mobile-menu' => esc_html__('Mobile Menu', 'hpractice'),
+                'primary-menu' => esc_html__('Главное меню', 'hpractice'),
+                'mobile-menu' => esc_html__('Мобильное меню', 'hpractice'),
+                'footer-menu' => esc_html__('Меню в подвале', 'hpractice'),
             ]
         );
     }
