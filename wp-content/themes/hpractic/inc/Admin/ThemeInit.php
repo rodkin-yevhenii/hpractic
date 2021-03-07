@@ -109,12 +109,13 @@ class ThemeInit
     {
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
+        add_post_type_support('page', array('excerpt'));
     }
 
     /**
      * Add new images sizes.
      */
-    private function registerImagesSizes():void
+    private function registerImagesSizes(): void
     {
         add_image_size('carousel-item', 328, 358, true);
     }

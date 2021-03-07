@@ -70,4 +70,21 @@ class Helpers
 
         return $catalogPageId;
     }
+
+    /**
+     * Get service page id.
+     *
+     * @return int|null
+     */
+    public static function getServicePageId(): ?int
+    {
+        $langSlug = pll_current_language();
+        $catalogPageId = get_field('service_page_' . $langSlug, 'option');
+
+        if (empty($catalogPageId)) {
+            return null;
+        }
+
+        return $catalogPageId;
+    }
 }
