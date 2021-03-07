@@ -2,6 +2,8 @@
 
 namespace Hpr\Admin;
 
+use Hpr\Front\Assets;
+
 /**
  * Class ThemeInit
  *
@@ -20,9 +22,10 @@ class ThemeInit
         $this->initAcfFields();
         $this->initProduct();
         $this->initService();
+        $this->initAssets();
+        $this->initMenu();
 
         $this->registerThemeSettings();
-        $this->registerMenuLocations();
         $this->registerThemeSupport();
 
         // Register mime types.
@@ -46,6 +49,22 @@ class ThemeInit
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Init styles and scripts enqueuing.
+     */
+    private function initAssets(): void
+    {
+        new Assets();
+    }
+
+    /**
+     * Init theme menus.
+     */
+    private function initMenu(): void
+    {
+        new Menu();
     }
 
     /**
@@ -80,18 +99,6 @@ class ThemeInit
                 ]
             );
         }
-    }
-
-    /**
-     * Register theme menu locations.
-     */
-    private function registerMenuLocations()
-    {
-        register_nav_menus(
-            [
-                'primary-menu' => esc_html__('Primary Menu', 'hpractice'),
-            ]
-        );
     }
 
     /**

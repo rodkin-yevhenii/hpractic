@@ -16,8 +16,8 @@ define('THEME_DIR', get_stylesheet_directory());
 define('THEME_URI', get_stylesheet_directory_uri());
 define('DIST_URI', THEME_URI . '/frontend/dist/');
 define('DIST_PATH', THEME_DIR . '/frontend/dist/');
-define('SRC_URI', THEME_URI . '/frontend/srс/');
-define('SRC_PATH', THEME_DIR . '/frontend/srс/');
+define('SRC_URI', THEME_URI . '/frontend/src/');
+define('SRC_PATH', THEME_DIR . '/frontend/src/');
 
 /***
  * Init theme functionality
