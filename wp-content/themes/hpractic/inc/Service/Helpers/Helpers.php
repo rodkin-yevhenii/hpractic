@@ -10,6 +10,9 @@ namespace Hpr\Service\Helpers;
  */
 class Helpers
 {
+    /**
+     * Language switcher render.
+     */
     public static function showLanguageSwitcher(): void
     {
         if (!function_exists('pll_the_languages')) {
@@ -49,5 +52,22 @@ class Helpers
             </ul>
         </div>
         <?php echo ob_get_clean();
+    }
+
+    /**
+     * Get catalog page id.
+     *
+     * @return int|null
+     */
+    public static function getCatalogId(): ?int
+    {
+        $langSlug = pll_current_language();
+        $catalogPageId = get_field('shop_page_' . $langSlug, 'option');
+
+        if (empty($catalogPageId)) {
+            return null;
+        }
+
+        return $catalogPageId;
     }
 }

@@ -27,6 +27,7 @@ class ThemeInit
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
+        $this->registerImagesSizes();
 
         // Register mime types.
         add_filter('upload_mimes', [$this, 'registerAdditionalMimeTypes'], 1, 1);
@@ -108,6 +109,14 @@ class ThemeInit
     {
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
+    }
+
+    /**
+     * Add new images sizes.
+     */
+    private function registerImagesSizes():void
+    {
+        add_image_size('carousel-item', 328, 358, true);
     }
 
     /**
