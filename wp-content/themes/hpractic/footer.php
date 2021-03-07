@@ -14,10 +14,10 @@ $footer = get_field('footer', 'option');
         <?php endif; ?>
         <div class="footer__content">
             <div class="footer__content-row">
-                <?php if (!empty($footer['text'])) : ?>
+                <?php if (!empty($footer['text_' . pll_current_language()])) : ?>
                     <div class="footer__item footer__about">
                         <p class="text">
-                            <?php echo $footer['text']; ?>
+                            <?php echo $footer['text_' . pll_current_language()]; ?>
                         </p>
                     </div>
                 <?php endif; ?>
