@@ -13,7 +13,7 @@ $fields = $args['fields'];
                 <p class="subheading subheading--sm">
                     <?php _e(
                         'Оставьте свой номер телефона. Мы перезвоним Вам и ответим на все возникшие вопросы, поможем составить техническое задание',
-                        'hprectice'
+                        'hpractice'
                     ); ?>
                 </p>
             </div>
