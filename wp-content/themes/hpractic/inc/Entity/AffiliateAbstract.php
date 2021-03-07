@@ -12,7 +12,7 @@ class AffiliateAbstract
 {
     private int $id;
     private string $title;
-    private string $content;
+    private string $url;
     private string $thumbUrl;
 
     /**
@@ -27,6 +27,7 @@ class AffiliateAbstract
         $this->id = $id;
         $this->title = get_the_title($id);
         $this->thumbUrl = get_the_post_thumbnail_url($id);
+        $this->url = get_permalink($id);
     }
 
     /**
@@ -51,5 +52,13 @@ class AffiliateAbstract
     public function getThumbUrl(): string
     {
         return $this->thumbUrl;
+    }
+
+    /**
+     * @return false|string|\WP_Error
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }
