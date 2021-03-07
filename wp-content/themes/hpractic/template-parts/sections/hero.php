@@ -1,5 +1,7 @@
 <?php
 
+use Hpr\Service\Helpers\Helpers;
+
 if (empty($args['fields'])) :
     return;
 endif;
@@ -24,7 +26,7 @@ $fields = $args['fields'];
                     </p>
                 <?php endif; ?>
                 <div class="hero__actions">
-                    <a href="<?php echo get_permalink($fields['link']); ?>" class="btn btn--primary">
+                    <a href="<?php echo get_permalink(Helpers::getCatalogId()); ?>" class="btn btn--primary">
                         <?php _e('Смотреть каталог', 'hpractice'); ?>
                     </a>
                 </div>
