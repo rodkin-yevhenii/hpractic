@@ -91,8 +91,8 @@ class ThemeInit
         if (function_exists('acf_add_options_page')) {
             acf_add_options_page(
                 [
-                    'page_title' => __('Theme Settings', 'hpractice'),
-                    'menu_title' => __('Theme Settings', 'hpractice'),
+                    'page_title' => __('Настройки темы', 'hpractice'),
+                    'menu_title' => __('Настройки темы', 'hpractice'),
                     'menu_slug' => 'theme-settings',
                     'capability' => 'edit_posts',
                     'redirect' => false,
