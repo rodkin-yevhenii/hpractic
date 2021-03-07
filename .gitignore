@@ -26,4 +26,4 @@ wp-content/themes/twenty*
 *.sqlite
 
 # Ignore languages
-/wp-content/languages/themes/
+/wp-content/languages/*
