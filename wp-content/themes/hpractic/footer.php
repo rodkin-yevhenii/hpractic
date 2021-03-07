@@ -38,7 +38,7 @@ $footer = get_field('footer', 'option');
                 <?php if (!empty($footer['phones']) && !empty($footer['emails'])) : ?>
                     <div class="footer__item footer__contacts">
                         <h4 class="subheading subheading--sm">
-                            <?php _e('Контактная информация', 'hpractice'); ?>К
+                            <?php _e('Контактная информация', 'hpractice'); ?>
                         </h4>
                         <ul>
                             <?php foreach ($footer['phones'] ?? [] as $item) :
