@@ -9,22 +9,22 @@
   right: 0;
   transition: box-shadow .4s linear;
   
-  @media only screen and(max-width: 1320px) {
+  @media only screen and(max-width: $container-desktop-sm) {
     padding: 2.3rem 0;
   }
   
-  @media only screen and (max-width: 1023px){
+  @media only screen and (max-width: $container-tablet){
     padding: 2rem 0;
   }
   
-  @media only screen and (max-width: 699px){
+  @media only screen and (max-width: $container-tablet-sm){
     padding: 1.6rem 0;
   }
   
   .container {
     position: static;
     
-    @media only screen and (min-width: 1320px) and (max-width: 1700px) {
+    @media only screen and (min-width: $container-desktop-sm + 1) and (max-width: $container-desktop-lg) {
       max-width: 100%;
     }
   }
@@ -42,7 +42,7 @@
     justify-content: space-between;
     align-items: center;
     
-    @media only screen and (max-width: 1023px){
+    @media only screen and (max-width: $container-tablet){
       align-items: center;
     }
   }
@@ -51,7 +51,7 @@
     margin-right: 8rem;
     flex-shrink: 0;
   
-    @media only screen and (max-width: 1700px){
+    @media only screen and (max-width: $container-desktop-lg){
       margin-right: 4rem;
     }
     
@@ -59,12 +59,12 @@
       margin-right: 3rem;
     }
   
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       margin-right: 0.5rem;
     }
     
     .logo {
-      @media only screen and(max-width: 1023px) {
+      @media only screen and(max-width: $container-tablet) {
         width: 11.5rem;
       }
     }
@@ -120,18 +120,18 @@
   &__search {
     width: 24.8rem;
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       margin-left: auto;
     }
     
     &:not(:last-child){
       margin-right: 3.2rem;
   
-      @media only screen and (max-width: 1023px){
+      @media only screen and (max-width: $container-tablet){
         margin-right: 2rem;
       }
       
-      @media only screen and (max-width: 699px) {
+      @media only screen and (max-width: $container-tablet-sm) {
         margin-right: 0;
         margin-left: auto;
         width: auto;
@@ -139,7 +139,7 @@
     }
     
     .form {
-      @media only screen and (max-width: 699px){
+      @media only screen and (max-width: $container-tablet-sm){
         position: absolute;
         left: 0;
         right: 0;
@@ -164,7 +164,7 @@
       &__field {
         background: $color-white;
   
-        @media only screen and (max-width: 699px){
+        @media only screen and (max-width: $container-tablet-sm){
           box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.08);
         }
       }

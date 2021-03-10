@@ -34,13 +34,13 @@
 
 .u-mobile {
   &-hidden {
-    @media screen and (max-width: 699px) {
+    @media screen and (max-width: $container-tablet-sm) {
       display: none !important;
     }
   }
   
   &-visible {
-    @media screen and (min-width: 699px) {
+    @media screen and (min-width: $container-tablet-sm + 1) {
       display: none !important;
     }
   }
@@ -48,13 +48,13 @@
 
 .u-desktop-sm {
   &-hidden {
-    @media screen and (max-width: 1320px) {
+    @media screen and (max-width: $container-desktop-sm) {
       display: none !important;
     }
   }
   
   &-visible {
-    @media screen and (min-width: 1320px) {
+    @media screen and (min-width: $container-desktop-sm + 1) {
       display: none !important;
     }
   }
@@ -68,8 +68,9 @@
   }
   
   &-visible {
-    @media screen and (min-width: 1199px) {
+    @media screen and (min-width: 1199px + 1) {
       display: none !important;
     }
   }
 }
+

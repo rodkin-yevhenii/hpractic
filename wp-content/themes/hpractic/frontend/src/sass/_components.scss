@@ -5,11 +5,11 @@
 @import 'components/smart/breadcrumbs';
 
 .cards {
-  @media only screen and(max-width: 1320px) {
+  @media only screen and(max-width: $container-desktop-sm) {
     padding: 0 5rem;
   }
   
-  @media only screen and(max-width: 1023px) {
+  @media only screen and(max-width: $container-tablet) {
     padding: 0;
   }
 }

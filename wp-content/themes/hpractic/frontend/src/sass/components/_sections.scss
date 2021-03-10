@@ -1,7 +1,7 @@
 .section {
   padding: 12rem 0;
   
-  @media only screen and(max-width: 1700px) {
+  @media only screen and(max-width: $container-desktop-lg) {
     padding: 6.4rem 0;
   }
   
@@ -16,7 +16,7 @@
   &__inner {
     display: flex;
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       flex-direction: column;
     }
   }
@@ -26,15 +26,15 @@
     align-items: center;
     padding: 0 12.8rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       padding: 0 10rem;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       padding: 0 0;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       flex-direction: column;
       align-items: center;
       padding: 0 10rem;
@@ -49,11 +49,11 @@
     width: 49.2rem;
     flex-shrink: 0;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       width: 40rem;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: 100%;
       margin: 3rem 0 0;
     }
@@ -62,11 +62,11 @@
   &__text {
     padding-right: 13.2rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       padding-right: 6rem;
     }
     
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       padding: 0;
       text-align: center;
     }
@@ -82,11 +82,11 @@
     justify-content: center;
     padding: 2rem 2rem 2rem 0;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       width: 28.8rem;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       width: 100%;
       padding: 0;
       margin: 0 0 2rem;
@@ -101,17 +101,17 @@
     flex-shrink: 0;
     padding-left: 1.6rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       width: calc(100% - 28.8rem + (100vw - 114rem) / 2);
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       width: calc(100% + 1.5rem + (100vw - 100%) / 2);
       margin: 0 -1.5rem;
       padding-left: 0;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       width: calc(100% + 0.8rem + (100vw - 100%) / 2);
       margin: 0 -0.8rem;
     }
@@ -120,11 +120,11 @@
       margin-right: -19.5rem;
       position: relative;
   
-      @media only screen and(max-width: 1700px) {
+      @media only screen and(max-width: $container-desktop-lg) {
         margin-right: -16rem;
       }
   
-      @media only screen and(max-width: 1320px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         margin-right: -12rem;
       }
       
@@ -141,12 +141,12 @@
         z-index: 1;
         pointer-events: none;
   
-        @media only screen and(max-width: 1700px) {
+        @media only screen and(max-width: $container-desktop-lg) {
           width: 16%;
           right: 10%;
         }
   
-        @media only screen and(max-width: 1320px) {
+        @media only screen and(max-width: $container-desktop-sm) {
           right: 8%;
         }
       }
@@ -158,18 +158,18 @@
     align-items: center;
     margin-top: 1.6rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       flex-wrap: wrap;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       justify-content: flex-end;
       margin-top: 2rem;
       position: relative;
       z-index: 2;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       justify-content: space-between;
     }
     
@@ -178,18 +178,18 @@
       align-items: center;
       margin-right: 3.2rem;
   
-      @media only screen and(max-width: 1700px) {
+      @media only screen and(max-width: $container-desktop-lg) {
         width: 100%;
         margin: 0 0 1.6rem;
       }
   
-      @media only screen and(max-width: 1320px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         margin: 0 0 0 4rem;
         width: auto;
         order: 1;
       }
   
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         margin-left: auto;
         margin-right: 0;
       }

@@ -23,7 +23,7 @@
   min-width: 16rem;
   
   
-  @media only screen and(max-width: 699px) {
+  @media only screen and (max-width: $container-tablet-sm) {
   
   }
   
@@ -250,8 +250,8 @@
   background-color: transparent;
   
   &__badge {
-    position: absolute;
-    right: -0.9em;
+    position: relative;
+    right: 0.9em;
     top: -0.9em;
     font-size: 0.56em;
     font-weight: bold;
@@ -267,6 +267,7 @@
     white-space: nowrap;
     color: $color-white;
     background-color: $color-dark-blue;
+    flex-shrink: 0;
   }
 }
 
@@ -292,7 +293,7 @@
   }
   
   
-  @media only screen and (max-width: 699px){
+  @media only screen and (max-width: $container-tablet-sm){
     bottom: 6.6rem;
     right: 2rem;
     width: 3.6rem;

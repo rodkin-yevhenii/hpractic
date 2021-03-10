@@ -25,8 +25,12 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px 10px / 16px = 62.5%;
+  
+  @media only screen and (min-width:$container-desktop-sm) and (max-width: $container-desktop-md) {
+    font-size: 50%;
+  }
 
-  @media only screen and(max-width: 320px) {
+  @media only screen and (max-width: 320px) {
     font-size: 50%; // 1rem = 8px 8px / 16px = 50%;
   }
 }
@@ -74,11 +78,11 @@ ul, li {
 .main {
   padding-top: 10rem;
   
-  @media only screen and (max-width: 1023px){
+  @media only screen and (max-width: $container-tablet){
     padding-top: 8.6rem;
   }
 
-  @media only screen and (max-width: 699px){
+  @media only screen and (max-width: $container-tablet-sm){
     padding-top: 7.8rem;
   }
 }
@@ -95,14 +99,14 @@ ul, li {
   }
 
   &-slider {
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       flex-wrap: wrap;
       justify-content: flex-end;
       display: flex;
     }
 
     &.grid-container {
-      @media only screen and (max-width: 699px){
+      @media only screen and (max-width: $container-tablet-sm){
         margin-left: 0;
         margin-right: 0;
         justify-content: flex-end;
@@ -131,7 +135,7 @@ ul, li {
     cursor: pointer;
     z-index: 2;
 
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       position: relative;
       height: 3.2rem;
       width: 3.2rem;
@@ -150,7 +154,7 @@ ul, li {
     transform: translateY(-50%);
     background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-left.svg");
 
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       left: 0;
       transform: none;
       order: -2;
@@ -162,7 +166,7 @@ ul, li {
     transform: translateY(-50%);
     background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/chevron-right.svg");
 
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       right: 0;
       transform: none;
       order: -1;

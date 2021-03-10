@@ -19,7 +19,7 @@
   &--secondary {
     padding: 2rem 2rem 1rem;
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       padding: 0 0;
     }
   }
@@ -48,14 +48,14 @@
     transition: all .2s;
     border-radius: 8px;
     
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       max-height: 100%;
     }
   }
   
   &:not(.card--default){
     &:hover {
-      @media only screen and (min-width: 1320px) {
+      @media only screen and (min-width: $container-desktop-sm + 1) {
         transform: scale(1.1);
       }
     }
@@ -116,12 +116,12 @@
     justify-self: flex-start;
     margin: 0 0 3rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 8rem;
       margin: 0 0 1rem;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       margin-right: auto;
       margin-left: auto;
     }
@@ -138,7 +138,7 @@
     flex: 1;
     
     &:first-child {
-      @media only screen and(max-width: 1320px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         padding-top: 0;
       }
     }
@@ -148,7 +148,7 @@
     font-family: $font-primary;
     font-style: normal;
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     line-height: 1.1em;
     height: 2.2em;
     overflow: hidden;
@@ -158,12 +158,12 @@
     margin: 0 0 1rem;
     color: $color-secondary-dark;
     
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 2rem;
     }
     
     &--sm {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
     
     &--left {
@@ -206,12 +206,12 @@
     transition: opacity .3s 0s, transform .3s 0s;
     will-change: transform;
     
-    @media only screen and(min-width: 1320px) {
+    @media only screen and(min-width: $container-desktop-sm + 1) {
       opacity: 0;
       transform: translateY(100%);
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       display: none;
     }
     

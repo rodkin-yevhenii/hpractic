@@ -1,6 +1,6 @@
 .section-advantages {
   .heading {
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       margin-left: 4rem;
     }
   }

@@ -18,11 +18,11 @@
       justify-content: space-between;
       margin: 0 -1.5rem;
       
-      @media only screen and(max-width: 1320px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         flex-wrap: wrap;
       }
   
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         flex-direction: column;
         align-items: center;
       }
@@ -33,16 +33,16 @@
     max-width: 25%;
     padding: 0 1.5rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       max-width: 30%;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: 50%;
       max-width: 100%;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       width: 100%;
       
       &:not(:last-child){
@@ -67,24 +67,24 @@
     
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
     
     }
   }
   
   &__about {
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       width: 100%;
       max-width: 100%;
       margin: 0 0 6rem;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: 50%;
       max-width: 100%;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       width: 100%;
     }
   }
@@ -121,7 +121,7 @@
     color: $color-grey-dark;
 
     .text {
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         font-size: 1.5rem;
       }
     }

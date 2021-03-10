@@ -16,7 +16,7 @@
   &:not(:last-child) {
     margin: 0 0 1.6rem;
     
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 1rem;
     }
   }
@@ -36,12 +36,12 @@
     text-transform: uppercase;
     z-index: 1;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 1.92em;
       left: -0.76em;
     }
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 1.64em;
     }
     
@@ -64,28 +64,28 @@
         left: -0.74em;
         bottom: 78%;
         
-        @media only screen and(max-width: 1700px) {
+        @media only screen and(max-width: $container-desktop-lg) {
           font-size: 2.2em;
           left: -0.6em;
         }
   
-        @media only screen and(max-width: 1320px) {
+        @media only screen and(max-width: $container-desktop-sm) {
           font-size: 2em;
           left: -0.4em;
         }
   
-        @media only screen and(max-width: 699px) {
+        @media only screen and(max-width: $container-tablet-sm) {
           left: 0;
         }
       }
     }
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 4rem;
     }
     
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       font-size: 3.2rem;
     }
   }
@@ -93,11 +93,11 @@
   &--md {
     font-size: 3.2rem;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       font-size: 2.8rem;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       font-size: 2.4rem;
     }
   }
@@ -110,7 +110,7 @@
     
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
     
     }
   }
@@ -137,20 +137,20 @@
         justify-content: center;
         text-align: center;
   
-        @media only screen and(max-width: 699px) {
+        @media only screen and(max-width: $container-tablet-sm) {
           white-space: nowrap;
         }
       }
     }
     
     &-tablet {
-      @media only screen and(max-width: 1023px) {
+      @media only screen and(max-width: $container-tablet) {
         text-align: center;
       }
       
       #{$heading} {
         &__overlay {
-          @media only screen and(max-width: 1023px) {
+          @media only screen and(max-width: $container-tablet) {
             left: 0;
             transform: translateX(0);
             right: 0;
@@ -166,7 +166,7 @@
     &:not(:last-child) {
       margin: 0 0 7.2rem;
     
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         margin-bottom: 4rem;
       }
     }
@@ -179,7 +179,7 @@
   &:not(:last-child) {
     margin: 0 0 2rem;
     
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 2rem;
     }
   }
@@ -192,7 +192,7 @@
     
     }
     
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
     
     }
     
@@ -207,7 +207,7 @@
     
     }
     
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
     
     }
   }
@@ -228,7 +228,7 @@
   &:not(:last-child) {
     margin: 0 0 2rem;
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 2rem;
     }
   }

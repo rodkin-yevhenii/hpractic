@@ -14,12 +14,12 @@
   opacity: 0;
   transform: translateX(-120%);
   
-  @media only screen and (max-width: 1023px){
+  @media only screen and (max-width: $container-tablet){
     top: 8.6rem;
     height: calc(100% - 8.6rem);
   }
   
-  @media only screen and (max-width: 699px){
+  @media only screen and (max-width: $container-tablet-sm){
     top: 7.8rem;
     height: calc(100% - 7.8rem);
   }
@@ -87,7 +87,7 @@
     border-right: 1px solid rgba($color-secondary-dark, 0.1);
     overflow: auto;
   
-    @media only screen and (max-width: 699px){
+    @media only screen and (max-width: $container-tablet-sm){
       border: none;
       width: 100%;
       padding-left: 1.6rem;
@@ -113,7 +113,7 @@
       max-width: unset;
       padding: 3.2rem 3.2rem;
   
-      @media only screen and (max-width: 699px){
+      @media only screen and (max-width: $container-tablet-sm){
         height: auto;
         width: 100%;
         overflow: hidden;
@@ -131,7 +131,7 @@
       }
   
       & > ul {
-        @media only screen and (max-width: 699px){
+        @media only screen and (max-width: $container-tablet-sm){
           padding: 2rem 0 2rem 2rem;
         }
         
@@ -157,7 +157,7 @@
         position: static;
         cursor: pointer;
         
-        @media only screen and (max-width: 699px){
+        @media only screen and (max-width: $container-tablet-sm){
           flex-wrap: wrap;
         }
         
@@ -175,13 +175,13 @@
         border-color: $color-primary;
         --iconColor: $color-primary;
   
-        @media only screen and (max-width: 699px){
+        @media only screen and (max-width: $container-tablet-sm){
           transform: rotate(-90deg);
         }
       }
       
       .nav__sub {
-        @media only screen and (max-width: 699px){
+        @media only screen and (max-width: $container-tablet-sm){
           max-height: 800vh;
           transition: max-height 1s linear;
         }
@@ -189,7 +189,7 @@
     }
     
     .btn {
-      @media only screen and (max-width: 699px){
+      @media only screen and (max-width: $container-tablet-sm){
         position: relative;
         transform: rotate(90deg);
       }

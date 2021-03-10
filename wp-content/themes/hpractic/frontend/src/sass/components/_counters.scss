@@ -4,21 +4,21 @@
   align-items: center;
   margin: 8rem 0 0;
   
-  @media only screen and(max-width: 1700px) {
+  @media only screen and(max-width: $container-desktop-lg) {
     margin: 5.2rem -3rem 0;
   }
   
-  @media only screen and(max-width: 1320px) {
+  @media only screen and(max-width: $container-desktop-sm) {
     justify-content: center;
   }
   
-  @media only screen and(max-width: 1023px) {
+  @media only screen and(max-width: $container-tablet) {
     flex-wrap: wrap;
     padding: 0 13rem;
     align-items: flex-start;
   }
   
-  @media only screen and(max-width: 699px) {
+  @media only screen and(max-width: $container-tablet-sm) {
     margin-left: 0;
     margin-right: 0;
     padding: 0 0;
@@ -32,22 +32,22 @@
     align-items: center;
     font-family: $font-primary;
   
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       padding: 0 3rem;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       flex-direction: column;
       align-items: flex-start;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: 50%;
       max-width: 100%;
       margin: 3rem 0;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       padding: 0 0;
     }
     
@@ -58,11 +58,11 @@
       font-weight: 700;
       font-style: normal;
   
-      @media only screen and(max-width: 1023px) {
+      @media only screen and(max-width: $container-tablet) {
         font-size: 5.4rem;
       }
   
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         font-size: 4.6rem;
       }
       
@@ -81,15 +81,15 @@
       line-height: 1.06;
       color: $color-grey-dark;
   
-      @media only screen and(max-width: 1023px) {
+      @media only screen and(max-width: $container-tablet) {
         font-size: 1.7rem;
       }
   
-      @media only screen and(max-width: 699px) {
+      @media only screen and(max-width: $container-tablet-sm) {
         font-size: 1.5rem;
       }
   
-      @media only screen and(max-width: 1320px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         padding: 1rem 0 0;
       }
     }

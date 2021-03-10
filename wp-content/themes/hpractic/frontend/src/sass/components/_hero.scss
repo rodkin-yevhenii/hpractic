@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   
-  @media only screen and(max-width: 1023px) {
+  @media only screen and(max-width: $container-tablet) {
     flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-start;
@@ -20,23 +20,23 @@
     justify-content: center;
     padding: 18rem 11.5rem 18rem 0;
     
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       padding: 13rem 9rem 13rem 0;
       width: 48rem;
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       padding: 11rem 3rem 11rem 8rem;
       width: 50vw;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: 100%;
       padding: 14rem 6rem 8rem 6rem;
     }
     
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
       width: 100%;
       padding: 12rem 0 8rem 0;
     }
@@ -50,16 +50,16 @@
     min-height: 43.56vw;
     flex-shrink: 0;
     
-    @media only screen and(max-width: 1700px) {
+    @media only screen and(max-width: $container-desktop-lg) {
       width: calc(100% - 47rem + (100vw - 114rem) / 2);
     }
   
-    @media only screen and(max-width: 1320px) {
+    @media only screen and(max-width: $container-desktop-sm) {
       width: calc(100% - 48vw + (100vw - 102.4rem) / 2);
       min-height: 59.4vw;
     }
   
-    @media only screen and(max-width: 1023px) {
+    @media only screen and(max-width: $container-tablet) {
       width: calc(100% + 3rem);
       margin-left: -1.5rem;
       margin-right: -1.5rem;
@@ -67,7 +67,7 @@
       height: 54vw;
     }
   
-    @media only screen and(max-width: 699px) {
+    @media only screen and(max-width: $container-tablet-sm) {
     }
     
     & > img {
