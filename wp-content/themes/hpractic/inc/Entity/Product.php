@@ -28,7 +28,7 @@ class Product extends AffiliateAbstract
         $this->sku = $fields['product_settings']['sku'] ?? '';
         $this->price = $fields['product_settings']['price'] ?? 0;
         $this->gallery = $fields['product_gallery'] ?? [];
-        $this->characteristics = $fields['product_characteristic'];
+        $this->characteristics = !empty($fields['product_characteristic']) ? $fields['product_characteristic'] : [];
     }
 
     /**

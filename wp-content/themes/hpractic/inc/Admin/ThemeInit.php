@@ -2,6 +2,8 @@
 
 namespace Hpr\Admin;
 
+use Hpr\Front\Assets;
+
 /**
  * Class ThemeInit
  *
@@ -20,10 +22,12 @@ class ThemeInit
         $this->initAcfFields();
         $this->initProduct();
         $this->initService();
+        $this->initAssets();
+        $this->initMenu();
 
         $this->registerThemeSettings();
-        $this->registerMenuLocations();
         $this->registerThemeSupport();
+        $this->registerImagesSizes();
 
         // Register mime types.
         add_filter('upload_mimes', [$this, 'registerAdditionalMimeTypes'], 1, 1);
@@ -46,6 +50,22 @@ class ThemeInit
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Init styles and scripts enqueuing.
+     */
+    private function initAssets(): void
+    {
+        new Assets();
+    }
+
+    /**
+     * Init theme menus.
+     */
+    private function initMenu(): void
+    {
+        new Menu();
     }
 
     /**
@@ -72,8 +92,8 @@ class ThemeInit
         if (function_exists('acf_add_options_page')) {
             acf_add_options_page(
                 [
-                    'page_title' => __('Theme Settings', 'hpractice'),
-                    'menu_title' => __('Theme Settings', 'hpractice'),
+                    'page_title' => __('Настройки темы', 'hpractice'),
+                    'menu_title' => __('Настройки темы', 'hpractice'),
                     'menu_slug' => 'theme-settings',
                     'capability' => 'edit_posts',
                     'redirect' => false,
@@ -83,24 +103,21 @@ class ThemeInit
     }
 
     /**
-     * Register theme menu locations.
-     */
-    private function registerMenuLocations()
-    {
-        register_nav_menus(
-            [
-                'primary-menu' => esc_html__('Primary Menu', 'hpractice'),
-            ]
-        );
-    }
-
-    /**
      * Add theme support
      */
     private function registerThemeSupport(): void
     {
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
+        add_post_type_support('page', array('excerpt'));
+    }
+
+    /**
+     * Add new images sizes.
+     */
+    private function registerImagesSizes(): void
+    {
+        add_image_size('carousel-item', 328, 358, true);
     }
 
     /**

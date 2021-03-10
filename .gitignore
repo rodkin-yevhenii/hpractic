@@ -24,3 +24,6 @@ wp-content/themes/twenty*
 *.log
 *.sql
 *.sqlite
+
+# Ignore languages
+/wp-content/languages/*
