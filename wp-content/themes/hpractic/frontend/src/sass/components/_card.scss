@@ -16,24 +16,6 @@
     border: none;
   }
   
-  &--secondary {
-    padding: 2rem 2rem 1rem;
-  
-    @media only screen and(max-width: $container-desktop-sm) {
-      padding: 0 0;
-    }
-  }
-  
-  &--default {
-    padding: 1.2rem 1.2rem;
-  }
-  
-  &--mobile-center {
-    @media only screen and(max-width: 599px) {
-      text-align: center;
-    }
-  }
-  
   &::after {
     content: '';
     width: 100%;
@@ -50,6 +32,40 @@
     
     @media only screen and(max-width: $container-desktop-sm) {
       max-height: 100%;
+    }
+  }
+  
+  &--primary {
+    &::after {
+      max-height: 100%;
+      box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.078);
+    }
+  
+    &:hover {
+      &::after {
+        @media only screen and (min-width: $container-desktop-sm + 1) {
+          max-height: 100%;
+          box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.1);
+        }
+      }
+    }
+  }
+  
+  &--secondary {
+    padding: 2rem 2rem 1rem;
+    
+    @media only screen and(max-width: $container-desktop-sm) {
+      padding: 0 0;
+    }
+  }
+  
+  &--default {
+    padding: 1.2rem 1.2rem;
+  }
+  
+  &--mobile-center {
+    @media only screen and(max-width: 599px) {
+      text-align: center;
     }
   }
   

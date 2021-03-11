@@ -8,6 +8,7 @@
   left: 0;
   right: 0;
   transition: box-shadow .4s linear;
+  box-shadow: 0 0 40px rgba(27, 55, 88, 0.1);
   
   @media only screen and(max-width: $container-desktop-sm) {
     padding: 2.3rem 0;
@@ -75,46 +76,7 @@
   }
   
   &__languages {
-    font-family: $font-primary;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2.6rem;
-    text-transform: uppercase;
-    color: $color-primary-dark;
-    white-space: nowrap;
-    
-    
-    ul {
-      list-style: none;
-      
-      li {
-        display: inline-block;
-        
-        &:not(:last-child) {
-          &::after {
-            content: '|';
-            display: inline-block;
-            padding: 0 0.2em;
-            font-weight: inherit;
-          }
-        }
-      }
-    }
-    
-    a {
-      text-transform: uppercase;
-      text-decoration: none;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      color: currentColor;
-      transition: color .3s linear;
-      
-      &:hover, &:active, &.active {
-        color: $color-primary;
-      }
-    }
+  
   }
   
   &__search {

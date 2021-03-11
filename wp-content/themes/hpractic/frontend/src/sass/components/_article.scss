@@ -2,52 +2,33 @@
   padding: 0 0 5rem;
   font-size: 1.4rem;
   
-  &__form {
-    padding: 3rem 3rem;
-    background: rgba($color-grey-light3, 0.25);
-    border-radius: 10px;
-    margin: 3rem 0;
+  &__inner {
   
-    @media only screen and(max-width: 992px) {
-      margin: 2rem 0;
-    }
-    
-    &:first-child {
-      margin-top: 0;
-    }
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+  }
   
-    @media only screen and(max-width: 992px) {
-      padding: 1.5rem 1.5rem;
-    }
-    
-    .btn {
-      min-width: 340px;
-  
-      @media only screen and(max-width: 992px) {
-        min-width: unset;
-      }
-    }
+  &__aside {
+    flex-shrink: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   
   &__content {
     font-family: $font-primary;
     font-weight: normal;
-    line-height: normal;
-    font-size: 1.4rem;
+    line-height: 2.8rem;
+    font-size: 1.7rem;
     color: $color-primary-dark;
+    max-width: 86.5rem;
   
     h2, h3, h4, h5, h6 {
+      color: $color-secondary-dark;
       font-family: $font-primary;
       font-weight: 600;
       line-height: 1.2;
       padding: 0;
-      margin: 3rem 0;
+      margin: 4rem 0;
   
-      @media only screen and(max-width: 992px) {
+      @media only screen and(max-width: $container-desktop-sm) {
         margin: 2rem 0;
       }
   
@@ -62,26 +43,29 @@
   
     h1 {
       font-size: 4.8rem;
+      font-weight: 700;
     }
   
     h2 {
-      font-size: 3.6rem;
+      font-size: 3.2rem;
+      font-weight: 700;
     }
   
     h3 {
-      font-size: 3rem;
+      font-size: 2.1rem;
+      font-weight: 700;
     }
   
     h4 {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
   
     h5 {
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
   
     h6 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   
     strong {
@@ -92,8 +76,8 @@
   
     p {
       &:not(.form__title) {
-        font-size: 1.4rem;
-        line-height: normal;
+        font-size: 1.7rem;
+        line-height: inherit;
         font-weight: normal;
         font-style: normal;
         overflow: hidden;
@@ -101,7 +85,7 @@
         max-width: 100%;
         margin: 3rem 0;
   
-        @media only screen and(max-width: 992px) {
+        @media only screen and(max-width: $container-desktop-sm) {
           margin: 2rem 0;
         }
   
@@ -117,7 +101,7 @@
           font-style: inherit;
           font-family: inherit;
           line-height: inherit;
-          font-weight: 700;
+          font-weight: 600;
     
           a {
             font-weight: normal;
@@ -148,17 +132,18 @@
       list-style: none;
     
       & > li {
-        padding: 0 0 0 30px;
+        padding: 0 0 0 2.3rem;
       
         &::before {
           content: '';
           position: absolute;
           left: 0;
-          top: 10px;
-          height: 3px;
-          width: 1.5rem;
+          top: 1.2rem;
+          height: .6rem;
+          width: .6rem;
+          border-radius: 50%;
           display: block;
-          background: $color-primary-dark;
+          background: $color-primary;
         }
       }
     }
@@ -225,8 +210,8 @@
           font-family: inherit;
           font-weight: normal;
           font-style: normal;
-          font-size: 1.4rem;
-          line-height: 1.2;
+          font-size: inherit;
+          line-height: inherit;
           position: relative;
         
           &:last-child {

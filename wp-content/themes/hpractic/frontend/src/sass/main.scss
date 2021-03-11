@@ -3,17 +3,17 @@
 @import 'base/typography';
 @import 'base/base';
 @import 'base/icons';
-@import 'base/article';
 
 @import 'fonts';
 
 @import 'layout';
 
 @import 'components';
+@import 'components/sections';
+@import 'components/article';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/form';
-@import 'components/sections';
 @import 'components/sliders';
 @import 'components/card';
 @import 'components/about';

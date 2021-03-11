@@ -28,25 +28,20 @@
 }
 
 .grid-container {
-  margin-left: -#{$offset / 2};
-  margin-right: -#{$offset / 2};
+  margin: -#{$offset / 2} -#{$offset / 2};
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
   
-  @media only screen and (max-width: 992px) {
-    justify-content: center;
-  }
-  
   & > div[class*="grid-item-"] {
-    padding: 0 #{$offset / 2};
-  
-    @media only screen and (max-width: 992px) {
-      margin-bottom: #{$offset / 2};
-    }
+    padding: #{$offset / 2} #{$offset / 2};
   
     @media only screen and (max-width: $container-tablet-sm) {
       padding: 0 #{$offset-mobile / 2};
+    }
+  
+    @media only screen and (max-width: $container-mobile-lg) {
+      margin-bottom: #{$offset / 2};
     }
   }
   
@@ -57,7 +52,7 @@
   & > .grid-item-1-of-3 {
     width: calc((100% / 3 ));
     
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: $container-tablet) {
       width: calc((100% / 2 ));
     }
     
@@ -79,6 +74,24 @@
   
     @media only screen and (max-width: $container-tablet-sm) {
       width: 100%;
+    }
+    
+    &--tablet-lg {
+      @media only screen and (max-width: $container-desktop-sm) {
+        width: calc((100% / 4 ));
+      }
+  
+      @media only screen and (max-width: $container-tablet) {
+        width: calc((100% / 3 ));
+      }
+  
+      @media only screen and (max-width: $container-tablet-sm) {
+        width: calc((100% / 2 ));
+      }
+      
+      @media only screen and (max-width: $container-mobile-lg) {
+        width: 100%;
+      }
     }
   }
   

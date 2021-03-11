@@ -95,6 +95,17 @@
     }
   }
   
+  &__languages {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 2.4rem 3.2rem;
+    margin: 2.4rem 0 0;
+    
+    @media only screen and (max-width: $container-tablet-sm){
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+    }
+  }
+  
   .nav {
     display: block;
     text-align: left;

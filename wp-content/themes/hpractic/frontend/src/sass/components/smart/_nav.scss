@@ -20,7 +20,7 @@
     transition: color .08s linear;
     --iconColor: currentColor;
     
-    &:hover {
+    &:hover, &.active {
       color: $color-primary;
       --iconColor: $color-primary;
     }
@@ -84,24 +84,27 @@
   }
   
   &__sub {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-30%);
-    top: 100%;
-    padding: 2rem 0;
-    background: $color-white;
-    box-shadow: 0 12px 20px rgba(27, 55, 88, 0.1);
-    max-width: 42rem;
-    width: 100vw;
     text-align: left;
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
     transition: opacity .3s .3s;
+    
+    &:not(.nav__sub--static) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-30%);
+      top: 100%;
+      padding: 2rem 0;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      max-width: 42rem;
+      width: 100vw;
+      background: $color-white;
+      box-shadow: 0 12px 20px rgba(27, 55, 88, 0.1);
   
-    @media only screen and (max-width: $container-desktop-lg) {
-      max-width: 36rem;
-      padding: 1rem 0;
+      @media only screen and (max-width: $container-desktop-lg) {
+        max-width: 36rem;
+        padding: 1rem 0;
+      }
     }
     
     & > ul {
@@ -142,10 +145,31 @@
             transition: opacity .08s;
           }
           
-          &:hover {
+          &:hover, &.active {
+            color: $color-primary;
+            
             &::before {
               opacity: 1;
             }
+          }
+        }
+      }
+    }
+    
+    &--static {
+      align-self: flex-start;
+      justify-self: flex-start;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 auto;
+      
+      & > ul {
+        & > li {
+          padding: 0 0 0 2.2rem;
+          margin: 0;
+          
+          &:not(:last-child){
+            margin-bottom: 2rem;
           }
         }
       }

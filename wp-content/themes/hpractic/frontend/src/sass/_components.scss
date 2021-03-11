@@ -1,8 +1,10 @@
 @import 'components/smart/btn';
 @import 'components/smart/link';
 @import 'components/smart/logo';
+@import 'components/smart/languages';
 @import 'components/smart/nav';
 @import 'components/smart/breadcrumbs';
+@import 'components/smart/head';
 
 .cards {
   @media only screen and(max-width: $container-desktop-sm) {

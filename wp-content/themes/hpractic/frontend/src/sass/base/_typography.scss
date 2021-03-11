@@ -35,13 +35,13 @@
     letter-spacing: -0.05em;
     text-transform: uppercase;
     z-index: 1;
-  
+    
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 1.92em;
       left: -0.76em;
     }
-  
-    @media only screen and(max-width: $container-desktop-lg) {
+    
+    @media only screen and (max-width: $container-desktop-lg) {
       font-size: 1.64em;
     }
     
@@ -52,12 +52,24 @@
     &--secondary {
       color: rgba($color-dark-blue, 0.05);
     }
+    
+    &--center {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+  
+      @media only screen and(max-width: $container-mobile-lg) {
+        bottom: 56%;
+        transform: none;
+        top: auto;
+      }
+    }
   }
   
   &--lg {
     font-size: 4.8rem;
     line-height: 1;
-  
+    
     #{$heading} {
       &__overlay {
         font-size: 2.7em;
@@ -68,23 +80,35 @@
           font-size: 2.2em;
           left: -0.6em;
         }
-  
+        
         @media only screen and(max-width: $container-desktop-sm) {
           font-size: 2em;
           left: -0.4em;
         }
-  
+        
         @media only screen and(max-width: $container-tablet-sm) {
           left: 0;
         }
+        
+        &--center {
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+  
+          @media only screen and(max-width: $container-mobile-lg) {
+            bottom: 56%;
+            transform: none;
+            top: auto;
+          }
+        }
       }
     }
-  
+    
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 4rem;
     }
     
-  
+    
     @media only screen and(max-width: $container-tablet-sm) {
       font-size: 3.2rem;
     }
@@ -92,11 +116,11 @@
   
   &--md {
     font-size: 3.2rem;
-  
+    
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 2.8rem;
     }
-  
+    
     @media only screen and(max-width: $container-tablet-sm) {
       font-size: 2.4rem;
     }
@@ -105,11 +129,11 @@
   &--sm {
     font-size: 2.4rem;
     
-  
+    
     @media only screen and(max-width: 992px) {
     
     }
-  
+    
     @media only screen and(max-width: $container-tablet-sm) {
     
     }
@@ -136,7 +160,7 @@
         transform: translateX(-50%);
         justify-content: center;
         text-align: center;
-  
+        
         @media only screen and(max-width: $container-tablet-sm) {
           white-space: nowrap;
         }
@@ -165,7 +189,7 @@
   &--mb-lg {
     &:not(:last-child) {
       margin: 0 0 7.2rem;
-    
+      
       @media only screen and(max-width: $container-tablet-sm) {
         margin-bottom: 4rem;
       }
@@ -227,7 +251,7 @@
   
   &:not(:last-child) {
     margin: 0 0 2rem;
-  
+    
     @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 2rem;
     }
@@ -236,7 +260,7 @@
   &--sm {
     font-size: 1.5rem;
     
-  
+    
     @media only screen and(max-width: 992px) {
       
     }
@@ -259,13 +283,13 @@
   }
   
   &--mb-md {
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-bottom: 2rem;
     }
   }
   
   &--mb-sm {
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-bottom: 1rem;
     }
   }
