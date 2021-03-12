@@ -112,6 +112,9 @@ $faviconUrl = get_field('favicon', 'option');
                         ); ?>
                     </nav>
                 </div>
+                <div class="menu-mobile__languages languages u-mobile-visible">
+                    <?php Helpers::showLanguageSwitcher() ?>
+                </div>
             </div>
         </div>
     </div>
