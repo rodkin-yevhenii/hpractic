@@ -32,25 +32,23 @@ class Helpers
         }
 
         ob_start(); ?>
-        <div class="header__languages languages u-mobile-hidden">
-            <ul>
-                <?php foreach ($languages as $language) :
-                    // Variables containing language data
-                    $url = $language['url'];
-                    $classes = $language['current_lang'] ? 'link link--secondary active' : 'link link--secondary';
-                    $title = 'ru' === $language['slug'] ? __('Рус', 'hpractice') : __('Укр', 'hpractice');
+        <ul>
+            <?php foreach ($languages as $language) :
+                // Variables containing language data
+                $url = $language['url'];
+                $classes = $language['current_lang'] ? 'link link--secondary active' : 'link link--secondary';
+                $title = 'ru' === $language['slug'] ? __('Рус', 'hpractice') : __('Укр', 'hpractice');
 
-                    if ($language['no_translation']) :
-                        continue;
-                    endif; ?>
-                    <li>
-                        <a href="<?php echo $url; ?>" class="<?php echo $classes; ?>">
-                            <?php echo $title ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+                if ($language['no_translation']) :
+                    continue;
+                endif; ?>
+                <li>
+                    <a href="<?php echo $url; ?>" class="<?php echo $classes; ?>">
+                        <?php echo $title ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
         <?php echo ob_get_clean();
     }
 

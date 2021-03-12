@@ -74,7 +74,9 @@ $faviconUrl = get_field('favicon', 'option');
                         </div>
                     </form>
                 </div>
-                <?php Helpers::showLanguageSwitcher() ?>
+                <div class="header__languages languages u-mobile-hidden">
+                    <?php Helpers::showLanguageSwitcher() ?>
+                </div>
                 <div class="header__btn">
                     <button class="btn-icon">
                         <svg class="icon">
