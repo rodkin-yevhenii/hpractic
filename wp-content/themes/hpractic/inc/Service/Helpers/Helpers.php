@@ -32,7 +32,7 @@ class Helpers
         }
 
         ob_start(); ?>
-        <div class="header__languages u-mobile-hidden">
+        <div class="header__languages languages u-mobile-hidden">
             <ul>
                 <?php foreach ($languages as $language) :
                     // Variables containing language data
