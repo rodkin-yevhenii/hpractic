@@ -25,6 +25,12 @@
     }
   }
   
+  .card {
+    &::after {
+      visibility: hidden;
+    }
+  }
+  
   .slick-active {
     border: none;
     outline: none;
@@ -33,6 +39,7 @@
     .card {
       
       &::after {
+        visibility: visible;
         box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.078);
       }
       
@@ -55,6 +62,10 @@
         
       }
       
+      &--primary {
+      
+      }
+      
       &--secondary {
         
         &::after {
@@ -62,12 +73,13 @@
           
           @media only screen and (min-width: $container-desktop-sm + 1) {
             box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0);
+            
           }
         }
         
         &:hover {
           @media only screen and (min-width: $container-desktop-sm + 1) {
-            box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.1);
+            box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.048);
           }
         }
       }

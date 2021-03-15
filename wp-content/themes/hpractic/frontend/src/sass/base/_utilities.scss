@@ -60,15 +60,15 @@
   }
 }
 
-.u-tablet-lg {
+.u-tablet {
   &-hidden {
-    @media screen and (max-width: 1199px) {
+    @media screen and (max-width: $container-tablet) {
       display: none !important;
     }
   }
   
   &-visible {
-    @media screen and (min-width: 1199px + 1) {
+    @media screen and (min-width: $container-tablet + 1) {
       display: none !important;
     }
   }
