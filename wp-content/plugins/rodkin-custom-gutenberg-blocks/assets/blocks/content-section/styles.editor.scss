@@ -1,18 +1,13 @@
-.tower-author-block-social {
-    justify-content: flex-end;
+.wp-block-gutenberg-custom-block-section {
     display: flex;
-    margin: 0 0 0 auto;
 
-    .dashicons {
-        width: 30px;
-        height: 30px;
-        font-size: 30px;
+    .article__aside {
+        width: 300px;
+        flex-shrink: 0;
     }
-}
 
-.tower-author-block {
-    .tower-author-block-info__name a {
-        color: #262626;
+    .article__content {
+        width: 100%
     }
 }
 

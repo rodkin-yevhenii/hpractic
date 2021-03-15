@@ -1,3 +1,4 @@
+import './styles.editor.scss'
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, RichText } from "@wordpress/editor"
 import { __ } from "@wordpress/i18n"
@@ -19,41 +20,36 @@ registerBlockType("gutenberg-custom-block/section", {
     const { sectionTitle } = attributes
 
     return (
-      <article className={ className + ' article' }>
-        <div className="block-title">{__("Секция контента", "hpractice-gb")}</div>
-        <div className="article__inner section__inner" style={{display: 'flex'}}>
-          <div className="article__aside section__main" style={{width: '300px', flexShrink: 0}}>
-            <RichText
-              onChange={ (value) => setAttributes({sectionTitle: value}) }
-              value={sectionTitle}
-              tagName={'h3'}
-              placeholder={__('Section header', 'hpractice-gb')}
-              className={'heading heading--md heading--primary'}
-            />
-          </div>
-          <div className="article__content section__content" style={{width: '100%'}}>
-            <InnerBlocks />
-          </div>
+      <div className={ className + " article__inner section__inner"}>
+        <div className="article__aside section__main">
+          <RichText
+            onChange={ (value) => setAttributes({sectionTitle: value}) }
+            value={sectionTitle}
+            tagName={'h3'}
+            placeholder={__('Section header', 'hpractice-gb')}
+            className={'heading heading--md heading--primary'}
+          />
         </div>
-      </article>
+        <div className="article__content section__content">
+          <InnerBlocks />
+        </div>
+      </div>
     )
   },
   save: function({ attributes }) {
     const { sectionTitle } = attributes
 
     return (
-      <article className='article'>
-        <div className="article__inner section__inner">
-          <div className="article__aside section__main">
-            <h3 className="heading heading--md heading--primary">
-              { sectionTitle }
-            </h3>
-          </div>
-          <div className="article__content section__content">
-            <InnerBlocks.Content />
-          </div>
+      <div className="article__inner section__inner">
+        <div className="article__aside section__main">
+          <h3 className="heading heading--md heading--primary">
+            { sectionTitle }
+          </h3>
         </div>
-      </article>
+        <div className="article__content section__content">
+          <InnerBlocks.Content />
+        </div>
+      </div>
     )
   },
 })

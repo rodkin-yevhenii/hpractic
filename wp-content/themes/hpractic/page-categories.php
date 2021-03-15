@@ -70,7 +70,9 @@ get_header(); ?>
 endif; ?>
 <div class="section section--white">
     <div class="container">
-        <?php echo get_the_content(); ?>
+        <article class="article">
+            <?php echo get_the_content(); ?>
+        </article>
     </div>
 </div>
 <?php get_footer();

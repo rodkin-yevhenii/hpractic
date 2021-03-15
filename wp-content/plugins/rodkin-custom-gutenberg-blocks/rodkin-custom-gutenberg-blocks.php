@@ -37,7 +37,7 @@ function customBlockRegister()
         GB_PLUGIN_URI . '/dist/css/editor.css',
         ['wp-edit-blocks']
     );
-    wp_enqueue_style('gb-editor-style');
+//    wp_enqueue_style('gb-editor-style');
 
     wp_register_script(
         'gb-editor-script',
@@ -51,6 +51,7 @@ function customBlockRegister()
         'gutenberg-blocks/section',
         [
             'editor_script' => 'gb-editor-script',
+            'editor_style' => 'gb-editor-style',
         ]
     );
 }
