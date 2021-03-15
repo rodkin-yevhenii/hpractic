@@ -1077,7 +1077,7 @@ ul, li {
     font-weight: 600;
     line-height: 1.2;
     padding: 0;
-    margin: 4rem 0; }
+    margin: 8rem 0 4rem; }
     @media only screen and (max-width: 1260px) {
       .article h1:not(.heading), .article h2:not(.heading), .article h3:not(.heading), .article h4:not(.heading), .article h5:not(.heading), .article h6:not(.heading) {
         margin: 2rem 0; } }
