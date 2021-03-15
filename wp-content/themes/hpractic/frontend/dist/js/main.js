@@ -8,6 +8,11 @@ jQuery(document).ready(function($){
   const btnToTop = $(".btn-to-top");
   const btnMenu = $(".btn-menu");
   const mobileMenu = $('.menu-mobile');
+  const adminBar = $('#wpadminbar');
+
+  if (adminBar.length) {
+    $('header.header').css('top', adminBar.height());
+  }
 
   if(article.length > 0) {
     article.fitVids();
