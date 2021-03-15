@@ -19,6 +19,7 @@ class ProductInit
     {
         $this->registerPostType();
         $this->registerTaxonomies();
+        $this->registerHooks();
     }
 
     /**
@@ -92,5 +93,32 @@ class ProductInit
                 'show_in_rest'      => true
             ]
         );
+    }
+
+    /**
+     * Register hooks.
+     */
+    private function registerHooks(): void
+    {
+        add_filter(
+            'acf/fields/relationship/query/name=products_categories',
+            [$this, 'updateProductsCategoriesQuery'],
+            10
+        );
+    }
+
+    /**
+     * Show only shop subpages in products categories field.
+     *
+     * @param array $args   Query args.
+     *
+     * @return array
+     */
+    public function updateProductsCategoriesQuery(array $args): array
+    {
+        $catalogPageId = \Hpr\Service\Helpers\Helpers::getCatalogId();
+        $args['post_parent'] = $catalogPageId;
+
+        return $args;
     }
 }

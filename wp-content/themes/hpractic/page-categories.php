@@ -9,15 +9,7 @@ $id = get_the_id();
 $breadcrumbs = new \Hpr\Service\Breadcrumbs\Breadcrumbs($id);
 $header = get_field('header', $id);
 $shortcode = get_field('callback_shortcode', $id);
-$categoryPagesIds = get_posts(
-    [
-        'numberposts' => -1,
-        'post_type' => 'page',
-        'post_status' => 'publish',
-        'post_parent' => $id,
-        'fields' => 'ids'
-    ]
-);
+$categoryPagesIds = get_field('products_categories', $id);
 
 get_header();
 
