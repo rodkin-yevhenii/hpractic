@@ -56,7 +56,7 @@
       width: calc((100% / 2 ));
     }
     
-    @media only screen and (max-width: $container-tablet-sm) {
+    @media only screen and (max-width: $container-mobile-lg) {
       width: 100%;
     }
   }
