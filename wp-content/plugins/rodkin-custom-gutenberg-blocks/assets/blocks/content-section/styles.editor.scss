@@ -1,0 +1,18 @@
+.tower-author-block-social {
+    justify-content: flex-end;
+    display: flex;
+    margin: 0 0 0 auto;
+
+    .dashicons {
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+    }
+}
+
+.tower-author-block {
+    .tower-author-block-info__name a {
+        color: #262626;
+    }
+}
+

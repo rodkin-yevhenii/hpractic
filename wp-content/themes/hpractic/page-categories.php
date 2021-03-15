@@ -68,5 +68,9 @@ get_header(); ?>
 <?php if (!empty($shortcode)) :
     get_template_part('template-parts/sections/callback', null, ['fields' => ['shortcode' => $shortcode]]);
 endif; ?>
-
+<div class="section section--white">
+    <div class="container">
+        <?php echo get_the_content(); ?>
+    </div>
+</div>
 <?php get_footer();

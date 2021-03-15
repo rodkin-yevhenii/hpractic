@@ -110,6 +110,8 @@ class ThemeInit
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
         add_post_type_support('page', array('excerpt'));
+        add_theme_support('editor-styles');
+        add_editor_style('editor-style.css');
     }
 
     /**
