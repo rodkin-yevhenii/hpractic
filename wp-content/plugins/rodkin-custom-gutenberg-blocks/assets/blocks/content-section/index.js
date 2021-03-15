@@ -3,16 +3,12 @@ import { InnerBlocks, RichText } from "@wordpress/editor"
 import { __ } from "@wordpress/i18n"
 
 registerBlockType("gutenberg-custom-block/section", {
-  title: __("Section", "v-catena-gutenberg"),
-  description: __("Block allows you insert Author Widget into content", "v-catena-gutenberg"),
+  title: __("Секция контента", "hpractice-gb"),
+  description: __("Блок позволяет использовать секции с заголовком слева и контентом справа", "hpractice-gb"),
   category: "layout",
-  icon: {
-    background: '#7e70af',
-    foreground: '#fff',
-    src: 'book-alt'
-  },
+  icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 19h6v-7H3v7zm7 0h12v-7H10v7zM3 5v6h19V5H3z"/></svg>,
   keywords: [
-    __("section", "v-catena-gutenberg"),
+    __("section", "hpractice-gb"),
   ],
   attributes: {
     sectionTitle: {
@@ -24,7 +20,7 @@ registerBlockType("gutenberg-custom-block/section", {
 
     return (
       <article className={ className + ' article' }>
-        <div className="block-title">Content Section</div>
+        <div className="block-title">{__("Секция контента", "hpractice-gb")}</div>
         <div className="article__inner section__inner" style={{display: 'flex'}}>
           <div className="article__aside section__main" style={{width: '300px', flexShrink: 0}}>
             <RichText
