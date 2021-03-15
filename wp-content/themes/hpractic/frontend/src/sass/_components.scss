@@ -14,4 +14,10 @@
   @media only screen and(max-width: $container-tablet) {
     padding: 0;
   }
+  
+  &--tablet-full {
+    @media only screen and(max-width: $container-desktop-sm) {
+      padding: 0;
+    }
+  }
 }
