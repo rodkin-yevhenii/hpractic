@@ -19,26 +19,9 @@ $categoryPagesIds = get_posts(
     ]
 );
 
-get_header(); ?>
-<div class="head">
-    <div class="head__top">
-        <div class="container">
-            <div class="breadcrumbs">
-                <?php $breadcrumbs->render(); ?>
-            </div>
-        </div>
-    </div>
-    <div class="head__content">
-        <div class="container">
-            <h2 class="heading heading--lg heading--primary">
-                <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
-                    <?php echo $header['background_text']; ?>
-                </span>
-                <?php echo $header['heading']; ?>
-            </h2>
-        </div>
-    </div>
-</div>
+get_header();
+
+get_template_part('template-parts/catalog/section-head'); ?>
 <section class="section section--white">
     <div class="container">
         <div class="cards">
