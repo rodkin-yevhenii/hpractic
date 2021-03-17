@@ -27,6 +27,11 @@ if (is_numeric($searchQuery)) {
 }
 
 $productsQuery = new WP_Query($args);
+
+if (1 === $productsQuery->found_posts) :
+    header('Location:' . get_permalink($productsQuery->posts[0]));
+endif;
+
 $pagination = new Pagination($paged, (int) $productsQuery->max_num_pages);
 
 get_header(); ?>
