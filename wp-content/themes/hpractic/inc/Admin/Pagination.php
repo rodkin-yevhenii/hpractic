@@ -21,7 +21,7 @@ class Pagination
     public function __construct(int $currentPage, int $lastPage, int $pagesStep = 2)
     {
         if (is_search() && !empty(get_search_query())) {
-            $this->url = home_url() . '?s=' . get_search_query() . '&';
+            $this->url = site_url() . '?s=' . get_search_query() . '&';
         } else {
             $this->url = get_permalink(get_the_ID()) . '?';
         }
