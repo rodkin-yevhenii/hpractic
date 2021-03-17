@@ -26,7 +26,7 @@ $productsQuery = new WP_Query(
     ]
 );
 
-$pagination = new Pagination($id, $paged, (int) $productsQuery->max_num_pages);
+$pagination = new Pagination($paged, (int) $productsQuery->max_num_pages);
 
 get_header();
 

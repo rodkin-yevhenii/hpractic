@@ -18,9 +18,14 @@ class Pagination
     /**
      * Pagination constructor.
      */
-    public function __construct(int $pageId, int $currentPage, int $lastPage, int $pagesStep = 2)
+    public function __construct(int $currentPage, int $lastPage, int $pagesStep = 2)
     {
-        $this->url = get_permalink($pageId);
+        if (is_search() && !empty(get_search_query())) {
+            $this->url = home_url() . '?s=' . get_search_query() . '&';
+        } else {
+            $this->url = get_permalink(get_the_ID()) . '?';
+        }
+
         $this->currentPage = abs($currentPage);
         $this->lastPage = abs($lastPage);
         $this->pagesStep = abs($pagesStep);
@@ -35,7 +40,7 @@ class Pagination
      */
     private function getUrl(int $pageNumber): string
     {
-        return $this->url . 'page/' . $pageNumber . '/';
+        return $this->url . 'paged=' . $pageNumber . '';
     }
 
     /**
@@ -156,7 +161,7 @@ class Pagination
      */
     public function render(): void
     {
-        if (!$this->lastPage) :
+        if (1 === $this->lastPage) :
             return;
         endif;
 
