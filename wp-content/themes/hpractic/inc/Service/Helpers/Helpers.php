@@ -85,4 +85,20 @@ class Helpers
 
         return $catalogPageId;
     }
+
+    /**
+     * Add uk to site url for ukrainian language.
+     *
+     * @param string $siteUrl
+     *
+     * @return string
+     */
+    public static function addSiteUrlTranslation(string $siteUrl): string
+    {
+        if ('uk' === pll_current_language()) {
+            return $siteUrl . '/uk/';
+        }
+
+        return $siteUrl;
+    }
 }
