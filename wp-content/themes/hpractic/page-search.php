@@ -41,33 +41,8 @@ endif;
 
 $pagination = new Pagination($paged, (int) $productsQuery->max_num_pages);
 
-get_header(); ?>
-<div class="head">
-    <div class="head__top">
-        <div class="container">
-            <div class="breadcrumbs">
-                <ul>
-                    <li>
-                        <a href="<?php home_url(); ?>"><?php _e('Главная', 'hpractice'); ?></a>
-                    </li>
-                    <li>
-                        <span class="active"><?php _e('Результаты поиска', 'hpractice'); ?></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="head__content">
-        <div class="container">
-            <h2 class="heading heading--lg heading--primary">
-                <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
-                    <?php echo __('Результаты<br/>Поиска', 'hpractice'); ?>
-                </span>
-                <?php echo __('Вы искали:<br/>', 'hpractice') . '"' . $searchQuery . '".'; ?>
-            </h2>
-        </div>
-    </div>
-</div>
+get_header();
+get_template_part('template-parts/catalog/section-head'); ?>
 <section class="section section--white">
     <div class="container">
         <div class="section__inner section__inner--tablet-default">

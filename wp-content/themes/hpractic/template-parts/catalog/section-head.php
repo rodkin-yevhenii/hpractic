@@ -1,4 +1,6 @@
 <?php
+global $searchQuery;
+
 $id = $args['id'] ?? get_the_id();
 $breadcrumbs = new \Hpr\Service\Breadcrumbs\Breadcrumbs($id);
 $header = get_field('header', $id);
@@ -17,7 +19,11 @@ $header = get_field('header', $id);
                 <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
                     <?php echo $header['background_text']; ?>
                 </span>
-                <?php echo $header['heading']; ?>
+                <?php echo $header['heading'];
+
+                if (!empty($searchQuery)) :
+                    echo '<br/>"' . $searchQuery . '"';
+                endif; ?>
             </h2>
         </div>
     </div>
