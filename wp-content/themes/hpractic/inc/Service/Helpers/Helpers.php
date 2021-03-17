@@ -59,7 +59,7 @@ class Helpers
      */
     public static function getCatalogId(): ?int
     {
-        $catalogPageId = get_field('shop_page_ru', 'option');
+        $catalogPageId = get_field('shop_page', 'option');
         $catalogPageId = pll_get_post($catalogPageId);
 
         if (empty($catalogPageId)) {
@@ -76,31 +76,30 @@ class Helpers
      */
     public static function getServicePageId(): ?int
     {
-        $langSlug = pll_current_language();
-        $catalogPageId = get_field('service_page_' . $langSlug, 'option');
+        $servicePageId = get_field('service_page', 'option');
+        $servicePageId = pll_get_post($servicePageId);
 
-        if (empty($catalogPageId)) {
+        if (empty($servicePageId)) {
             return null;
         }
 
-        return $catalogPageId;
+        return $servicePageId;
     }
 
     /**
-     * Add uk to site url for ukrainian language.
+     * Get service page id.
      *
-     * @param string $siteUrl
-     *
-     * @return string
+     * @return int|null
      */
-    public static function getTranslatedSiteUrl(): string
+    public static function getSearchPageId(): ?int
     {
-        $siteUrl = site_url();
+        $searchPageId = get_field('search_page', 'option');
+        $searchPageId = pll_get_post($searchPageId);
 
-        if ('uk' === pll_current_language()) {
-            return $siteUrl . '/uk/';
+        if (empty($searchPageId)) {
+            return null;
         }
 
-        return $siteUrl;
+        return $searchPageId;
     }
 }

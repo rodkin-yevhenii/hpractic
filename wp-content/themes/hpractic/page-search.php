@@ -1,12 +1,19 @@
 <?php
 
+/*
+Template Name: Поиск
+Template Post Type: page
+*/
+
 use Hpr\Admin\Pagination;
 use Hpr\Admin\ProductInit;
 use Hpr\Service\Helpers\Helpers;
 
+global $searchQuery;
+
 $id = get_the_id();
 $categoryPagesIds = get_field('products_categories', Helpers::getCatalogId());
-$searchQuery = get_search_query();
+$searchQuery = $_GET['search'] ?? '';
 $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 $args = [
     'post_type' => ProductInit::$cptName,
@@ -56,7 +63,7 @@ get_header(); ?>
                 <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
                     <?php echo __('Результаты<br/>Поиска', 'hpractice'); ?>
                 </span>
-                <?php echo __('Вы искали:<br/>', 'hpractice') . '"' . get_search_query() . '".'; ?>
+                <?php echo __('Вы искали:<br/>', 'hpractice') . '"' . $searchQuery . '".'; ?>
             </h2>
         </div>
     </div>

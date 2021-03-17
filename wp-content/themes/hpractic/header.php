@@ -59,7 +59,7 @@ $faviconUrl = get_field('favicon', 'option');
                         </svg>
                     </span>
                     <form class="form"
-                          action="<?php echo Helpers::getTranslatedSiteUrl(); ?>"
+                          action="<?php echo get_permalink(Helpers::getSearchPageId()); ?>"
                           method="GET"
                           role="search"
                     >
@@ -71,7 +71,7 @@ $faviconUrl = get_field('favicon', 'option');
                             </button>
                             <input
                                 type="text"
-                                name="s"
+                                name="search"
                                 id="header-search-input"
                                 placeholder="<?php _e('Поиск', 'hpractice'); ?>"
                             >

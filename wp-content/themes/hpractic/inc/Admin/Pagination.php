@@ -22,8 +22,10 @@ class Pagination
      */
     public function __construct(int $currentPage, int $lastPage, int $pagesStep = 2)
     {
-        if (is_search() && !empty(get_search_query())) {
-            $this->url = Helpers::getTranslatedSiteUrl() . '?s=' . get_search_query() . '&';
+        global $searchQuery;
+
+        if (is_page_template('page-search.php') && !empty($searchQuery)) {
+            $this->url = get_permalink(Helpers::getSearchPageId()) . '?search=' . $searchQuery . '&';
         } else {
             $this->url = get_permalink(get_the_ID()) . '?';
         }
