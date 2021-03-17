@@ -5,25 +5,28 @@ Template Name: Категория товаров.
 Template Post Type: page
 */
 
+use Hpr\Admin\Pagination;
 use Hpr\Service\Helpers\Helpers;
 
 $id = get_the_id();
 $categoryPagesIds = get_field('products_categories', Helpers::getCatalogId());
 $productsIds = get_field('products_list', $id);
 $shortcode = get_field('callback_shortcode', $id);
+$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 
 $productsQuery = new WP_Query(
     [
         'post_type' => \Hpr\Admin\ProductInit::$cptName,
         'post__in' => $productsIds,
         'post_status' => 'publish',
-        'posts_per_page' => 9,
-        'paged' => 1,
+        'paged' => $paged,
         'fields' => 'ids',
         'orderby' => 'post__in',
         'order' => 'ASC'
     ]
 );
+
+$pagination = new Pagination($id, $paged, (int) $productsQuery->max_num_pages);
 
 get_header();
 
@@ -83,7 +86,7 @@ if (!empty($categoryPagesIds)) : ?>
                                 <?php endforeach;
                             endif; ?>
                         </div>
-                        <?php the_posts_pagination(); ?>
+                        <?php $pagination->render(); ?>
                     </div>
                 </div>
             </div>
