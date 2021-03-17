@@ -59,8 +59,8 @@ class Helpers
      */
     public static function getCatalogId(): ?int
     {
-        $langSlug = pll_current_language();
-        $catalogPageId = get_field('shop_page_' . $langSlug, 'option');
+        $catalogPageId = get_field('shop_page_ru', 'option');
+        $catalogPageId = pll_get_post($catalogPageId);
 
         if (empty($catalogPageId)) {
             return null;
@@ -93,8 +93,10 @@ class Helpers
      *
      * @return string
      */
-    public static function addSiteUrlTranslation(string $siteUrl): string
+    public static function getTranslatedSiteUrl(): string
     {
+        $siteUrl = site_url();
+
         if ('uk' === pll_current_language()) {
             return $siteUrl . '/uk/';
         }

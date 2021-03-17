@@ -36,8 +36,6 @@ class ThemeInit
         // Disable auto <br/> for CF7.
         add_filter('wpcf7_autop_or_not', '__return_false');
 
-        add_filter('site_url', [Helpers::class, 'addSiteUrlTranslation']);
-
         flush_rewrite_rules();
     }
 

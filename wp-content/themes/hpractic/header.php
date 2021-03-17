@@ -58,7 +58,11 @@ $faviconUrl = get_field('favicon', 'option');
                             <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-search"></use>
                         </svg>
                     </span>
-                    <form class="form" action="<?php echo site_url(); ?>" method="GET" role="search">
+                    <form class="form"
+                          action="<?php echo Helpers::getTranslatedSiteUrl(); ?>"
+                          method="GET"
+                          role="search"
+                    >
                         <div class="form__field">
                             <button type="submit" class="form__field-icon">
                                 <svg class="icon">
