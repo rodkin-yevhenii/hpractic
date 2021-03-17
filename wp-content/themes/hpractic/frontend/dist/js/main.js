@@ -2,25 +2,23 @@ jQuery(document).ready(function($){
   const header = $('.header');
   const sectionSlider = $('.section__slider .slider');
   const countersDOM = $('.counter');
-  const reviewsSliderDOM = $('.reviews-slider');
   const mobileGridSliderDOM = $('.grid-container--slider');
   const article = $(".article");
   const btnToTop = $(".btn-to-top");
   const btnMenu = $(".btn-menu");
   const mobileMenu = $('.menu-mobile');
+  const adminBar = $('#wpadminbar');
 
-  if(article.length > 0) {
-    article.fitVids();
+  if (adminBar.length) {
+    $('header.header').css('top', adminBar.height());
   }
 
-  if(countersDOM.length > 0) {
-    initCounters(document.querySelectorAll('.counter'));
-  }
+  const productPreview = $('.product__preview');
 
   if(sectionSlider.length > 0) {
     sectionSlider.each(function (i, slider){
 
-      const sliderDOM =  $(slider)
+      const sliderDOM =  $(slider);
       const sliderDOMPrevBtn = sliderDOM.closest('.section').find('.btn-arrow--left');
       const sliderDOMNextBtn = sliderDOM.closest('.section').find('.btn-arrow--right');
 
@@ -39,9 +37,10 @@ jQuery(document).ready(function($){
         slidesToScroll: 1,
         dots: false,
         infinite: true,
-        speed: 300,
+        speed: 200,
         adaptiveHeight: false,
         autoplay: false,
+        cssEase: 'linear',
         responsive: [
           {
             breakpoint: 1366,
@@ -64,7 +63,8 @@ jQuery(document).ready(function($){
           {
             breakpoint: 699,
             settings: {
-              slidesToShow: 2
+              slidesToShow: 2,
+              swipeToSlide: true,
             }
           }
         ]
@@ -72,13 +72,15 @@ jQuery(document).ready(function($){
     });
   }
 
-  if(reviewsSliderDOM.length > 0) {
+  if(productPreview.length > 0) {
 
-    reviewsSliderDOM.on('init', function(event, slick){
-      toggleActiveItem(slick.currentSlide)
-    });
+    const productMainSliderDOM = productPreview.find('.product__preview-top .slider');
+    const productThumbsSliderDOM = productPreview.find('.product__preview-thumbs .slider');
 
-    const reviewSlider = reviewsSliderDOM.slick({
+    console.log('productMainSliderDOM', productMainSliderDOM);
+    console.log('productThumbsSliderDOM', productThumbsSliderDOM);
+
+    const reviewSlider = productMainSliderDOM.slick({
       rows: 0,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -87,9 +89,40 @@ jQuery(document).ready(function($){
       arrows: false,
       adaptiveHeight: false,
       autoplay: false,
-      speed: 500,
-      // fade: true,
+      speed: 300,
+      fade: true,
       cssEase: 'linear',
+      asNavFor: productThumbsSliderDOM,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            fade: false,
+            arrows: false,
+          }
+        },
+        {
+          breakpoint: 699,
+          settings: {
+            swipeToSlide: true,
+          }
+        }
+      ]
+    });
+
+    const productThumbsSlider = productThumbsSliderDOM.slick({
+      rows: 0,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      dots: false,
+      infinite: false,
+      arrows: false,
+      adaptiveHeight: false,
+      autoplay: false,
+      speed: 300,
+      cssEase: 'linear',
+      asNavFor: productMainSliderDOM,
+      focusOnSelect: true,
       responsive: [
         {
           breakpoint: 992,
@@ -101,23 +134,31 @@ jQuery(document).ready(function($){
       ]
     });
 
-    reviewsSliderDOM.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-      toggleActiveItem(nextSlide)
-    });
+    // productMainSliderDOM.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    //   toggleActiveItem(nextSlide)
+    // });
 
-    reviewsSliderDOM
-      .closest('.reviews')
-      .find('[data-review-id]')
-      .on('click', function(e){
-        e.preventDefault();
-        const index = parseInt($(this).attr('data-review-id'));
-        reviewSlider.slick('slickGoTo', index);
-    });
+    // productMainSliderDOM
+    //   .closest('.reviews')
+    //   .find('[data-review-id]')
+    //   .on('click', function(e){
+    //     e.preventDefault();
+    //     const index = parseInt($(this).attr('data-review-id'));
+    //     reviewSlider.slick('slickGoTo', index);
+    // });
 
-    function toggleActiveItem(index){
-      $('.reviews__list li[data-review-id]').removeClass('active')
-      $('.reviews__list li[data-review-id="'+ index +'"]').addClass('active')
-    }
+    // function toggleActiveItem(index){
+    //   $('.reviews__list li[data-review-id]').removeClass('active')
+    //   $('.reviews__list li[data-review-id="'+ index +'"]').addClass('active')
+    // }
+  }
+
+  if(article.length > 0) {
+    article.fitVids();
+  }
+
+  if(countersDOM.length > 0) {
+    initCounters(document.querySelectorAll('.counter'));
   }
 
   header.on('click', '.btn-menu', function(){
@@ -287,6 +328,8 @@ jQuery(document).ready(function($){
     scrollToAnchor(0)
   });
 
+  initQuantity();
+
 });
 
 function callbackBeforeOpen(popup, id, title) {
@@ -383,4 +426,31 @@ function initCounters(items){
       console.error(counter.error);
     }
   })
+}
+
+
+function initQuantity(){
+  const quantity = $('quantity');
+
+  if(quantity.length > 0) {
+    quantity.on('click', 'button' ,function(e) {
+      e.preventDefault();
+      var input = $(this).closest('div').find('input[name="number"]'),
+        value = +input.val();
+
+      if ($(this).data('type') === 'minus'){
+        if (value > +input.data('min')) {
+          value = value - 1;
+        }
+
+      } else {
+        if (value < + input.data('max')) {
+          value = value + 1;
+        }
+      }
+
+      input.val(value);
+    });
+  }
+
 }

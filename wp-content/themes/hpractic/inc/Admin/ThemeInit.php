@@ -120,6 +120,7 @@ class ThemeInit
     private function registerImagesSizes(): void
     {
         add_image_size('carousel-item', 328, 358, true);
+        add_image_size('product-catalog-thumbnail', 328, 358, true);
     }
 
     /**

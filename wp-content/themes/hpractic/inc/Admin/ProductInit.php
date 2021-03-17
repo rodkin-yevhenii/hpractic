@@ -11,6 +11,7 @@ namespace Hpr\Admin;
 class ProductInit
 {
     public static string $cptName = 'product';
+    public static string $cptTaxonomy = 'product_category';
 
     /**
      * ProductInit constructor.
@@ -19,6 +20,7 @@ class ProductInit
     {
         $this->registerPostType();
         $this->registerTaxonomies();
+        $this->registerHooks();
     }
 
     /**
@@ -66,7 +68,7 @@ class ProductInit
     private function registerTaxonomies(): void
     {
         register_taxonomy(
-            'product_category',
+            self::$cptTaxonomy,
             [self::$cptName],
             [
                 'labels'            => [
@@ -92,5 +94,60 @@ class ProductInit
                 'show_in_rest'      => true
             ]
         );
+    }
+
+    /**
+     * Register hooks.
+     */
+    private function registerHooks(): void
+    {
+        add_filter(
+            'acf/fields/relationship/query/name=products_categories',
+            [$this, 'updateProductsCategoriesQuery'],
+            10
+        );
+
+        add_filter(
+            'acf/load_field/name=products_list',
+            [$this, 'updateProductsListQuery'],
+            10
+        );
+    }
+
+    /**
+     * Show only shop subpages in products categories field.
+     *
+     * @param array $args   Query args.
+     *
+     * @return array
+     */
+    public function updateProductsCategoriesQuery(array $args): array
+    {
+        $catalogPageId = \Hpr\Service\Helpers\Helpers::getCatalogId();
+        $args['post_parent'] = $catalogPageId;
+
+        return $args;
+    }
+
+    /**
+     * Show only shop subpages in products categories field.
+     *
+     * @param array $args   Query args.
+     *
+     * @return array
+     */
+    public function updateProductsListQuery(array $field): array
+    {
+        $terms = get_terms(['taxonomy' => self::$cptTaxonomy, 'hide_empty' => true]);
+
+        if (is_wp_error($terms) || empty($terms)) {
+            return $field;
+        }
+
+        foreach ($terms as $term) {
+            $field['taxonomy'][] = self::$cptTaxonomy . ':' . $term->slug;
+        }
+
+        return $field;
     }
 }

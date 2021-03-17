@@ -60,6 +60,20 @@
   }
 }
 
+.u-desktop-md {
+  &-hidden {
+    @media screen and (max-width: $container-desktop-md) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: $container-desktop-md + 1) {
+      display: none !important;
+    }
+  }
+}
+
 .u-tablet {
   &-hidden {
     @media screen and (max-width: $container-tablet) {

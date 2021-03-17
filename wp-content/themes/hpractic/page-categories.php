@@ -9,36 +9,11 @@ $id = get_the_id();
 $breadcrumbs = new \Hpr\Service\Breadcrumbs\Breadcrumbs($id);
 $header = get_field('header', $id);
 $shortcode = get_field('callback_shortcode', $id);
-$categoryPagesIds = get_posts(
-    [
-        'numberposts' => -1,
-        'post_type' => 'page',
-        'post_status' => 'publish',
-        'post_parent' => $id,
-        'fields' => 'ids'
-    ]
-);
+$categoryPagesIds = get_field('products_categories', $id);
 
-get_header(); ?>
-<div class="head">
-    <div class="head__top">
-        <div class="container">
-            <div class="breadcrumbs">
-                <?php $breadcrumbs->render(); ?>
-            </div>
-        </div>
-    </div>
-    <div class="head__content">
-        <div class="container">
-            <h2 class="heading heading--lg heading--primary">
-                <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
-                    <?php echo $header['background_text']; ?>
-                </span>
-                <?php echo $header['heading']; ?>
-            </h2>
-        </div>
-    </div>
-</div>
+get_header();
+
+get_template_part('template-parts/catalog/section-head'); ?>
 <section class="section section--white">
     <div class="container">
         <div class="cards">
