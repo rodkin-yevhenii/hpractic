@@ -44,7 +44,7 @@ endif; ?>
                     <?php foreach ($productsIds as $id) :
                         $product = new Product($id); ?>
                         <div class="slider__item">
-                            <a href="<?php echo $product->getUrl(); ?>" class="card">
+                            <a href="<?php echo $product->getUrl(); ?>" class="card card--primary">
                                 <div class="card__inner">
                                     <div class="card__image card__image-1x1">
                                         <?php echo get_the_post_thumbnail($product->getId(), 'carousel-item'); ?>
@@ -59,17 +59,6 @@ endif; ?>
                                         </h3>
                                         <div class="card__price">
                                             <?php echo $product->getPrice(); ?> <?php _e('грн', 'hpractice'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="card__actions">
-                                        <div class="card__actions-inner">
-                                            <span class="btn btn--primary">
-                                                <span><?php _e('Подробнее', 'hpractice'); ?></span>
-                                                <svg class="icon icon--md">
-                                                    <use xlink:href="<?php
-                                                    echo SRC_URI; ?>img/icons-sprite.svg#icon-chevron-right-white"></use>
-                                                </svg>
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
