@@ -1,5 +1,10 @@
 .head {
   background-color: $color-grey-light;
+  
+  &--secondary {
+    background-color: $color-white;
+  }
+  
   &__top {
   
   }
