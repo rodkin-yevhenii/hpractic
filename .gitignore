@@ -27,3 +27,7 @@ wp-content/themes/twenty*
 
 # Ignore languages
 /wp-content/languages/*
+
+# Ignore plugins
+/wp-content/plugins/query-monitor/
+/wp-content/db.php
