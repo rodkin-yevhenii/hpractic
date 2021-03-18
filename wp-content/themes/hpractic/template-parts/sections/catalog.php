@@ -49,7 +49,7 @@ $fields = $args['fields'];
                 <div class="slider">
                     <?php foreach ($pagesIds as $id) : ?>
                         <div class="slider__item">
-                            <a href="<?php echo get_permalink($id); ?>" class="card">
+                            <a href="<?php echo get_permalink($id); ?>" class="card card--primary">
                                 <div class="card__inner">
                                     <div class="card__image">
                                         <?php echo get_the_post_thumbnail($id, 'carousel-item'); ?>
@@ -58,16 +58,6 @@ $fields = $args['fields'];
                                         <h3 class="card__title card__title--center">
                                             <?php echo get_the_title($id); ?>
                                         </h3>
-                                    </div>
-                                    <div class="card__actions">
-                                        <div class="card__actions-inner">
-                                            <span class="btn btn--primary">
-                                                <span><?php _e('Подробнее', 'hpractice'); ?></span>
-                                                <svg class="icon icon--md">
-                                                    <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-chevron-right-white"></use>
-                                                </svg>
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </a>

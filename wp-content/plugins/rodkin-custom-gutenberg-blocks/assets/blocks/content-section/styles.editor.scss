@@ -1,0 +1,13 @@
+.wp-block-gutenberg-custom-block-section {
+    display: flex;
+
+    .article__aside {
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+    .article__content {
+        width: 100%
+    }
+}
+

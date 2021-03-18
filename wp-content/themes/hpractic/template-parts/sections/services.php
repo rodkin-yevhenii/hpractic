@@ -61,24 +61,18 @@ $fields = $args['fields'];
                                             <?php echo get_the_excerpt($id); ?>
                                         </p>
                                     </div>
-                                    <div class="card__actions">
+                                    <div class="card__actions card__actions--mobile-visible">
                                         <div class="card__actions-inner">
-                                            <span class="btn btn--primary">
-                                                <span><?php _e('Подробнее', 'hpractice'); ?></span>
-                                                <svg class="icon icon--md">
-                                                    <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-chevron-right-white"></use>
-                                                </svg>
+                                            <span class="link link--primary link--bold">
+                                                <span class="link__inner">
+                                                    <span><?php _e('Подробнее', 'hpractice'); ?></span>
+                                                    <svg class="icon icon--md">
+                                                        <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-chevron-right-white"></use>
+                                                    </svg>
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
-                                    <span class="link link--primary link--bold u-desktop-sm-visible">
-                                        <span class="link__inner">
-                                            <span><?php _e('Подробнее', 'hpractice'); ?></span>
-                                            <svg class="icon icon--md">
-                                                <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-chevron-right-white"></use>
-                                            </svg>
-                                        </span>
-                                    </span>
                                 </div>
                             </a>
                         </div>

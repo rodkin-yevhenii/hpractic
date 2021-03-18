@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '4.6.3',
-    'version' => '4.6.3.0',
+    'pretty_version' => '4.6.4',
+    'version' => '4.6.4.0',
     'aliases' => 
     array (
     ),
-    'reference' => 'ce2a10f8815d84a2dda023dd8a77b476fe5d5121',
+    'reference' => '4117c3e807c8bed4120639cfcd1ef7f34cb2a543',
     'name' => 'mihdan/cyr2lat',
   ),
   'versions' => 
@@ -46,12 +46,12 @@ private static $installed = array (
     ),
     'mihdan/cyr2lat' => 
     array (
-      'pretty_version' => '4.6.3',
-      'version' => '4.6.3.0',
+      'pretty_version' => '4.6.4',
+      'version' => '4.6.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'ce2a10f8815d84a2dda023dd8a77b476fe5d5121',
+      'reference' => '4117c3e807c8bed4120639cfcd1ef7f34cb2a543',
     ),
     'roundcube/plugin-installer' => 
     array (

@@ -3,6 +3,7 @@
 namespace Hpr\Admin;
 
 use Hpr\Front\Assets;
+use Hpr\Service\Helpers\Helpers;
 
 /**
  * Class ThemeInit
@@ -110,6 +111,8 @@ class ThemeInit
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
         add_post_type_support('page', array('excerpt'));
+        add_theme_support('editor-styles');
+        add_editor_style('editor-style.css');
     }
 
     /**
@@ -118,6 +121,7 @@ class ThemeInit
     private function registerImagesSizes(): void
     {
         add_image_size('carousel-item', 328, 358, true);
+        add_image_size('product-catalog-thumbnail', 328, 358, true);
     }
 
     /**

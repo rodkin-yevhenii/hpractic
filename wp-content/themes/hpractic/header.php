@@ -58,7 +58,11 @@ $faviconUrl = get_field('favicon', 'option');
                             <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-search"></use>
                         </svg>
                     </span>
-                    <form class="form" action="<?php echo home_url(); ?>" method="GET" role="search">
+                    <form class="form"
+                          action="<?php echo get_permalink(Helpers::getSearchPageId()); ?>"
+                          method="GET"
+                          role="search"
+                    >
                         <div class="form__field">
                             <button type="submit" class="form__field-icon">
                                 <svg class="icon">
@@ -67,14 +71,16 @@ $faviconUrl = get_field('favicon', 'option');
                             </button>
                             <input
                                 type="text"
-                                name="s"
+                                name="search"
                                 id="header-search-input"
                                 placeholder="<?php _e('Поиск', 'hpractice'); ?>"
                             >
                         </div>
                     </form>
                 </div>
-                <?php Helpers::showLanguageSwitcher() ?>
+                <div class="header__languages languages u-mobile-hidden">
+                    <?php Helpers::showLanguageSwitcher() ?>
+                </div>
                 <div class="header__btn">
                     <button class="btn-icon">
                         <svg class="icon">
@@ -109,6 +115,9 @@ $faviconUrl = get_field('favicon', 'option');
                             ]
                         ); ?>
                     </nav>
+                </div>
+                <div class="menu-mobile__languages languages u-mobile-visible">
+                    <?php Helpers::showLanguageSwitcher() ?>
                 </div>
             </div>
         </div>

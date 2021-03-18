@@ -1,0 +1,9 @@
+{
+  "name": "rodkin-yevhenii/gutenberg",
+  "description": "Gutenberg Blocks",
+  "autoload": {
+    "psr-4": {
+      "Hpr\\Gutenberg\\":"inc/"
+    }
+  }
+}

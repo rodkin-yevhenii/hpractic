@@ -32,25 +32,23 @@ class Helpers
         }
 
         ob_start(); ?>
-        <div class="header__languages u-mobile-hidden">
-            <ul>
-                <?php foreach ($languages as $language) :
-                    // Variables containing language data
-                    $url = $language['url'];
-                    $classes = $language['current_lang'] ? 'link link--secondary active' : 'link link--secondary';
-                    $title = 'ru' === $language['slug'] ? __('Рус', 'hpractice') : __('Укр', 'hpractice');
+        <ul>
+            <?php foreach ($languages as $language) :
+                // Variables containing language data
+                $url = $language['url'];
+                $classes = $language['current_lang'] ? 'link link--secondary active' : 'link link--secondary';
+                $title = 'ru' === $language['slug'] ? __('Рус', 'hpractice') : __('Укр', 'hpractice');
 
-                    if ($language['no_translation']) :
-                        continue;
-                    endif; ?>
-                    <li>
-                        <a href="<?php echo $url; ?>" class="<?php echo $classes; ?>">
-                            <?php echo $title ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+                if ($language['no_translation']) :
+                    continue;
+                endif; ?>
+                <li>
+                    <a href="<?php echo $url; ?>" class="<?php echo $classes; ?>">
+                        <?php echo $title ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
         <?php echo ob_get_clean();
     }
 
@@ -61,8 +59,8 @@ class Helpers
      */
     public static function getCatalogId(): ?int
     {
-        $langSlug = pll_current_language();
-        $catalogPageId = get_field('shop_page_' . $langSlug, 'option');
+        $catalogPageId = get_field('shop_page', 'option');
+        $catalogPageId = pll_get_post($catalogPageId);
 
         if (empty($catalogPageId)) {
             return null;
@@ -78,13 +76,30 @@ class Helpers
      */
     public static function getServicePageId(): ?int
     {
-        $langSlug = pll_current_language();
-        $catalogPageId = get_field('service_page_' . $langSlug, 'option');
+        $servicePageId = get_field('service_page', 'option');
+        $servicePageId = pll_get_post($servicePageId);
 
-        if (empty($catalogPageId)) {
+        if (empty($servicePageId)) {
             return null;
         }
 
-        return $catalogPageId;
+        return $servicePageId;
+    }
+
+    /**
+     * Get service page id.
+     *
+     * @return int|null
+     */
+    public static function getSearchPageId(): ?int
+    {
+        $searchPageId = get_field('search_page', 'option');
+        $searchPageId = pll_get_post($searchPageId);
+
+        if (empty($searchPageId)) {
+            return null;
+        }
+
+        return $searchPageId;
     }
 }
