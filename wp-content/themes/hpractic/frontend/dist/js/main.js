@@ -7,8 +7,19 @@ jQuery(document).ready(function($){
   const btnToTop = $(".btn-to-top");
   const btnMenu = $(".btn-menu");
   const mobileMenu = $('.menu-mobile');
-
+  const productTabs = $('.product .tabs');
   const productPreview = $('.product__preview');
+
+  const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
+                          <svg class="icon">
+                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-left"></use>
+                          </svg>
+                      </span>`;
+  const nextBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--right">
+                          <svg class="icon">
+                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
+                          </svg>
+                      </span>`;
 
   if(sectionSlider.length > 0) {
     sectionSlider.each(function (i, slider){
@@ -72,8 +83,16 @@ jQuery(document).ready(function($){
     const productMainSliderDOM = productPreview.find('.product__preview-top .slider');
     const productThumbsSliderDOM = productPreview.find('.product__preview-thumbs .slider');
 
-    console.log('productMainSliderDOM', productMainSliderDOM);
-    console.log('productThumbsSliderDOM', productThumbsSliderDOM);
+    const sliderPreviewDOMPrevBtn = productMainSliderDOM.closest('.product__preview').find('.btn-arrow--left');
+    const sliderPreviewDOMNextBtn = productMainSliderDOM.closest('.product__preview').find('.btn-arrow--right');
+
+    sliderPreviewDOMPrevBtn.on('click', function(){
+      productThumbsSliderDOM.slick('slickPrev');
+    });
+
+    sliderPreviewDOMNextBtn.on('click', function(){
+      productThumbsSliderDOM.slick('slickNext');
+    });
 
     const reviewSlider = productMainSliderDOM.slick({
       rows: 0,
@@ -90,16 +109,13 @@ jQuery(document).ready(function($){
       asNavFor: productThumbsSliderDOM,
       responsive: [
         {
-          breakpoint: 992,
+          breakpoint: 767,
           settings: {
             fade: false,
-            arrows: false,
-          }
-        },
-        {
-          breakpoint: 699,
-          settings: {
             swipeToSlide: true,
+            arrows: true,
+            prevArrow: prevBtnTemplate,
+            nextArrow: nextBtnTemplate,
           }
         }
       ]
@@ -120,7 +136,7 @@ jQuery(document).ready(function($){
       focusOnSelect: true,
       responsive: [
         {
-          breakpoint: 992,
+          breakpoint: 1023,
           settings: {
             fade: false,
             arrows: false,
@@ -128,24 +144,6 @@ jQuery(document).ready(function($){
         }
       ]
     });
-
-    // productMainSliderDOM.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-    //   toggleActiveItem(nextSlide)
-    // });
-
-    // productMainSliderDOM
-    //   .closest('.reviews')
-    //   .find('[data-review-id]')
-    //   .on('click', function(e){
-    //     e.preventDefault();
-    //     const index = parseInt($(this).attr('data-review-id'));
-    //     reviewSlider.slick('slickGoTo', index);
-    // });
-
-    // function toggleActiveItem(index){
-    //   $('.reviews__list li[data-review-id]').removeClass('active')
-    //   $('.reviews__list li[data-review-id="'+ index +'"]').addClass('active')
-    // }
   }
 
   if(article.length > 0) {
@@ -325,6 +323,8 @@ jQuery(document).ready(function($){
 
   initQuantity();
 
+  initTabs(productTabs);
+
 });
 
 function callbackBeforeOpen(popup, id, title) {
@@ -402,7 +402,7 @@ function destroySlider(slider){
 
 function initCounters(items){
 
-  if(!items.length > 0) {
+  if(!(items.length > 0)) {
     return false;
   }
 
@@ -424,22 +424,29 @@ function initCounters(items){
 }
 
 function initQuantity(){
-  const quantity = $('quantity');
+  const quantity = $('.quantity');
 
   if(quantity.length > 0) {
     quantity.on('click', 'button' ,function(e) {
       e.preventDefault();
-      var input = $(this).closest('div').find('input[name="number"]'),
+      let input = $(this).closest('div').find('input[name="number"]'),
         value = +input.val();
+      const min = +input.attr('min');
+      const max = +input.attr('max');
+      const type = $(this).data('type');
 
-      if ($(this).data('type') === 'minus'){
-        if (value > +input.data('min')) {
+      if (type === 'minus'){
+        if (value > min ) {
           value = value - 1;
+        } else {
+          value = min;
         }
 
       } else {
-        if (value < + input.data('max')) {
+        if (value < max) {
           value = value + 1;
+        } else {
+          value = max;
         }
       }
 
@@ -447,4 +454,48 @@ function initQuantity(){
     });
   }
 
+  quantity.on('change', 'input', function(e){
+    const input = $(e.currentTarget);
+    const min = +input.attr('min');
+    const max = +input.attr('max');
+
+    if(input.val() > max){
+      input.val(max);
+    }
+
+    if(input.val() < min){
+      input.val(min);
+    }
+  });
+
+}
+
+function initTabs(tabs, index = 0){
+  if(!(tabs.length > 0)) {
+    return false;
+  }
+
+  toggleTab(tabs, index);
+
+  tabs.on('click', '.tabs__nav-item', function(e){
+    e.preventDefault();
+    const currentTab = $(e.currentTarget);
+    if(!currentTab.hasClass('active')) {
+      const currentTabName = currentTab.attr('data-tab');
+      const index = tabs.find('.tabs__items-tab[data-tab="' + currentTabName + '"]').index();
+      toggleTab(tabs, index);
+    }
+  });
+
+  function toggleTab(tabs, index){
+    const tabsNav = tabs.find('.tabs__nav-item');
+    const currentTab = $(tabsNav.get(index)).attr('data-tab');
+    tabsNav.removeClass('active');
+    console.log('currentTab', currentTab);
+
+    tabs.find('.tabs__items-tab').fadeOut(function (){
+      tabs.find('.tabs__nav-item[data-tab="' + currentTab + '"]').addClass('active');
+      tabs.find('.tabs__items-tab[data-tab="' + currentTab + '"]').fadeIn();
+    });
+  }
 }

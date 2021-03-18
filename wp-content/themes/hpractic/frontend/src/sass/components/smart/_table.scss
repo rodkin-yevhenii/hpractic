@@ -1,0 +1,59 @@
+.table-container, .wp-block-table {
+  overflow-y: hidden;
+  overflow-x: auto;
+  max-width: 100%;
+  font-size: 1.6rem;
+  line-height: 1.48;
+  margin: 4rem 0;
+  padding: 0 0 1.6rem;
+  
+  table {
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    border: 1px solid $color-grey-lighter2;
+    border-collapse: collapse;
+    min-width: 48rem;
+    
+    thead {
+      vertical-align: baseline;
+    
+      tr {
+        background: $color-grey-light;
+      }
+    
+      td {
+        font-weight: 700;
+      }
+    }
+  
+    tbody {
+      tr {
+        background: $color-white;
+      }
+    
+      td {
+      }
+    }
+  
+    td {
+      padding: 2rem 2rem;
+      font-weight: normal;
+      color: $color-secondary-dark;
+      border: 1px solid $color-grey-lighter2;
+      
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+  
+  figcaption {
+    margin: 1rem 0 0;
+    text-align: left;
+    color: $color-grey-dark;
+  }
+}

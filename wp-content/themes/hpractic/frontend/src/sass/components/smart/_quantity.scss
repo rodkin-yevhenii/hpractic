@@ -1,0 +1,88 @@
+.quantity {
+  display: inline-block;
+  position: relative;
+  width: 15.8rem;
+  
+  &__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    font-size: 3.2rem;
+    width: 1em;
+    height: 1em;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    border-radius: .2rem;
+    cursor: pointer;
+    transition: all .2s;
+    
+    &:hover {
+      background-color: $color-primary;
+      
+      &::before, &::after {
+        background-color: $color-white;
+      }
+      
+      & ~ input {
+        border-color: $color-dark-blue;
+      }
+    }
+    
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      width: 38%;
+      height: .2rem;
+      border-radius: .1rem;
+      margin: auto;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      background-color: $color-primary;
+      transition: all .2s;
+    }
+    
+    &--minus {
+      left: 0.8rem;
+      
+      &::after {
+        display: none;
+      }
+    }
+    
+    &--plus {
+      right: .8rem;
+  
+      &::after {
+       transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+  }
+  
+  &__input {
+    text-align: center;
+    border: 1px solid $color-grey-light;
+    border-radius: 4px;
+    padding: .8rem 4.8rem;
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: $color-secondary-dark;
+    height: 4.6rem;
+    outline: none;
+    width: 100%;
+    
+    &:focus {
+      border-color: $color-dark-blue;
+    }
+  
+    &:active {
+      border-color: $color-dark-blue;
+    }
+  }
+  
+}

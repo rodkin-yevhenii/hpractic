@@ -1,0 +1,77 @@
+.tabs {
+  margin: 12.8rem 0 4rem;
+  
+  @media only screen and (max-width: $container-tablet) {
+    margin-top: 5.6rem;
+  }
+  
+  &__nav {
+    background-color: $color-grey-light;
+    
+    &-inner {
+      display: flex;
+    }
+    
+    &-item {
+      padding: 3rem 0;
+      display: inline-block;
+      position: relative;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+      align-items: center;
+      text-transform: uppercase;
+      color: $color-secondary-dark;
+      cursor: pointer;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 0;
+        bottom: 0;
+        transition: all .2s;
+        opacity: 0;
+        height: .4rem;
+        border-radius: .2rem;
+        background-color: $color-primary;
+      }
+      
+      &:not(:last-child){
+        margin-right: 6.4rem;
+  
+        @media only screen and (max-width: $container-mobile-lg) {
+          margin-right: 3.2rem;
+        }
+      }
+      
+      &.active {
+        cursor: initial;
+        
+        &::before {
+          opacity: 1;
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  &__items {
+    padding: 8.8rem 0;
+  
+    @media only screen and (max-width: $container-tablet) {
+      padding: 5.6rem 0;
+    }
+  }
+  
+  &__nav, &__items {
+    &-inner {
+      padding: 0 12.8rem;
+  
+      @media only screen and (max-width: $container-desktop-lg) {
+        padding: 0 0;
+      }
+    }
+  }
+}

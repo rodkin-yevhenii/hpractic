@@ -14,7 +14,6 @@
     }
   }
   
-  
   .slick-list {
     margin: 0 -1.6rem;
     padding: 0 1.6rem;
@@ -22,12 +21,6 @@
     @media only screen and (max-width: $container-tablet) {
       margin: 0 -0.8rem;
       padding: 0 0.8rem;
-    }
-  }
-  
-  .card {
-    &::after {
-      visibility: hidden;
     }
   }
   
@@ -51,7 +44,7 @@
             box-shadow: 0 0 1.6rem rgba(27, 55, 88, 0.1);
           }
         }
-  
+        
         @media only screen and (min-width: $container-desktop-sm + 1) {
           .card__actions {
             opacity: 1;
@@ -83,6 +76,27 @@
           }
         }
       }
+    }
+  }
+  
+  .card {
+    &::after {
+      visibility: hidden;
+    }
+  }
+  
+  .btn-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba($color-grey-light, 0.7);
+    
+    &--left {
+      left: 1rem;
+    }
+    
+    &--right {
+      right: 1rem;
     }
   }
 }

@@ -6,6 +6,9 @@
 @import 'components/smart/languages';
 @import 'components/smart/nav';
 @import 'components/smart/head';
+@import 'components/smart/quantity';
+@import 'components/smart/tabs';
+@import 'components/smart/table';
 
 .cards {
   @media only screen and(max-width: $container-desktop-sm) {

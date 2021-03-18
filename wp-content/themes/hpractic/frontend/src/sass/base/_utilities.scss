@@ -1,37 +1,3 @@
-.u-text {
-  &-gradient-orange {
-    color: $color-orange-dark;
-    
-    @supports (-webkit-background-clip: text) or ( -webkit-text-fill-color: transparent) {
-      background: $gradient-primary;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
-  
-  &-gradient-blue-hover {
-    transition: all .3s;
-    
-    &:hover, &.active {
-      color: $color-blue;
-  
-      @supports (-webkit-background-clip: text) or ( -webkit-text-fill-color: transparent) {
-        background: $gradient-secondary;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-  }
-  
-  &-center {
-    text-align: center;
-  }
-  
-  &-yellow-bg {
-    background-color: $color-yellow-2;
-  }
-}
-
 .u-mobile {
   &-hidden {
     @media screen and (max-width: $container-tablet-sm) {
@@ -46,20 +12,19 @@
   }
 }
 
-.u-desktop-sm {
+.u-desktop-lg {
   &-hidden {
-    @media screen and (max-width: $container-desktop-sm) {
+    @media screen and (max-width: $container-desktop-lg) {
       display: none !important;
     }
   }
   
   &-visible {
-    @media screen and (min-width: $container-desktop-sm + 1) {
+    @media screen and (min-width: $container-desktop-lg + 1) {
       display: none !important;
     }
   }
 }
-
 .u-desktop-md {
   &-hidden {
     @media screen and (max-width: $container-desktop-md) {
@@ -69,6 +34,19 @@
   
   &-visible {
     @media screen and (min-width: $container-desktop-md + 1) {
+      display: none !important;
+    }
+  }
+}
+.u-desktop-sm {
+  &-hidden {
+    @media screen and (max-width: $container-desktop-sm) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: $container-desktop-sm + 1) {
       display: none !important;
     }
   }
