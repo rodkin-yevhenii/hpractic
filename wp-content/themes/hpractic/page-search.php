@@ -95,9 +95,11 @@ get_template_part('template-parts/catalog/section-head'); ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                    <?php else :
-                        echo '<p>' . __('К сожалению, по Вашему запросу нигего не найдено', 'hpractice') . '.</p>';
-                    endif;
+                    <?php else : ?>
+                        <p class="cards__message--not-found">
+                            <?php __('К сожалению, по Вашему запросу нигего не найдено', 'hpractice'); ?>
+                        </p>
+                    <?php endif;
                     $pagination->render(); ?>
                 </div>
             </div>
