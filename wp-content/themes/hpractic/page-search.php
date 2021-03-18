@@ -64,9 +64,9 @@ get_template_part('template-parts/catalog/section-head'); ?>
             </div>
             <div class="section__content section__content--tablet-default">
                 <div class="cards cards--tablet-full">
-                    <div class="grid-container">
-                        <?php if ($productsQuery->have_posts()) :
-                            foreach ($productsQuery->posts as $productId) :
+                    <?php if ($productsQuery->have_posts()) : ?>
+                        <div class="grid-container">
+                            <?php foreach ($productsQuery->posts as $productId) :
                                 $product = new \Hpr\Entity\Product($productId); ?>
                                 <div class="grid-item-1-of-3">
                                     <a href="<?php echo $product->getUrl(); ?>" class="card card--primary">
@@ -93,10 +93,12 @@ get_template_part('template-parts/catalog/section-head'); ?>
                                         </div>
                                     </a>
                                 </div>
-                            <?php endforeach;
-                        endif; ?>
-                    </div>
-                    <?php $pagination->render(); ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else :
+                        echo '<p>' . __('К сожалению, по Вашему запросу нигего не найдено', 'hpractice') . '.</p>';
+                    endif;
+                    $pagination->render(); ?>
                 </div>
             </div>
         </div>
