@@ -165,7 +165,7 @@ class Pagination
      */
     public function render(): void
     {
-        if (1 === $this->lastPage) :
+        if (!$this->lastPage || 1 === $this->lastPage) :
             return;
         endif;
 
