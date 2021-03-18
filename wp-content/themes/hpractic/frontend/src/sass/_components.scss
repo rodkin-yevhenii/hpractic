@@ -24,4 +24,31 @@
       padding: 0;
     }
   }
+  
+  &__message {
+    padding: 2rem 2rem;
+    min-height: 48rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  
+    @media only screen and(max-width: $container-desktop-sm) {
+      min-height: 32rem;
+    }
+  
+    @media only screen and(max-width: $container-tablet) {
+      min-height: unset;
+      padding: 0 1.5rem;
+    }
+    
+    .icon {
+      &--extra-lg {
+        color: $color-grey-dark;
+        font-size: 12rem;
+        margin: 0 0 3rem;
+      }
+    }
+  }
 }

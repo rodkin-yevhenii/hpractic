@@ -22,9 +22,17 @@
       min-height: 26.8rem;
     }
   
+    @media only screen and(max-width: $container-tablet) {
+      margin-bottom: 0;
+    }
+  
     @media only screen and(max-width: $container-mobile-lg) {
       min-height: unset;
       padding: 10rem 0 6rem;
+    }
+    
+    &:first-child {
+      min-height: unset;
     }
   }
 }

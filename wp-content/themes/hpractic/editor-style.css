@@ -5,3 +5,58 @@
 .block-title {
     text-align: center;
 }
+
+.table-container, .wp-block-table {
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 100%;
+    font-size: 1.6rem;
+    line-height: 1.48;
+    margin: 4rem 0;
+    padding: 0 0 1.6rem;
+}
+
+.table-container table, .wp-block-table table {
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    border: 1px solid #EEF0F4;
+    border-collapse: collapse;
+    min-width: 48rem;
+}
+
+.table-container table thead, .wp-block-table table thead {
+    vertical-align: baseline;
+}
+
+.table-container table thead tr, .wp-block-table table thead tr {
+    background: #F2F5F8;
+}
+
+.table-container table thead td, .wp-block-table table thead td {
+    font-weight: 700;
+}
+
+.table-container table tbody tr, .wp-block-table table tbody tr {
+    background: #fff;
+}
+
+.table-container table td, .wp-block-table table td {
+    padding: 2rem 2rem;
+    font-weight: normal;
+    color: #343434;
+    border: 1px solid #EEF0F4;
+}
+
+.table-container table td img, .wp-block-table table td img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.table-container figcaption, .wp-block-table figcaption {
+    margin: 1rem 0 0;
+    text-align: left;
+    color: #9B9D9F;
+}
