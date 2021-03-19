@@ -56,7 +56,6 @@ class ProductInit
                     'title',
                     'editor',
                     'custom-fields',
-                    'thumbnail',
                 ],
             ]
         );

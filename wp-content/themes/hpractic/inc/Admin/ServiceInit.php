@@ -50,7 +50,7 @@ class ServiceInit
                     'title',
                     'editor',
                     'custom-fields',
-                    'thumbnail',
+                    'excerpt'
                 ],
             ]
         );

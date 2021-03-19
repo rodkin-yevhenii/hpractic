@@ -1,5 +1,6 @@
 <?php
 
+use Hpr\Admin\ServiceInit;
 use Hpr\Service\Helpers\Helpers;
 
 if (empty($args['fields'])) :
@@ -11,9 +12,8 @@ $servicePageId = Helpers::getServicePageId();
 $pagesIds = get_posts(
     [
         'numberposts' => -1,
-        'post_type' => 'page',
+        'post_type' => ServiceInit::$cptName,
         'post_status' => 'publish',
-        'post_parent' => $servicePageId,
         'fields' => 'ids'
     ]
 );
