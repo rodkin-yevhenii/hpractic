@@ -42,7 +42,7 @@ $breadcrumbs = new Breadcrumbs($id);
                                     <svg class="icon">
                                         <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-car"></use>
                                     </svg>
-                                    <span><?php _e('Доставка', 'Hpractice'); ?></span>
+                                    <span><?php _e('Доставка', 'hpractice'); ?></span>
                                 </div>
                                 <div class="product__info-body">
                                     <ul>
@@ -61,7 +61,7 @@ $breadcrumbs = new Breadcrumbs($id);
                                         <use xlink:href="<?php
                                         echo SRC_URI; ?>img/icons-sprite.svg#icon-credit-cards"></use>
                                     </svg>
-                                    <span><?php _e('Оплата', 'Hpractice'); ?></span>
+                                    <span><?php _e('Оплата', 'hpractice'); ?></span>
                                 </div>
                                 <div class="product__info-body">
                                     <ul>
@@ -83,11 +83,11 @@ $breadcrumbs = new Breadcrumbs($id);
                 <div class="container">
                     <div class="tabs__nav-inner">
                         <div class="tabs__nav-item" data-tab="description">
-                            <span><?php _e('Описание', 'Hpractice'); ?></span>
+                            <span><?php _e('Описание', 'hpractice'); ?></span>
                         </div>
                         <?php if (!empty($product->getCharacteristic())) : ?>
                             <div class="tabs__nav-item" data-tab="characteristic">
-                                <span><?php _e('Характеристики', 'Hpractice'); ?></span>
+                                <span><?php _e('Характеристики', 'hpractice'); ?></span>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -112,7 +112,7 @@ $breadcrumbs = new Breadcrumbs($id);
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                    <figcaption><?php _e('Характеристики изделия', 'Hpractice'); ?></figcaption>
+                                    <figcaption><?php _e('Характеристики изделия', 'hpractice'); ?></figcaption>
                                 </figure>
                             </div>
                         <?php endif; ?>

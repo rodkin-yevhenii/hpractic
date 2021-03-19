@@ -58,7 +58,11 @@ endif; ?>
                                             <?php echo $product->getTitle(); ?>
                                         </h3>
                                         <div class="card__price">
-                                            <?php echo $product->getPrice(); ?> <?php _e('грн', 'hpractice'); ?>
+                                            <?php if ($product->isMinPrice()) :
+                                                echo __('от', 'hpractice') . ' ';
+                                            endif;
+
+                                            echo $product->getPrice(); ?> <?php _e('грн', 'hpractice'); ?>
                                         </div>
                                     </div>
                                 </div>

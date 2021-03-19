@@ -57,13 +57,13 @@ class Product extends AffiliateAbstract
                     $this->sellingType = __('Оптом.', 'hpractice');
                 } else {
                     $this->sellingType = sprintf(
-                        __('Оптом, опт от %d шт.', 'hpractice'),
+                        __('Опт от %d шт.', 'hpractice'),
                         $wholesaleQuantity
                     );
                 }
                 break;
             default:
-                $this->sellingType = __('В розницу.', 'hpractice');
+                $this->sellingType = __('В розницу', 'hpractice');
         }
 
         $underOrderTime = (int) $fields['product_settings']['under-order-time'] ?? 0;
