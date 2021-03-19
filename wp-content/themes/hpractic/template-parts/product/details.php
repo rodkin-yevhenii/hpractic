@@ -20,8 +20,8 @@ if (!$product) {
             echo __('от', 'hpractice') . ' ';
         endif; ?>
         <strong class="value">
-            <?php echo number_format($product->getPrice(), 0, '.', ' '); ?>
-        </strong> <?php _e('грн', 'hpractice'); ?>
+            <?php echo number_format($product->getPrice(), 0, '.', ' '); ?> <?php _e('грн', 'hpractice'); ?>
+        </strong>
     </div>
     <div class="product__list">
         <ul>
