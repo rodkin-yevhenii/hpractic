@@ -47,7 +47,10 @@ endif; ?>
                             <a href="<?php echo $product->getUrl(); ?>" class="card card--primary">
                                 <div class="card__inner">
                                     <div class="card__image card__image-1x1">
-                                        <?php echo get_the_post_thumbnail($product->getId(), 'carousel-item'); ?>
+                                        <?php echo wp_get_attachment_image(
+                                            $product->getGallery()[0],
+                                            'product-catalog-thumbnail'
+                                        ); ?>
                                     </div>
                                     <div class="card__content">
                                         <p class="card__part-number">
