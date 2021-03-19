@@ -40,7 +40,7 @@ class Product extends AffiliateAbstract
         $this->isUnderOrder = $fields['product_settings']['is-under-order'] ?? false;
         $this->isMinOrder = $fields['product_settings']['is-min-order'] ?? false;
         $wholesaleQuantity = $fields['product_settings']['wholesale-quantity'] ?? false;
-        $sellingType = $fields['product_settings']['is-min-order'] ?? '';
+        $sellingType = $fields['product_settings']['retail'] ?? '';
         switch ($sellingType) {
             case 'wholesaleAndRetail':
                 if (!$wholesaleQuantity) {
