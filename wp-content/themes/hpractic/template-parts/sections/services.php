@@ -44,9 +44,6 @@ $fields = $args['fields'];
                             </svg>
                         </span>
                     </div>
-                    <a href="<?php echo get_permalink($servicePageId); ?>" class="btn btn--secondary">
-                        <?php _e('Все услуги', 'hpractice'); ?>
-                    </a>
                 </div>
             </div>
             <div class="section__slider">
@@ -92,9 +89,6 @@ $fields = $args['fields'];
                         </svg>
                     </span>
                 </div>
-                <a href="<?php echo get_permalink($servicePageId); ?>" class="btn btn--secondary">
-                    <?php _e('Все услуги', 'hpractice'); ?>
-                </a>
             </div>
         </div>
     </div>
