@@ -4,7 +4,7 @@ global $searchQuery;
 $id = $args['id'] ?? get_the_id();
 $breadcrumbs = new \Hpr\Service\Breadcrumbs\Breadcrumbs($id);
 $header = get_field('header', $id);
-$header = $header['heading'] ?? get_the_title($id);
+$header = !empty($header['heading']) ? $header['heading'] : get_the_title($id);
 ?>
 <div class="head">
     <div class="head__top">
