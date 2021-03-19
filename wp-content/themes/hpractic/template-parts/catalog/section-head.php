@@ -22,7 +22,7 @@ $header = get_field('header', $id);
                 <?php echo $header['heading'];
 
                 if (!empty($searchQuery)) :
-                    echo '<br/>"' . $searchQuery . '"';
+                    echo '<br/><small>"' . $searchQuery . '"</small>';
                 endif; ?>
             </h2>
         </div>

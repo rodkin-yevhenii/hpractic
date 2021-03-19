@@ -96,9 +96,14 @@ get_template_part('template-parts/catalog/section-head'); ?>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p class="cards__message--not-found">
-                            <?php _e('К сожалению, по Вашему запросу нигего не найдено', 'hpractice'); ?>
-                        </p>
+                        <div class="cards__message card__message--not-found">
+                            <svg class="icon icon--extra-lg">
+                                <use xlink:href="<?php echo SRC_URI; ?>/img/icons-sprite.svg#icon-empty-box"></use>
+                            </svg>
+                            <p>
+                                <?php _e('К сожалению, по Вашему запросу нигего не найдено', 'hpractice'); ?>
+                            </p>
+                        </div>
                     <?php endif;
                     $pagination->render(); ?>
                 </div>
