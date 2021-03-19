@@ -10,10 +10,6 @@ jQuery(document).ready(function($){
   const productTabs = $('.product .tabs');
   const adminBar = $('#wpadminbar');
 
-  if (adminBar.length) {
-    $('header.header').css('top', adminBar.height());
-  }
-
   const productPreview = $('.product__preview');
 
   const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
@@ -331,6 +327,9 @@ jQuery(document).ready(function($){
 
   initTabs(productTabs);
 
+  if (adminBar.length) {
+    $('header.header').css('top', adminBar.height());
+  }
 });
 
 function callbackBeforeOpen(popup, id, title) {
