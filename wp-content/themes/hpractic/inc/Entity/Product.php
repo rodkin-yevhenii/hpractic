@@ -44,10 +44,10 @@ class Product extends AffiliateAbstract
         switch ($sellingType) {
             case 'wholesaleAndRetail':
                 if (!$wholesaleQuantity) {
-                    $this->sellingType = __('Оптом и в роздницу.', 'hpractice');
+                    $this->sellingType = __('Оптом и в розницу.', 'hpractice');
                 } else {
                     $this->sellingType = sprintf(
-                        __('Оптом и в роздницу, опт от %d шт.', 'hpractice'),
+                        __('Оптом и в розницу, опт от %d шт.', 'hpractice'),
                         $wholesaleQuantity
                     );
                 }
