@@ -3,7 +3,6 @@
 namespace Hpr\Admin;
 
 use Hpr\Front\Assets;
-use Hpr\Service\Helpers\Helpers;
 
 /**
  * Class ThemeInit
@@ -98,6 +97,16 @@ class ThemeInit
                     'menu_slug' => 'theme-settings',
                     'capability' => 'edit_posts',
                     'redirect' => false,
+                ]
+            );
+        }
+
+        if (function_exists('acf_add_options_sub_page')) {
+            acf_add_options_sub_page(
+                [
+                    'page_title'  => __('Настройки продукта'),
+                    'menu_title'  => __('Настройки продукта'),
+                    'parent_slug' => 'theme-settings',
                 ]
             );
         }
