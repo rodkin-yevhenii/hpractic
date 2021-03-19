@@ -73,7 +73,7 @@ class Product extends AffiliateAbstract
         );
         $minOrder = (int) $fields['product_settings']['min-order'] ?? 0;
         $this->minOrder = sprintf(
-            __('Минимальный заказ - %d шт.', 'hpractice'),
+            __('Минимальный заказ %d шт.', 'hpractice'),
             $minOrder
         );
         $this->additionalText = $fields['product_settings']['additional-text'] ?? '';
