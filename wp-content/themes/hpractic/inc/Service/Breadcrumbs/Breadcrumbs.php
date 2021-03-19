@@ -30,7 +30,20 @@ class Breadcrumbs
 
         switch (get_post_type($id)) {
             case ProductInit::$cptName:
-                // todo create for products.
+                $terms = wp_get_post_terms($this->currentItemId, ProductInit::$cptTaxonomy);
+
+                if (is_wp_error($terms) || empty($terms)) {
+                    break;
+                }
+
+                $categoryPageId = get_field('category-page', $terms[0]);
+                $parentId = wp_get_post_parent_id($categoryPageId);
+
+                if (!empty($parentId)) {
+                    $this->items[] = $this->getPostData($parentId);
+                }
+
+                $this->items[] = $this->getPostData($categoryPageId);
                 break;
             case ServiceInit::$cptName:
                 // todo create for service.
