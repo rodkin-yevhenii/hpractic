@@ -4,6 +4,7 @@ global $searchQuery;
 $id = $args['id'] ?? get_the_id();
 $breadcrumbs = new \Hpr\Service\Breadcrumbs\Breadcrumbs($id);
 $header = get_field('header', $id);
+$header = $header['heading'] ?? get_the_title($id);
 ?>
 <div class="head">
     <div class="head__top">
@@ -17,9 +18,9 @@ $header = get_field('header', $id);
         <div class="container">
             <h2 class="heading heading--lg heading--primary">
                 <span class="heading__overlay heading__overlay--secondary heading__overlay--center">
-                    <?php echo $header['background_text']; ?>
+                    <?php _e('PRACTICE<br/>HOUSE', 'hpractice'); ?>
                 </span>
-                <?php echo $header['heading'];
+                <?php echo $header;
 
                 if (!empty($searchQuery)) :
                     echo '<br/><small>"' . $searchQuery . '"</small>';
