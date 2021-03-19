@@ -37,6 +37,7 @@ class Breadcrumbs
                 }
 
                 $categoryPageId = get_field('category-page', $terms[0]);
+                $categoryPageId = pll_get_post($categoryPageId);
                 $parentId = wp_get_post_parent_id($categoryPageId);
 
                 if (!empty($parentId)) {
