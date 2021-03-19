@@ -14,12 +14,12 @@ jQuery(document).ready(function($){
 
   const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
                           <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-left"></use>
+                              <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-arrow-left"></use>
                           </svg>
                       </span>`;
   const nextBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--right">
                           <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
+                              <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-arrow-right"></use>
                           </svg>
                       </span>`;
 
