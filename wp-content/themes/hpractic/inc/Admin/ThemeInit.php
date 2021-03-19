@@ -131,6 +131,8 @@ class ThemeInit
     {
         add_image_size('carousel-item', 328, 358, true);
         add_image_size('product-catalog-thumbnail', 328, 358, true);
+        add_image_size('product-gallery-thumbnail', 608, 608, true);
+        add_image_size('product-gallery-preview', 94, 394, true);
     }
 
     /**
