@@ -1,28 +1,26 @@
 .popup {
-  max-width: 560px;
-  margin: auto;
-
+  margin: 6.4rem auto;
+  max-width: 103.2rem;
+  
+  @media only screen and(max-width: $container-desktop-sm) {
+    max-width: 96rem;
+  }
+  
   &__inner {
     margin: auto;
-    padding: 4.5rem 4.5rem;
+    padding: 7.2rem 7.2rem;
     background: $color-white;
-    border-radius: 2px;
+    border-radius: .8rem;
     position: relative;
-
-    @media only screen and(max-width: 992px) {
-      padding: 4.5rem 1.5rem 2.5rem;
-    }
   }
 
-  &_content {
-    margin-top: 2rem;
+  &__content {
+  
   }
 
   .form {
     &__actions {
-      .btn {
-        width: 100%;
-      }
+    
     }
   }
 }
@@ -68,10 +66,29 @@ button.mfp-close {
   font-size: 0;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 2rem;
+  background-size: 2.4rem;
   background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/close.svg");
+  width: 3rem;
+  height: 3rem;
+  right: 3rem;
+  top: 3rem;
+  
+  &:active, &:focus {
+    transform: none;
+    right: 3rem;
+    top: 3rem;
+  }
+}
+
+.mfp-gallery button.mfp-close {
+  background-image: url("/wp-content/themes/hpractic/frontend/src/img/icons/close-light.svg");
 }
 
 .mfp-container {
   overflow: auto;
+}
+
+.mfp-title {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
 }

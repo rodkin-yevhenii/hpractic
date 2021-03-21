@@ -9,17 +9,24 @@ jQuery(document).ready(function($){
   const mobileMenu = $('.menu-mobile');
   const productTabs = $('.product .tabs');
   const adminBar = $('#wpadminbar');
+  const headerSearch = $('.header__search .form__field');
+
+  if (adminBar.length) {
+    $('header.header').css('top', adminBar.height());
+  }
+
+  initHeaderSearch(headerSearch);
 
   const productPreview = $('.product__preview');
 
   const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
                           <svg class="icon">
-                              <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-arrow-left"></use>
+                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-left"></use>
                           </svg>
                       </span>`;
   const nextBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--right">
                           <svg class="icon">
-                              <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-arrow-right"></use>
+                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
                           </svg>
                       </span>`;
 
@@ -146,6 +153,8 @@ jQuery(document).ready(function($){
         }
       ]
     });
+
+    initPopupImageGallery($('.product__preview .slider'))
   }
 
   if(article.length > 0) {
@@ -283,13 +292,19 @@ jQuery(document).ready(function($){
     }
   });
 
-  $('[data-popup]').on('click', function (e) {
+  $('[data-popup-open]').on('click', function (e) {
     e.preventDefault();
 
-    const popupId = $(e.target).data('popup');
-    let title = $(e.target).data('popup-title');
+    const popupId = $(e.currentTarget).data('popup-open');
+    let title = $(e.currentTarget).data('popup-title');
     title = title ? title : null
     showPopup(popupId, title)
+  });
+
+  $('[data-popup-close]').on('click', function (e) {
+    e.preventDefault();
+    const popup = $(e.currentTarget).closest('popup');
+    popup.magnificPopup('close');
   });
 
   mobileMenu.on('click', '.nav > ul > li', function(e){
@@ -327,9 +342,6 @@ jQuery(document).ready(function($){
 
   initTabs(productTabs);
 
-  if (adminBar.length) {
-    $('header.header').css('top', adminBar.height());
-  }
 });
 
 function callbackBeforeOpen(popup, id, title) {
@@ -503,4 +515,59 @@ function initTabs(tabs, index = 0){
       tabs.find('.tabs__items-tab[data-tab="' + currentTab + '"]').fadeIn();
     });
   }
+}
+
+function initPopupImageGallery(gallery){
+  if(!(gallery.length > 0)) {
+    return false;
+  }
+
+  gallery.each(function() {
+    $(this).magnificPopup({
+      delegate: 'a',
+      type: 'image',
+      closeOnContentClick: false,
+      closeBtnInside: false,
+      mainClass: 'mfp-with-zoom mfp-img-mobile',
+      image: {
+        verticalFit: true,
+        titleSrc: function(item) {
+          return item.el.attr('title') || '';
+        }
+      },
+      gallery: {
+        enabled: true
+      },
+      zoom: {
+        enabled: true,
+        duration: 300,
+        opener: function(element) {
+          return element.find('img');
+        }
+      }
+    });
+  });
+}
+
+function initHeaderSearch(search){
+
+  if(!(search.length > 0)) {
+    return false;
+  }
+
+  search.on('keyup', 'input', function(e){
+    const value = e.currentTarget.value;
+    const field = $(this).closest('.form__field');
+    if(value.length === 0) {
+      field.removeClass('form__field--visible-clear');
+    } else {
+      field.addClass('form__field--visible-clear');
+    }
+  });
+
+  search.on('click', '.form__field-clear', function(){
+    const field = $(this).closest('.form__field');
+    field.removeClass('form__field--visible-clear');
+    field.find('input').val('');
+  });
 }

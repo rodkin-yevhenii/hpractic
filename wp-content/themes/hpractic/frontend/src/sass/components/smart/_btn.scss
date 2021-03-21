@@ -21,7 +21,7 @@
   font-weight: 600;
   font-style: normal;
   min-width: 16rem;
-  
+  user-select: none;
   
   @media only screen and (max-width: $container-tablet-sm) {
   
@@ -183,6 +183,7 @@
   background: transparent;
   line-height: 0.6;
   text-align: center;
+  user-select: none;
   
   > span {
     display: inline-block;
@@ -258,6 +259,7 @@
   border-radius: 4px;
   position: relative;
   background-color: transparent;
+  user-select: none;
   
   &__badge {
     position: relative;
@@ -297,12 +299,12 @@
   background-color: $color-white;
   box-shadow: 0 0 40px rgba(27, 55, 88, 0.15);
   border-radius: 8px;
+  user-select: none;
   
   .icon {
     position: relative;
     transform: rotate(-90deg);
   }
-  
   
   @media only screen and (max-width: $container-tablet-sm){
     bottom: 6.6rem;

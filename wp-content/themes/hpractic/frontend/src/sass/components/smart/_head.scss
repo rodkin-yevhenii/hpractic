@@ -33,6 +33,11 @@
     
     &:first-child {
       min-height: unset;
+      padding: 10rem 0;
+  
+      @media only screen and(max-width: $container-mobile-lg) {
+        padding-bottom: 6rem;
+      }
     }
   }
 }

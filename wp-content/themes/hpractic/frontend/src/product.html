@@ -144,7 +144,7 @@
                     </ul>
                 </div>
                 <div class="header__btn">
-                    <button class="btn-icon">
+                    <button class="btn-icon" type="button"  data-popup-open="#popup-cart">
                         <svg class="icon">
                             <use xlink:href="./img/icons-sprite.svg#icon-shopping-cart"></use>
                         </svg>
@@ -295,29 +295,29 @@
                             <div class="product__preview-top">
                                 <div class="slider">
                                     <div class="slider__item">
-                                        <div class="product__img">
+                                        <a href="./img/product-polimer-1.png" class="product__img" title="При необходимости можно указать название изображения">
                                             <img src="./img/product-polimer-1.png" alt="">
-                                        </div>
+                                        </a>
                                     </div>
                                     <div class="slider__item">
-                                        <div class="product__img">
+                                        <a href="./img/product-polimer-2.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                             <img src="./img/product-polimer-2.png" alt="">
-                                        </div>
+                                        </a>
                                     </div>
                                     <div class="slider__item">
-                                        <div class="product__img">
+                                        <a href="./img/product-polimer-3.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                             <img src="./img/product-polimer-3.png" alt="">
-                                        </div>
+                                        </a>
                                     </div>
                                     <div class="slider__item">
-                                        <div class="product__img">
+                                        <a href="./img/product-polimer-4.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                             <img src="./img/product-polimer-4.png" alt="">
-                                        </div>
+                                        </a>
                                     </div>
                                     <div class="slider__item">
-                                        <div class="product__img">
+                                        <a href="./img/product-polimer-5.png"  class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                             <img src="./img/product-polimer-5.png" alt="">
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -325,29 +325,29 @@
                                 <div class="product__preview-thumbs">
                                     <div class="slider">
                                         <div class="slider__item">
-                                            <div class="product__img">
+                                            <a href="./img/product-polimer-1.png" class="product__img" title="При необходимости можно указать название изображения">
                                                 <img src="./img/product-polimer-1.png" alt="">
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="slider__item">
-                                            <div class="product__img">
+                                            <a href="./img/product-polimer-2.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                                 <img src="./img/product-polimer-2.png" alt="">
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="slider__item">
-                                            <div class="product__img">
+                                            <a href="./img/product-polimer-3.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                                 <img src="./img/product-polimer-3.png" alt="">
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="slider__item">
-                                            <div class="product__img">
+                                            <a href="./img/product-polimer-4.png" class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                                 <img src="./img/product-polimer-4.png" alt="">
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="slider__item">
-                                            <div class="product__img">
+                                            <a href="./img/product-polimer-5.png"  class="product__img" title="Светящаяся табличка 400х300 мм боковой монтаж">
                                                 <img src="./img/product-polimer-5.png" alt="">
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -370,7 +370,7 @@
                                 Светящаяся табличка 400х300 мм боковой монтаж
                             </h3>
                             <div class="product__part-number">Артикул 02598</div>
-                            <div class="product__price"><strong class="value">12 236</strong> грн</div>
+                            <div class="product__price"><span>от</span> <strong class="value">12 236</strong> грн</div>
                             <div class="product__list">
                                 <ul>
                                     <li>Под заказ, 12 дней</li>
@@ -386,7 +386,7 @@
                                     <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn--primary">Заказать</button>
+                            <button type="button"  data-popup-open="#popup-cart" class="btn btn--primary">Заказать</button>
                             <div class="product__info u-desktop-lg-hidden">
                                 <div class="product__info-item">
                                     <div class="product__info-head">
@@ -849,6 +849,138 @@
             <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
         </svg>
     </button>
+</div>
+<div id="popup-cart" class="popup mfp-with-anim mfp-hide">
+    <div class="popup__inner">
+        <div class="popup__title heading heading--md popup-title-js">Ваш заказ</div>
+        <div class="popup__content ">
+            <div class="form">
+                <form action="">
+                    <div class="form__item">
+                        <div class="cart">
+                            <div class="cart__products">
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-1.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Настольная перегородка</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-polimer-2.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Светящаяся табличка 400х300 мм боковой монтаж</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-polimer-1.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Кофейный стол округлый</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__item">
+                        <h4 class="form__title">Контактные данные</h4>
+                        <div class="form__row">
+                            <div class="form__field">
+                                <label class="form__label" for="cart-name">
+                                    Ваше имя*
+                                </label>
+                                <input type="text" name="name" id="cart-name" placeholder="Имя" required>
+                            </div>
+                            <div class="form__field">
+                                <label class="form__label" for="cart-phone">
+                                    Ваш номер телефона*
+                                </label>
+                                <input type="text" name="phone" id="cart-phone" placeholder="+38 (___) ___-__-__" required>
+                            </div>
+                        </div>
+                        <div class="form__field">
+                            <label class="form__label" for="cart-comment">
+                                Комментарий к заказу
+                            </label>
+                            <textarea name="comment" id="cart-comment" placeholder="Комментарий к заказу" required ></textarea>
+                        </div>
+                    </div>
+                    <div class="form__actions form__actions--offset-top-lg">
+                        <span class="link link--primary link--bold" data-popup-close="popup-cart">
+                            <span class="link__inner">
+                                <svg class="icon icon--inverted">
+                                    <use xlink:href="./img/icons-sprite.svg#icon-chevron-right-white"></use>
+                                </svg>
+                                <span>Подробнее</span>
+                            </span>
+                        </span>
+                        <button class="btn btn--primary" type="submit">Оформить заказ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="../dist/js/jquery-3.1.1.min.js"></script>
