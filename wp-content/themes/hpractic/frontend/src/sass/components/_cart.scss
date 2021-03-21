@@ -1,0 +1,112 @@
+.cart {
+  &__product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+    @media only screen and(max-width: $container-tablet) {
+      align-items: flex-start;
+    }
+    
+    &:not(:last-child) {
+      margin-bottom: 3.2rem;
+    }
+    
+    &-image {
+      width: 12rem;
+      height: 12rem;
+      overflow: hidden;
+      border-radius: .8rem;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    &-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      
+      @media only screen and(max-width: $container-tablet) {
+        flex-wrap: wrap;
+        padding-left: 3rem;
+      }
+    }
+    
+    &-name {
+      padding-left: 3rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 2.4rem;
+      color: $color-secondary-dark;
+      width: 40%;
+      margin-right: auto;
+      
+      @media only screen and(max-width: $container-tablet) {
+        width: 100%;
+        align-self: flex-start;
+        margin: 0 0 1.5rem;
+        padding-left: 0;
+        padding-right: 3rem;
+        min-height: 3.4em;
+      }
+      
+      h2,h3,h4,h5,h6 {
+        font-family: inherit;
+        font-style: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+      }
+    }
+    
+    &-quantity {
+      margin: 0 1.5rem;
+  
+      @media only screen and(max-width: $container-tablet) {
+        margin-left: 0;
+      }
+    }
+    
+    &-price {
+      font-size: 1.7rem;
+      color: $color-secondary-dark;
+      font-style: normal;
+      font-weight: 700;
+      text-align: right;
+      margin-right: 5rem;
+      width: 18%;
+      flex-shrink: 0;
+  
+      @media only screen and(max-width: $container-tablet) {
+        width: auto;
+        flex: 1;
+        margin: 0;
+      }
+      
+      strong {
+        font-weight: 700;
+      }
+    }
+    
+    &-action {
+      font-size: 1.4rem;
+      line-height: 1;
+      
+      @media only screen and(max-width: $container-tablet) {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      
+      .btn-icon {
+        font-size: inherit;
+      }
+    }
+  }
+}

@@ -198,9 +198,6 @@
       
       margin: 3rem 0;
       
-      @media only screen and(max-width: 992px) {
-        margin: 2rem 0;
-      }
       
       &:first-child {
         margin-top: 0;
@@ -239,9 +236,36 @@
   img {
     display: block;
     max-width: 100%;
+    margin: 8.8rem auto;
+  
+    @media only screen and(max-width: $container-tablet) {
+      margin: 3rem auto;
+    }
+  }
+  
+  figure, div, section {
+    justify-content: flex-start;
+    max-width: 100%;
     
-    &:not(:last-child) {
-      margin: 0 0 2rem;
+    &:not(.article__content) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      & > img {
+        width: auto;
+        margin-left: 6rem;
+        margin-right: 6rem;
+  
+        @media only screen and(max-width: $container-tablet) {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+    
+    &[class*="table"] {
+      justify-content: flex-start;
     }
   }
 }
