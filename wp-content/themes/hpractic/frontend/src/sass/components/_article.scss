@@ -28,6 +28,55 @@
     max-width: 86.5rem;
   }
   
+  &__section {
+    padding: 9.6rem 0;
+    position: relative;
+    
+    & > * {
+      position: relative;
+    }
+    
+    &::before {
+      content: '';
+      top: 0;
+      bottom: 0;
+      right: -9999rem;
+      left: -9.6rem;
+      border-radius: .8rem;
+      background-color: $color-grey-light;
+      display: none;
+      visibility: hidden;
+      position: absolute;
+  
+      @media only screen and(max-width: $container-desktop-sm) {
+        left: -4.6rem;
+      }
+  
+      @media only screen and(max-width: $container-tablet) {
+        left: -9999rem;
+        border-radius: 0;
+      }
+    }
+    
+    &:first-child {
+      padding-top: 0;
+    }
+    
+    &:last-child {
+      padding-bottom: 0;
+    }
+    
+    &:nth-child(2n) {
+      &::before {
+        display: block;
+        visibility: visible;
+      }
+    }
+    
+    &-content {
+      margin-top: 7.2rem;
+    }
+  }
   
   h1, h2, h3, h4, h5, h6 {
     &:not(.heading) {
@@ -245,12 +294,12 @@
   
   figure, div, section {
     justify-content: flex-start;
-    max-width: 100%;
     
-    &:not(.article__content) {
+    &:not(.container):not([class*="article"]):not([class*="tab"]) {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      max-width: 100%;
       
       & > img {
         width: auto;

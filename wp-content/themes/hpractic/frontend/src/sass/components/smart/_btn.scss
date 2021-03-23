@@ -282,6 +282,15 @@
     background-color: $color-dark-blue;
     flex-shrink: 0;
   }
+  
+  &[data-toggle-menu] {
+    color: $color-primary-dark;
+    --iconColor: $color-primary-dark;
+    
+    .icon {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .btn-to-top {

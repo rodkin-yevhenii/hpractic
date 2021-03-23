@@ -1,4 +1,6 @@
 %title {
+  display: flex;
+  align-items: center;
   font-family: $font-primary;
   font-style: normal;
   font-weight: 700;
@@ -23,6 +25,16 @@
   
   small {
     font-size: 0.72em;
+  }
+  
+  &__icon {
+    font-size: 1.5em;
+    line-height: 1;
+    margin-right: 2rem;
+    align-self: center;
+  }
+  
+  .icon {
   }
   
   &__overlay {
@@ -157,6 +169,7 @@
   
   &--center {
     text-align: center;
+    justify-content: center;
     
     #{$heading} {
       &__overlay {
@@ -174,6 +187,7 @@
     &-tablet {
       @media only screen and(max-width: $container-tablet) {
         text-align: center;
+        justify-content: center;
       }
       
       #{$heading} {

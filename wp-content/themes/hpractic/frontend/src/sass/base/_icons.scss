@@ -18,6 +18,10 @@
     transform: rotateY(180deg);
   }
   
+  &--sm {
+    font-size: 0.6em;
+  }
+  
   img {
     display: block;
     width: 100%;

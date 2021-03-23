@@ -234,9 +234,9 @@ jQuery(document).ready(function($){
 
   $(window).on('scroll', function(e){
     if(window.scrollY > 0) {
-      header.addClass('sticky');
+      header.addClass('header--sticky');
     } else {
-      header.removeClass('sticky');
+      header.removeClass('header--sticky');
     }
 
     if(window.scrollY > window.innerHeight) {
@@ -335,12 +335,18 @@ jQuery(document).ready(function($){
 
   btnToTop.on('click', function(e) {
     e.preventDefault();
-    scrollToAnchor(0)
+    scrollTo(0)
   });
 
   initQuantity();
 
   initTabs(productTabs);
+
+  initSticky();
+
+  initScrollToAnchor();
+
+  initToggleMenu();
 
 });
 
@@ -387,7 +393,7 @@ function showPopup(id, title, disabledClose) {
   });
 }
 
-function scrollToAnchor(offset){
+function scrollTo(offset){
   $('html, body').stop().animate({
     scrollTop: offset
   }, 1000, 'linear');
@@ -570,4 +576,66 @@ function initHeaderSearch(search){
     field.removeClass('form__field--visible-clear');
     field.find('input').val('');
   });
+}
+
+function initSticky(){
+  if(!($('.sticky').length > 0)) {
+    return false;
+  }
+
+  const sticky = new Sticky('.sticky');
+
+  $(window).on('resize', function(e){
+    setTimeout(function(){
+      sticky.update();
+    }, 0)
+  });
+}
+
+function initScrollToAnchor(){
+  $(document).on('click', 'a[data-anchor]',function(e){
+    e.preventDefault();
+    const id = $(e.currentTarget).attr('href');
+    if(!id) {
+      return false;
+    }
+    const offset = $(id).offset().top;
+    scrollTo(offset);
+  });
+
+  $(window).on('load scroll', function(e){
+    const scrollTop = window.pageYOffset;
+
+    $('a[data-anchor]').each(function(i, link){
+      const id = $(link).attr('href');
+
+      if(!id) {
+        return false;
+      }
+
+      const el = $(id);
+      const min = el.offset().top - 120;
+      const max = el.offset().top + el.height() - 120;
+
+      if(min <= scrollTop && max > scrollTop) {
+        $(link).addClass('active');
+        $(link).parent().addClass('current');
+      } else {
+        $(link).removeClass('active');
+        $(link).parent().removeClass('current');
+      }
+    });
+  });
+}
+
+function initToggleMenu(){
+  $(document).on('click', '[data-toggle]' , function(e){
+    const el = $(e.target);
+    const menu = $(e.currentTarget);
+    const condition = (el.is('[data-toggle-menu]') || el.closest('[data-toggle-menu]').length > 0) ||
+                      (el.is('a[data-anchor]'))
+    if(condition) {
+      menu.toggleClass('opened');
+    }
+  })
 }

@@ -13,6 +13,12 @@
     background-color: $color-grey-light;
   }
   
+  //&[data-sticky-container] {
+  //  @media only screen and(max-width: $container-tablet) {
+  //    padding-top: 0;
+  //  }
+  //}
+  
   &__inner {
     display: flex;
     
@@ -24,6 +30,7 @@
   
     @media only screen and(max-width: $container-tablet) {
       flex-direction: column;
+      width: 100%;
     }
   }
   
@@ -107,7 +114,8 @@
     }
     
     .nav {
-      align-self: flex-start;
+      align-self: stretch;
+      width: 100%;
       justify-self: flex-start;
       margin: 0 0 auto;
     }
@@ -264,6 +272,113 @@
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+  }
+  
+  &__menu {
+    background-color: $color-grey-lighter3;
+    
+    &-wrapper {
+      position: relative;
+      z-index: 10;
+  
+      @media only screen and(max-width: $container-tablet) {
+        top: -6.4rem;
+    
+        & + div {
+          margin-top: 8.4rem;
+        }
+      }
+    }
+    
+    &-content {
+      padding: 2.4rem 0;
+      font-size: 1.7rem;
+      color: $color-secondary-dark;
+  
+      @media only screen and(max-width: $container-tablet) {
+        padding: 1.2rem 2.8rem 1.2rem 0;
+        position: relative;
+        overflow: hidden;
+        max-height: 3em;
+        transition: max-height .2s linear;
+      }
+      
+      &.opened {
+        max-height: 26em;
+        
+        [data-toggle-menu] {
+          transform: rotate(180deg);
+        }
+      }
+  
+      [data-toggle-menu] {
+        position: absolute;
+        right: 0;
+        top: 0.54em;
+        width: 1em;
+        height: 1em;
+      }
+      
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+  
+        @media only screen and(max-width: $container-mobile-lg) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        
+        li {
+          position: relative;
+          padding-left: 2rem;
+          
+          &:not(:last-child){
+            margin-bottom: 2rem;
+          }
+  
+          &.current {
+            @media only screen and(max-width: $container-mobile-lg) {
+            
+            }
+          }
+        }
+        
+        a {
+          color: currentColor;
+          font-style: normal;
+          font-weight: 600;
+          padding: .6rem 0;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 4px;
+            background: $color-primary;
+            border-radius: 0 2px 2px 0;
+            opacity: 0;
+            transition: opacity .08s;
+            display: none;
+  
+            @media only screen and(max-width: $container-mobile-lg) {
+              display: block;
+            }
+          }
+  
+          &:hover, &.active {
+            color: $color-primary;
+    
+            &::before {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

@@ -8,6 +8,8 @@
   line-height: 2.6rem;
   color: $color-primary-dark;
   transition: all .3s linear;
+  display: inline-block;
+  
   
   &__inner {
     display: flex;
