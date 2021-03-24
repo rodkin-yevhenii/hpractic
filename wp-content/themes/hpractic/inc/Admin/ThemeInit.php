@@ -22,6 +22,7 @@ class ThemeInit
         $this->initAcfFields();
         $this->initProduct();
         $this->initService();
+        $this->initOrder();
         $this->initAssets();
         $this->initMenu();
 
@@ -82,6 +83,14 @@ class ThemeInit
     private function initService(): void
     {
         new ServiceInit();
+    }
+
+    /**
+     * Order post-type initialization.
+     */
+    private function initOrder(): void
+    {
+        new OrderInit();
     }
 
     /**
