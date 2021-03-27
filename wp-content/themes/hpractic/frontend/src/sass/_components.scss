@@ -52,3 +52,58 @@
     }
   }
 }
+
+.list {
+  display: flex;
+  align-items: center;
+  
+  &:not(:last-child) {
+    margin-bottom: 3.2rem;
+  }
+  
+  &__icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  
+  &__element {
+    padding-left: 1.8rem;
+  
+    ul {
+      list-style: none;
+      li {
+        &:not(:last-child) {
+          margin-bottom: 0.1rem;
+        }
+      }
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  
+  &__title {
+    margin-right: 1.6rem;
+  }
+  
+  &__list {
+    font-size: 3.2rem;
+    line-height: 1;
+    
+    ul {
+      display: flex;
+      align-items: center;
+      margin: 0 -1.2rem;
+      
+      li {
+        margin: 0 1.2rem;
+      }
+      
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

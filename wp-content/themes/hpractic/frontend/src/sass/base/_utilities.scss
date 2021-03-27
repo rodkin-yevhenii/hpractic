@@ -12,6 +12,20 @@
   }
 }
 
+.u-mobile-sm {
+  &-hidden {
+    @media screen and (max-width: $container-mobile-lg) {
+      display: none !important;
+    }
+  }
+  
+  &-visible {
+    @media screen and (min-width: $container-mobile-lg + 1) {
+      display: none !important;
+    }
+  }
+}
+
 .u-desktop-lg {
   &-hidden {
     @media screen and (max-width: $container-desktop-lg) {

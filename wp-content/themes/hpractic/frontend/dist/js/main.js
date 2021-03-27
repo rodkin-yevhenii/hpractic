@@ -19,16 +19,8 @@ jQuery(document).ready(function($){
 
   const productPreview = $('.product__preview');
 
-  const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
-                          <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-left"></use>
-                          </svg>
-                      </span>`;
-  const nextBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--right">
-                          <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
-                          </svg>
-                      </span>`;
+  const prevBtnTemplate = setBtnTemplate('left')
+  const nextBtnTemplate = setBtnTemplate('right')
 
   if(sectionSlider.length > 0) {
     sectionSlider.each(function (i, slider){
@@ -514,7 +506,6 @@ function initTabs(tabs, index = 0){
     const tabsNav = tabs.find('.tabs__nav-item');
     const currentTab = $(tabsNav.get(index)).attr('data-tab');
     tabsNav.removeClass('active');
-    console.log('currentTab', currentTab);
 
     tabs.find('.tabs__items-tab').fadeOut(function (){
       tabs.find('.tabs__nav-item[data-tab="' + currentTab + '"]').addClass('active');
@@ -542,7 +533,8 @@ function initPopupImageGallery(gallery){
         }
       },
       gallery: {
-        enabled: true
+        enabled: true,
+        arrowMarkup: setBtnTemplate('%dir%'),
       },
       zoom: {
         enabled: true,
@@ -583,59 +575,108 @@ function initSticky(){
     return false;
   }
 
-  const sticky = new Sticky('.sticky');
-
-  $(window).on('resize', function(e){
-    setTimeout(function(){
-      sticky.update();
-    }, 0)
+  const stickySidebar = new StickySidebar('.nav.sticky', {
+    topSpacing: 56,
+    resizeSensor: true,
   });
+
+  var stickyMobileMenu = new StickySidebar('.section__menu-wrapper.sticky', {
+    topSpacing: 0,
+    resizeSensor: true,
+  });
+
 }
 
 function initScrollToAnchor(){
   $(document).on('click', 'a[data-anchor]',function(e){
     e.preventDefault();
-    const id = $(e.currentTarget).attr('href');
+    const link = $(e.currentTarget);
+    const id = link.attr('href');
+    const current = $(id);
+
     if(!id) {
       return false;
     }
-    const offset = $(id).offset().top;
+
+    let offset = current.offset().top + 2;
+    offset-= getFirstChildTopOffset(current);
+
     scrollTo(offset);
   });
 
   $(window).on('load scroll', function(e){
     const scrollTop = window.pageYOffset;
 
-    $('a[data-anchor]').each(function(i, link){
-      const id = $(link).attr('href');
+    $('[data-anhor-item]').each(function(i, el){
+      const id = $(el).attr('id');
 
       if(!id) {
         return false;
       }
 
-      const el = $(id);
-      const min = el.offset().top - 120;
-      const max = el.offset().top + el.height() - 120;
+      const current = $(el);
+      let min = Math.ceil(current.offset().top);
+      let max = Math.ceil(current.offset().top + current.outerHeight());
 
-      if(min <= scrollTop && max > scrollTop) {
-        $(link).addClass('active');
-        $(link).parent().addClass('current');
+      min-= getFirstChildTopOffset(current);
+
+      const link = $('[data-anchor][href="#'+ id +'"]');
+
+      if(min <= scrollTop && max >= scrollTop) {
+        link.addClass('active');
+        link.parent().addClass('current');
       } else {
-        $(link).removeClass('active');
-        $(link).parent().removeClass('current');
+        link.removeClass('active');
+        link.parent().removeClass('current');
       }
     });
   });
+
+
+  function getFirstChildTopOffset(el){
+    if(el.is(':first-child')) {
+      if(parseInt(el.css('padding-top'), 10) === 0) {
+        return parseInt(el.closest('section').css('padding-top'));
+      } else {
+        return parseInt(el.css('padding-top')) + parseInt(el.closest('section').css('padding-top'));
+      }
+    } else {
+      return 0;
+    }
+  }
 }
 
 function initToggleMenu(){
   $(document).on('click', '[data-toggle]' , function(e){
     const el = $(e.target);
     const menu = $(e.currentTarget);
+    const menuItems = $(e.currentTarget).find('ul');
     const condition = (el.is('[data-toggle-menu]') || el.closest('[data-toggle-menu]').length > 0) ||
-                      (el.is('a[data-anchor]'))
-    if(condition) {
-      menu.toggleClass('opened');
+                      (el.is('a[data-anchor]'));
+    const wWidth = $(window).width();
+
+    if(condition && wWidth < 560) {
+      if(menu.hasClass('opened')) {
+        menu.removeClass('opened');
+        menuItems.slideUp();
+      } else {
+        menu.addClass('opened');
+        menuItems.slideDown();
+      }
     }
-  })
+  });
+
+  $(window).on('resize', function(e){
+      const menu = $('[data-toggle]');
+      menu.removeClass('opened');
+      menu.find('ul').attr('style', '');
+  });
+}
+
+function setBtnTemplate(dir = 'left'){
+  return `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--${dir}">
+                <svg class="icon">
+                    <use xlink:href="./img/icons-sprite.svg#icon-arrow-${dir}"></use>
+                </svg>
+            </span>`;
 }

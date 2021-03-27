@@ -186,3 +186,8 @@ ul, li {
 .not-scrolling {
   overflow: hidden !important;
 }
+
+.inner-wrapper-sticky {
+  flex: 1;
+  min-width: 100%;
+}

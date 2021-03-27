@@ -12,17 +12,22 @@
     background: $color-white;
     border-radius: .8rem;
     position: relative;
+  
+    @media only screen and(max-width: $container-desktop-sm) {
+      padding-left: 6.4rem;
+      padding-right: 6.4rem;
+    }
+  
+    @media only screen and(max-width: $container-tablet-sm) {
+      padding-left: 2.4rem;
+      padding-right: 2.4rem;
+    }
   }
 
   &__content {
   
   }
-
-  .form {
-    &__actions {
-    
-    }
-  }
+  
 }
 
 .mfp-zoom-in .mfp-with-anim {
@@ -91,4 +96,22 @@ button.mfp-close {
 .mfp-title {
   font-size: 1.5rem;
   line-height: 2.4rem;
+}
+
+
+.mfp-gallery {
+  .btn-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000;
+    
+    &--right {
+      right: 1.5rem;
+    }
+    
+    &--left {
+      left: 1.5rem;
+    }
+  }
 }

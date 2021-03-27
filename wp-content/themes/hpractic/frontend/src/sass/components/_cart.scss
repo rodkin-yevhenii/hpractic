@@ -11,6 +11,10 @@
     
     &:not(:last-child) {
       margin-bottom: 3.2rem;
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        margin-bottom: 4rem;
+      }
     }
     
     &-image {
@@ -19,6 +23,11 @@
       overflow: hidden;
       border-radius: .8rem;
       flex-shrink: 0;
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        width: 8.8rem;
+        height: 8.8rem;
+      }
       
       img {
         width: 100%;
@@ -36,6 +45,12 @@
       @media only screen and(max-width: $container-tablet) {
         flex-wrap: wrap;
         padding-left: 3rem;
+      }
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        padding-left: 1.6rem;
+        flex-direction: column;
+        align-items: stretch;
       }
     }
     
@@ -56,10 +71,14 @@
         padding-right: 3rem;
         min-height: 3.4em;
       }
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        min-height: unset;
+        margin-bottom: 1.2rem;
+      }
       
       h2,h3,h4,h5,h6 {
         font-family: inherit;
-        font-style: inherit;
         font-style: inherit;
         font-weight: inherit;
       }
@@ -71,6 +90,7 @@
       @media only screen and(max-width: $container-tablet) {
         margin-left: 0;
       }
+      
     }
     
     &-price {
@@ -87,6 +107,11 @@
         width: auto;
         flex: 1;
         margin: 0;
+      }
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        margin-top: 1.2rem;
+        text-align: left;
       }
       
       strong {
