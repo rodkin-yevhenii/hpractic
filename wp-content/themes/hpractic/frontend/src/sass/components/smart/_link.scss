@@ -10,6 +10,23 @@
   transition: all .3s linear;
   display: inline-block;
   
+  &[data-title] {
+    position: relative;
+    
+    &::after {
+      content: attr(data-title);
+      white-space: nowrap;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 100%;
+      font-size: 0.88em;
+      margin-left: 1.2em;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.6;
+    }
+  }
   
   &__inner {
     display: flex;
