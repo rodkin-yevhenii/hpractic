@@ -1,0 +1,5 @@
+POST http://hpractic.loc/wp-admin/admin-ajax.php
+Content-Type: application/x-www-form-urlencoded
+
+action=create_order&arr[0][id]=1&arr[0][quan]=2
+

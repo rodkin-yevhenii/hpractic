@@ -98,7 +98,6 @@ class OrderInit
             // TODO: Send false response.
         }
 
-        //TODO: Create method body
         $orderData = [
             'post_title'   => __('Новый заказ', 'hpractice'),
             'post_type' => static::$cptName,
