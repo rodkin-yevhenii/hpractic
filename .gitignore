@@ -31,3 +31,6 @@ wp-content/themes/twenty*
 # Ignore plugins
 /wp-content/plugins/query-monitor/
 /wp-content/db.php
+
+# Ignore testing files
+/wp-content/themes/hpractic/http-request.http
