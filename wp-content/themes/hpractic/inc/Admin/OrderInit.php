@@ -2,7 +2,6 @@
 
 namespace Hpr\Admin;
 
-use Hpr\Entity\Product;
 use Hpr\Service\Email\Email;
 
 /**
@@ -81,6 +80,7 @@ class OrderInit
         add_action('pre_get_posts', [$this, 'addTableFiltersHandler']);
         add_action('init', [$this, 'adminViewedOrder']);
         add_action('admin_menu', [$this, 'addNewOrdersNotification'], 99);
+        add_action('add_meta_boxes', [$this, 'addConnectionMetaBox']);
     }
 
     /**
@@ -413,5 +413,29 @@ class OrderInit
     public static function getOrderStatuses(): array
     {
         return static::$ordersStatuses;
+    }
+
+    /**
+     * Register messengers metabox.
+     */
+    public function addConnectionMetaBox(): void
+    {
+        add_meta_box('myplugin_sectionid', 'Мессенджеры', [$this, 'renderConnectionMetaBox'], ['order'], 'side');
+    }
+
+    /**
+     * Render messengers metabox view.
+     *
+     * @param \WP_Post $post
+     * @param array $meta
+     */
+    public function renderConnectionMetaBox(\WP_Post $post, array $meta): void
+    {
+        $phone = get_field('phone', $post->ID);
+        ?>
+        <div class="wrap">
+            <a href="viber://chat?number=+38<?php echo $phone; ?>">Написать в Viber</a>
+        </div>
+        <?php
     }
 }
