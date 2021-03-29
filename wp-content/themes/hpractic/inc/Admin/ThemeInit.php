@@ -118,6 +118,14 @@ class ThemeInit
                     'parent_slug' => 'theme-settings',
                 ]
             );
+
+            acf_add_options_sub_page(
+                [
+                    'page_title'  => __('Настройки заказов'),
+                    'menu_title'  => __('Настройки заказов'),
+                    'parent_slug' => 'theme-settings',
+                ]
+            );
         }
     }
 
