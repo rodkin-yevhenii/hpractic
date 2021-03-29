@@ -78,6 +78,8 @@ class OrderInit
         add_action('manage_order_posts_custom_column', [$this, 'fillOrderColumns'], 10, 2);
         add_action('restrict_manage_posts', [$this, 'addTableFilters']);
         add_action('pre_get_posts', [$this, 'addTableFiltersHandler']);
+        add_action('init', [$this, 'adminViewedOrder']);
+        add_action('admin_menu', [$this, 'addNewOrdersNotification'], 99);
     }
 
     /**
@@ -326,6 +328,80 @@ class OrderInit
                 ]
             ]
         );
+    }
+
+    /**
+     * Mark order as viewed.
+     */
+    public function adminViewedOrder(): void
+    {
+        global $pagenow;
+
+        if (
+            !is_admin()
+            || $pagenow !== 'post.php'
+            || !isset($_GET['post'])
+            || 'order' !== get_post_type($_GET['post'])
+        ) {
+            return;
+        }
+
+        $orderId = $_GET[ 'post' ] ?? 0;
+
+        // Check if the meta data already exists.
+        if (!metadata_exists('post', $orderId, '_viewed_by_admin')) {
+            add_post_meta($orderId, '_viewed_by_admin', true, true);
+        }
+    }
+
+    /**
+     * Get unread orders number.
+     *
+     * @return int
+     */
+    private function getUnreadOrdersCount(): int
+    {
+        $query = new \WP_Query(
+            [
+                'posts_per_page' => -1,
+                'post_type' => 'order',
+                'meta_query' => [
+                    [
+                        'key' => '_viewed_by_admin',
+                        'compare' => 'NOT EXISTS',
+                    ]
+                ]
+            ]
+        );
+
+        return $query->post_count;
+    }
+
+    /**
+     * Add notification bubble to orders menu item.
+     */
+    public function addNewOrdersNotification(): void
+    {
+        global $menu;
+
+        foreach ($menu as &$item) {
+            if ('menu-posts-order' !== $item[5]) {
+                continue;
+            }
+
+            $unreadOrders = $this->getUnreadOrdersCount();
+
+            if (empty($unreadOrders)) {
+                return;
+            }
+
+            $item[0] = sprintf(
+                __('Заказы %s', 'hpractice'),
+                '<span class="awaiting-mod">' . $unreadOrders . '</span>'
+            );
+
+            return;
+        }
     }
 
     /**
