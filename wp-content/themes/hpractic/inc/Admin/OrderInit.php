@@ -66,6 +66,8 @@ class OrderInit
     {
         add_action('wp_ajax_create_order', [$this, 'createOrderCallback']);
         add_action('wp_ajax_nopriv_create_order', [$this, 'createOrderCallback']);
+        add_action('manage_order_posts_columns', [$this, 'addOrderColumns']);
+        add_action('manage_order_posts_custom_column', [$this, 'fillOrderColumns'], 10, 2);
     }
 
     /**
@@ -143,5 +145,127 @@ class OrderInit
         }
 
         wp_send_json(['test' => 'message']);
+    }
+
+    /**
+     * Add new columns to orders list page.
+     *
+     * @param array $columns
+     *
+     * @return array
+     */
+    public function addOrderColumns(array $columns): array
+    {
+        $columns['status'] = __('Статус', 'hpractice');
+        $columns['cost'] = __('Стоимость', 'hpractice');
+        $columns['isSentMail'] = __('Письмо пользователю', 'hpractice');
+
+        return $columns;
+    }
+
+    /**
+     * Fill orders columns.
+     *
+     * @param string $column
+     * @param int $orderId
+     */
+    public function fillOrderColumns(string $column, int $orderId): void
+    {
+        switch ($column) {
+            case 'status':
+                $status = get_field('status', $orderId);
+                static::renderStatusColumn($status);
+                break;
+            case 'cost':
+                $cost = get_field('cost', $orderId);
+
+                if (!empty($cost)) {
+                    echo '<strong>' . number_format($cost, 0, '.', ' ') . '</strong> грн';
+                } else {
+                    echo "<strong>0</strong> грн";
+                }
+                break;
+            case 'isSentMail':
+                $isSent = get_field('customer_email', $orderId);
+
+                if ($isSent) {
+                    echo '<span style="color: green;"><strong>' . __('Отправлено', 'hpractice') . '</strong></span>';
+                } else {
+                    echo '<span style="color: red;"><strong>' . __('Не отправлено', 'hpractice') . '</strong></span>';
+                }
+                break;
+        }
+    }
+
+    /**
+     * Render order status column content.
+     *
+     * @param string $status
+     */
+    public static function renderStatusColumn(string $status): void
+    {
+        ?>
+        <span style="
+            color: <?php echo static::getStatusColor($status); ?>;
+            border: 1px <?php echo static::getStatusColor($status); ?> solid;
+            border-radius: 6px;
+            padding: 3px 5px;
+        ">
+            <?php echo static::getStatusLabel($status); ?>
+        </span>
+        <?php
+    }
+
+    /**
+     * Get order status label.
+     *
+     * @param string $status
+     *
+     * @return string
+     */
+    public static function getStatusLabel(string $status): string
+    {
+        switch ($status) {
+            case 'new':
+                return '<strong>' . __('Новый', 'hpractice') . '</strong>';
+            case 'pending-payment':
+                return __('Ожидание оплаты', 'hpractice');
+            case 'processing':
+                return __('Обработка', 'hpractice');
+            case 'sent':
+                return __('Выдано перевозчику', 'hpractice');
+            case 'completed':
+                return __('Завершен', 'hpractice');
+            case 'cancelled':
+                return __('Отменён', 'hpractice');
+            default:
+                return '<strong>' . __('Неизвестный статус', 'hpractice') . '</strong>';
+        }
+    }
+
+    /**
+     * Get order status label.
+     *
+     * @param string $status
+     *
+     * @return string
+     */
+    public static function getStatusColor(string $status): string
+    {
+        switch ($status) {
+            case 'new':
+                return 'black';
+            case 'pending-payment':
+            case 'cancelled':
+                return 'grey';
+            case 'processing':
+                return 'green';
+            case 'sent':
+                return 'deepskyblue';
+            case 'completed':
+                return 'blue';
+            default:
+                return 'red';
+        }
     }
 }
