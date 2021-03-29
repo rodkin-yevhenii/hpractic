@@ -3,7 +3,6 @@
 namespace Hpr\Admin;
 
 use Hpr\Service\Email\Email;
-use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class OrderInit
@@ -86,29 +85,23 @@ class OrderInit
      */
     public function createOrderCallback(): void
     {
-//        $customer = $_POST['customer'] ?? false;
-//        $email = $_POST['email'] ?? false;
-//        $phone = $_POST['phone'] ?? '';
-//        $comment = $_POST['comment'] ?? '';
-//        $products = $_POST['products'] ?? [];
-
-        // TODO: Delete testing data after tests.
-        $customer = 'Евгений';
-        $email = 'rodkin.yevhenii@gmail.com';
-        $phone = '+380673568883';
-        $comment = 'Test comment';
-        $products = [
-            202 => 2,
-            200 => 1,
-            20 => 8
+        $response = [
+            'status' => false,
+            'message' => '',
+            'data' => []
         ];
+        $customer = $_POST['customer'] ?? false;
+        $email = $_POST['email'] ?? false;
+        $phone = $_POST['phone'] ?? '';
+        $comment = $_POST['comment'] ?? '';
+        $products = $_POST['products'] ?? [];
 
         if (!$customer || !$phone) {
-            // TODO: Send false response.
+            $response['message'] = __('Заполненно поле имени или номера телефона.', 'hpractice');
         }
 
         if (empty($products)) {
-            // TODO: Send false response.
+            $response['message'] = __('Корзина пуста.', 'hpractice');
         }
 
         $orderData = [
@@ -134,7 +127,7 @@ class OrderInit
         );
 
         if (is_wp_error($orderId) || ! $orderId) {
-            // TODO: Send false response.
+            $response['message'] = __('Ошибка создания заказа! Пожалуйста, свяжитесь с администратором.', 'hpractice');
         }
 
         update_field('customer', $customer, $orderId);
@@ -155,7 +148,10 @@ class OrderInit
             update_field('customer_email', true, $orderId);
         }
 
-        wp_send_json(['test' => 'message']);
+        $response['status'] = true;
+        $response['data'] = ['orderId' => $orderId];
+
+        wp_send_json($response);
     }
 
     /**
