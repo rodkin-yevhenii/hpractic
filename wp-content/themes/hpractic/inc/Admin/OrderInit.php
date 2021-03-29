@@ -3,6 +3,7 @@
 namespace Hpr\Admin;
 
 use Hpr\Service\Email\Email;
+use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class OrderInit
@@ -13,6 +14,14 @@ use Hpr\Service\Email\Email;
 class OrderInit
 {
     public static string $cptName = 'order';
+    private static array $ordersStatuses = [
+        'new',
+        'pending-payment',
+        'processing',
+        'sent',
+        'completed',
+        'cancelled'
+    ];
 
     /**
      * OrderInit constructor.
@@ -68,6 +77,8 @@ class OrderInit
         add_action('wp_ajax_nopriv_create_order', [$this, 'createOrderCallback']);
         add_action('manage_order_posts_columns', [$this, 'addOrderColumns']);
         add_action('manage_order_posts_custom_column', [$this, 'fillOrderColumns'], 10, 2);
+        add_action('restrict_manage_posts', [$this, 'addTableFilters']);
+        add_action('pre_get_posts', [$this, 'addTableFiltersHandler']);
     }
 
     /**
@@ -101,7 +112,7 @@ class OrderInit
         }
 
         $orderData = [
-            'post_title'   => __('Новый заказ', 'hpractice'),
+            'post_title' => __('Новый заказ', 'hpractice'),
             'post_type' => static::$cptName,
         ];
 
@@ -113,12 +124,12 @@ class OrderInit
 
         $orderId = wp_insert_post(
             [
-                'ID'          => $orderId,
+                'ID' => $orderId,
                 'post_type' => static::$cptName,
-                'post_title'  => __('Заказ', 'hpractice') . ' №' . $orderId,
+                'post_title' => __('Заказ', 'hpractice') . ' №' . $orderId,
                 'post_content' => '',
-                'post_status'  => 'publish',
-                'post_author'  => 1,
+                'post_status' => 'publish',
+                'post_author' => 1,
             ]
         );
 
@@ -267,5 +278,67 @@ class OrderInit
             default:
                 return 'red';
         }
+    }
+
+    /**
+     * Added orders filters.
+     *
+     * @param $postType
+     */
+    public function addTableFilters($postType): void
+    {
+        if ('order' !== $postType) {
+            return;
+        }
+        ?>
+        <select name="order_status">
+            <option value="none"><?php _e('- Все статусы -', 'hpractice'); ?></option>
+            <?php foreach (static::$ordersStatuses as $status) : ?>
+                <option value="<?php
+                echo $status; ?>" <?php selected($status, $_GET['order_status'] ?? ''); ?>
+                >
+                    <?php echo static::getStatusLabel($status); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+
+    /**
+     * Orders table filters handler.
+     * @param $query
+     */
+    public function addTableFiltersHandler($query): void
+    {
+        $cs = function_exists('get_current_screen') ? get_current_screen() : null;
+
+        if (!is_admin() || empty($cs->post_type) || $cs->post_type != 'order' || $cs->id != 'edit-order') {
+            return;
+        }
+
+        if (empty($_GET['order_status']) || $_GET['order_status'] === 'none') {
+            return;
+        }
+
+        $status = $_GET['order_status'] ?? '';
+        $query->set(
+            'meta_query',
+            [
+                [
+                    'key' => 'status',
+                    'value' => $status
+                ]
+            ]
+        );
+    }
+
+    /**
+     * Get orders statuses.
+     *
+     * @return array|string[]
+     */
+    public static function getOrderStatuses(): array
+    {
+        return static::$ordersStatuses;
     }
 }
