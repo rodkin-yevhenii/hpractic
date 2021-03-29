@@ -2,6 +2,7 @@
 
 namespace Hpr\Admin;
 
+use Hpr\Entity\Product;
 use Hpr\Service\Email\Email;
 
 /**

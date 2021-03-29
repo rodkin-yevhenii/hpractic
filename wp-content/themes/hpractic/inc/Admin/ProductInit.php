@@ -2,6 +2,8 @@
 
 namespace Hpr\Admin;
 
+use Hpr\Entity\Product;
+
 /**
  * Class ProductInit
  *
@@ -111,6 +113,9 @@ class ProductInit
             [$this, 'updateProductsListQuery'],
             10
         );
+
+        add_filter('acf/fields/post_object/result', [$this, 'updateProductsTitle'], 10, 3);
+        add_filter('acf/fields/post_object/query', [$this, 'updateAcfProductsSearch'], 10, 2);
     }
 
     /**
@@ -148,5 +153,49 @@ class ProductInit
         }
 
         return $field;
+    }
+
+    /**
+     * Add sku to product title in products repeater on order page.
+     *
+     * @param string $text      Product title.
+     * @param \WP_Post $post    Product post.
+     * @param array $field      ACF field.
+     *
+     * @return string
+     */
+    public function updateProductsTitle($text, $post, $field)
+    {
+        if ('product' !== $post->post_type || 'field_6060a0aa90436' !== $field['key']) {
+            return $text;
+        }
+
+        $product = new Product($post->ID);
+
+        return $product->getSku() . ' - ' . $text;
+    }
+
+    /**
+     * Use search by SKU instead of product title for ACF field.
+     *
+     * @param array $args   Query params.
+     * @param array $field  ACF field.
+     *
+     * @return mixed
+     */
+    public function updateAcfProductsSearch(array $args, array $field)
+    {
+        if ('field_6060a0aa90436' !== $field['key'] || !isset($args['s'])) {
+            return $args;
+        }
+        $args['meta_query'][] = [
+            'key' => 'product_settings_sku',
+            'value' => $args['s'],
+            'compare' => 'LIKE'
+        ];
+
+        unset($args['s']);
+
+        return $args;
     }
 }
