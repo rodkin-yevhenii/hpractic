@@ -83,6 +83,26 @@
     &:active {
       border-color: $color-dark-blue;
     }
+  
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  
+  label.error {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    padding: 1.6rem 0;
+    font-size: 1.2rem;
+    width: 18rem;
   }
   
 }

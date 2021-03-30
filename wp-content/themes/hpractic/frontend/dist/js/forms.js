@@ -1,18 +1,33 @@
 jQuery(document).ready(function($){
+  var cartForm = $('#cart-form form');
+  var contactsForm = $('#contacts-form form');
 
-  $('#cart-form form').validate({
-    ignore: [],
+  cartForm.on('submit', function(e){
+    e.preventDefault();
+  });
+
+  function handleCartFormSubmit(form){
+    var formEl = $(form);
+    setLoader(formEl, true);
+    API.sendForm().then(function(resp){
+      setLoader(formEl, false);
+      showPopup('#popup-success', {
+        message: resp,
+      }, false);
+    }).catch(function(err){
+      setLoader(formEl, false);
+      showPopup('#popup-error', {
+        title: err.title,
+        message: err.text,
+      }, false);
+    });
+  }
+
+  cartForm.validate({
+    ignore: '.not-validate',
     focusInvalid: false,
+    submitHandler: handleCartFormSubmit,
     invalidHandler: function(form, validator) {
-
-      // if (!validator.numberOfInvalids()) {
-      //   return;
-      // }
-
-      // $('html, body').animate({
-      //   scrollTop: $(validator.errorList[0].element).offset().top - 60
-      // }, 1000);
-
     },
     highlight: function(element, errorClass, validClass) {
       $(element).addClass(errorClass).removeClass(validClass);
@@ -40,7 +55,6 @@ jQuery(document).ready(function($){
       },
       "comment": {
         minlength: 6,
-        email: true
       },
     },
     messages: {
@@ -59,23 +73,14 @@ jQuery(document).ready(function($){
       },
       "comment": {
         minlength: "Слишком короткое сообщение, мин. 5 символов",
-        comment: "Введенный email не корректный"
       }
     }
   });
-  $('#contacts-form form').validate({
-    ignore: [],
+
+  contactsForm.validate({
+    ignore: '.not-validate',
     focusInvalid: false,
     invalidHandler: function(form, validator) {
-
-      // if (!validator.numberOfInvalids()) {
-      //   return;
-      // }
-
-      // $('html, body').animate({
-      //   scrollTop: $(validator.errorList[0].element).offset().top - 60
-      // }, 1000);
-
     },
     highlight: function(element, errorClass, validClass) {
       $(element).addClass(errorClass).removeClass(validClass);
@@ -103,7 +108,6 @@ jQuery(document).ready(function($){
       },
       "comment": {
         minlength: 6,
-        email: true
       },
     },
     messages: {
@@ -122,7 +126,6 @@ jQuery(document).ready(function($){
       },
       "comment": {
         minlength: "Слишком короткое сообщение, мин. 5 символов",
-        comment: "Введенный email не корректный"
       }
     }
   });

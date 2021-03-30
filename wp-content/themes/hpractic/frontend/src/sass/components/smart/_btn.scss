@@ -281,6 +281,13 @@
     color: $color-white;
     background-color: $color-dark-blue;
     flex-shrink: 0;
+    transition: all .2s;
+    opacity: 1;
+    
+    &:empty {
+      transform: scale(0);
+      opacity: 0;
+    }
   }
   
   &[data-toggle-menu] {

@@ -1,9 +1,26 @@
 .popup {
-  margin: 6.4rem auto;
+  $popup: &;
+  
+  margin: 6.4rem auto 3.2rem;
   max-width: 103.2rem;
   
   @media only screen and(max-width: $container-desktop-sm) {
     max-width: 96rem;
+  }
+  
+  &--sm {
+    max-width: 48rem;
+    
+    #{$popup}{
+      &__inner {
+        padding: 5.2rem 4.5rem;
+  
+        @media only screen and(max-width: $container-tablet-sm) {
+          padding-left: 2.4rem;
+          padding-right: 2.4rem;
+        }
+      }
+    }
   }
   
   &__inner {
@@ -23,9 +40,91 @@
       padding-right: 2.4rem;
     }
   }
+  
+  &__icon {
+    text-align: center;
+    font-size: 4.8rem;
+    margin: 0 0 3.2rem;
+  }
 
   &__content {
+    p {
+      margin-bottom: 0.8rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .list {
+      margin-top: 1.6rem;
+      
+      &:not(:last-child){
+        margin-bottom: 1.6rem;
+      }
+      
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
   
+  &__order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 4rem 0;
+    
+    p {
+      &:not(:last-child){
+        margin-bottom: 0.4rem;
+      }
+    }
+  }
+  
+  &__contacts {
+    margin-top: 7.8rem;
+    
+    &-items {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 -1.6rem;
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+    
+    &-item {
+      margin: 0 1.6rem;
+  
+      @media only screen and(max-width: $container-tablet) {
+        width: calc(50% - 1.6rem);
+        margin-bottom: 1.6em;
+      }
+      
+      @media only screen and(max-width: $container-tablet-sm) {
+        width: auto;
+        flex: 1;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  &__actions {
+    margin-top: 4.8rem;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
   }
   
 }
