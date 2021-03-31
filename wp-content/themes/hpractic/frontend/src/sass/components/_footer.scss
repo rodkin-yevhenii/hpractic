@@ -29,6 +29,10 @@
     }
   }
   
+  &__schedule {
+    width: 30%;
+  }
+  
   &__item {
     max-width: 25%;
     padding: 0 1.5rem;
@@ -49,16 +53,14 @@
         margin-bottom: 4.8rem;
       }
     }
-  
-    ul {
-      list-style: none;
-      li {
-        &:not(:last-child) {
-          margin-bottom: 0.8rem;
-        }
+    
+    .list {
+      &:not(:last-child) {
+        margin-bottom: 1.6rem;
       }
     }
   }
+  
   
   &__logo {
     padding: 3rem 0;

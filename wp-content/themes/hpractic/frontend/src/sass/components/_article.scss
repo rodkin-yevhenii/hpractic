@@ -60,6 +60,10 @@
     
     &:first-child {
       padding-top: 0;
+  
+      @media only screen and(max-width: $container-tablet) {
+        padding-top: 3.2rem;
+      }
     }
     
     &:last-child {
@@ -75,6 +79,10 @@
     
     &-content {
       margin-top: 7.2rem;
+  
+      @media only screen and(max-width: $container-tablet) {
+        margin-top: 5.8rem;
+      }
     }
   }
   
@@ -88,7 +96,7 @@
       margin: 8rem 0 4rem;
       
       @media only screen and(max-width: $container-desktop-sm) {
-        margin: 2rem 0;
+        margin: 4.8rem 0 2rem;
       }
   
       &:first-child {

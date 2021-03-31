@@ -125,6 +125,11 @@
                                     <use xlink:href="./img/icons-sprite.svg#icon-search"></use>
                                 </svg>
                             </button>
+                            <button type="button" class="form__field-icon form__field-clear">
+                                <svg class="icon">
+                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                </svg>
+                            </button>
                             <input type="text" name="search" id="header-search-input" placeholder="Поиск">
                         </div>
                     </form>
@@ -144,11 +149,11 @@
                     </ul>
                 </div>
                 <div class="header__btn">
-                    <button class="btn-icon">
+                    <button class="btn-icon" type="button"  data-popup-open="#popup-cart">
                         <svg class="icon">
                             <use xlink:href="./img/icons-sprite.svg#icon-shopping-cart"></use>
                         </svg>
-                        <span class="btn-icon__badge">10</span>
+                        <span class="btn-icon__badge product-count-js" ></span>
                     </button>
                 </div>
                 <div class="header__btn u-desktop-sm-visible">
@@ -278,7 +283,7 @@
         <section class="section section--white">
             <div class="container">
                 <div class="section__inner section__inner--tablet-default">
-                    <div class="section__main section__main--tablet-default u-tablet-hidden">
+                    <div class="section__main section__main--secondary  section__main--tablet-default u-tablet-hidden">
                         <div class="nav">
                             <div class="nav__sub nav__sub--static">
                                 <ul>
@@ -301,7 +306,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="section__content section__content--tablet-default">
+                    <div class="section__content section__content--secondary section__content--tablet-default">
                         <article class="article">
                             <div class="article__content">
                                 <p>
@@ -778,63 +783,86 @@
                     </div>
                     <div class="footer__item footer__contacts">
                         <h4 class="subheading subheading--sm">Контактная информация</h4>
-                        <ul>
-                            <li>
-                                <a href="tel:+38 096 172 48 68" class="link link--secondary link--md">
-                                        <span class="link__inner">
-                                            <svg class="icon">
-                                                <use xlink:href="./img/icons-sprite.svg#icon-phone"></use>
-                                            </svg>
-                                            <span>+38 096 172 48 68</span>
-                                        </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+38 050 618 48 64" class="link link--secondary link--md">
-                                    <span class="link__inner">
-                                        <svg class="icon">
-                                            <use xlink:href="./img/icons-sprite.svg#icon-phone"></use>
-                                        </svg>
-                                        <span>+38 050 618 48 64</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:hpractic@gmail.com" class="link link--secondary link--md">
-                                    <span class="link__inner">
-                                        <svg class="icon">
-                                            <use xlink:href="./img/icons-sprite.svg#icon-mail"></use>
-                                        </svg>
-                                        <span>hpractic@gmail.com</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="./img/icons-sprite.svg#icon-phone"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <li>
+                                        <a href="tel:+38 096 172 48 68" class="link link--secondary link--md">
+                                            +38 096 172 48 68
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+38 050 618 48 64" class="link link--secondary link--md">
+                                            +38 050 618 48 64
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="./img/icons-sprite.svg#icon-mail"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <li>
+                                        <a href="mailto:hpractic@gmail.com" class="link link--secondary link--md">
+                                            hpractic@gmail.com
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="footer__item footer__schedule">
-                        <h4 class="subheading subheading--sm">График работы</h4>
-                        <ul>
-                            <li>
-                                <span class="link link--secondary link--md">
-                                    <span class="link__inner">
-                                        <svg class="icon">
-                                            <use xlink:href="./img/icons-sprite.svg#icon-clock"></use>
-                                        </svg>
-                                        <span>ПН – ПТ 9.00 – 19.00</span>
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="link link--secondary link--md">
-                                    <span class="link__inner">
-                                        <svg class="icon">
-                                            <use xlink:href="./img/icons-sprite.svg#icon-clock"></use>
-                                        </svg>
-                                        <span>СБ 9.00 – 15.00</span>
-                                    </span>
-                                </span>
-                            </li>
-                        </ul>
+                        <h4 class="subheading subheading--sm">График работы компании</h4>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="./img/icons-sprite.svg#icon-clock"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <li>
+                                        <span class="link link--secondary link--md">
+                                            9:00 – 19:00 Пн-Пт
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="link link--secondary link--md">
+                                            9:00 – 15:00 Сб
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="socials">
+                            <div class="socials__title">
+                                <h4 class="subheading subheading--sm">Мы на связи:</h4>
+                            </div>
+                            <div class="socials__list">
+                                <ul>
+                                    <li>
+                                        <a href="" class="icon" target="_blank">
+                                            <img src="./img/icons/viber.svg" alt="Мы в вайбере">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="icon" target="_blank">
+                                            <img src="./img/icons/telegram.svg" alt="Мы в телеграмм">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -849,15 +877,162 @@
         </svg>
     </button>
 </div>
+<div id="popup-cart" class="popup mfp-with-anim mfp-hide">
+    <div class="popup__inner">
+        <div class="popup__title heading heading--md popup-title-js">Ваш заказ</div>
+        <div class="popup__content ">
+            <div id="cart-form" class="form">
+                <form action="">
+                    <div class="form__item">
+                        <div class="cart">
+                            <div class="cart__products">
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-1.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Настольная перегородка</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="count" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-polimer-2.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Светящаяся табличка 400х300 мм боковой монтаж</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="count" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart__product">
+                                    <div class="cart__product-image">
+                                        <img src="./img/product-polimer-1.png" alt="">
+                                    </div>
+                                    <div class="cart__product-content">
+                                        <div class="cart__product-name">
+                                            <h4>Кофейный стол округлый</h4>
+                                        </div>
+                                        <div class="cart__product-quantity">
+                                            <div class="quantity">
+                                                <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
+                                                <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
+                                                <input class="quantity__input" type="text" value="1" name="count" min="1" max="99">
+                                            </div>
+                                        </div>
+                                        <div class="cart__product-price">
+                                            от <strong class="value">12 236</strong> грн
+                                        </div>
+                                        <div class="cart__product-action">
+                                            <button class="btn-icon btn-remove-product-js">
+                                                <svg class="icon">
+                                                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__item">
+                        <h4 class="form__title">Контактные данные</h4>
+                        <div class="form__row">
+                            <div class="form__field">
+                                <label class="form__label" for="cart-name">
+                                    Ваше имя*
+                                </label>
+                                <input type="text" name="name" id="cart-name" placeholder="Имя" required>
+                            </div>
+                            <div class="form__field">
+                                <label class="form__label" for="cart-phone">
+                                    Ваш номер телефона*
+                                </label>
+                                <input type="text" name="phone" id="cart-phone" placeholder="+38 (___) ___-__-__" required>
+                            </div>
+                        </div>
+                        <div class="form__field">
+                            <label class="form__label" for="cart-email">
+                                Ваш e-mail
+                            </label>
+                            <input type="email" name="email" id="cart-email" placeholder="example@email.com">
+                        </div>
+                        <div class="form__field">
+                            <label class="form__label" for="cart-comment">
+                                Комментарий к заказу
+                            </label>
+                            <textarea name="comment" id="cart-comment" placeholder="Комментарий к заказу"></textarea>
+                        </div>
+                    </div>
+                    <div class="form__note">
+                        <div class="form__note-icon">
+                            <svg class="icon">
+                                <use xlink:href="./img/icons-sprite.svg#icon-info"></use>
+                            </svg>
+                        </div>
+                        <div class="form__note-text">
+                            После нажатия на кнопку «Оформить заказ», на экране отобразится информация о вашем заказе.
+                            Так же, на Вашу электронную почту придет подробная информация по заказу
+                        </div>
+                    </div>
+                    <div class="form__actions form__actions--offset-top-lg">
+                        <button class="btn btn--secondary" type="button" data-popup-close="popup-cart">Продолжить покупки</button>
+                        <button class="btn btn--primary" type="submit">ОФОРМИИТЬ ЗАКАЗ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="../dist/js/jquery-3.1.1.min.js"></script>
 <script async src="../dist/js/countUp.umd.js"></script>
-<script src="../dist/js/jquery.inputmask.bundle.min.js"></script>
+<script defer src="../dist/js/jquery.inputmask.bundle.min.js"></script>
 <script defer src="../dist/js/jquery.fitvids.js"></script>
 <script async src="../dist/js/jquery.easing.js"></script>
-<script defer src="../dist/js/slick.min.js"></script>
-<script async src="../dist/js/jquery.magnific-popup.min.js"></script>
-<script async src="../dist/js/jquery.fancybox.min.js"></script>
+<script src="../dist/js/slick.min.js"></script>
+<script  src="../dist/js/jquery.magnific-popup.min.js"></script>
+<script  src="../dist/js/jquery.fancybox.min.js"></script>
+<script src="../dist/js/ResizeSensor.js"></script>
+<script src="../dist/js/sticky-sidebar.min.js"></script>
+<script src="../dist/js/jquery.validate.min.js"></script>
+<script src="../dist/js/additional-methods.js"></script>
+<script src="../dist/js/forms.js"></script>
 <script src="../dist/js/main.js"></script>
 </body>
 </html>

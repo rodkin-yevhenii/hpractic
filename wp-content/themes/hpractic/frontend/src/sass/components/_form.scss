@@ -171,7 +171,7 @@
     }
   
     input {
-      height: 4.6rem;
+      height: 4.8rem;
       @extend %field-default;
     }
     
@@ -457,13 +457,22 @@
   }
   
   &__note {
-    text-align: center;
-    color: $color-grey-dark;
-    font-size: 1.2rem;
+    text-align: left;
+    color: $color-secondary-dark;
     font-family: $font-primary;
-    line-height: 1.5;
+    font-size: 1.5rem;
+    line-height: 2rem;
     font-weight: normal;
-    margin: 2rem 0;
+    margin: 3.2rem 0;
+    display: flex;
+    align-items: center;
+    
+    &-icon {
+      flex-shrink: 0;
+      line-height: 1;
+      font-size: 2.8rem;
+      margin-right: 2.8rem;
+    }
     
     &:first-child {
       margin-top: 0;
@@ -472,10 +481,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-  
-    @media only screen and(max-width: 992px) {
-      margin: 1rem 0;
-    }
   }
   
   &__actions {
@@ -483,13 +488,34 @@
     justify-content: center;
     align-items: center;
     margin: 3.2rem 0 0;
+  
+    @media only screen and(max-width: $container-tablet-sm) {
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    @media only screen and(max-width: $container-mobile-lg) {
+      align-items: stretch;
+    }
     
     &--offset-top-lg {
-      margin: 7.2rem 0 0;
+      margin: 5.6rem 0 0;
+    }
+    
+    &--left {
+      justify-content: flex-start;
     }
     
     .link {
       margin-right: auto;
+    }
+    
+    .btn + .btn {
+      margin-left: auto;
+  
+      @media only screen and(max-width: $container-tablet-sm) {
+        margin: 2.4rem 0 0;
+      }
     }
   }
   
@@ -503,8 +529,20 @@
   }
 }
 
+.error {
+  label, .form__label {
+    color: $color-red;
+  }
+  
+  input, textarea, {
+    color: $color-red;
+  }
+}
+
 label.error {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 1.2;
   color: $color-red;
   font-weight: 500;
 }
+

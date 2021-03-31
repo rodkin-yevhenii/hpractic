@@ -19,16 +19,8 @@ jQuery(document).ready(function($){
 
   const productPreview = $('.product__preview');
 
-  const prevBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--left">
-                          <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-left"></use>
-                          </svg>
-                      </span>`;
-  const nextBtnTemplate = `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--right">
-                          <svg class="icon">
-                              <use xlink:href="./img/icons-sprite.svg#icon-arrow-right"></use>
-                          </svg>
-                      </span>`;
+  const prevBtnTemplate = setBtnTemplate('left')
+  const nextBtnTemplate = setBtnTemplate('right')
 
   if(sectionSlider.length > 0) {
     sectionSlider.each(function (i, slider){
@@ -292,7 +284,7 @@ jQuery(document).ready(function($){
     }
   });
 
-  $('[data-popup-open]').on('click', function (e) {
+  $(document).on('click', '[data-popup-open]' ,function (e) {
     e.preventDefault();
 
     const popupId = $(e.currentTarget).data('popup-open');
@@ -301,7 +293,7 @@ jQuery(document).ready(function($){
     showPopup(popupId, title)
   });
 
-  $('[data-popup-close]').on('click', function (e) {
+  $(document).on('click', '[data-popup-close]',function (e) {
     e.preventDefault();
     const popup = $(e.currentTarget).closest('popup');
     popup.magnificPopup('close');
@@ -348,14 +340,48 @@ jQuery(document).ready(function($){
 
   initToggleMenu();
 
+  // $('.product').length > 0 && showPopup('#popup-success', null, false);
+
 });
 
-function callbackBeforeOpen(popup, id, title) {
-  popup.st.mainClass = 'mfp-zoom-in';
-  document.body.classList.add('fixed');
+function safePropValueOr (obj, path, defaultValue = null) {
+  if (!path) return defaultValue;
+  let val = path.split(".").reduce((acc, item) => {
+    if (!acc) return acc;
 
-  if(title && title.length > 0){
-    $(id +'.popup').find('.popup-title-js').text(title);
+    return acc[item];
+  }, obj);
+
+  if (val === undefined || val === null || val === "") {
+    val = defaultValue;
+  }
+
+  return val;
+}
+
+function setPopupContent(id, data) {
+  var popup = $(id);
+
+  if($.isEmptyObject(data)){
+    return false;
+  }
+
+  var title = safePropValueOr(data, 'title', null);
+  var text = safePropValueOr(data, 'message', null);
+
+  title && popup.find('.popup-title-js').text(title);
+  text && popup.find('.popup-text-js').text(text);
+}
+
+function callbackBeforeOpen() {
+  this.st.mainClass = 'mfp-zoom-in';
+  document.body.classList.add('fixed');
+}
+
+function callbackBeforeClose(){
+  var cart = this.contentContainer.find('.cart');
+  if(cart.length > 0) {
+    $('.product .quantity__input').val(1);
   }
 }
 
@@ -372,7 +398,8 @@ function callbackClose(e) {
   document.body.classList.remove('fixed');
 }
 
-function showPopup(id, title, disabledClose) {
+function showPopup(id, data, disabledClose) {
+  setPopupContent(id, data);
   $.magnificPopup.open({
     items: {
       src: id
@@ -384,9 +411,8 @@ function showPopup(id, title, disabledClose) {
     enableEscapeKey: !disabledClose && true,
     midClick: !disabledClose && true,
     callbacks: {
-      beforeOpen: function (){
-        return callbackBeforeOpen(this, id, title)
-      },
+      beforeOpen: callbackBeforeOpen,
+      beforeClose: callbackBeforeClose,
       open: callbackOpen,
       close: callbackClose,
     }
@@ -449,10 +475,14 @@ function initCounters(items){
 function initQuantity(){
   const quantity = $('.quantity');
 
+  quantity.find('input:not(.number)').inputNumber(function(value) {
+    return /^\d*$/.test(value);
+  });
+
   if(quantity.length > 0) {
     quantity.on('click', 'button' ,function(e) {
       e.preventDefault();
-      let input = $(this).closest('div').find('input[name="number"]'),
+      let input = $(this).closest('div').find('input'),
         value = +input.val();
       const min = +input.attr('min');
       const max = +input.attr('max');
@@ -477,20 +507,6 @@ function initQuantity(){
     });
   }
 
-  quantity.on('change', 'input', function(e){
-    const input = $(e.currentTarget);
-    const min = +input.attr('min');
-    const max = +input.attr('max');
-
-    if(input.val() > max){
-      input.val(max);
-    }
-
-    if(input.val() < min){
-      input.val(min);
-    }
-  });
-
 }
 
 function initTabs(tabs, index = 0){
@@ -514,7 +530,6 @@ function initTabs(tabs, index = 0){
     const tabsNav = tabs.find('.tabs__nav-item');
     const currentTab = $(tabsNav.get(index)).attr('data-tab');
     tabsNav.removeClass('active');
-    console.log('currentTab', currentTab);
 
     tabs.find('.tabs__items-tab').fadeOut(function (){
       tabs.find('.tabs__nav-item[data-tab="' + currentTab + '"]').addClass('active');
@@ -542,7 +557,8 @@ function initPopupImageGallery(gallery){
         }
       },
       gallery: {
-        enabled: true
+        enabled: true,
+        arrowMarkup: setBtnTemplate('%dir%'),
       },
       zoom: {
         enabled: true,
@@ -583,59 +599,177 @@ function initSticky(){
     return false;
   }
 
-  const sticky = new Sticky('.sticky');
-
-  $(window).on('resize', function(e){
-    setTimeout(function(){
-      sticky.update();
-    }, 0)
+  const stickySidebar = new StickySidebar('.nav.sticky', {
+    topSpacing: 56,
+    resizeSensor: true,
   });
+
+  var stickyMobileMenu = new StickySidebar('.section__menu-wrapper.sticky', {
+    topSpacing: 0,
+    resizeSensor: true,
+  });
+
 }
 
 function initScrollToAnchor(){
   $(document).on('click', 'a[data-anchor]',function(e){
     e.preventDefault();
-    const id = $(e.currentTarget).attr('href');
+    const link = $(e.currentTarget);
+    const id = link.attr('href');
+    const current = $(id);
+
     if(!id) {
       return false;
     }
-    const offset = $(id).offset().top;
+
+    let offset = current.offset().top + 2;
+    offset-= getFirstChildTopOffset(current);
+
     scrollTo(offset);
   });
 
   $(window).on('load scroll', function(e){
     const scrollTop = window.pageYOffset;
 
-    $('a[data-anchor]').each(function(i, link){
-      const id = $(link).attr('href');
+    $('[data-anhor-item]').each(function(i, el){
+      const id = $(el).attr('id');
 
       if(!id) {
         return false;
       }
 
-      const el = $(id);
-      const min = el.offset().top - 120;
-      const max = el.offset().top + el.height() - 120;
+      const current = $(el);
+      let min = Math.ceil(current.offset().top);
+      let max = Math.ceil(current.offset().top + current.outerHeight());
 
-      if(min <= scrollTop && max > scrollTop) {
-        $(link).addClass('active');
-        $(link).parent().addClass('current');
+      min-= getFirstChildTopOffset(current);
+
+      const link = $('[data-anchor][href="#'+ id +'"]');
+
+      if(min <= scrollTop && max >= scrollTop) {
+        link.addClass('active');
+        link.parent().addClass('current');
       } else {
-        $(link).removeClass('active');
-        $(link).parent().removeClass('current');
+        link.removeClass('active');
+        link.parent().removeClass('current');
       }
     });
   });
+
+
+  function getFirstChildTopOffset(el){
+    if(el.is(':first-child')) {
+      if(parseInt(el.css('padding-top'), 10) === 0) {
+        return parseInt(el.closest('section').css('padding-top'));
+      } else {
+        return parseInt(el.css('padding-top')) + parseInt(el.closest('section').css('padding-top'));
+      }
+    } else {
+      return 0;
+    }
+  }
 }
 
 function initToggleMenu(){
   $(document).on('click', '[data-toggle]' , function(e){
     const el = $(e.target);
     const menu = $(e.currentTarget);
+    const menuItems = $(e.currentTarget).find('ul');
     const condition = (el.is('[data-toggle-menu]') || el.closest('[data-toggle-menu]').length > 0) ||
-                      (el.is('a[data-anchor]'))
-    if(condition) {
-      menu.toggleClass('opened');
+                      (el.is('a[data-anchor]'));
+    const wWidth = $(window).width();
+
+    if(condition && wWidth < 560) {
+      if(menu.hasClass('opened')) {
+        menu.removeClass('opened');
+        menuItems.slideUp();
+      } else {
+        menu.addClass('opened');
+        menuItems.slideDown();
+      }
     }
-  })
+  });
+
+  $(window).on('resize', function(e){
+      const menu = $('[data-toggle]');
+      menu.removeClass('opened');
+      menu.find('ul').attr('style', '');
+  });
 }
+
+function setBtnTemplate(dir = 'left'){
+  return `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--${dir}">
+                <svg class="icon">
+                    <use xlink:href="./img/icons-sprite.svg#icon-arrow-${dir}"></use>
+                </svg>
+            </span>`;
+}
+
+var getLoaderTemplate = function(){
+  return '<div class="loader">\n' +
+    '    <div ></div>\n' +
+    '    <svg class="icon icon--extra-lg"\n' +
+    '         version="1.1" id="L9"\n' +
+    '         xmlns="http://www.w3.org/2000/svg"\n' +
+    '         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\n' +
+    '         viewBox="0 0 100 100" enable-background="new 0 0 0 0"\n' +
+    '         xml:space="preserve">\n' +
+    '            <path fill="#30609A" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">\n' +
+    '                  <animateTransform\n' +
+    '                          attributeName="transform"\n' +
+    '                          attributeType="XML"\n' +
+    '                          type="rotate"\n' +
+    '                          dur="1s"\n' +
+    '                          from="0 50 50"\n' +
+    '                          to="360 50 50"\n' +
+    '                          repeatCount="indefinite" />\n' +
+    '          </path>\n' +
+    '    </svg>\n' +
+    '</div>';
+}
+
+function setLoader(container, loading){
+  if(container.length <= 0) {
+    return false;
+  }
+
+  var loader = getLoaderTemplate();
+  if(loading){
+    $(container).append(loader);
+  } else {
+    $(container).find('.loader').remove();
+  }
+}
+
+(function($) {
+  $.fn.inputNumber = function(inputNumber, callback) {
+    this.addClass('number');
+    this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputNumber(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+
+    this.on('input keydown keyup mousedown mouseup', function(){
+        var min = +this.getAttribute('min');
+        var max = +this.getAttribute('max');
+
+        if(this.value > max){
+          this.value = max;
+        }
+
+        if(this.value < min){
+          this.value = min;
+        }
+    })
+
+    return this;
+  };
+}(jQuery));
