@@ -113,6 +113,11 @@ $footer = get_field('footer', 'option');
 </button>
 </div>
 
-<?php wp_footer(); ?>
+<?php
+get_template_part('template-parts/popups/cart');
+get_template_part('template-parts/popups/success');
+get_template_part('template-parts/popups/error');
+
+wp_footer(); ?>
 </body>
 </html>

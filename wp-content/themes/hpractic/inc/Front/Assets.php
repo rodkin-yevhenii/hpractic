@@ -166,9 +166,39 @@ class Assets
             'deps' => 'magnific-popup'
         ];
         $scripts[] = [
+            'handle' => 'resize-sensor',
+            'src' => DIST_URI . 'js/ResizeSensor.js',
+            'deps' => 'fancybox'
+        ];
+        $scripts[] = [
+            'handle' => 'sticky-sideba',
+            'src' => DIST_URI . 'js/sticky-sidebar.min.js',
+            'deps' => 'resize-sensor'
+        ];
+        $scripts[] = [
+            'handle' => 'validate',
+            'src' => DIST_URI . 'js/jquery.validate.min.js',
+            'deps' => 'sticky-sideba'
+        ];
+        $scripts[] = [
+            'handle' => 'additional-methods',
+            'src' => DIST_URI . 'js/additional-methods.js',
+            'deps' => 'validate'
+        ];
+        $scripts[] = [
+            'handle' => 'forms',
+            'src' => DIST_URI . 'js/forms.js',
+            'deps' => 'additional-methods'
+        ];
+        $scripts[] = [
+            'handle' => 'cart',
+            'src' => DIST_URI . 'js/cart.js',
+            'deps' => 'forms'
+        ];
+        $scripts[] = [
             'handle' => 'hpractice',
             'src' => DIST_URI . 'js/main.js',
-            'deps' => 'fancybox'
+            'deps' => 'cart'
         ];
 
         return $scripts;

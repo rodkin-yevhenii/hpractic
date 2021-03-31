@@ -45,7 +45,14 @@ if (!$product) {
             <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
         </div>
     </div>
-    <button type="button" class="btn btn--primary"><?php _e('Заказать', 'hpractice'); ?></button>
+    <button
+        type="button"
+        data-popup-open="#popup-cart"
+        data-product-id="<?php echo $product->getId(); ?>"
+        class="btn btn--primary btn-add-product-js"
+    >
+        <?php _e('Заказать', 'hpractice'); ?>
+    </button>
     <?php if (!empty($delivery) || !empty($payments)) : ?>
         <div class="product__info u-desktop-lg-hidden">
             <?php if (!empty($delivery)) : ?>
