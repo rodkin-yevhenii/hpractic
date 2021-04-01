@@ -437,8 +437,40 @@
     justify-content: center;
     text-align: center;
   
-    .heading:not(:last-child) {
-      margin: 0 0 8.8rem;
+    .heading {
+      
+  
+      &:not(:last-child){
+        margin: 0 0 8.8rem;
+        
+        @media only screen and(max-width: $container-desktop-lg) {
+          margin: 0 0 7.2rem;
+        }
+  
+        @media only screen and(max-width: $container-mobile-lg) {
+          margin-bottom: 6.4rem;
+        }
+      }
+      
+      &__overlay {
+        &--lg {
+          @media only screen and(max-width: $container-desktop-lg) {
+            font-size: 2.7em;
+          }
+    
+          @media only screen and(max-width: $container-desktop-md) {
+            font-size: 2.7em;
+          }
+    
+          @media only screen and(max-width: $container-desktop-md) {
+            font-size: 2.7em;
+          }
+          
+          @media only screen and(max-width: $container-tablet-sm) {
+            font-size: 2em;
+          }
+        }
+      }
     }
     
     strong {
@@ -453,13 +485,18 @@
     
     &-head {
       @media only screen and(max-width: $container-mobile-lg) {
-        margin-top: 7.2rem;
+        margin-top: 3.6rem;
       }
+      
       &:not(:last-child){
         margin-bottom: 13.6rem;
   
+        @media only screen and(max-width: $container-desktop-lg) {
+          margin-bottom: 5.6rem;
+        }
+  
         @media only screen and(max-width: $container-mobile-lg) {
-          margin-bottom: 8.8rem;
+          margin-bottom: 6.4rem;
         }
       }
     }

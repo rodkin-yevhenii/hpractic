@@ -99,7 +99,7 @@
       width: 100vw;
       background: $color-white;
       box-shadow: 0 12px 20px rgba(27, 55, 88, 0.1);
-  
+      border-radius: 0 0 .8rem .8rem;
       @media only screen and (max-width: $container-desktop-lg) {
         max-width: 36rem;
         padding: 1rem 0;
@@ -113,7 +113,7 @@
         position: relative;
         padding: 0 5rem;
         margin: 1rem 0;
-  
+        
         @media only screen and (max-width: $container-desktop-lg) {
           padding: 0 3rem;
         }
@@ -123,6 +123,7 @@
           position: static;
           text-transform: none;
           font-size: 1.7rem;
+          line-height: 2.1rem;
           font-weight: 600;
           justify-content: flex-start;
   
