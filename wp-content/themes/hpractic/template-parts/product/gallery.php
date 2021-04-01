@@ -11,9 +11,13 @@ if (!$gallery) {
         <div class="slider">
             <?php foreach ($gallery as $imgId) : ?>
                 <div class="slider__item">
-                    <div class="product__img">
+                    <a
+                        href="<?php echo wp_get_original_image_url($imgId); ?>"
+                        class="product__img"
+                        title="<?php _e('Нажмите для увеличения', 'hpractice'); ?>"
+                    >
                         <?php echo wp_get_attachment_image($imgId, 'product-gallery-thumbnail'); ?>
-                    </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -23,9 +27,13 @@ if (!$gallery) {
             <div class="slider">
                 <?php foreach ($gallery as $imgId) : ?>
                     <div class="slider__item">
-                        <div class="product__img">
+                        <a
+                            href="<?php echo wp_get_original_image_url($imgId); ?>"
+                            class="product__img"
+                            title="<?php _e('Нажмите для увеличения', 'hpractice'); ?>"
+                        >
                             <?php echo wp_get_attachment_image($imgId, 'product-gallery-preview'); ?>
-                        </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>
