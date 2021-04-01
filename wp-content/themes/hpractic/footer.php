@@ -40,64 +40,108 @@ $footer = get_field('footer', 'option');
                         <h4 class="subheading subheading--sm">
                             <?php _e('Контактная информация', 'hpractice'); ?>
                         </h4>
-                        <ul>
-                            <?php foreach ($footer['phones'] ?? [] as $item) :
-                                $formattedNumber = str_replace(['(', ')', '+3', '-', ' '], '', $item['phone']); ?>
-                                <li>
-                                    <a href="tel:+3<?php echo $formattedNumber; ?>"
-                                        class="link link--secondary link--md">
-                                        <span class="link__inner">
-                                            <svg class="icon">
-                                                <use xlink:href="<?php
-                                                echo SRC_URI; ?>img/icons-sprite.svg#icon-phone"></use>
-                                            </svg>
-                                            <span><?php echo $item['phone']; ?></span>
-                                        </span>
-                                    </a>
-                                </li>
-                            <?php endforeach;
-
-                            foreach ($footer['emails'] ?? [] as $item) : ?>
-                                <li>
-                                    <a href="mailto:<?php echo $item['email']; ?>"
-                                       class="link link--secondary link--md"
-                                    >
-                                        <span class="link__inner">
-                                            <svg class="icon">
-                                                <use xlink:href="<?php
-                                                echo SRC_URI; ?>img/icons-sprite.svg#icon-mail"></use>
-                                            </svg>
-                                            <span><?php echo $item['email']; ?></span>
-                                        </span>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-phone"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <?php foreach ($footer['phones'] ?? [] as $item) :
+                                        $formattedNumber = str_replace(
+                                            ['(', ')', '+3', '-', ' '],
+                                            '',
+                                            $item['phone']
+                                        ); ?>
+                                        <li>
+                                            <a href="tel:+3<?php echo $formattedNumber; ?>"
+                                               class="link link--secondary link--md"
+                                            >
+                                                <?php echo $item['phone']; ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-mail"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <?php foreach ($footer['emails'] ?? [] as $item) : ?>
+                                        <li>
+                                            <a href="mailto:<?php echo $item['email']; ?>"
+                                               class="link link--secondary link--md"
+                                            >
+                                                <?php echo $item['email']; ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                <?php endif;
-
-                if (!empty($footer['schedule'])) : ?>
-                    <div class="footer__item footer__schedule">
+                <?php endif; ?>
+                <div class="footer__item footer__schedule">
+                    <?php if (!empty($footer['schedule'])) : ?>
                         <h4 class="subheading subheading--sm">
                             <?php _e('График работы', 'hpractice'); ?>
                         </h4>
-                        <ul>
-                            <?php foreach ($footer['schedule'] as $item) : ?>
-                                <li>
-                                    <span class="link link--secondary link--md">
-                                        <span class="link__inner">
-                                            <svg class="icon">
-                                                <use xlink:href="<?php
-                                                echo SRC_URI; ?>img/icons-sprite.svg#icon-clock"></use>
-                                            </svg>
-                                            <span><?php echo $item['text']; ?></span>
-                                        </span>
-                                    </span>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <div class="list">
+                            <div class="list__icon">
+                                <svg class="icon">
+                                    <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-clock"></use>
+                                </svg>
+                            </div>
+                            <div class="list__element">
+                                <ul>
+                                    <?php foreach ($footer['schedule'] as $item) : ?>
+                                        <li><?php echo $item['text']; ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="socials">
+                        <div class="socials__title">
+                            <h4 class="subheading subheading--sm">Мы на связи:</h4>
+                        </div>
+                        <div class="socials__list">
+                            <ul>
+                                <?php if (!empty($footer['viber_phone'])) : ?>
+                                    <li>
+                                        <a href="viber://chat?number=<?php echo $footer['viber_phone']; ?>"
+                                           class="icon"
+                                           target="_blank"
+                                        >
+                                            <img src="<?php echo SRC_URI; ?>img/icons/viber.svg"
+                                                 alt="<?php _e('Мы в вайбере', 'hpractice'); ?>"
+                                            >
+                                        </a>
+                                    </li>
+                                <?php endif;
+
+                                if (!empty($footer['telegram_id'])) : ?>
+                                    <li>
+                                        <a href="tg://resolve?domain=<?php echo $footer['telegram_id']; ?>"
+                                           class="icon"
+                                           target="_blank"
+                                        >
+                                            <img src="<?php echo SRC_URI; ?>img/icons/telegram.svg"
+                                                 alt="<?php _e('Мы в телеграмм', 'hpractice'); ?>"
+                                            >
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
                     </div>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
         <div class="footer__copyright">
