@@ -2,6 +2,8 @@
 
 namespace Hpr\Service\Helpers;
 
+use Hpr\Entity\Product;
+
 /**
  * Class Helpers
  *
@@ -101,5 +103,44 @@ class Helpers
         }
 
         return $searchPageId;
+    }
+
+    /**
+     * Get cart items data by products IDs.
+     */
+    public static function getCartItemsCallback(): void
+    {
+        $response['status'] = false;
+        $response['data'] = [];
+        $ids = $_POST['cartItems'] ?? [];
+
+        if (empty($ids)) {
+            $response['error']['title'] = __('Упс... Что-то пошло не так =(', 'hpractice');
+            $response['error']['message'] = __('Корзина пуста, сначала добавьте товары в корзину.', 'hpractice');
+
+            wp_send_json($response);
+        }
+
+        foreach ($ids as $id) {
+            $product = new Product($id);
+            $price = $product->getPrice() . ' ' . __('грн/шт', 'hpractice');
+            $gallery = $product->getGallery();
+
+            if ($product->isMinPrice()) {
+                $price = __('от', 'hpractice') . ' ' . $price;
+            }
+
+            $price = "<strong>$price</strong>";
+            $response['data'][] = [
+                'id' => $product->getId(),
+                'title' => $product->getTitle(),
+                'img' => empty($gallery) ? false : wp_get_attachment_image_src($gallery[0]),
+                'price' => $price
+            ];
+        }
+
+        $response['result'] = true;
+
+        wp_send_json($response);
     }
 }

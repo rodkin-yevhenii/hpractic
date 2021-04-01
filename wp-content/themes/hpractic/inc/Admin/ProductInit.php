@@ -3,6 +3,7 @@
 namespace Hpr\Admin;
 
 use Hpr\Entity\Product;
+use Hpr\Service\Helpers\Helpers;
 
 /**
  * Class ProductInit
@@ -116,6 +117,9 @@ class ProductInit
 
         add_filter('acf/fields/post_object/result', [$this, 'updateProductsTitle'], 10, 3);
         add_filter('acf/fields/post_object/query', [$this, 'updateAcfProductsSearch'], 10, 2);
+
+        add_action('wp_ajax_get_cart_items', [Helpers::class, 'getCartItemsCallback']);
+        add_action('wp_ajax_nopriv_get_cart_items', [Helpers::class, 'getCartItemsCallback']);
     }
 
     /**
@@ -127,7 +131,7 @@ class ProductInit
      */
     public function updateProductsCategoriesQuery(array $args): array
     {
-        $catalogPageId = \Hpr\Service\Helpers\Helpers::getCatalogId();
+        $catalogPageId = Helpers::getCatalogId();
         $args['post_parent'] = $catalogPageId;
 
         return $args;
