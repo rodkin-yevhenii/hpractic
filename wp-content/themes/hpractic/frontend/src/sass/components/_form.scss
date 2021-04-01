@@ -69,7 +69,8 @@
   
         & > div[class*="form__actions"] {
           margin-left: 1rem;
-  
+          flex: unset;
+          
           @media only screen and(max-width: $container-tablet-sm) {
             margin: 1.5rem 0 0;
           }
@@ -197,6 +198,8 @@
     display: inline-block;
     padding-left: 3.5rem;
     text-align: left;
+    font-size: 1.5rem;
+    line-height: 2rem;
     
     $checkbox: &;
     
@@ -238,6 +241,10 @@
       }
     }
     
+    label.error {
+      display: none !important;
+    }
+    
     input {
       position: absolute;
       visibility: hidden;
@@ -249,7 +256,7 @@
       display: none;
       
       &:checked {
-        & + .form__checkbox__element {
+        & ~ .form__checkbox__element {
           border-color: $color-primary;
           
           &:before {
@@ -289,15 +296,17 @@
       display: block;
       position: absolute;
       left: 0;
-      top: 0;
-      margin-top: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0;
       width: 2rem;
       height: 2rem;
-      border: 2px solid $color-grey-light;
-      border-radius: 0;
+      border: 2px solid $color-primary;
+      border-radius: .4rem;
       outline: 0 none;
       transition: border-color .3s;
       cursor: pointer;
+      
       
       &:before {
         content: '';
@@ -307,10 +316,10 @@
         opacity: 0;
         position: absolute;
         transition: all .3s;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: .2rem;
         background: $color-primary;
       }
     }
@@ -321,6 +330,8 @@
     display: inline-block;
     padding-left: 2.6rem;
     text-align: left;
+    font-size: 1.5rem;
+    line-height: 2rem;
     
     $radio: &;
     
@@ -525,6 +536,45 @@
     
     &:last-child {
       border: none;
+    }
+  }
+  
+  &__agreement {
+    padding: 1.5rem 0;
+    position: relative;
+    
+    &.error {
+      color: currentColor;
+      font-weight: normal;
+      
+      label {
+        color: currentColor;
+        font-weight: normal;
+      }
+  
+      .form__checkbox__element {
+        border-color: $color-red;
+      }
+    }
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: -9999rem;
+      right: -9999rem;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+    }
+    
+    &.error {
+      &:before {
+        background-color: rgba($color-red, 0.3);
+      }
+    }
+    
+    & > * {
+      position: relative;
     }
   }
 }

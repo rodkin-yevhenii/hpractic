@@ -30,11 +30,27 @@ jQuery(document).ready(function($){
     invalidHandler: function(form, validator) {
     },
     highlight: function(element, errorClass, validClass) {
+
+      if ($(element).is(":checkbox")){
+        var agreementDOM = $(element).closest('.form__agreement');
+        if(agreementDOM.length <= 0) {
+          return false;
+        }
+        agreementDOM.addClass(errorClass).removeClass(validClass);
+      }
+
       $(element).addClass(errorClass).removeClass(validClass);
       $(element).closest(".form__field")
         .addClass(errorClass);
     },
     unhighlight: function(element, errorClass, validClass) {
+      if ($(element).is(":checkbox")){
+        var agreementDOM = $(element).closest('.form__agreement');
+        if(agreementDOM.length <= 0) {
+          return false;
+        }
+        agreementDOM.removeClass(errorClass).addClass(validClass);
+      }
       $(element).removeClass(errorClass).addClass(validClass);
       $(element).closest(".form__field")
         .removeClass(errorClass);
@@ -56,6 +72,9 @@ jQuery(document).ready(function($){
       "comment": {
         minlength: 6,
       },
+      agreement: {
+        required: true,
+      }
     },
     messages: {
       "name": {
@@ -73,7 +92,8 @@ jQuery(document).ready(function($){
       },
       "comment": {
         minlength: "Слишком короткое сообщение, мин. 5 символов",
-      }
+      },
+      agreement: 'Необходимо согласиться с политикой конфиденциальности'
     }
   });
 

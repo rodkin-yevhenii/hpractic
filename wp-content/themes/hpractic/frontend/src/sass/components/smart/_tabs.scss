@@ -48,6 +48,7 @@
       
       &.active {
         cursor: initial;
+        color: $color-primary;
         
         &::before {
           opacity: 1;

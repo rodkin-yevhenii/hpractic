@@ -28,9 +28,9 @@
         background: $color-grey-light;
       }
     
-      td {
+      td, th {
         font-weight: 700;
-        //white-space: nowrap;
+        text-align: left;
       }
     }
   
@@ -43,7 +43,7 @@
       }
     }
   
-    td {
+    td, th {
       padding: 2rem 2rem;
       font-weight: normal;
       color: $color-secondary-dark;
