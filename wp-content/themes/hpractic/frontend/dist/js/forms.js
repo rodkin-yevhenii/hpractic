@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
     API.sendForm().then(function(resp){
       setLoader(formEl, false);
       showPopup('#popup-success', {
-        message: resp,
+        message: resp.orderId,
       }, false);
     }).catch(function(err){
       setLoader(formEl, false);

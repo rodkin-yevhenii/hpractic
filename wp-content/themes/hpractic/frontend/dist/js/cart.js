@@ -1,66 +1,3 @@
-var PRODUCTS__ARRAY = [
-  {
-    "id": '0',
-    "name": "sint cupidatat duis",
-    "img": "./img/product-polimer-5.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '1',
-    "name": "consectetur fugiat aliquip",
-    "img": "./img/product-polimer-1.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '2',
-    "name": "irure ex culpa",
-    "img": "./img/product-polimer-2.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '3',
-    "name": "ex enim in",
-    "img": "./img/product-polimer-4.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '4',
-    "name": "cupidatat eiusmod mollit",
-    "img": "./img/product-polimer-4.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '5',
-    "name": "officia mollit fugiat",
-    "img": "./img/product-polimer-5.png",
-    "price": 'от 12 236 грн/шт'
-  },
-  {
-    "id": '6',
-    "name": "deserunt dolor fugiat",
-    "img": "./img/product-polimer-6.png",
-    "price": '236 грн/шт'
-  },
-  {
-    "id": '7',
-    "name": "ut nisi dolore",
-    "img": "./img/product-polimer-2.png",
-    "price": 'от 236 грн/шт'
-  },
-  {
-    "id": '8',
-    "name": "enim laborum in",
-    "img": "./img/product-polimer-8.png",
-    "price": 'от 22 236 грн/шт'
-  },
-  {
-    "id": '9',
-    "name": "adipisicing enim magna",
-    "img": "./img/product-polimer-1.png",
-    "price": '1 236 грн/шт'
-  }
-];
-
 var API = {
   getCurrentProducts: function(array){
     return new Promise(function(resolve, reject){
@@ -86,25 +23,45 @@ var API = {
         }
 
         resolve(response.data);
-      }).fail(function () {
-
+      }).fail(function (err) {
+        reject(err);
       });
     })
   },
   sendForm: function(){
     return new Promise(function(resolve, reject){
-      setTimeout(function(){
-        var random = Math.round(Math.random());
-        console.log(random, random === 0);
-        if(random === 0) {
+      const $cart = $('#popup-cart');
+      const customer = $cart.find('input[name=name]').val();
+      const phone = $cart.find('input[name=phone]').val();
+      const email = $cart.find('input[name=email]').val();
+      const comment = $cart.find('textarea[name=comment]').val();
+      const data = {
+        action: 'create_order',
+        customer,
+        phone,
+        email,
+        comment,
+        products: cartController.getCartItems()
+      };
+
+      $.ajax({
+        type: "POST",
+        url: '/wp-admin/admin-ajax.php',
+        cache: false,
+        dataType: 'json',
+        data,
+      }).done(function (response) {
+        if (!response.status) {
           reject({
-            title: 'Упс... Что-то пошло не так =(',
-            text: 'Возникла ошибка, попробуйте формить заказ еще раз ...'
+            title: response.error.title,
+            text: response.error.message
           });
-        } else {
-          resolve('666999');
         }
-      }, 1200);
+
+        resolve(response.data);
+      }).fail(function (err) {
+        reject(err);
+      });
     })
   }
 }
@@ -211,7 +168,7 @@ var UIController = (function(){
         '        <div class="cart__product-action">\n' +
         '            <span class="btn-icon btn-remove-product-js">\n' +
         '                <svg class="icon">\n' +
-        '                    <use xlink:href="./img/icons-sprite.svg#icon-close"></use>\n' +
+        '                    <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-close"></use>\n' +
         '                </svg>\n' +
         '            </span>\n' +
         '        </div>\n' +
@@ -222,7 +179,7 @@ var UIController = (function(){
   var getEmptyTemplate = function(){
     return '<div class="cart__products-empty">\n' +
           '    <svg class="icon icon--extra-lg">\n' +
-          '        <use xlink:href="./img/icons-sprite.svg#icon-shopping-cart"></use>\n' +
+          '        <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-shopping-cart"></use>\n' +
           '    </svg>\n' +
           '    <p class="text">Ваша корзина пустая</p>\n' +
           '    <div class="popup__actions">\n' +
@@ -268,7 +225,7 @@ var UIController = (function(){
     },
     setCartHeaderCount: function(count){
       var value = count > 0 ? count : '';
-      $(DOMElements.cartHeaderCount).text(value);
+      $(DOMElements.cartHeaderCount).html(value);
     },
     renderItems: function (items){
       var html = '';

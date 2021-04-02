@@ -90,7 +90,13 @@ class OrderInit
     {
         $response = [
             'status' => false,
-            'message' => '',
+            'error' => [
+                'title' => __('Упс... Что-то пошло не так =(', 'hpractice'),
+                'message' => __(
+                    'Возникла ошибка, попробуйте формить заказ еще раз или свяжитесь с администратором',
+                    'hpractice'
+                ),
+            ],
             'data' => []
         ];
         $customer = $_POST['customer'] ?? false;
@@ -100,11 +106,16 @@ class OrderInit
         $products = $_POST['products'] ?? [];
 
         if (!$customer || !$phone) {
-            $response['message'] = __('Заполненно поле имени или номера телефона.', 'hpractice');
+            $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
+            $response['error']['message'] = __('Не заполненно поле имени или номера телефона.', 'hpractice');
+
+            wp_send_json($response);
         }
 
         if (empty($products)) {
-            $response['message'] = __('Корзина пуста.', 'hpractice');
+            $response['message'] = __('Корзина пуста. Добавьте товары в корзину', 'hpractice');
+
+            wp_send_json($response);
         }
 
         $orderData = [
@@ -115,7 +126,7 @@ class OrderInit
         $orderId = wp_insert_post($orderData);
 
         if (is_wp_error($orderId) || ! $orderId) {
-            // TODO: Send false response.
+            wp_send_json($response);
         }
 
         $orderId = wp_insert_post(
@@ -134,13 +145,17 @@ class OrderInit
         }
 
         update_field('customer', $customer, $orderId);
-        update_field('phone', preg_replace('/^(\+380|380|80)/', 0, $phone), $orderId);
+        update_field('phone', str_replace(['+38', ' ', '(', ')', '-'], '', $phone), $orderId);
         update_field('email', $email, $orderId);
         update_field('customer_comment', $comment, $orderId);
         update_field('status', 'new', $orderId);
 
-        foreach ($products as $id => $quantity) {
-            add_row('order-items', ['id' => $id, 'quantity' => $quantity], $orderId);
+        foreach ($products as $product) {
+            if (empty($product['id'])) {
+                continue;
+            }
+
+            add_row('order-items', ['id' => $product['id'], 'quantity' => $product['count'] ?? 1], $orderId);
         }
 
         $email = new Email();
@@ -153,6 +168,8 @@ class OrderInit
 
         $response['status'] = true;
         $response['data'] = ['orderId' => $orderId];
+
+        unset($response['error']);
 
         wp_send_json($response);
     }

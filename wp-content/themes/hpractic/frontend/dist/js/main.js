@@ -700,7 +700,7 @@ function initToggleMenu(){
 function setBtnTemplate(dir = 'left'){
   return `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--${dir}">
                 <svg class="icon">
-                    <use xlink:href="./img/icons-sprite.svg#icon-arrow-${dir}"></use>
+                    <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-arrow-${dir}"></use>
                 </svg>
             </span>`;
 }
