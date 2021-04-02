@@ -64,9 +64,31 @@ var PRODUCTS__ARRAY = [
 var API = {
   getCurrentProducts: function(array){
     return new Promise(function(resolve, reject){
-      setTimeout(function(){
-        resolve(PRODUCTS__ARRAY);
-      }, 2000);
+      const products = cartController.getCartItems();
+      const cartItems = products.map((item) => item.id);
+      const data = {
+        action: 'get_cart_items',
+        cartItems
+      };
+
+      $.ajax({
+        type: "POST",
+        url: '/wp-admin/admin-ajax.php',
+        cache: false,
+        dataType: 'json',
+        data,
+      }).done(function (response) {
+        if (!response.status) {
+          reject({
+            title: response.error.title,
+            text: response.error.message
+          });
+        }
+
+        resolve(response.data);
+      }).fail(function () {
+
+      });
     })
   },
   sendForm: function(){
@@ -294,7 +316,7 @@ var controller = (function(cartCtrl, UICtrl){
 
         currentItems = products.map(function(item){
           var current = resp.find(function(el){
-            return el.id === item.id
+            return el.id === parseInt(item.id)
           });
           return Object.assign(item, current);
         });

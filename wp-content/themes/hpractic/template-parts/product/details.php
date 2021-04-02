@@ -42,7 +42,7 @@ if (!$product) {
         <div class="quantity">
             <button class="quantity__btn quantity__btn--minus" type="button" data-type="minus"></button>
             <button class="quantity__btn quantity__btn--plus" type="button" data-type="plus"></button>
-            <input class="quantity__input" type="text" value="1" name="number" min="1" max="99">
+            <input class="quantity__input" type="text" value="1" name="count" min="1" max="99">
         </div>
     </div>
     <button

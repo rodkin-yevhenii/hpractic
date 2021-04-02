@@ -133,13 +133,13 @@ class Helpers
             $price = "<strong>$price</strong>";
             $response['data'][] = [
                 'id' => $product->getId(),
-                'title' => $product->getTitle(),
-                'img' => empty($gallery) ? false : wp_get_attachment_image_src($gallery[0]),
+                'name' => $product->getTitle(),
+                'img' => empty($gallery) ? false : wp_get_attachment_image_url($gallery[0]),
                 'price' => $price
             ];
         }
 
-        $response['result'] = true;
+        $response['status'] = true;
 
         wp_send_json($response);
     }

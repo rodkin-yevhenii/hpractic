@@ -82,11 +82,11 @@ $faviconUrl = get_field('favicon', 'option');
                     <?php Helpers::showLanguageSwitcher() ?>
                 </div>
                 <div class="header__btn">
-                    <button class="btn-icon">
+                    <button class="btn-icon" type="button" data-popup-open="#popup-cart">
                         <svg class="icon">
                             <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-shopping-cart"></use>
                         </svg>
-                        <span class="btn-icon__badge">10</span>
+                        <span class="btn-icon__badge product-count-js"></span>
                     </button>
                 </div>
                 <div class="header__btn u-desktop-sm-visible">

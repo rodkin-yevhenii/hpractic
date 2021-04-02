@@ -18,7 +18,7 @@ $breadcrumbs = new Breadcrumbs($id);
         </div>
     </div>
 </div>
-<div class="product">
+<div class="product" data-id="<?php echo $id; ?>">
     <div class="product__head">
         <div class="container">
             <div class="product__head-inner">
