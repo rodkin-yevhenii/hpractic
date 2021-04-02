@@ -1,8 +1,10 @@
+const lang = $('html').attr('lang');
+
 var API = {
   getCurrentProducts: function(array){
     return new Promise(function(resolve, reject){
       const products = cartController.getCartItems();
-      const cartItems = products.map((item) => item.id);
+      const cartItems = products.map((item) => item.id[lang]);
       const data = {
         action: 'get_cart_items',
         cartItems
@@ -35,13 +37,25 @@ var API = {
       const phone = $cart.find('input[name=phone]').val();
       const email = $cart.find('input[name=email]').val();
       const comment = $cart.find('textarea[name=comment]').val();
+      const cartItems = cartController.getCartItems();
+      let products = [];
+
+      if (cartItems.length > 0) {
+        products = cartItems.map((item) => {
+          return {
+            id: item.id[lang],
+            count: item.count
+          };
+        })
+      }
+
       const data = {
         action: 'create_order',
         customer,
         phone,
         email,
         comment,
-        products: cartController.getCartItems()
+        products
       };
 
       $.ajax({
@@ -66,7 +80,7 @@ var API = {
   }
 }
 
-var cartController = (function(){
+const cartController = (function(){
   return {
     addProduct: function(product){
       var storageProducts = JSON.parse(localStorage.getItem('products'));
@@ -77,7 +91,7 @@ var cartController = (function(){
       }
 
       var index = products.findIndex(function(el){
-        return el.id === product.id;
+        return el.id[lang] === product.id[lang];
       });
 
       if(index !== -1) {
@@ -94,14 +108,14 @@ var cartController = (function(){
       }
 
       var storageProducts = JSON.parse(localStorage.getItem('products'));
-      var products = storageProducts.filter(product => product.id !== id );
+      var products = storageProducts.filter(product => product.id[lang] !== id );
       localStorage.setItem('products', JSON.stringify(products));
     },
     updateProduct: function(id, count){
       var products = JSON.parse(localStorage.getItem('products'));
 
       var index = products.findIndex(function(el){
-        return el.id === id;
+        return el.id[lang] === id;
       });
 
       if(index !== -1) {
@@ -119,7 +133,7 @@ var cartController = (function(){
     getProductsCount: function(){
       var products = this.getCartItems();
       var totalCount = products.reduce(function(total, el){
-        return total + el.count;
+        return parseInt(total) + parseInt(el.count);
       }, 0);
       return {
         count: parseInt(products.length),
@@ -129,8 +143,8 @@ var cartController = (function(){
   }
 })();
 
-var UIController = (function(){
-  var DOMElements = {
+const UIController = (function(){
+  const DOMElements = {
     cart: '#cart-form',
     productList: '.cart__products',
     product: '.cart__product',
@@ -142,7 +156,7 @@ var UIController = (function(){
     cartHeaderCount: '.header .product-count-js'
   }
 
-  var getProductTemplate = function(obj){
+  const getProductTemplate = function(obj){
     if($.isEmptyObject(obj)){
       return '';
     }
@@ -176,7 +190,7 @@ var UIController = (function(){
         '</div>';
   }
 
-  var getEmptyTemplate = function(){
+  const getEmptyTemplate = function(){
     return '<div class="cart__products-empty">\n' +
           '    <svg class="icon icon--extra-lg">\n' +
           '        <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-shopping-cart"></use>\n' +
@@ -193,7 +207,7 @@ var UIController = (function(){
       return DOMElements;
     },
     getProduct: function(id){
-      var product = $('.product[data-id="'+ id +'"]');
+      var product = $('.product[data-id-' + lang + '="'+ id[lang] +'"]');
       if(product.length <= 0) {
         return null
       } else {
@@ -251,9 +265,9 @@ var UIController = (function(){
   }
 })();
 
-var controller = (function(cartCtrl, UICtrl){
+const controller = (function(cartCtrl, UICtrl){
 
-  var setupHandlers = function(){
+  const setupHandlers = function(){
     var DOM = UICtrl.getDOMElements();
 
     $(document).on('click', DOM.addButton, ctrlAddToCart);
@@ -263,7 +277,7 @@ var controller = (function(cartCtrl, UICtrl){
     $(document).on('keyup', DOM.countInput, ctrlUpdateProductCount);
   }
 
-  var ctrlRenderCartItems = function(){
+  const ctrlRenderCartItems = function(){
     var products = cartCtrl.getCartItems();
 
     if(products.length > 0) {
@@ -273,7 +287,7 @@ var controller = (function(cartCtrl, UICtrl){
 
         currentItems = products.map(function(item){
           var current = resp.find(function(el){
-            return el.id === parseInt(item.id)
+            return el.id === parseInt(item.id[lang])
           });
           return Object.assign(item, current);
         });
@@ -294,21 +308,24 @@ var controller = (function(cartCtrl, UICtrl){
     }
   }
 
-  var ctrlAddToCart = function(e){
+  const ctrlAddToCart = function(e){
     e.preventDefault();
-    var id = $(e.target).closest('.product').attr('data-id');
-    var product = UICtrl.getProduct(id);
+    const id = {
+      ru: $(e.target).closest('.product').attr('data-id-ru'),
+      uk: $(e.target).closest('.product').attr('data-id-uk')
+    };
+    const product = UICtrl.getProduct(id);
     if(product) {
       cartCtrl.addProduct(product);
       setHeaderCartCount();
     }
   }
 
-  var ctrlDeleteProduct = function(e){
+  const ctrlDeleteProduct = function(e){
     e.preventDefault();
     e.stopPropagation();
 
-    var productID = $(e.target).closest('.cart__product').attr('data-id');
+    const productID = $(e.target).closest('.cart__product').attr('data-id');
     if(productID) {
       // 1. delete the product from the data structure (store)
       cartCtrl.deleteProduct(productID);
@@ -326,18 +343,18 @@ var controller = (function(cartCtrl, UICtrl){
     }
   }
 
-  var ctrlUpdateProductCount = function(e){
+  const ctrlUpdateProductCount = function(e){
     e.preventDefault();
-    var el = $(e.currentTarget);
-    var productID = el.closest('.cart__product').attr('data-id');
-    var product = UICtrl.getProductDOM(productID);
-    var input = product.find('input[name="count"]'),
-      value = +input.val();
+    const el = $(e.currentTarget);
+    const productID = el.closest('.cart__product').attr('data-id');
+    const product = UICtrl.getProductDOM(productID);
+    const input = product.find('input[name="count"]');
+    let value = +input.val();
 
     if (el.is('button')){
-      var min = +input.attr('min');
-      var max = +input.attr('max');
-      var type = el.data('type');
+      const min = +input.attr('min');
+      const max = +input.attr('max');
+      const type = el.data('type');
 
       if (type === 'minus'){
         if (value > min ) {

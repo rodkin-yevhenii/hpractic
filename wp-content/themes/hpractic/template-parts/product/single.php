@@ -18,7 +18,10 @@ $breadcrumbs = new Breadcrumbs($id);
         </div>
     </div>
 </div>
-<div class="product" data-id="<?php echo $id; ?>">
+<div class="product"
+     data-id-ru="<?php echo pll_get_post($id, 'ru'); ?>"
+     data-id-uk="<?php echo pll_get_post($id, 'uk'); ?>"
+>
     <div class="product__head">
         <div class="container">
             <div class="product__head-inner">
