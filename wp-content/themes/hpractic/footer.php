@@ -1,5 +1,8 @@
 <?php
-$logo = get_field('site_logo', 'option');
+
+use Hpr\Service\Helpers\Helpers;
+
+$logo   = get_field('site_logo', 'option');
 $footer = get_field('footer', 'option');
 ?>
 </main>
@@ -109,13 +112,16 @@ $footer = get_field('footer', 'option');
                     <?php endif; ?>
                     <div class="socials">
                         <div class="socials__title">
-                            <h4 class="subheading subheading--sm">Мы на связи:</h4>
+                            <h4 class="subheading subheading--sm"><?php _e('Мы на связи', 'hpractice'); ?>:</h4>
                         </div>
                         <div class="socials__list">
                             <ul>
-                                <?php if (!empty($footer['viber_phone'])) : ?>
+                                <?php
+                                $viber = Helpers::getMessengerPhone('viber', true);
+
+                                if (!empty($viber)) : ?>
                                     <li>
-                                        <a href="viber://chat?number=<?php echo $footer['viber_phone']; ?>"
+                                        <a href="viber://chat?number=<?php echo $viber; ?>"
                                            class="icon"
                                            target="_blank"
                                         >

@@ -6,13 +6,16 @@
                     <use xlink:href="<?php echo SRC_URI; ?>img/icons-sprite.svg#icon-circle-x"></use>
                 </svg>
             </div>
-            <h6 class="subheading subheading--center subheading--md popup-title-js">Что-то пошло не так =(</h6>
+            <h6 class="subheading subheading--center subheading--md popup-title-js">
+                <?php _e('Что-то пошло не так =(', 'hpractice'); ?>
+            </h6>
             <p class="text text--center popup-text-js">
-                Возникла ошибка, попробуйте формить заказ немного позже...
+                <?php _e('Возникла ошибка, попробуйте формить заказ немного позже...', 'hpractice'); ?>
             </p>
         </div>
         <div class="popup__actions">
-            <button class="btn btn--primary" type="button" data-popup-close="popup-error">OK</button>
+            <button class="btn btn--primary" type="button" data-popup-close="popup-error">
+                <?php _e('OK', 'hpractice'); ?></button>
         </div>
     </div>
 </div>

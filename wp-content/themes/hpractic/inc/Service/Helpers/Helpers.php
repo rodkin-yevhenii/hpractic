@@ -122,6 +122,7 @@ class Helpers
         }
 
         foreach ($ids as $id) {
+            $id = pll_get_post($id);
             $product = new Product($id);
             $price = $product->getPrice() . ' ' . __('грн/шт', 'hpractice');
             $gallery = $product->getGallery();
@@ -141,5 +142,35 @@ class Helpers
         $response['status'] = true;
 
         wp_send_json($response);
+    }
+
+    /**
+     * Get phone with messenger.
+     *
+     * @param string $messenger messenger program (viber or telegram).
+     *
+     * @return string
+     */
+    public static function getMessengerPhone(string $messenger, bool $isClean = false): string
+    {
+        if (!in_array($messenger, ['viber', 'telegram'])) {
+            return '';
+        }
+
+        $footer = get_field('footer', 'option');
+
+        if ('viber' === $messenger) {
+            $key = 'is_viber';
+        } else {
+            $key = 'is_telegram';
+        }
+
+        foreach ($footer['phones'] ?? [] as $item) {
+            if ($item[$key] ?? false) {
+                return $isClean ? str_replace([' ', '(', ')', '-'], '', $item['phone']) : $item['phone'];
+            }
+        }
+
+        return '';
     }
 }
