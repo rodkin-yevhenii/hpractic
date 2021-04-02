@@ -130,7 +130,6 @@ class Helpers
                 $price = __('от', 'hpractice') . ' ' . $price;
             }
 
-            $price = "<strong>$price</strong>";
             $response['data'][] = [
                 'id' => $product->getId(),
                 'name' => $product->getTitle(),
