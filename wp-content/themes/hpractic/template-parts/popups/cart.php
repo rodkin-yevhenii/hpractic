@@ -95,7 +95,7 @@
                             <?php _e('Продолжить покупки', 'hpractice'); ?>
                         </button>
                         <button class="btn btn--primary btn--disabled" type="submit" disabled>
-                            <?php _e('ОФОРМИИТЬ ЗАКАЗ', 'hpractice'); ?>
+                            <?php _e('ОФОРМИТЬ ЗАКАЗ', 'hpractice'); ?>
                         </button>
                     </div>
                 </form>
