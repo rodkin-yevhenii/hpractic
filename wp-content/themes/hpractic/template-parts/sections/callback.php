@@ -1,10 +1,10 @@
 <?php
 
-if (empty($args['fields'])) :
+$shortcode = get_field('callback_shortkod', 'option');
+
+if (empty($shortcode)) :
     return;
 endif;
-
-$fields = $args['fields'];
 ?>
 <section class="section section-callback section--grey">
     <div class="container">
@@ -19,7 +19,7 @@ $fields = $args['fields'];
             </div>
             <div class="section__form">
                 <div class="form form--inline">
-                    <?php echo do_shortcode($fields['shortcode']); ?>
+                    <?php echo do_shortcode($shortcode); ?>
                 </div>
             </div>
         </div>

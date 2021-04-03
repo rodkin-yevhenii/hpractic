@@ -76,23 +76,6 @@ class Helpers
      *
      * @return int|null
      */
-    public static function getServicePageId(): ?int
-    {
-        $servicePageId = get_field('service_page', 'option');
-        $servicePageId = pll_get_post($servicePageId);
-
-        if (empty($servicePageId)) {
-            return null;
-        }
-
-        return $servicePageId;
-    }
-
-    /**
-     * Get service page id.
-     *
-     * @return int|null
-     */
     public static function getSearchPageId(): ?int
     {
         $searchPageId = get_field('search_page', 'option');
@@ -172,5 +155,26 @@ class Helpers
         }
 
         return '';
+    }
+
+    /**
+     * Get configured services list.
+     *
+     * @return array
+     */
+    public static function getServicesIdsList(): array
+    {
+        $ids = get_field('services_list', 'option');
+        $services = [];
+
+        if (empty($ids) || !is_array($ids)) {
+            return [];
+        }
+
+        foreach ($ids as $id) {
+            $services[] = pll_get_post($id);
+        }
+
+        return $services;
     }
 }

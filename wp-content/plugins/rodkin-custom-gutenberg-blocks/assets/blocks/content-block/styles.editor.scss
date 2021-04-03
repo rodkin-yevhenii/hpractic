@@ -1,0 +1,13 @@
+.wp-block-gutenberg-custom-block-container .block-editor-block-list__layout {
+    display: flex;
+
+    .block-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .block-list-appender {
+        align-self: center;
+    }
+}
+

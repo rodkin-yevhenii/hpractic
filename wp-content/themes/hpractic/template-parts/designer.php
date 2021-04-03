@@ -68,14 +68,8 @@ foreach ($sections as $section) {
             );
             break;
         case 'callback':
-            $group = $section['callback'] ?? null;
-
             get_template_part(
-                'template-parts/sections/callback',
-                null,
-                [
-                    'fields' => $group,
-                ]
+                'template-parts/sections/callback'
             );
             break;
         case 'advantages':

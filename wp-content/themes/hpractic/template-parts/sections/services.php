@@ -1,22 +1,28 @@
 <?php
 
 use Hpr\Admin\ServiceInit;
+use Hpr\Entity\Service;
 use Hpr\Service\Helpers\Helpers;
 
-if (empty($args['fields'])) :
-    return;
-endif;
+$args = [
+    'numberposts' => -1,
+    'post_type' => ServiceInit::$cptName,
+    'post_status' => 'publish',
+    'post__in' => Helpers::getServicesIdsList(),
+    'fields' => 'ids',
+    'orderby' => 'post__in'
+];
 
-$servicePageId = Helpers::getServicePageId();
+if (get_post_type(get_the_ID()) === ServiceInit::$cptName) {
+    $args['post__in'] = array_filter(
+        $args['post__in'],
+        function ($id) {
+            return $id !== get_the_ID();
+        }
+    );
+}
 
-$pagesIds = get_posts(
-    [
-        'numberposts' => -1,
-        'post_type' => ServiceInit::$cptName,
-        'post_status' => 'publish',
-        'fields' => 'ids'
-    ]
-);
+$pagesIds = get_posts($args);
 
 if (empty($pagesIds)) :
     return;
@@ -29,7 +35,7 @@ $fields = $args['fields'];
         <div class="section__inner">
             <div class="section__main">
                 <h3 class="heading heading--md heading--primary">
-                    <?php echo $fields['heading']; ?>
+                    <?php echo $fields['heading'] ?? __('ДРУГИЕ НАШИ<br/>УСЛУГИ', 'hpractice'); ?>
                 </h3>
                 <div class="section__controls u-desktop-sm-hidden">
                     <div class="section__controls-group">
@@ -48,14 +54,15 @@ $fields = $args['fields'];
             </div>
             <div class="section__slider">
                 <div class="slider">
-                    <?php foreach ($pagesIds as $id) : ?>
+                    <?php foreach ($pagesIds as $id) :
+                        $service = new Service($id); ?>
                         <div class="slider__item">
-                            <a href="<?php echo get_permalink($id); ?>" class="card card--secondary">
+                            <a href="<?php echo $service->getUrl(); ?>" class="card card--secondary">
                                 <div class="card__inner">
                                     <div class="card__content">
-                                        <h3 class="card__title "><?php echo get_the_title($id); ?></h3>
+                                        <h3 class="card__title "><?php echo $service->getTitle(); ?></h3>
                                         <p class="card__text text">
-                                            <?php echo get_the_excerpt($id); ?>
+                                            <?php echo $service->getExcerpt(); ?>
                                         </p>
                                     </div>
                                     <div class="card__actions card__actions--mobile-visible">

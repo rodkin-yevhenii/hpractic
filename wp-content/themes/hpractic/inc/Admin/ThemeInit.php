@@ -121,6 +121,15 @@ class ThemeInit
 
             acf_add_options_sub_page(
                 [
+                    'page_title'  => __('Настройки услуг'),
+                    'menu_title'  => __('Настройки услуг'),
+                    'parent_slug' => 'theme-settings',
+                    'menu_slug' => 'services-settings',
+                ]
+            );
+
+            acf_add_options_sub_page(
+                [
                     'page_title'  => __('Настройки заказов'),
                     'menu_title'  => __('Настройки заказов'),
                     'parent_slug' => 'theme-settings',
