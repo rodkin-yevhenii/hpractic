@@ -1,5 +1,5 @@
 <?php
 
-get_header(); ?>
-404
-<?php get_footer();
+get_header();
+get_template_part('template-parts/error/single', null, ['error' => 404]);
+get_footer();
