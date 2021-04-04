@@ -142,15 +142,29 @@ class Email
      */
     private function getHeaders(Message $mail): array
     {
+        $login = 'info@hpractic.com';
+        $to = $mail->getTo();
+
         $headers = [];
+        $headers[] = "Date: " . date("D, j M Y G:i:s") . " +0300\r\n";
+        $headers[] = "From: =?UTF-8?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode('Practice House'))) . "?= <$login>\r\n";
+        $headers[] = "X-Mailer: Post script Practice House \r\n";
+        $headers[] = "Reply-To: =?UTF-8?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode('Practice House'))) . "?= <$login>\r\n";
+        $headers[] = "X-Priority: 3 (Normal)\r\n";
+        $headers[] = "Message-ID: <12345654321." . date("YmjHis") . "@hpactic.com>\r\n";
+        $headers[] = "To: =?UTF-8?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode('Пользователю нашего сайта'))) . "?= <$to>\r\n";
+        $headers[] = "Subject: =?UTF-8?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode($mail->getSubject()))) . "?=\r\n";
+        $headers[] = "MIME-Version: 1.0\r\n";
+        $headers[] = "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers[] = "Content-Transfer-Encoding: 8bit\r\n";
 
-        if (!empty($mail->getFrom())) {
-            $headers[] = 'From: ' . $mail->getFrom();
-        }
-
-        if (!empty($mail->getContentType())) {
-            $headers[] = 'content-type: ' . $mail->getContentType();
-        }
+//        if (!empty($mail->getFrom())) {
+//            $headers[] = 'From: ' . $mail->getFrom() . '/r/n';
+//        }
+//
+//        if (!empty($mail->getContentType())) {
+//            $headers[] = 'content-type: ' . $mail->getContentType();
+//        }
 
         return $headers;
     }
