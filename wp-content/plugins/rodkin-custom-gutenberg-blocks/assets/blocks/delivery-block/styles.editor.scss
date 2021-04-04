@@ -1,0 +1,25 @@
+[data-type="gutenberg-custom-block/delivery"]:nth-child(2n)::before {
+    display: block;
+    visibility: visible;
+    content: '';
+    top: -1rem;
+    bottom: -1rem;
+    right: -9999rem;
+    left: -9.6rem;
+    border-radius: .8rem;
+    background-color: #F2F5F8;
+    position: absolute;
+}
+
+.wp-block-gutenberg-custom-block-delivery {
+    .heading__icon {
+        svg {
+            width: 42px;
+            height: 42px;
+        }
+    }
+
+    .heading {
+        position: relative;
+    }
+}

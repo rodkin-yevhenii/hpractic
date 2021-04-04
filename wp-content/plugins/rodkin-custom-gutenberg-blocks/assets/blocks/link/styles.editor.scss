@@ -1,0 +1,47 @@
+.wp-block-gutenberg-custom-block-link {
+    &.active {
+        background-color: #ccc3;
+        border-radius: 10px;
+        padding: 10px;
+
+        .link {
+            &.active {
+                font-weight: bold;
+            }
+
+            [contenteditable] {
+                min-width: 145px;
+                display: inline-block;
+            }
+        }
+    }
+
+    .link {
+        .icon {
+            width: 17px;
+            height: 17px;
+            margin-right: 0.5rem;
+        }
+    }
+
+    .item__add {
+        width: 100%;
+        text-align: center;
+    }
+
+    .item__remove {
+        .icon {
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+            margin-left: 1rem;
+        }
+    }
+}
+
+.block-title {
+    color: #8aa4b8;
+    width: 100%;
+    text-align: center;
+}
+
