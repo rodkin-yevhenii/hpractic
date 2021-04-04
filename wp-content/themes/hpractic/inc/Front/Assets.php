@@ -201,6 +201,14 @@ class Assets
             'deps' => 'cart'
         ];
 
+        if (is_page_template('page-contacts.php')) {
+            $scripts[] = [
+                'handle' => 'contacts',
+                'src' => DIST_URI . 'js/contacts.js',
+                'deps' => 'cart'
+            ];
+        }
+
         return $scripts;
     }
 }

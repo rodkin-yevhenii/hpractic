@@ -2,7 +2,9 @@
 
 namespace Hpr\Service\Helpers;
 
+use Hpr\Entity\Message;
 use Hpr\Entity\Product;
+use Hpr\Service\Email\Email;
 
 /**
  * Class Helpers
@@ -193,5 +195,151 @@ class Helpers
         }
 
         return $services;
+    }
+
+    /**
+     * Send contact form.
+     */
+    public static function sendContactFormCallback(): void
+    {
+        $response = [
+            'status' => false,
+            'error' => [
+                'title' => __('Упс... Что-то пошло не так =(', 'hpractice'),
+                'message' => __(
+                    'Возникла ошибка при отправке сообщения. Свяжитесь с менеджером через телефон или мессенджер',
+                    'hpractice'
+                ),
+            ],
+            'data' => []
+        ];
+
+        $name = $_POST['name'] ?? false;
+        $phone = $_POST['phone'] ?? false;
+        $email = $_POST['email'] ?? '';
+        $comment = $_POST['comment'] ?? '';
+
+        if (!$name || !$phone) {
+            $response['error'] = [
+                'title' => __('Ошибка заполнения формы', 'hpractice'),
+                'message' => __(
+                    'Пожалуйста заполните обязательные поля (имя и телефон).',
+                    'hpractice'
+                ),
+            ];
+
+            wp_send_json($response);
+        }
+
+        $messageBody = "Покупатель: $name<br/>";
+        $messageBody .= "Телефон: $phone<br/>";
+        $messageBody .= "Email: $email<br/>";
+        $messageBody .= "Комментарий: <br/>$comment";
+
+        $email = new Email();
+        $message = new Message();
+
+        $message->setSubject('Новое сообщение из формы контактов')
+            ->setBody($messageBody);
+
+        $managersEmails = get_field('managers-emails', 'option');
+
+        if (empty($managersEmails)) {
+            wp_send_json($response);
+        }
+
+        $isSent = false;
+
+        foreach ($managersEmails as $manager) {
+            $message->setTo($manager['email']);
+
+            $result = $email->send($message);
+
+            if ($result) {
+                $isSent = true;
+            }
+        }
+
+        if (!$isSent) {
+            wp_send_json($response);
+        }
+
+        $response['status'] = true;
+        $response['data'] = [
+            'title' => __('Спасибо за обращение', 'hpractice'),
+            'message' => __('Менеджер свяжется с Вами с ближайшее рабочее время', 'hpractice'),
+        ];
+
+        unset($response['error']);
+        wp_send_json($response);
+    }
+
+    /**
+     * Send callback form.
+     */
+    public static function sendCallbackFormCallback(): void
+    {
+        $response = [
+            'status' => false,
+            'error' => [
+                'title' => __('Упс... Что-то пошло не так =(', 'hpractice'),
+                'message' => __(
+                    'Возникла ошибка при отправке сообщения. Свяжитесь с менеджером через телефон или мессенджер',
+                    'hpractice'
+                ),
+            ],
+            'data' => []
+        ];
+
+        $phone = $_POST['phone'] ?? false;
+
+        if (!$phone) {
+            $response['error'] = [
+                'title' => __('Ошибка заполнения формы', 'hpractice'),
+                'message' => __(
+                    'Пожалуйста введите Ваш телефон',
+                    'hpractice'
+                ),
+            ];
+
+            wp_send_json($response);
+        }
+
+        $email = new Email();
+        $message = new Message();
+
+        $message->setSubject('Новый запрос обратного звонка')
+                ->setBody($phone);
+
+        $managersEmails = get_field('managers-emails', 'option');
+
+        if (empty($managersEmails)) {
+            wp_send_json($response);
+        }
+
+        $isSent = false;
+
+        foreach ($managersEmails as $manager) {
+            $message->setTo($manager['email']);
+
+            $result = $email->send($message);
+
+            if ($result) {
+                $isSent = true;
+            }
+        }
+
+        if (!$isSent) {
+            wp_send_json($response);
+        }
+
+        $response['status'] = true;
+        $response['data'] = [
+            'title' => __('Спасибо за обращение', 'hpractice'),
+            'message' => __('Менеджер свяжется с Вами с ближайшее рабочее время', 'hpractice'),
+        ];
+
+        unset($response['error']);
+        wp_send_json($response);
     }
 }

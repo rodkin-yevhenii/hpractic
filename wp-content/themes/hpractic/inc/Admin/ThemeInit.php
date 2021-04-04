@@ -3,6 +3,7 @@
 namespace Hpr\Admin;
 
 use Hpr\Front\Assets;
+use Hpr\Front\Front;
 
 /**
  * Class ThemeInit
@@ -25,6 +26,7 @@ class ThemeInit
         $this->initOrder();
         $this->initAssets();
         $this->initMenu();
+        $this->initFront();
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
@@ -91,6 +93,14 @@ class ThemeInit
     private function initOrder(): void
     {
         new OrderInit();
+    }
+
+    /**
+     * Frontend hooks and callbacks.
+     */
+    private function initFront(): void
+    {
+        new Front();
     }
 
     /**

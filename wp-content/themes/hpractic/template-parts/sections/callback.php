@@ -6,7 +6,7 @@ if (empty($shortcode)) :
     return;
 endif;
 ?>
-<section class="section section-callback section--grey">
+<section class="section section-callback section--grey js-section-callback">
     <div class="container">
         <div class="section__row">
             <div class="section__text">
@@ -19,7 +19,23 @@ endif;
             </div>
             <div class="section__form">
                 <div class="form form--inline">
-                    <?php echo do_shortcode($shortcode); ?>
+                    <form action="">
+                        <div class="form__row">
+                            <div class="form__field">
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    id="cta-phone"
+                                    placeholder="<?php __('Телефон', 'hpractice'); ?>"
+                                >
+                            </div>
+                            <div class="form__actions">
+                                <button class="btn btn--primary js-send-callback-form" type="submit">
+                                    <?php _e('Отправить', 'hpractice'); ?>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

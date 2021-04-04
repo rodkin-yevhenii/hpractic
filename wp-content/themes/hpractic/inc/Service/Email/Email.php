@@ -2,6 +2,7 @@
 
 namespace Hpr\Service\Email;
 
+use Hpr\Entity\Message;
 use Hpr\Entity\Order;
 
 /**
@@ -114,5 +115,43 @@ class Email
 
             wp_mail($email, $subject, $message, $this->headers);
         }
+    }
+
+    /**
+     * Send Email.
+     *
+     * @param Message $mail
+     *
+     * @return bool
+     */
+    public function send(Message $mail): bool
+    {
+        if (wp_mail($mail->getTo(), $mail->getSubject(), $mail->getBody(), $this->getHeaders($mail))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get email headers;
+     *
+     * @param Message $mail
+     *
+     * @return array
+     */
+    private function getHeaders(Message $mail): array
+    {
+        $headers = [];
+
+        if (!empty($mail->getFrom())) {
+            $headers[] = 'From: ' . $mail->getFrom();
+        }
+
+        if (!empty($mail->getContentType())) {
+            $headers[] = 'content-type: ' . $mail->getContentType();
+        }
+
+        return $headers;
     }
 }

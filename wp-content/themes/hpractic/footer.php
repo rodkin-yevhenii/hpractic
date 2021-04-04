@@ -167,6 +167,7 @@ $footer = get_field('footer', 'option');
 get_template_part('template-parts/popups/cart');
 get_template_part('template-parts/popups/success');
 get_template_part('template-parts/popups/error');
+get_template_part('template-parts/popups/info');
 
 wp_footer(); ?>
 </body>

@@ -10,6 +10,7 @@ jQuery(document).ready(function($){
   const productTabs = $('.product .tabs');
   const adminBar = $('#wpadminbar');
   const headerSearch = $('.header__search .form__field');
+  const callbackForm = $('.js-section-callback form');
 
   if (adminBar.length) {
     $('header.header').css('top', adminBar.height());
@@ -297,6 +298,48 @@ jQuery(document).ready(function($){
     e.preventDefault();
     const popup = $(e.currentTarget).closest('popup');
     popup.magnificPopup('close');
+  });
+
+  callbackForm.on('click', '.js-send-callback-form', function (e) {
+    e.preventDefault();
+
+    const data = {
+      action: 'send_callback_form',
+      phone: callbackForm.find('input[name=phone]').val()
+    }
+
+    $.ajax({
+      type: "POST",
+      url: '/wp-admin/admin-ajax.php',
+      cache: false,
+      dataType: 'json',
+      data,
+    }).done(function (response) {
+      if (!response.status) {
+        showPopup(
+          '#popup-error',
+          {
+            title: response.error.title,
+            message: response.error.message,
+          },
+          false
+        );
+        return;
+      }
+
+      showPopup(
+        '#popup-info',
+        {
+          title: response.data.title,
+          message: response.data.message,
+        },
+        false
+      );
+
+      callbackForm.find('input[name=phone]').val('')
+    }).fail(function (err) {
+      console.log(err);
+    });
   });
 
   mobileMenu.on('click', '.nav > ul > li', function(e){
