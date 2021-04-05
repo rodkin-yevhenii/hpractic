@@ -43,13 +43,13 @@ class Order
         $this->isCustomerMailSent = $fields['isCustomerMailSent'] ?? '';
         $this->cost = $fields['cost'] ?? 0;
 
-        if (empty($fields['orderItems']) || !is_array($fields['orderItems'])) {
-            $this->orderItems = $fields['orderItems'] ?? [];
+        if (empty($fields['order-items']) || !is_array($fields['order-items'])) {
+            $this->orderItems = $fields['order-items'] ?? [];
 
             return;
         }
 
-        foreach ($fields['orderItems'] as $item) {
+        foreach ($fields['order-items'] as $item) {
             $productId = $item['id'] ?? 0;
             $quantity = $item['quantity'] ?? 1;
 

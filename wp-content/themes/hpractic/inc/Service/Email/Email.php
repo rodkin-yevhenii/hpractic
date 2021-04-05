@@ -91,7 +91,7 @@ class Email
     public function sendNewOrderManagerMail(int $orderId): void
     {
         $order = new Order($orderId);
-        $managersEmails = get_field('managers_emails', 'options');
+        $managersEmails = get_field('managers-emails', 'option');
 
         if (empty($managersEmails) || empty($order->getOrderItems())) {
             return;
