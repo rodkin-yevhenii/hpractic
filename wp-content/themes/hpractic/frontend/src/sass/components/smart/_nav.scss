@@ -9,7 +9,7 @@
   text-transform: uppercase;
   color: $color-primary-dark;
   text-decoration: none;
-  
+
   a {
     display: flex;
     align-items: center;
@@ -18,31 +18,31 @@
     color: currentColor;
     transition: color .08s linear;
     --iconColor: currentColor;
-    
+
     &:hover, &.active {
       color: $color-primary;
       --iconColor: $color-primary;
     }
-    
+
     &:not(:first-child) {
       margin-left: 4rem;
     }
-    
+
     .icon {
       margin-left: 0.5em;
       position: relative;
       transform: rotate(90deg);
     }
   }
-  
-  
+
+
   & > ul {
     display: flex;
     list-style: none;
-    
+
     & > li {
       position: relative;
-      
+
       &:hover {
         #{$nav}{
           &__sub {
@@ -54,7 +54,7 @@
           }
         }
       }
-      
+
       &.visible-submenu {
         #{$nav}{
           &__sub {
@@ -66,26 +66,26 @@
           }
         }
       }
-      
+
       &:not(:first-child) {
         margin-left: 4rem;
-  
+
         @media only screen and (max-width: $container-desktop-lg){
           margin-left: 3rem;
         }
-        
-        
+
+
         @media only screen and(max-width: 1199px) {
           margin-left: 1.5rem;
         }
       }
     }
   }
-  
+
   &__sub {
     text-align: left;
     transition: opacity .3s .3s;
-    
+
     &:not(.nav__sub--static) {
       position: absolute;
       left: 50%;
@@ -105,19 +105,19 @@
         padding: 1rem 0;
       }
     }
-    
+
     & > ul {
       flex-direction: column;
-      
+
       & > li {
         position: relative;
         padding: 0 5rem;
-        margin: 1rem 0;
-        
+        margin: 1.2rem 0;
+
         @media only screen and (max-width: $container-desktop-lg) {
           padding: 0 3rem;
         }
-        
+
         & > a {
           padding: 0.2rem 0;
           position: static;
@@ -126,11 +126,11 @@
           line-height: 2.1rem;
           font-weight: 600;
           justify-content: flex-start;
-  
+
           @media only screen and (max-width: $container-desktop-lg) {
             font-size: 1.5rem;
           }
-          
+
           &::before {
             content: '';
             position: absolute;
@@ -145,10 +145,10 @@
             transition: opacity .08s;
             margin: auto;
           }
-          
+
           &:hover, &.active {
             color: $color-primary;
-            
+
             &::before {
               opacity: 1;
             }
@@ -156,19 +156,19 @@
         }
       }
     }
-    
+
     &--static {
       align-self: flex-start;
       justify-self: flex-start;
       width: 100%;
       max-width: 100%;
       margin: 0 0 auto;
-      
+
       & > ul {
         & > li {
           padding: 0 0 0 2.2rem;
           margin: 0;
-          
+
           &:not(:last-child){
             margin-bottom: 2rem;
           }
