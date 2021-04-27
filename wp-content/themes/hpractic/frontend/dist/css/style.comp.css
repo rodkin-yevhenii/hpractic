@@ -1852,6 +1852,7 @@ img[src=""] {
       max-width: 100%; }
       .article figure:not(.container):not([class*="article"]):not([class*="tab"]) > img, .article div:not(.container):not([class*="article"]):not([class*="tab"]) > img, .article section:not(.container):not([class*="article"]):not([class*="tab"]) > img {
         width: auto;
+        height: auto;
         margin-left: 6rem;
         margin-right: 6rem; }
         @media only screen and (max-width: 1023px) {
