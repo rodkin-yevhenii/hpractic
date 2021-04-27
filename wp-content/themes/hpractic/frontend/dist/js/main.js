@@ -12,10 +12,6 @@ jQuery(document).ready(function($){
   const headerSearch = $('.header__search .form__field');
   const callbackForm = $('.js-section-callback form');
 
-  if (adminBar.length) {
-    $('header.header').css('top', adminBar.height());
-  }
-
   initHeaderSearch(headerSearch);
 
   const productPreview = $('.product__preview');
