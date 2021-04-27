@@ -26,7 +26,7 @@ $faviconUrl = get_field('favicon', 'option');
 </head>
 <body>
 <div class="root" id="root">
-    <header class="header">
+    <header class="header" <?php echo is_user_logged_in() ? 'style="top:32px;"' : '';?>>
         <div class="container">
             <div class="header__content">
                 <?php if (!empty($logo)) : ?>
