@@ -115,7 +115,6 @@ $breadcrumbs = new Breadcrumbs($id);
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                    <figcaption><?php _e('Характеристики изделия', 'hpractice'); ?></figcaption>
                                 </figure>
                             </div>
                         <?php endif; ?>
