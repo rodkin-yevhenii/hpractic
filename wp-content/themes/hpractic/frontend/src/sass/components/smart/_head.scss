@@ -19,10 +19,10 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    min-height: 30rem;
+    min-height: 24rem;
   
     @media only screen and(max-width: $container-desktop-md) {
-      min-height: 26.8rem;
+      min-height: 22.2rem;
     }
   
     @media only screen and(max-width: $container-tablet) {

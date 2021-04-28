@@ -945,7 +945,7 @@ img[src=""] {
       .nav__sub > ul > li {
         position: relative;
         padding: 0 5rem;
-        margin: 1rem 0; }
+        margin: 1.2rem 0; }
         @media only screen and (max-width: 1700px) {
           .nav__sub > ul > li {
             padding: 0 3rem; } }
@@ -1003,10 +1003,10 @@ img[src=""] {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    min-height: 30rem; }
+    min-height: 24rem; }
     @media only screen and (max-width: 1320px) {
       .head__content {
-        min-height: 26.8rem; } }
+        min-height: 22.2rem; } }
     @media only screen and (max-width: 1023px) {
       .head__content {
         margin-bottom: 0;
@@ -1854,7 +1854,8 @@ img[src=""] {
         width: auto;
         height: auto;
         margin-left: 6rem;
-        margin-right: 6rem; }
+        margin-right: 6rem;
+        align-self: center; }
         @media only screen and (max-width: 1023px) {
           .article figure:not(.container):not([class*="article"]):not([class*="tab"]) > img, .article div:not(.container):not([class*="article"]):not([class*="tab"]) > img, .article section:not(.container):not([class*="article"]):not([class*="tab"]) > img {
             margin-left: auto;

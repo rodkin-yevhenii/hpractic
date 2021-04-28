@@ -314,7 +314,8 @@
         height: auto;
         margin-left: 6rem;
         margin-right: 6rem;
-
+        align-self: center;
+        
         @media only screen and(max-width: $container-tablet) {
           margin-left: auto;
           margin-right: auto;
