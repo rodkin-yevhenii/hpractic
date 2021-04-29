@@ -998,15 +998,11 @@ img[src=""] {
     background-color: #fff; }
   .head__content {
     padding: 6rem 0;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 24rem; }
-    @media only screen and (max-width: 1320px) {
-      .head__content {
-        min-height: 22.2rem; } }
+    justify-content: flex-start; }
     @media only screen and (max-width: 1023px) {
       .head__content {
         margin-bottom: 0;
@@ -1017,7 +1013,8 @@ img[src=""] {
         padding: 10rem 0 6rem; } }
     .head__content:first-child {
       min-height: unset;
-      padding: 10rem 0; }
+      padding: 10rem 0;
+      margin-bottom: 0; }
       @media only screen and (max-width: 560px) {
         .head__content:first-child {
           padding-bottom: 6rem; } }
