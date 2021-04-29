@@ -35,7 +35,7 @@
                                 <label class="form__label" for="cart-name">
                                     <?php _e('Ваше имя', 'hpractice'); ?>*
                                 </label>
-                                <input type="text" name="name" id="cart-name" placeholder="Имя" required>
+                                <input type="text" name="name" id="cart-name" placeholder="<?php _e('Имя', 'hpractice'); ?>*" required>
                             </div>
                             <div class="form__field">
                                 <label class="form__label" for="cart-phone">
@@ -59,7 +59,7 @@
                             <label class="form__label" for="cart-comment">
                                 <?php _e('Комментарий к заказу', 'hpractice'); ?>
                             </label>
-                            <textarea name="comment" id="cart-comment" placeholder="Комментарий к заказу"></textarea>
+                            <textarea name="comment" id="cart-comment" placeholder="<?php _e('Комментарий к заказу', 'hpractice'); ?>"></textarea>
                         </div>
                     </div>
                     <div class="form__note">

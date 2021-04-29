@@ -174,7 +174,7 @@ get_template_part('template-parts/catalog/section-head');
                                     <label class="form__label" for="contacts-name">
                                         <?php _e('Ваше имя', 'hpractice'); ?>*
                                     </label>
-                                    <input type="text" name="name" id="contacts-name" placeholder="Имя" required>
+                                    <input type="text" name="name" id="contacts-name" placeholder="<?php _e('Ваше имя', 'hpractice'); ?>*" required>
                                 </div>
                                 <div class="form__field">
                                     <label class="form__label" for="contacts-phone">

@@ -10,7 +10,7 @@
                 <?php _e('Что-то пошло не так =(', 'hpractice'); ?>
             </h6>
             <p class="text text--center popup-text-js">
-                <?php _e('Возникла ошибка, попробуйте формить заказ немного позже...', 'hpractice'); ?>
+                <?php _e('Возникла ошибка, попробуйте формить заказ немного позже', 'hpractice'); ?>
             </p>
         </div>
         <div class="popup__actions">

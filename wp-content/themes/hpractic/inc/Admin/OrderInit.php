@@ -47,7 +47,7 @@ class OrderInit
                     'add_new_item' => __('Добавить новый заказ', 'hpractice'),
                     'edit_item' => __('Редактировать заказ', 'hpractice'),
                     'new_item' => __('Новый заказ', 'hpractice'),
-                    'view_item' => __('Просмотреть заказ', 'hpractice'),
+                    'view_item' => __('Посмотреть заказ', 'hpractice'),
                     'search_items' => __('Искать заказ', 'hpractice'),
                     'not_found' => __('Заказы не найдены', 'hpractice'),
                     'menu_name' => __('Заказы', 'hpractice'),
@@ -93,7 +93,7 @@ class OrderInit
             'error' => [
                 'title' => __('Упс... Что-то пошло не так =(', 'hpractice'),
                 'message' => __(
-                    'Возникла ошибка, попробуйте формить заказ еще раз или свяжитесь с администратором',
+                    'Возникла ошибка, попробуйте оформить заказ еще раз или свяжитесь с нашим менеджером',
                     'hpractice'
                 ),
             ],
@@ -107,7 +107,7 @@ class OrderInit
 
         if (!$customer || !$phone) {
             $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
-            $response['error']['message'] = __('Не заполненно поле имени или номера телефона.', 'hpractice');
+            $response['error']['message'] = __('Не заполненно поле имени или номера телефона', 'hpractice');
 
             wp_send_json($response);
         }
@@ -141,7 +141,7 @@ class OrderInit
         );
 
         if (is_wp_error($orderId) || ! $orderId) {
-            $response['message'] = __('Ошибка создания заказа! Пожалуйста, свяжитесь с администратором.', 'hpractice');
+            $response['message'] = __('Ошибка создания заказа! Пожалуйста, свяжитесь с нашим менеджером', 'hpractice');
         }
 
         update_field('customer', $customer, $orderId);

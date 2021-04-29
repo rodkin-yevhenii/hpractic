@@ -118,7 +118,7 @@ class Helpers
 
         if (empty($ids)) {
             $response['error']['title'] = __('Упс... Что-то пошло не так =(', 'hpractice');
-            $response['error']['message'] = __('Корзина пуста, сначала добавьте товары в корзину.', 'hpractice');
+            $response['error']['message'] = __('Корзина пуста, сначала добавьте товары в корзину', 'hpractice');
 
             wp_send_json($response);
         }
@@ -223,8 +223,8 @@ class Helpers
             $response['error'] = [
                 'title' => __('Ошибка заполнения формы', 'hpractice'),
                 'message' => __(
-                    'Пожалуйста заполните обязательные поля (имя и телефон).',
-                    'hpractice'
+                    'Пожалуйста, заполните обязательные поля (имя и телефон).',
+                    'hpractice'ё
                 ),
             ];
 
@@ -267,7 +267,7 @@ class Helpers
         $response['status'] = true;
         $response['data'] = [
             'title' => __('Спасибо за обращение', 'hpractice'),
-            'message' => __('Менеджер свяжется с Вами с ближайшее рабочее время', 'hpractice'),
+            'message' => __('Менеджер свяжется с Вами в ближайшее рабочее время', 'hpractice'),
         ];
 
         unset($response['error']);
@@ -336,7 +336,7 @@ class Helpers
         $response['status'] = true;
         $response['data'] = [
             'title' => __('Спасибо за обращение', 'hpractice'),
-            'message' => __('Менеджер свяжется с Вами с ближайшее рабочее время', 'hpractice'),
+            'message' => __('Менеджер свяжется с Вами в ближайшее рабочее время', 'hpractice'),
         ];
 
         unset($response['error']);
