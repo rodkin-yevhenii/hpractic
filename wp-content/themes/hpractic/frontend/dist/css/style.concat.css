@@ -1018,6 +1018,8 @@ img[src=""] {
       @media only screen and (max-width: 560px) {
         .head__content:first-child {
           padding-bottom: 6rem; } }
+    .head__content .heading {
+      min-height: 2.4em; }
 
 .quantity {
   display: inline-block;
