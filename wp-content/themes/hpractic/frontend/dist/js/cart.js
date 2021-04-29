@@ -195,9 +195,11 @@ const UIController = (function(){
           '    <svg class="icon icon--extra-lg">\n' +
           '        <use xlink:href="/wp-content/themes/hpractic/frontend/src/img/icons-sprite.svg#icon-shopping-cart"></use>\n' +
           '    </svg>\n' +
-          '    <p class="text">Ваша корзина пустая</p>\n' +
+          '    <p class="text">' + (lang === 'ru' ? 'Ваша корзина пуста' : 'Ваша корзина порожня') + '</p>\n' +
           '    <div class="popup__actions">\n' +
-          '        <button class="btn btn--secondary" type="button" data-popup-close="popup-cart">Продолжить покупки</button>\n' +
+          '        <button class="btn btn--secondary" type="button" data-popup-close="popup-cart">' +
+          '            ' + (lang === 'ru' ? 'Продолжить покупки' : 'Продовжити покупки') +
+          '        </button>\n' +
           '    </div>\n' +
           '</div>';
   }
