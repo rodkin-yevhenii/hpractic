@@ -27,13 +27,9 @@ if (!$gallery) {
             <div class="slider">
                 <?php foreach ($gallery as $imgId) : ?>
                     <div class="slider__item">
-                        <a
-                            href="<?php echo wp_get_original_image_url($imgId); ?>"
-                            class="product__img"
-                            title="<?php _e('Нажмите для увеличения', 'hpractice'); ?>"
-                        >
+                        <span class="product__img">
                             <?php echo wp_get_attachment_image($imgId, 'product-gallery-preview'); ?>
-                        </a>
+                        </span>
                     </div>
                 <?php endforeach; ?>
             </div>
