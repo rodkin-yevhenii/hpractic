@@ -14,15 +14,15 @@
   
   &__content {
     padding: 6rem 0;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    min-height: 24rem;
+    //min-height: 24rem;
   
     @media only screen and(max-width: $container-desktop-md) {
-      min-height: 22.2rem;
+      //min-height: 22.2rem;
     }
   
     @media only screen and(max-width: $container-tablet) {
@@ -38,10 +38,15 @@
     &:first-child {
       min-height: unset;
       padding: 10rem 0;
-  
+      margin-bottom: 0;
+      
       @media only screen and(max-width: $container-mobile-lg) {
         padding-bottom: 6rem;
       }
+    }
+    
+    .heading {
+      min-height: 2.4em;
     }
   }
 }
