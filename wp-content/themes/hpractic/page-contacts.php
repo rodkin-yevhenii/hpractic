@@ -174,7 +174,7 @@ get_template_part('template-parts/catalog/section-head');
                                     <label class="form__label" for="contacts-name">
                                         <?php _e('Ваше имя', 'hpractice'); ?>*
                                     </label>
-                                    <input type="text" name="name" id="contacts-name" placeholder="<?php _e('Ваше имя', 'hpractice'); ?>*" required>
+                                    <input type="text" name="name" id="contacts-name" placeholder="<?php _e('Имя', 'hpractice'); ?>" required>
                                 </div>
                                 <div class="form__field">
                                     <label class="form__label" for="contacts-phone">
@@ -197,12 +197,12 @@ get_template_part('template-parts/catalog/section-head');
                             </div>
                             <div class="form__field">
                                 <label class="form__label" for="contacts-message">
-                                    <?php _e('Сообщение', 'hpractice'); ?>
+                                    <?php _e('Ваше сообщение', 'hpractice'); ?>
                                 </label>
                                 <textarea
                                     name="comment"
                                     id="contacts-message"
-                                    placeholder="<?php _e('Ваше сообщение', 'hpractice'); ?>"
+                                    placeholder="<?php _e('Сообщение', 'hpractice'); ?>"
                                 ></textarea>
                             </div>
                             <div class="form__actions form__actions--left">
