@@ -81,7 +81,7 @@ if (!empty($categoryPagesIds)) : ?>
                                                             echo __('от', 'hpractice') . ' ';
                                                         endif;
 
-                                                        echo $product->getPrice(); ?> <?php _e('грн', 'hpractice'); ?>
+                                                        echo number_format($product->getPrice(), 0, '.', ' '); ?> <?php _e('грн', 'hpractice'); ?>
                                                     </div>
                                                 </div>
                                             </div>
