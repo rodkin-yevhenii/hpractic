@@ -9,34 +9,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  
+
   &.aligncenter {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
   }
-  
+
   &.alignleft {
     margin-left: 0;
     margin-right: auto;
     justify-content: flex-start;
   }
-  
+
   &.alignright {
     margin-left: auto;
     margin-right: 0;
     justify-content: flex-end;
   }
-  
+
   &.aligncenter, .alignleft, .alignright {
     display: flex;
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
       margin: 0;
       justify-content: flex-start;
     }
   }
-  
+
   table {
     width: 100%;
     font-size: inherit;
@@ -47,43 +47,55 @@
     min-width: 48rem;
     align-self: flex-start;
     justify-self: flex-start;
-    
+
     thead {
       vertical-align: baseline;
-    
+
       tr {
         background: $color-grey-light;
       }
-    
+
       td, th {
         font-weight: 700;
         text-align: left;
       }
     }
-  
+
     tbody {
       tr {
         background: $color-white;
       }
-    
+
       td {
       }
     }
-  
+
     td, th {
       padding: 2rem 2rem;
       font-weight: normal;
       color: $color-secondary-dark;
       border: 1px solid $color-grey-lighter2;
-      
+
       img {
         display: block;
         max-width: 100%;
         max-height: 100%;
       }
+
+      .has-text-align-left {
+          text-align: left;
+      }
+
+      .has-text-align-center {
+        text-align: center;
+      }
+
+      .has-text-align-right {
+        text-align: right;
+      }
     }
   }
-  
+
   figcaption {
     width: 100%;
     margin: 1rem 0 0;

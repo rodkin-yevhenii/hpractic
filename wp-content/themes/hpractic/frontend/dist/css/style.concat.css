@@ -1208,6 +1208,12 @@ img[src=""] {
         display: block;
         max-width: 100%;
         max-height: 100%; }
+      .table-container table td .has-text-align-left, .table-container table th .has-text-align-left, .wp-block-table table td .has-text-align-left, .wp-block-table table th .has-text-align-left {
+        text-align: left; }
+      .table-container table td .has-text-align-center, .table-container table th .has-text-align-center, .wp-block-table table td .has-text-align-center, .wp-block-table table th .has-text-align-center {
+        text-align: center; }
+      .table-container table td .has-text-align-right, .table-container table th .has-text-align-right, .wp-block-table table td .has-text-align-right, .wp-block-table table th .has-text-align-right {
+        text-align: right; }
   .table-container figcaption, .wp-block-table figcaption {
     width: 100%;
     margin: 1rem 0 0;
