@@ -1162,6 +1162,24 @@ img[src=""] {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start; }
+  .table-container.aligncenter, .wp-block-table.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center; }
+  .table-container.alignleft, .wp-block-table.alignleft {
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: flex-start; }
+  .table-container.alignright, .wp-block-table.alignright {
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: flex-end; }
+  .table-container.aligncenter, .table-container .alignleft, .table-container .alignright, .wp-block-table.aligncenter, .wp-block-table .alignleft, .wp-block-table .alignright {
+    display: flex; }
+    @media only screen and (max-width: 767px) {
+      .table-container.aligncenter, .table-container .alignleft, .table-container .alignright, .wp-block-table.aligncenter, .wp-block-table .alignleft, .wp-block-table .alignright {
+        margin: 0;
+        justify-content: flex-start; } }
   .table-container table, .wp-block-table table {
     width: 100%;
     font-size: inherit;

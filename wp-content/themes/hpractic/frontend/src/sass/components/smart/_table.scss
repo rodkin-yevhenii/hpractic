@@ -10,6 +10,33 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   
+  &.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+  
+  &.alignleft {
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+  
+  &.alignright {
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: flex-end;
+  }
+  
+  &.aligncenter, .alignleft, .alignright {
+    display: flex;
+    
+    @media only screen and(max-width: $container-tablet-sm) {
+      margin: 0;
+      justify-content: flex-start;
+    }
+  }
+  
   table {
     width: 100%;
     font-size: inherit;
