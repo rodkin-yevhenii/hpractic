@@ -72,8 +72,8 @@ get_template_part('template-parts/catalog/section-head'); ?>
                                     <a href="<?php echo $product->getUrl(); ?>" class="card card--primary">
                                         <div class="card__inner">
                                             <div class="card__image card__image-1x1">
-                                                <?php echo get_the_post_thumbnail(
-                                                    $productId,
+                                                <?php echo wp_get_attachment_image(
+                                                    $product->getGallery()[0],
                                                     'product-catalog-thumbnail'
                                                 ); ?>
                                             </div>
