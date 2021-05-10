@@ -34,7 +34,7 @@ if (!$product) {
             <?php endif;?>
             <li><?php echo $product->getSellingType(); ?></li>
         </ul>
-        <?php if (!empty($product->isUnderOrder())) : ?>
+        <?php if (!empty($product->getAdditionalText())) : ?>
             <p><?php echo $product->getAdditionalText(); ?></p>
         <?php endif;?>
     </div>

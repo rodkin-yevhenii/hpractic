@@ -68,7 +68,7 @@ class Product extends AffiliateAbstract
 
         $underOrderTime = (int) $fields['product_settings']['under-order-time'] ?? 0;
         $this->underOrderTime = sprintf(
-            __('Под заказ, %d дней', 'hpractice'),
+            __('Под заказ, от %d дней', 'hpractice'),
             $underOrderTime
         );
         $minOrder = (int) $fields['product_settings']['min-order'] ?? 0;
