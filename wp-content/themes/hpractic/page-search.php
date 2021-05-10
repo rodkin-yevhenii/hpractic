@@ -87,7 +87,12 @@ get_template_part('template-parts/catalog/section-head'); ?>
                                                     <?php echo $product->getTitle(); ?>
                                                 </h3>
                                                 <div class="card__price">
-                                                    <?php echo $product->getPrice(); ?> <?php _e('грн', 'hpractice'); ?>
+                                                    <?php echo number_format(
+                                                        $product->getPrice(),
+                                                        0,
+                                                        '.',
+                                                        ' '
+                                                    ); ?> <?php _e('грн', 'hpractice'); ?>
                                                 </div>
                                             </div>
                                         </div>
