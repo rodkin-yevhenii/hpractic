@@ -11,32 +11,32 @@
 
 .heading {
   $heading: &;
-  
+
   @extend %title;
   text-transform: uppercase;
-  
+
   &:not(:last-child) {
     margin: 0 0 1.6rem;
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 1rem;
     }
   }
-  
+
   small {
     font-size: 0.72em;
   }
-  
+
   &__icon {
     font-size: 1.5em;
     line-height: 1;
     margin-right: 2rem;
     align-self: center;
   }
-  
+
   .icon {
   }
-  
+
   &__overlay {
     position: absolute;
     left: -0.88em;
@@ -51,42 +51,42 @@
     letter-spacing: -0.05em;
     text-transform: uppercase;
     z-index: 1;
-    
+
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 1.92em;
       left: -0.76em;
     }
-    
+
     @media only screen and (max-width: $container-desktop-lg) {
       font-size: 1.64em;
     }
-    
+
     &--primary {
       color: $color-grey-light3;
     }
-    
+
     &--secondary {
       color: rgba($color-dark-blue, 0.05);
     }
-    
+
     &--center {
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-  
+
       @media only screen and(max-width: $container-mobile-lg) {
         bottom: 56%;
         transform: none;
         top: auto;
       }
     }
-    
+
   }
-  
+
   &__number {
     height: 2.46em;
     display: block;
-    
+
     img {
       height: 100%;
       width: auto;
@@ -94,46 +94,52 @@
       display: block;
     }
   }
-  
+
+  &--block {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+
   &--lg {
     font-size: 4.8rem;
     line-height: 1;
-    
+
     #{$heading} {
       &__overlay {
         font-size: 2.7em;
         left: -0.74em;
         bottom: 78%;
-        
+
         @media only screen and(max-width: $container-desktop-lg) {
           font-size: 2.2em;
           left: -0.6em;
         }
-        
+
         @media only screen and(max-width: $container-desktop-sm) {
           font-size: 2em;
           left: -0.4em;
         }
-        
+
         @media only screen and(max-width: $container-tablet-sm) {
           left: 0;
         }
-        
+
         &--lg {
           @media only screen and(max-width: $container-desktop-lg) {
             font-size: 2.7em;
           }
-  
+
           @media only screen and(max-width: $container-desktop-sm) {
             font-size: 2em;
           }
         }
-        
+
         &--center {
           left: 0;
           top: 50%;
           transform: translateY(-50%);
-  
+
           @media only screen and(max-width: $container-mobile-lg) {
             bottom: 56%;
             transform: none;
@@ -142,81 +148,81 @@
         }
       }
     }
-    
+
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 4rem;
     }
-    
-    
+
+
     @media only screen and(max-width: $container-tablet-sm) {
       font-size: 3.2rem;
     }
   }
-  
+
   &--md {
     font-size: 3.2rem;
-    
+
     @media only screen and(max-width: $container-desktop-lg) {
       font-size: 2.8rem;
     }
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
       font-size: 2.4rem;
     }
   }
-  
+
   &--sm {
     font-size: 2.4rem;
-    
-    
+
+
     @media only screen and(max-width: 992px) {
-    
+
     }
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
-    
+
     }
   }
-  
+
   &--primary {
     text-transform: uppercase;
   }
-  
+
   &--secondary {
     text-transform: none;
   }
-  
+
   &--blue {
     color: $color-primary;
   }
-  
+
   &--white {
     color: $color-white;
   }
-  
+
   &--center {
     text-align: center;
     justify-content: center;
-    
+
     #{$heading} {
       &__overlay {
         left: 50%;
         transform: translateX(-50%);
         justify-content: center;
         text-align: center;
-        
+
         @media only screen and(max-width: $container-tablet-sm) {
           white-space: nowrap;
         }
       }
     }
-    
+
     &-tablet {
       @media only screen and(max-width: $container-tablet) {
         text-align: center;
         justify-content: center;
       }
-      
+
       #{$heading} {
         &__overlay {
           @media only screen and(max-width: $container-tablet) {
@@ -230,11 +236,11 @@
       }
     }
   }
-  
+
   &--mb-lg {
     &:not(:last-child) {
       margin: 0 0 7.2rem;
-      
+
       @media only screen and(max-width: $container-tablet-sm) {
         margin-bottom: 4rem;
       }
@@ -245,49 +251,49 @@
 .subheading {
   @extend %title;
   font-weight: 600;
-  
+
   &:not(:last-child) {
     margin: 0 0 2rem;
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 2rem;
     }
   }
-  
+
   &--md {
     font-size: 2.1rem;
     line-height: 2.4rem;
-    
+
     @media only screen and(max-width: 992px) {
-    
+
     }
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
-    
+
     }
-    
+
   }
-  
+
   &--sm {
     font-size: 1.7rem;
     line-height: 2.4rem;
-    
-    
+
+
     @media only screen and(max-width: 992px) {
-    
+
     }
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
-    
+
     }
   }
-  
+
   &--mb-md {
     &:not(:last-child) {
       margin: 0 0 4.8rem;
     }
   }
-  
+
   &--center {
     text-align: center;
     justify-content: center;
@@ -300,51 +306,51 @@
   font-style: normal;
   font-size: 1.7rem;
   line-height: 1.64em;
-  
-  
+
+
   @media only screen and(max-width: 992px) {
-    
+
   }
-  
+
   &:not(:last-child) {
     margin: 0 0 2rem;
-    
+
     @media only screen and(max-width: $container-tablet-sm) {
       margin-bottom: 2rem;
     }
   }
-  
+
   &--sm {
     font-size: 1.5rem;
-    
-    
+
+
     @media only screen and(max-width: 992px) {
-      
+
     }
   }
-  
+
   &--primary {
     color: $color-secondary-dark;
   }
-  
+
   &--secondary {
     color: $color-white;
   }
-  
+
   &--bold {
     font-weight: 600;
   }
-  
+
   &--center {
     text-align: center;
   }
-  
+
   &--mb-md {
     &:not(:last-child) {
       margin-bottom: 2rem;
     }
   }
-  
+
   &--mb-sm {
     &:not(:last-child) {
       margin-bottom: 1rem;
