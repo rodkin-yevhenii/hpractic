@@ -403,7 +403,7 @@ class OrderInit
         global $menu;
 
         foreach ($menu as &$item) {
-            if ('menu-posts-order' !== $item[5] ?? '') {
+            if ('menu-posts-order' !== ($item[5] ?? '')) {
                 continue;
             }
 
