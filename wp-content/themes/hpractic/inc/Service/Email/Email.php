@@ -73,6 +73,7 @@ class Email
 
         $subject = str_replace('{{{order}}}', $order->getId(), $subject);
         $message = str_replace('{{{customer}}}', $order->getCustomer(), ob_get_clean());
+        $message = str_replace('{{{order}}}', $order->getId(), $message);
 
         if (wp_mail($order->getEmail(), $subject, $message, $this->headers)) {
             return true;

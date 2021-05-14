@@ -176,7 +176,7 @@ endif;
                                 'template-parts/emails/new-order/order-item',
                                 null,
                                 [
-                                    'id' => $products[$i],
+                                    'id' => $id,
                                     'quantity' => $quantity
                                 ]
                             );
