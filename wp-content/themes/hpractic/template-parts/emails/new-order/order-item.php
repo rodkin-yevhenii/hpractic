@@ -57,11 +57,11 @@ if ($imgId) {
                                                             <img
                                                                 align="center"
                                                                 border="0"
-                                                                style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 116px; display: block;"
+                                                                style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 75px; display: block; padding: 10px;"
                                                                 alt="<?php echo $product->getTitle() ?>"
                                                                 title="<?php echo $product->getTitle() ?>"
-                                                                width="116"
-                                                                height="116"
+                                                                width="75"
+                                                                height="75"
                                                                 src="<?php echo $img; ?>"/>
                                                         </a>
                                                         <!--[if mso]>
