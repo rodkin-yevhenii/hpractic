@@ -38,8 +38,8 @@ class Order
         $this->customer = $fields['customer'] ?? __('Покупатель', 'hpractice');
         $this->phone = $fields['phone'] ?? '';
         $this->email = $fields['email'] ?? '';
-        $this->customerComment = $fields['customerComment'] ?? '';
-        $this->managerComment = $fields['managerComment'] ?? '';
+        $this->customerComment = $fields['customer_comment'] ?? '';
+        $this->managerComment = $fields['manager_comment'] ?? '';
         $this->isCustomerMailSent = $fields['isCustomerMailSent'] ?? '';
         $this->cost = $fields['cost'] ?? 0;
 
