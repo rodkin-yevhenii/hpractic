@@ -55,7 +55,6 @@ if ($imgId) {
                                                         <![endif]-->
                                                         <a href="#" style="outline:none" tabindex="-1" target="_blank">
                                                             <img
-                                                                src="<?php echo $img; ?>"
                                                                 align="center"
                                                                 border="0"
                                                                 style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 116px; display: block;"
@@ -63,6 +62,7 @@ if ($imgId) {
                                                                 title="<?php echo $product->getTitle() ?>"
                                                                 width="116"
                                                                 height="116"
+                                                                src="<?php echo $img; ?>"
                                                             />
                                                         </a>
                                                         <!--[if mso]>
