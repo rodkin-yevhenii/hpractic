@@ -27,7 +27,7 @@ use Hpr\Service\Helpers\Helpers;
                 <div class="col_cont" style="width:100% !important;">
                     <!--[if (!mso)&(!IE)]><!-->
                     <div
-                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:21px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:18px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                         <!--<![endif]-->
                         <div align="center" class="img-container left fixedwidth"
                              style="padding-right: 0px;padding-left: 0px;">
@@ -95,7 +95,7 @@ use Hpr\Service\Helpers\Helpers;
                 <div class="col_cont" style="width:100% !important;">
                     <!--[if (!mso)&(!IE)]><!-->
                     <div
-                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:12px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                         <!--<![endif]-->
                         <!--[if mso]>
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
