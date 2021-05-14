@@ -55,14 +55,14 @@ if ($imgId) {
                                                         <![endif]-->
                                                         <a href="#" style="outline:none" tabindex="-1" target="_blank">
                                                             <img
+                                                                src="<?php echo $img; ?>"
                                                                 align="center"
-                                                                alt="<?php echo $product->getTitle() ?>"
                                                                 border="0"
-                                                                class="center autowidth"
-                                                                src="<?php echo $img ?>"
                                                                 style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 116px; display: block;"
+                                                                alt="<?php echo $product->getTitle() ?>"
                                                                 title="<?php echo $product->getTitle() ?>"
                                                                 width="116"
+                                                                height="116"
                                                             />
                                                         </a>
                                                         <!--[if mso]>
