@@ -62,8 +62,7 @@ if ($imgId) {
                                                                 title="<?php echo $product->getTitle() ?>"
                                                                 width="116"
                                                                 height="116"
-                                                                src="<?php echo md5($img); ?>"
-                                                            />
+                                                                src="<?php echo $img; ?>"/>
                                                         </a>
                                                         <!--[if mso]>
                                                     </td>
