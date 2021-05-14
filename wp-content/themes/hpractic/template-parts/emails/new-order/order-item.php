@@ -109,7 +109,7 @@ if ($imgId) {
                                             <div class="txtTinyMce-wrapper"
                                                  style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                                 <p style="margin: 0; font-size: 16px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 19px; margin-top: 0; margin-bottom: 0;">
-                                                    <a href="<?php echo $product->getUrl(); ?>" style="text-decoration: none; font-size: 16px; color: #222;">
+                                                    <a href="<?php echo $product->getUrl(); ?>" style="text-decoration: none; font-size: 16px; color: #343434;">
                                                         <strong><?php echo $product->getTitle(); ?></strong>
                                                     </a>
                                                 </p>

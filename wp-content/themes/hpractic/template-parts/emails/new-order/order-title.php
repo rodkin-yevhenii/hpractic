@@ -62,7 +62,7 @@
                                                                 <div class="txtTinyMce-wrapper"
                                                                      style="font-size: 14px; line-height: 1.8; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 25px;"
                                                                 >
-                                                                    <p style="margin: 0; font-size: 14px; line-height: 1.8; word-break: break-word; text-align: center; mso-line-height-alt: 25px; margin-top: 0; margin-bottom: 0;">
+                                                                    <p style="color:#343434;margin: 0; font-size: 14px; line-height: 1.8; word-break: break-word; text-align: center; mso-line-height-alt: 25px; margin-top: 0; margin-bottom: 0;">
                                                                         <?php _e('Здравствуйте, {{{customer}}}! Благодарим за заказ', 'hpractice') ?>
                                                                     </p>
                                                                 </div>
@@ -76,7 +76,7 @@
                                                                         style="word-break: break-word; vertical-align: top; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-align: center; width: 100%;"
                                                                         valign="top" width="100%"
                                                                     >
-                                                                        <h1 style="color:#555555;direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:25px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
+                                                                        <h1 style="color:#343434;direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:25px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
                                                                             <strong><?php _e('Ваш Заказ № {{{order}}}', 'hpractice') ?></strong>
                                                                         </h1>
                                                                     </td>

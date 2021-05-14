@@ -27,9 +27,9 @@ use Hpr\Service\Helpers\Helpers;
                 <div class="col_cont" style="width:100% !important;">
                     <!--[if (!mso)&(!IE)]><!-->
                     <div
-                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:20px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:21px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                         <!--<![endif]-->
-                        <div align="left" class="img-container left fixedwidth"
+                        <div align="center" class="img-container left fixedwidth"
                              style="padding-right: 0px;padding-left: 0px;">
                             <!--[if mso]>
                             <table width="100%" cellpadding="0" cellspacing="0" border="0">
