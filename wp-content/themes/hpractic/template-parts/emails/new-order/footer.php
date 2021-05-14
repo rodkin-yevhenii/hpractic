@@ -189,21 +189,31 @@
                                             style="vertical-align: top; display: inline-block; text-align: center;"
                                             valign="top">
                                             <td style="word-break: break-word; vertical-align: top; padding-bottom: 0; padding-right: 5px; padding-left: 5px;"
-                                                valign="top"><a href="viber://chat?number=+380506184864"
-                                                                target="_blank"><img alt="Custom"
-                                                                                     height="32"
-                                                                                     src="<?php echo site_url('wp-content/themes/hpractic/frontend/src/img/viber.png'); ?>"
-                                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
-                                                                                     title="Custom"
-                                                                                     width="31"/></a></td>
+                                                valign="top"
+                                            >
+                                                <a href="viber://chat?number=+380506184864" target="_blank">
+                                                    <img alt="Custom"
+                                                         height="32"
+                                                         src="<?php echo site_url('wp-content/themes/hpractic/frontend/src/img/viber.png'); ?>"
+                                                         style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
+                                                         title="Custom"
+                                                         width="31"/>
+                                                </a>
+                                            </td>
                                             <td style="word-break: break-word; vertical-align: top; padding-bottom: 0; padding-right: 5px; padding-left: 5px;"
-                                                valign="top"><a href="tg://resolve?domain=Practice_house"
-                                                                target="_blank"><img alt="Custom"
-                                                                                     height="32"
-                                                                                     src="<?php echo site_url('wp-content/themes/hpractic/frontend/src/img/telegram.png'); ?>"
-                                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
-                                                                                     title="Custom"
-                                                                                     width="33"/></a></td>
+                                                valign="top"
+                                            >
+                                                <a href="tg://resolve?domain=Practice_house"
+                                                                target="_blank"
+                                                >
+                                                    <img alt="Custom"
+                                                         height="32"
+                                                         src="<?php echo site_url('wp-content/themes/hpractic/frontend/src/img/telegram.png'); ?>"
+                                                         style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
+                                                         title="Custom"
+                                                         width="33"/>
+                                                </a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
