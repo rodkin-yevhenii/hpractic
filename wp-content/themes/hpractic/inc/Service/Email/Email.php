@@ -105,13 +105,16 @@ class Email
         ob_start();
         get_template_part(
             'template-parts/emails/new-order/mail',
-            'manager',
+            'customer',
             [
-                'order' => $order
+                'products' => $order->getOrderItems()
             ]
         );
 
-        $message = ob_get_clean();
+        $message = str_replace('{{{customer}}}', $order->getCustomer(), ob_get_clean());
+        $message = str_replace('{{{order}}}', $order->getId(), $message);
+        $message = str_replace('{{{phone}}}', $order->getPhone(), $message);
+        $message = str_replace('{{{comment}}}', $order->getCustomerComment(), $message);
 
         foreach ($managersEmails as $manager) {
             $email = $manager['email'] ?? '';
