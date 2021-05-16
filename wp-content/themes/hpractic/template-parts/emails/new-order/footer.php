@@ -131,7 +131,7 @@
                     <tr>
                         <td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;">
             <![endif]-->
-            <div class="col num4"
+            <div class="col num4 footer__email"
                  style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 232px; width: 233px;">
                 <div class="col_cont" style="width:100% !important;">
                     <!--[if (!mso)&(!IE)]><!-->

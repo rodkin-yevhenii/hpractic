@@ -128,9 +128,7 @@ endif;
                 display: block !important;
                 max-height: none !important;
             }
-        }
 
-        @media (max-width: 1080px) {
             .mobile_hide {
                 min-height: 0px;
                 max-height: 0px;
@@ -138,6 +136,10 @@ endif;
                 display: none;
                 overflow: hidden;
                 font-size: 0px;
+            }
+
+            .footer__email {
+                padding-left: 30px;
             }
         }
     </style>
