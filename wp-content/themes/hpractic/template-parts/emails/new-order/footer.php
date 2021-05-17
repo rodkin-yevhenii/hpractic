@@ -112,8 +112,8 @@
                             <div class="txtTinyMce-wrapper"
                                  style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <a href="tel:80506184864" style="font-size: 14px; text-decoration: none;">+38 (050) 618-48-64</a><br/>
-                                    <a href="tel:80961724868" style="font-size: 14px; text-decoration: none;">+38 (096) 172-48-68</a></p>
+                                    <a href="tel:80506184864" style="color: #222; font-size: 14px; text-decoration: none;">+38 (050) 618-48-64</a><br/>
+                                    <a href="tel:80961724868" style="color: #222; font-size: 14px; text-decoration: none;">+38 (096) 172-48-68</a></p>
                             </div>
                         </div>
                         <!--[if mso]></td></tr></table><![endif]-->
@@ -148,7 +148,7 @@
                             <div class="txtTinyMce-wrapper"
                                  style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <a href="mailto:hpractic@gmail.com" style="font-size: 14px; text-decoration: none;">hpractic@gmail.com</a></p>
+                                    <a href="mailto:hpractic@gmail.com" style="color: #222; font-size: 14px; text-decoration: none;">hpractic@gmail.com</a></p>
                             </div>
                         </div>
                         <!--[if mso]></td></tr></table><![endif]-->
