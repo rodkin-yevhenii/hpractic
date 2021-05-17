@@ -34,7 +34,7 @@ endif;
         }
 
         body a[href] {
-            color: #222222;
+            color: #222222!important;
         }
 
         table,
