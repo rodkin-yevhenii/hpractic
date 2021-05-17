@@ -68,7 +68,7 @@ class Email
         );
 
         if (empty($subject)) {
-            $subject = __('Детали Вашего заказа №{{{order}}}', 'hpractice');
+            $subject = __('Детали заказа № {{{order}}}', 'hpractice');
         }
 
         $subject = str_replace('{{{order}}}', $order->getId(), $subject);
