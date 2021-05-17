@@ -144,11 +144,11 @@
                                                         <div class="label"><?php _e('Имя', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{customer}}}:</div>
                                                     </div>
-                                                    <div class="customer-data__name">
+                                                    <div class="customer-data__phone">
                                                         <div class="label"><?php _e('Телефон', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{phone}}}:</div>
                                                     </div>
-                                                    <div class="customer-data__name">
+                                                    <div class="customer-data__comment">
                                                         <div class="label"><?php _e('Комментарий', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{comment}}}:</div>
                                                     </div>

@@ -51,6 +51,7 @@ endif;
         .customer-data {
             padding: 15px 30px;
             color: #222;
+            font-size: 14px;
             line-height: 1.8;
             word-break: break-word;
         }
@@ -67,6 +68,7 @@ endif;
         .customer-data__phone,
         .customer-data__comment {
             display:flex;
+            padding: 5px 0;
         }
     </style>
     <style id="media-query" type="text/css">
