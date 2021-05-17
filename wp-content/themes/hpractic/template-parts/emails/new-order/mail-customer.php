@@ -30,6 +30,7 @@ endif;
         body {
             margin: 0;
             padding: 0;
+            color: #222222;
         }
 
         table,
@@ -50,7 +51,6 @@ endif;
 
         .customer-data {
             padding: 15px 30px;
-            color: #222;
             font-size: 14px;
             line-height: 1.8;
             word-break: break-word;

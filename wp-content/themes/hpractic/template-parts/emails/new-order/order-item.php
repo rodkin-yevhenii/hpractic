@@ -105,11 +105,11 @@ if ($imgId) {
                                                 <td style="padding-right: 10px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
                                         <![endif]-->
                                         <div
-                                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
+                                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
                                             <div class="txtTinyMce-wrapper"
-                                                 style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
+                                                 style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                                 <p style="margin: 0; font-size: 16px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 19px; margin-top: 0; margin-bottom: 0;">
-                                                    <a href="<?php echo $product->getUrl(); ?>" style="text-decoration: none; font-size: 14px; color: #555555;">
+                                                    <a href="<?php echo $product->getUrl(); ?>" style="text-decoration: none; font-size: 14px;">
                                                         <strong><?php echo $product->getTitle(); ?></strong>
                                                     </a>
                                                 </p>
@@ -122,9 +122,9 @@ if ($imgId) {
                                                 <td style="padding-right: 10px; padding-left: 25px; padding-top: 0px; padding-bottom: 10px; font-family: Arial, sans-serif">
                                         <![endif]-->
                                         <div
-                                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
+                                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
                                             <div class="txtTinyMce-wrapper"
-                                                 style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
+                                                 style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
                                                     <?php _e('Артикул', 'hpractice');
                                                     ?>:   <?php echo $product->getSku();?>
@@ -138,9 +138,9 @@ if ($imgId) {
                                                 <td style="padding-right: 10px; padding-left: 25px; padding-top: 0px; padding-bottom: 10px; font-family: Arial, sans-serif">
                                         <![endif]-->
                                         <div
-                                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
+                                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:25px;">
                                             <div class="txtTinyMce-wrapper"
-                                                 style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
+                                                 style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
                                                     <?php _e('Количество', 'hpractice');
                                                     ?>:   <?php echo $quantity;?>
@@ -183,9 +183,9 @@ if ($imgId) {
                                                 <td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
                                         <![endif]-->
                                         <div
-                                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+                                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                             <div class="txtTinyMce-wrapper"
-                                                 style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
+                                                 style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
                                                     <?php
                                                     echo $product->isMinPrice() ? __('от', 'hpractice') : ''; ?> <?php

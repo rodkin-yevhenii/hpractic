@@ -117,7 +117,7 @@
                                 <td align="center"
                                     style="word-break: break-word; vertical-align: top; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-align: center; width: 100%;"
                                     valign="top" width="100%">
-                                    <h1 style="color:#555555;direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:24px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
+                                    <h1 style="direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:24px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
                                         <strong><?php _e('Что дальше', 'hpractice'); ?>?</strong></h1>
                                 </td>
                             </tr>
@@ -177,9 +177,9 @@
                                 <td style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
                         <![endif]-->
                         <div
-                            style="color:#161616;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.8;padding-top:10px;padding-right:30px;padding-bottom:10px;padding-left:30px;">
+                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.8;padding-top:10px;padding-right:30px;padding-bottom:10px;padding-left:30px;">
                             <div class="txtTinyMce-wrapper"
-                                 style="line-height: 1.8; font-size: 12px; color: #161616; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 22px;">
+                                 style="line-height: 1.8; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 22px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.8; word-break: break-word; text-align: left; mso-line-height-alt: 25px; margin-top: 0; margin-bottom: 0;"><?php
                                     _e('В ближайшее время с вами свяжется наш менеджер для уточнения деталей
                                     заказа.<br/>Заказы, оформленные через корзину сайта в выходные и
@@ -195,7 +195,7 @@
                                 <td align="center"
                                     style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-left: 30px; padding-right: 10px; padding-top: 10px; text-align: center; width: 100%;"
                                     valign="top" width="100%">
-                                    <h3 style="color:#555555;direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:left;margin-top:0;margin-bottom:0;"><?php _e('Рабочие дни', 'hpractice'); ?>:</h3>
+                                    <h3 style="direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:left;margin-top:0;margin-bottom:0;"><?php _e('Рабочие дни', 'hpractice'); ?>:</h3>
                                 </td>
                             </tr>
                         </table>
@@ -205,9 +205,9 @@
                                 <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
                         <![endif]-->
                         <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
+                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
                             <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
+                                 style="font-size: 14px; line-height: 1.2; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
                                     9:00 – 19:00 Пн – Пт<br/>
                                     9:00 – 15:00 Сб
@@ -245,9 +245,9 @@
                                 <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
                         <![endif]-->
                         <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
+                            style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
                             <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
+                                 style="font-size: 14px; line-height: 1.2; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
                                     <strong>
                                         <?php _e('С уважением, компания «Practice House»', 'hpractice'); ?>

@@ -56,7 +56,7 @@
                                 <td align="center"
                                     style="word-break: break-word; vertical-align: top; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-align: center; width: 100%;"
                                     valign="top" width="100%">
-                                    <h1 style="color:#555555;direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:24px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
+                                    <h1 style="direction:ltr;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:24px;font-weight:normal;letter-spacing:normal;line-height:120%;text-align:center;margin-top:0;margin-bottom:0;">
                                         <strong><?php _e('Ваши данные', 'hpractice'); ?></strong></h1>
                                 </td>
                             </tr>
@@ -142,15 +142,15 @@
                                                 <div class="customer-data">
                                                     <div class="customer-data__name">
                                                         <div class="label"><?php _e('Имя', 'hpractice'); ?>:</div>
-                                                        <div class="value">{{{customer}}}:</div>
+                                                        <div class="value">{{{customer}}}</div>
                                                     </div>
                                                     <div class="customer-data__phone">
                                                         <div class="label"><?php _e('Телефон', 'hpractice'); ?>:</div>
-                                                        <div class="value">{{{phone}}}:</div>
+                                                        <div class="value">{{{phone}}}</div>
                                                     </div>
                                                     <div class="customer-data__comment">
                                                         <div class="label"><?php _e('Комментарий', 'hpractice'); ?>:</div>
-                                                        <div class="value">{{{comment}}}:</div>
+                                                        <div class="value">{{{comment}}}</div>
                                                     </div>
                                                 </div>
                                                 <!--[if (mso)|(IE)]>
