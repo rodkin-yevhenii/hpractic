@@ -47,6 +47,27 @@ endif;
             color: inherit !important;
             text-decoration: none !important;
         }
+
+        .customer-data {
+            padding: 15px 30px;
+            color: #222;
+            line-height: 1.8;
+            word-break: break-word;
+        }
+
+        .customer-data .label {
+            width: 33%
+        }
+
+        .customer-data .value {
+            width: 67%
+        }
+
+        .customer-data__name,
+        .customer-data__phone,
+        .customer-data__comment {
+            display:flex;
+        }
     </style>
     <style id="media-query" type="text/css">
         @media (max-width: 720px) {
@@ -140,6 +161,11 @@ endif;
 
             .footer__email {
                 padding-left: 30px;
+            }
+
+            .customer-data__comment {
+                display:flex;
+                flex-direction: column;
             }
         }
     </style>

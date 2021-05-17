@@ -131,130 +131,43 @@
                     <td align="center">
                         <table cellpadding="0" cellspacing="0" border="0" style="width:700px">
                             <tr class="layout-full-width" style="background-color:#f2f5f8"><![endif]-->
-            <!--[if (mso)|(IE)]>
-            <td align="center" width="233"
-                style="background-color:#f2f5f8;width:233px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"
-                valign="top">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;">
+                                <!--[if (mso)|(IE)]>
+                                <td align="center" width="233"
+                                    style="background-color:#f2f5f8;width:233px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"
+                                    valign="top">
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;">
+                                                <![endif]-->
+                                                <div class="customer-data">
+                                                    <div class="customer-data__name">
+                                                        <div class="label"><?php _e('Имя', 'hpractice'); ?>:</div>
+                                                        <div class="value">{{{customer}}}:</div>
+                                                    </div>
+                                                    <div class="customer-data__name">
+                                                        <div class="label"><?php _e('Телефон', 'hpractice'); ?>:</div>
+                                                        <div class="value">{{{phone}}}:</div>
+                                                    </div>
+                                                    <div class="customer-data__name">
+                                                        <div class="label"><?php _e('Комментарий', 'hpractice'); ?>:</div>
+                                                        <div class="value">{{{comment}}}:</div>
+                                                    </div>
+                                                </div>
+                                                <!--[if (mso)|(IE)]>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <![endif]-->
+                                <!--[if (mso)|(IE)]>
+                                </td>
+                                <![endif]-->
+                                <!--[if (mso)|(IE)]>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
             <![endif]-->
-            <div class="col num4"
-                 style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 232px; width: 233px;">
-                <div class="col_cont" style="width:100% !important;">
-                    <!--[if (!mso)&(!IE)]><!-->
-                    <div
-                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-                        <!--<![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <?php _e('Имя', 'hpractice'); ?>:</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <?php _e('Телефон', 'hpractice'); ?>:</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <?php _e('Комментарий', 'hpractice'); ?>:</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if (!mso)&(!IE)]><!-->
-                    </div>
-                    <!--<![endif]-->
-                </div>
-            </div>
-            <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-            <!--[if (mso)|(IE)]></td>
-            <td align="center" width="466"
-                style="background-color:#f2f5f8;width:466px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"
-                valign="top">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;">
-            <![endif]-->
-            <div class="col num8"
-                 style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 464px; width: 466px;">
-                <div class="col_cont" style="width:100% !important;">
-                    <!--[if (!mso)&(!IE)]><!-->
-                    <div
-                        style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-                        <!--<![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 30px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:30px;padding-bottom:10px;padding-left:10px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">{{{customer}}}</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 30px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:30px;padding-bottom:10px;padding-left:10px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">{{{phone}}}</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if mso]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td style="padding-right: 30px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif">
-                        <![endif]-->
-                        <div
-                            style="color:#555555;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:30px;padding-bottom:10px;padding-left:10px;">
-                            <div class="txtTinyMce-wrapper"
-                                 style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-                                <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">{{{comment}}}</p>
-                            </div>
-                        </div>
-                        <!--[if mso]></td></tr></table><![endif]-->
-                        <!--[if (!mso)&(!IE)]><!-->
-                    </div>
-                    <!--<![endif]-->
-                </div>
-            </div>
-            <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-            <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
         </div>
     </div>
 </div>
