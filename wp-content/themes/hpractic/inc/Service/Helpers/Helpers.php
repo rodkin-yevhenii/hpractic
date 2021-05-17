@@ -126,7 +126,7 @@ class Helpers
         foreach ($ids as $id) {
             $id = pll_get_post($id);
             $product = new Product($id);
-            $price = $product->getPrice() . ' ' . __('грн/шт', 'hpractice');
+            $price = $product->getPrice() . ' ' . __('грн/шт.', 'hpractice');
             $gallery = $product->getGallery();
 
             if ($product->isMinPrice()) {
