@@ -164,8 +164,15 @@ endif;
             }
 
             .customer-data__comment {
-                display:flex;
-                flex-direction: column;
+                display:block;
+            }
+
+            .customer-data .label {
+                width: 100%
+            }
+
+            .customer-data .value {
+                width: 100%
             }
         }
     </style>
