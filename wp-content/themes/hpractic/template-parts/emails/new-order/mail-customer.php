@@ -33,6 +33,10 @@ endif;
             color: #222222;
         }
 
+        body a[href] {
+            color: #222222;
+        }
+
         table,
         td,
         tr {
