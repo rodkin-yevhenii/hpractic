@@ -33,7 +33,7 @@ endif;
             color: #222222;
         }
 
-        body a[href] {
+        body table td a[href] {
             color: #222222!important;
         }
 
