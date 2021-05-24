@@ -10,7 +10,7 @@ $(document).on('callback_sent_successfully', function () {
 $(document).on('contact_sent_successfully', function () {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
-    'event': 'callback'
+    'event': 'contact'
   })
 })
 
