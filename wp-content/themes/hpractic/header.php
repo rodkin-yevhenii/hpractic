@@ -25,6 +25,7 @@ $faviconUrl = get_field('favicon', 'option');
     <?php wp_head(); ?>
 </head>
 <body>
+<?php do_action('enqueue_body_scripts'); ?>
 <div class="root" id="root">
     <header class="header" <?php echo is_user_logged_in() ? 'style="top:32px;"' : '';?>>
         <div class="container">

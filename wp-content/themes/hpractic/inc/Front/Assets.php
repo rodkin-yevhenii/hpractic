@@ -23,10 +23,34 @@ class Assets
      */
     public function registerHooks(): void
     {
+        add_action('wp_head', [$this, 'enqueueSeoScripts'], 1);
         add_action('wp_head', [$this, 'enqueueStyles'], 1);
+        add_action('enqueue_body_scripts', [$this, 'enqueueSeoBodyScripts']);
         add_filter('style_loader_tag', [$this, 'wrapStyleTag'], 20, 4);
         add_action('wp_enqueue_scripts', [$this, 'jQueryInit']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
+    }
+
+    public function enqueueSeoScripts(): void
+    {
+        $scripts = get_field('head_scripts', 'option');
+
+        if (empty($scripts)) {
+            return;
+        }
+
+        echo $scripts;
+    }
+
+    public function enqueueSeoBodyScripts(): void
+    {
+        $scripts = get_field('body_scripts', 'option');
+
+        if (empty($scripts)) {
+            return;
+        }
+
+        echo $scripts;
     }
 
     /**

@@ -145,6 +145,14 @@ class ThemeInit
                     'parent_slug' => 'theme-settings',
                 ]
             );
+
+            acf_add_options_sub_page(
+                [
+                    'page_title'  => __('Настройки SEO и Рекламы'),
+                    'menu_title'  => __('Настройки SEO и Рекламы'),
+                    'parent_slug' => 'theme-settings',
+                ]
+            );
         }
     }
 
