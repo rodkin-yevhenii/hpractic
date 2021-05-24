@@ -72,6 +72,8 @@ var API = {
           });
         }
 
+        $(document).trigger('order_created');
+
         resolve(response.data);
       }).fail(function (err) {
         reject(err);
@@ -283,6 +285,7 @@ const controller = (function(cartCtrl, UICtrl){
     var products = cartCtrl.getCartItems();
 
     if(products.length > 0) {
+      $(document).trigger('go2cart')
       UICtrl.setLoading(true);
       API.getCurrentProducts(products).then(function(resp){
         var currentItems;
@@ -319,6 +322,7 @@ const controller = (function(cartCtrl, UICtrl){
     const product = UICtrl.getProduct(id);
     if(product) {
       cartCtrl.addProduct(product);
+      $(document).trigger('add2cart', [id[lang] || null]);
       setHeaderCartCount();
     }
   }

@@ -30,6 +30,8 @@ form.on('click', '.js-send-mail', function (e) {
       return;
     }
 
+    $(document).trigger('contacts_sent_successfully', [response]);
+
     showPopup(
       '#popup-info',
       {

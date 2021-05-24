@@ -323,6 +323,8 @@ jQuery(document).ready(function($){
         return;
       }
 
+      $(document).trigger('callback_sent_successfully', [response]);
+
       showPopup(
         '#popup-info',
         {

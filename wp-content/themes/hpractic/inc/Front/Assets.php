@@ -224,6 +224,11 @@ class Assets
             'src' => DIST_URI . 'js/main.js',
             'deps' => 'cart'
         ];
+        $scripts[] = [
+            'handle' => 'tag-manager-actions',
+            'src' => DIST_URI . 'js/tag-manager-actions.js',
+            'deps' => 'cart'
+        ];
 
         if (is_page_template('page-contacts.php')) {
             $scripts[] = [
