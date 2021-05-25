@@ -77,7 +77,9 @@ class MerchantFeed
             [
                 'post_type'   => ProductInit::$cptName,
                 'post_status' => 'publish',
-                'fields'      => 'ids'
+                'posts_per_page' => -1,
+                'fields'      => 'ids',
+                'lang' => 'ru'
             ]
         );
 
