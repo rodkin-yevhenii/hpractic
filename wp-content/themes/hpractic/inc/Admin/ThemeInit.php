@@ -4,6 +4,7 @@ namespace Hpr\Admin;
 
 use Hpr\Front\Assets;
 use Hpr\Front\Front;
+use Hpr\Service\MerchantFeed\MerchantFeed;
 
 /**
  * Class ThemeInit
@@ -27,6 +28,7 @@ class ThemeInit
         $this->initAssets();
         $this->initMenu();
         $this->initFront();
+        $this->initMerchantFeed();
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
@@ -101,6 +103,14 @@ class ThemeInit
     private function initFront(): void
     {
         new Front();
+    }
+
+    /**
+     * Generate merchant feed xml file.
+     */
+    private function initMerchantFeed(): void
+    {
+        new MerchantFeed();
     }
 
     /**
