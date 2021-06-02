@@ -69,9 +69,9 @@ class MerchantFeed
         $this->xml->writeAttribute('version', '2.0');
 
         $this->xml->startElement('channel');
-        $this->xml->writeElement('title', get_bloginfo('name'));
-        $this->xml->writeElement('description', get_bloginfo('description'));
-        $this->xml->writeElement('link', site_url());
+        $this->xml->writeElement('g:title', get_bloginfo('name'));
+        $this->xml->writeElement('g:description', get_bloginfo('description'));
+        $this->xml->writeElement('g:link', site_url());
 
         $query = new WP_Query(
             [
@@ -88,9 +88,9 @@ class MerchantFeed
                 $product = new Product($id);
 
                 $this->xml->startElement('item');
-                $this->xml->writeElement('id', $product->getSku());
-                $this->xml->writeElement('title', $product->getTitle());
-                $this->xml->startElement('description');
+                $this->xml->writeElement('g:id', $product->getSku());
+                $this->xml->writeElement('g:title', $product->getTitle());
+                $this->xml->startElement('g:description');
                 $this->xml->writeCdata(
                     apply_filters(
                         'the_content',
@@ -100,14 +100,14 @@ class MerchantFeed
 
                 // end description.
                 $this->xml->endElement();
-                $this->xml->writeElement('link', $product->getUrl());
-                $this->xml->writeElement('image_link', get_field('no_watermark_image', $id));
+                $this->xml->writeElement('g:link', $product->getUrl());
+                $this->xml->writeElement('g:image_link', get_field('no_watermark_image', $id));
                 $this->xml->writeElement(
-                    'availability',
+                    'g:availability',
                     $product->isUnderOrder() ? 'backorder' : 'in_stock'
                 );
-                $this->xml->writeElement('price', $product->getPrice() . ' UAH');
-                $this->xml->writeElement('condition', 'new');
+                $this->xml->writeElement('g:price', $product->getPrice() . ' UAH');
+                $this->xml->writeElement('g:condition', 'new');
 
                 // end item.
                 $this->xml->endElement();
