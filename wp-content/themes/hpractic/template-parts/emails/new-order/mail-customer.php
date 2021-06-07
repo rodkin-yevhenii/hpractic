@@ -74,6 +74,8 @@ endif;
         .customer-data__comment {
             display:flex;
             padding: 5px 0;
+            color: #444!important;
+            text-decoration: none!important;
         }
     </style>
     <style id="media-query" type="text/css">
