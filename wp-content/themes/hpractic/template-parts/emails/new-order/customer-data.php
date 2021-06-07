@@ -145,7 +145,7 @@
                                                         <div class="value">{{{customer}}}</div>
                                                     </div>
                                                     <div class="customer-data__email">
-                                                        <div class="label"><?php _e('Почта', 'hpractice'); ?>:</div>
+                                                        <div class="label"><?php _e('Email', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{email}}}</div>
                                                     </div>
                                                     <div class="customer-data__phone">
