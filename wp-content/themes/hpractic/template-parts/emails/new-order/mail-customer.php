@@ -74,6 +74,10 @@ endif;
         .customer-data__comment {
             display:flex;
             padding: 5px 0;
+        }
+
+        .customer-data .customer-data__email .value a,
+        .customer-data .customer-data__email a {
             color: #444!important;
             text-decoration: none!important;
         }
