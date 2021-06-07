@@ -148,6 +148,10 @@
                                                         <div class="label"><?php _e('Телефон', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{phone}}}</div>
                                                     </div>
+                                                    <div class="customer-data__email">
+                                                        <div class="label"><?php _e('Почта', 'hpractice'); ?>:</div>
+                                                        <div class="value">{{{email}}}</div>
+                                                    </div>
                                                     <div class="customer-data__comment">
                                                         <div class="label"><?php _e('Комментарий', 'hpractice'); ?>:</div>
                                                         <div class="value">{{{comment}}}</div>

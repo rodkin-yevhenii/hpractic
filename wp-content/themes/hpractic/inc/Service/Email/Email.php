@@ -75,6 +75,7 @@ class Email
         $message = str_replace('{{{customer}}}', $order->getCustomer(), ob_get_clean());
         $message = str_replace('{{{order}}}', $order->getId(), $message);
         $message = str_replace('{{{phone}}}', $order->getPhone(), $message);
+        $message = str_replace('{{{email}}}', $order->getEmail(), $message);
         $message = str_replace('{{{comment}}}', $order->getCustomerComment(), $message);
 
         if (wp_mail($order->getEmail(), $subject, $message, $this->headers)) {
@@ -114,6 +115,7 @@ class Email
         $message = str_replace('{{{customer}}}', $order->getCustomer(), ob_get_clean());
         $message = str_replace('{{{order}}}', $order->getId(), $message);
         $message = str_replace('{{{phone}}}', $order->getPhone(), $message);
+        $message = str_replace('{{{email}}}', $order->getEmail(), $message);
         $message = str_replace('{{{comment}}}', $order->getCustomerComment(), $message);
 
         foreach ($managersEmails as $manager) {

@@ -70,6 +70,7 @@ endif;
 
         .customer-data__name,
         .customer-data__phone,
+        .customer-data__email,
         .customer-data__comment {
             display:flex;
             padding: 5px 0;
