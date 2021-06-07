@@ -146,7 +146,7 @@
                                                     </div>
                                                     <div class="customer-data__phone">
                                                         <div class="label"><?php _e('Телефон', 'hpractice'); ?>:</div>
-                                                        <div class="value">{{{phone}}}</div>
+                                                        <div class="value" style="color: #444; text-decoration: none">{{{phone}}}</div>
                                                     </div>
                                                     <div class="customer-data__email">
                                                         <div class="label"><?php _e('Почта', 'hpractice'); ?>:</div>
