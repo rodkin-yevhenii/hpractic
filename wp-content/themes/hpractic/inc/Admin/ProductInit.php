@@ -122,6 +122,9 @@ class ProductInit
 
         add_action('wp_ajax_get_cart_items', [Helpers::class, 'getCartItemsCallback']);
         add_action('wp_ajax_nopriv_get_cart_items', [Helpers::class, 'getCartItemsCallback']);
+
+        // Add search by SKU for products.
+        add_filter('pre_get_posts', [$this, 'adminSearchProductBySku']);
     }
 
     /**
@@ -256,5 +259,37 @@ class ProductInit
     public function addColumnsCss(): void
     {
         echo '<style type="text/css">.column-sku{ width:10%; }</style>';
+    }
+
+    /**
+     * Added ability to find product by SKU in admin side.
+     *
+     * @param \WP_Query $query
+     */
+    public function adminSearchProductBySku(\WP_Query $query): void
+    {
+        if (
+            ! is_admin()
+            || ! $query->is_main_query()
+            || ! $query->is_search
+            || $query->query_vars['post_type'] !== ProductInit::$cptName
+            || ! is_numeric($query->query_vars['s'])
+        ) {
+            return;
+        }
+
+        $query->set(
+            'meta_query',
+            array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'product_settings_sku',
+                    'value'   => $query->query_vars['s'],
+                    'compare' => 'LIKE',
+                )
+            )
+        );
+
+        $query->set('s', '');
     }
 }
