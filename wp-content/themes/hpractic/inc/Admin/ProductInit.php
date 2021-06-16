@@ -24,6 +24,7 @@ class ProductInit
         $this->registerPostType();
         $this->registerTaxonomies();
         $this->registerHooks();
+        $this->registerColumns();
     }
 
     /**
@@ -34,28 +35,28 @@ class ProductInit
         register_post_type(
             self::$cptName,
             [
-                'label' => null,
-                'labels' => [
-                    'name' => __('Продукты', 'hpractice'),
+                'label'             => null,
+                'labels'            => [
+                    'name'          => __('Продукты', 'hpractice'),
                     'singular_name' => __('Продукт', 'hpractice'),
-                    'add_new' => __('Добавить продукт', 'hpractice'),
-                    'add_new_item' => __('Добавить новый продукт', 'hpractice'),
-                    'edit_item' => __('Редактировать продукт', 'hpractice'),
-                    'new_item' => __('Новый продукт', 'hpractice'),
-                    'view_item' => __('Просмотреть продукт', 'hpractice'),
-                    'search_items' => __('Искать продукт', 'hpractice'),
-                    'not_found' => __('Продукты не найдены', 'hpractice'),
-                    'menu_name' => __('Продукты', 'hpractice'),
+                    'add_new'       => __('Добавить продукт', 'hpractice'),
+                    'add_new_item'  => __('Добавить новый продукт', 'hpractice'),
+                    'edit_item'     => __('Редактировать продукт', 'hpractice'),
+                    'new_item'      => __('Новый продукт', 'hpractice'),
+                    'view_item'     => __('Просмотреть продукт', 'hpractice'),
+                    'search_items'  => __('Искать продукт', 'hpractice'),
+                    'not_found'     => __('Продукты не найдены', 'hpractice'),
+                    'menu_name'     => __('Продукты', 'hpractice'),
                 ],
-                'public' => true,
-                'has_archive' => false,
-                'show_ui' => true,
-                'show_in_menu' => true,
-                'rewrite' => ['slug' => 'products', 'with_front' => false, 'feeds' => false],
+                'public'            => true,
+                'has_archive'       => false,
+                'show_ui'           => true,
+                'show_in_menu'      => true,
+                'rewrite'           => ['slug' => 'products', 'with_front' => false, 'feeds' => false],
                 'show_in_nav_menus' => true,
-                'menu_icon' => 'dashicons-products',
-                'show_in_rest' => true,
-                'supports' => [
+                'menu_icon'         => 'dashicons-products',
+                'show_in_rest'      => true,
+                'supports'          => [
                     'title',
                     'editor',
                     'custom-fields',
@@ -124,15 +125,30 @@ class ProductInit
     }
 
     /**
+     * Register new columns.
+     */
+    private function registerColumns(): void
+    {
+        // Create columns
+        add_filter('manage_' . self::$cptName . '_posts_columns', [$this, 'addSkuColumn'], 4);
+
+        // Fill columns
+        add_action('manage_' . self::$cptName . '_posts_custom_column', [$this, 'fillNewColumns'], 5, 2);
+
+        // Change columns width.
+        add_action('admin_head', [$this, 'addColumnsCss']);
+    }
+
+    /**
      * Show only shop subpages in products categories field.
      *
-     * @param array $args   Query args.
+     * @param array $args Query args.
      *
      * @return array
      */
     public function updateProductsCategoriesQuery(array $args): array
     {
-        $catalogPageId = Helpers::getCatalogId();
+        $catalogPageId       = Helpers::getCatalogId();
         $args['post_parent'] = $catalogPageId;
 
         return $args;
@@ -141,7 +157,7 @@ class ProductInit
     /**
      * Show only shop subpages in products categories field.
      *
-     * @param array $args   Query args.
+     * @param array $args Query args.
      *
      * @return array
      */
@@ -163,9 +179,9 @@ class ProductInit
     /**
      * Add sku to product title in products repeater on order page.
      *
-     * @param string $text      Product title.
-     * @param \WP_Post $post    Product post.
-     * @param array $field      ACF field.
+     * @param string $text Product title.
+     * @param \WP_Post $post Product post.
+     * @param array $field ACF field.
      *
      * @return string
      */
@@ -183,24 +199,62 @@ class ProductInit
     /**
      * Use search by SKU instead of product title for ACF field.
      *
-     * @param array $args   Query params.
-     * @param array $field  ACF field.
+     * @param array $args Query params.
+     * @param array $field ACF field.
      *
      * @return mixed
      */
     public function updateAcfProductsSearch(array $args, array $field)
     {
-        if ('field_6060a0aa90436' !== $field['key'] || !isset($args['s'])) {
+        if ('field_6060a0aa90436' !== $field['key'] || ! isset($args['s'])) {
             return $args;
         }
         $args['meta_query'][] = [
-            'key' => 'product_settings_sku',
-            'value' => $args['s'],
+            'key'     => 'product_settings_sku',
+            'value'   => $args['s'],
             'compare' => 'LIKE'
         ];
 
         unset($args['s']);
 
         return $args;
+    }
+
+    /**
+     * Add column with product SKU.
+     *
+     * @param array $columns
+     *
+     * @return array
+     */
+    public function addSkuColumn(array $columns): array
+    {
+        $newColumns = [
+            'sku' => __('Артикул', 'hpractice'),
+        ];
+
+        return array_slice($columns, 0, 1) + $newColumns + array_slice($columns, 1);
+    }
+
+    /**
+     * Add content to new columns.
+     *
+     * @param $colname
+     * @param $id
+     */
+    public function fillNewColumns($colname, $id): void
+    {
+        if ($colname === 'sku') {
+            $product = new Product($id);
+            echo $product->getSku();
+        }
+    }
+
+    /**
+     * Change new columns styles.
+     */
+    public function addColumnsCss(): void
+    {
+        echo '<style type="text/css">.column-sku{ width:10%; }</style>';
     }
 }
