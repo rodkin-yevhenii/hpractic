@@ -73,6 +73,8 @@ var API = {
         }
 
         $(document).trigger('order_created');
+        localStorage.setItem('products', JSON.stringify([]));
+        UIController.setCartHeaderCount(0);
 
         resolve(response.data);
       }).fail(function (err) {
