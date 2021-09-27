@@ -10,7 +10,7 @@ $footer = get_field('footer', 'option');
     <div class="container">
         <?php if (!empty($logo)) : ?>
             <div class="footer__logo">
-                <a href="<?php echo site_url(); ?>" class="logo">
+                <a href="<?php echo home_url(); ?>" class="logo">
                     <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>">
                 </a>
             </div>
