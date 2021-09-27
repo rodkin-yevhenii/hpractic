@@ -38,7 +38,7 @@ use Hpr\Service\Helpers\Helpers;
                                         <![endif]-->
                                         <a href="<?php echo site_url(); ?>" style="outline:none" tabindex="-1" target="_blank">
                                             <img
-                                                alt="Alternate text" border="0" class="left fixedwidth"
+                                                alt="Practice house" border="0" class="left fixedwidth"
                                                 src="<?php
                                                 echo site_url('wp-content/themes/hpractic/frontend/src/img/logo.png'); ?>"
                                                 style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 96px; display: block;"
