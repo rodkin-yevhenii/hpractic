@@ -35,7 +35,7 @@ class Product extends AffiliateAbstract
         $this->sku = $fields['product_settings']['sku'] ?? '';
         $this->price = $fields['product_settings']['price'] ?? 0;
         $this->isMinPrice = $fields['product_settings']['is-min-price'] ?? false;
-        $this->gallery = $fields['product_gallery'] ?? [];
+        $this->gallery = !empty($fields['product_gallery']) ? $fields['product_gallery'] : [];
         $this->characteristics = !empty($fields['product_characteristic']) ? $fields['product_characteristic'] : [];
         $this->isUnderOrder = $fields['product_settings']['is-under-order'] ?? false;
         $this->isMinOrder = $fields['product_settings']['is-min-order'] ?? false;
