@@ -1,0 +1,49 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    platform: linux/x86_64
+    build:
+      context: ./
+      dockerfile: docker/php/php.dockerfile
+    container_name: hpractice-wp
+    restart: always
+    ports:
+      - 8086:80
+    env_file:
+        - ./.env
+    expose:
+      - 9000
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: $DB_USER
+      WORDPRESS_DB_PASSWORD: $DB_PASSWORD
+      WORDPRESS_DB_NAME: $DB_NAME
+      XDEBUG_SESSION: PHPSTORM
+      PHP_IDE_CONFIG: "serverName=Docker"
+    volumes:
+      - ./:/var/www/html
+      - ./downloads/:/dump
+
+  db:
+    platform: linux/x86_64
+    image: mysql
+    container_name: hpractice-db
+    restart: always
+    ports:
+      - 3307:3306
+    env_file:
+        - ./.env
+    environment:
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./downloads/:/downloads
+
+volumes:
+  wordpress:
+  db:

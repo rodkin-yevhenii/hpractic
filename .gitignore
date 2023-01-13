@@ -34,3 +34,6 @@ wp-content/themes/twenty*
 
 # Ignore testing files
 /wp-content/themes/hpractic/http-request.http
+/downloads/
+/.env
+/db/
