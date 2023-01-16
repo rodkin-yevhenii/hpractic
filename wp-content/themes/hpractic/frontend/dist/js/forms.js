@@ -1,10 +1,21 @@
 jQuery(document).ready(function($){
   var cartForm = $('#cart-form form');
   var contactsForm = $('#contacts-form form');
+  const radioElements = $('.form__radio input[type=radio]')
 
   cartForm.on('submit', function(e){
     e.preventDefault();
   });
+
+  radioElements.on('change', function(e) {
+    const input = $( this )
+    const formItem = input.closest('.form__item')
+    const collapsedItems = formItem.find('.js-radio-collapsed-item')
+    collapsedItems.each((key, el) => {
+      $(el).hide()
+    })
+    $('#' + input.val()).show()
+  })
 
   function handleCartFormSubmit(form){
     var formEl = $(form);

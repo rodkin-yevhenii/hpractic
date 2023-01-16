@@ -2315,8 +2315,8 @@ img[src=""] {
   display: inline-block;
   padding-left: 2.6rem;
   text-align: left;
-  font-size: 1.5rem;
-  line-height: 2rem; }
+  font-size: 1.7rem;
+  line-height: 2.8rem; }
   .form__radio__group {
     margin: 1.5rem -.8rem; }
     .form__radio__group:last-child {
@@ -2397,12 +2397,14 @@ img[src=""] {
     .form__row {
       display: block;
       margin: 0; } }
-  .form__row > div[class*="form__"] {
+  .form__row > div[class*="form__"], .form__row > .form__radio {
     margin: 0 1.5rem;
     flex: 1; }
     @media only screen and (max-width: 767px) {
-      .form__row > div[class*="form__"] {
+      .form__row > div[class*="form__"], .form__row > .form__radio {
         margin: 0 0 1.5rem; } }
+  .form__row--vertical {
+    flex-direction: column; }
 
 .form__cell {
   flex: 1; }

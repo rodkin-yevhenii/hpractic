@@ -17,19 +17,19 @@
   font-style: normal;
   transition: all .2s;
   outline: none;
-  
+
   &:focus {
     border-color: $color-dark-blue;
   }
-  
+
   &:active {
     border-color: $color-dark-blue;
   }
-  
+
   &.error {
     border-color: $color-red;
   }
-  
+
   @include placeholder {
     font-family: inherit;
     font-size: inherit;
@@ -42,39 +42,39 @@
 
 .form {
   $form: &;
-  
+
   @media only screen and(max-width: 599px) {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   &--inline {
     @media only screen and(max-width: 599px) {
       margin-left: auto;
       margin-right: auto;
       max-width: 28.7rem;
     }
-    
+
     #{$form} {
       &__field {
         width: 100%;
       }
-  
+
       &__row {
         margin: 0;
-        
+
         & > div[class*="form__"] {
           margin: 0;
         }
-  
+
         & > div[class*="form__actions"] {
           margin-left: 1rem;
           flex: unset;
-          
+
           @media only screen and(max-width: $container-tablet-sm) {
             margin: 1.5rem 0 0;
           }
-          
+
           .btn {
             @media only screen and(max-width: $container-tablet-sm) {
               width: 100%;
@@ -84,7 +84,7 @@
       }
     }
   }
-  
+
   &__title {
     font-family: $font-primary;
     font-style: normal;
@@ -93,37 +93,37 @@
     line-height: 2.4rem;
     color: $color-primary-dark;
     margin: 0 0 3.2rem;
-    
+
     &--center {
       text-align: center;
     }
-    
+
     &--uppercase {
       text-transform: uppercase;
     }
-    
+
     &--sm {
       font-size: 1.7rem;
       margin: 0 0 2.4rem;
     }
   }
-  
+
   &__field {
-    
+
     $filed: &;
-    
+
     position: relative;
     color: $color-primary-dark;
     border-radius: .4rem;
-    
+
     &:not(:last-child){
       margin: 0 0 2rem;
     }
-    
+
     button {
       cursor: pointer;
     }
-    
+
     &-icon {
       font-size: 1.6rem;
       position: absolute;
@@ -139,43 +139,43 @@
       border: none;
       background: transparent;
       transition: all .3s;
-      
+
       img, svg {
         display: block;
         max-width: 100%;
       }
-      
+
       img {
         width: 1em;
       }
-      
+
       svg {
         width: 1em;
         height: 1em;
       }
-      
+
       & ~ input {
         padding-left: 4.4rem;
       }
     }
-  
+
     &-clear {
       right: 1.2rem;
       left: auto;
       visibility: hidden;
       opacity: 0;
       pointer-events: none;
-      
+
       & ~ input {
         padding-right: 4.4rem;
       }
     }
-  
+
     input {
       height: 4.8rem;
       @extend %field-default;
     }
-    
+
     textarea {
       @extend %field-default;
       resize: vertical;
@@ -183,7 +183,7 @@
       min-height: 8rem;
       max-height: 22rem;
     }
-    
+
     &--visible-clear {
       #{$filed}-clear {
         visibility: visible;
@@ -192,7 +192,7 @@
       }
     }
   }
-  
+
   &__checkbox {
     position: relative;
     display: inline-block;
@@ -200,51 +200,51 @@
     text-align: left;
     font-size: 1.5rem;
     line-height: 2rem;
-    
+
     $checkbox: &;
-    
+
     &__label {
       font-size: inherit;
       font-weight: inherit;
       margin: 0 0 2rem;
     }
-    
+
     &__line {
       margin: 0 0 1.5rem;
-      
+
       &:last-child {
         margin: 0;
       }
     }
-    
-    
+
+
     &__group {
       margin: 1.5rem -.8rem;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
-      
+
       &:first-child {
         margin-top: 0;
       }
-      
+
       #{$checkbox} {
         margin: 0 .8rem;
       }
-      
+
     }
-    
+
     &.error {
       .form__checkbox__element {
         border-color: $color-red;
       }
     }
-    
+
     label.error {
       display: none !important;
     }
-    
+
     input {
       position: absolute;
       visibility: hidden;
@@ -254,11 +254,11 @@
       outline: 0 none;
       height: auto;
       display: none;
-      
+
       &:checked {
         & ~ .form__checkbox__element {
           border-color: $color-primary;
-          
+
           &:before {
             opacity: 1;
             width: 9px;
@@ -267,22 +267,22 @@
         }
       }
     }
-    
+
     span {
       font-size: inherit;
       line-height: inherit;
-      
+
       a {
         font-size: inherit;
         line-height: inherit;
         text-decoration: underline;
         color: $color-primary;
-        
+
         &:hover {
           text-decoration: none;
         }
       }
-      
+
       i {
         font-size: inherit;
         color: inherit;
@@ -291,7 +291,7 @@
         font-style: normal;
       }
     }
-    
+
     &__element {
       display: block;
       position: absolute;
@@ -306,8 +306,8 @@
       outline: 0 none;
       transition: border-color .3s;
       cursor: pointer;
-      
-      
+
+
       &:before {
         content: '';
         width: 0;
@@ -324,41 +324,41 @@
       }
     }
   }
-  
+
   &__radio {
     position: relative;
     display: inline-block;
     padding-left: 2.6rem;
     text-align: left;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    
+    font-size: 1.7rem;
+    line-height: 2.8rem;
+
     $radio: &;
-    
-    
+
+
     &__group {
       margin: 1.5rem -.8rem;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
-      
+
       &:first-child {
         margin-top: 0;
       }
-      
+
       #{$radio} {
         margin: 0 .8rem;
       }
-      
+
     }
-    
+
     &.error {
       .form__radio__element {
         border-color: $color-red;
       }
     }
-    
+
     input {
       position: absolute;
       visibility: hidden;
@@ -368,11 +368,11 @@
       outline: 0 none;
       height: auto;
       display: none;
-      
+
       &:checked {
         & + .form__radio__element {
           border-color: $color-primary;
-          
+
           &:before {
             opacity: 1;
             width: 1rem;
@@ -381,23 +381,23 @@
         }
       }
     }
-    
+
     span {
       color: $color-primary-dark;
       font-size: inherit;
       line-height: inherit;
-      
+
       a {
         font-size: inherit;
         line-height: inherit;
         text-decoration: underline;
         color: $color-primary;
-        
+
         &:hover {
           text-decoration: none;
         }
       }
-      
+
       i {
         font-size: inherit;
         color: inherit;
@@ -406,7 +406,7 @@
         font-style: normal;
       }
     }
-    
+
     &__element {
       display: block;
       position: absolute;
@@ -420,7 +420,7 @@
       outline: 0 none;
       transition: border-color .3s;
       cursor: pointer;
-      
+
       &:before {
         content: '';
         width: 0;
@@ -438,35 +438,39 @@
       }
     }
   }
-  
+
   &__row {
     display: flex;
     align-items: flex-start;
     margin: 0 -1.5rem;
-    
+
     &:not(:last-child) {
       margin-bottom: 1.6rem;
     }
-  
+
     @media only screen and(max-width: $container-tablet-sm) {
       display: block;
       margin: 0;
     }
-    
-    & > div[class*="form__"] {
+
+    & > div[class*="form__"], & > .form__radio {
       margin: 0 1.5rem;
       flex: 1;
-      
+
       @media only screen and(max-width: $container-tablet-sm) {
         margin: 0 0 1.5rem;
       }
     }
+
+    &--vertical {
+      flex-direction: column;
+    }
   }
-  
+
   &__cell {
     flex: 1;
   }
-  
+
   &__note {
     text-align: left;
     color: $color-secondary-dark;
@@ -477,86 +481,86 @@
     margin: 3.2rem 0;
     display: flex;
     align-items: center;
-    
+
     &-icon {
       flex-shrink: 0;
       line-height: 1;
       font-size: 2.8rem;
       margin-right: 2.8rem;
     }
-    
+
     &:first-child {
       margin-top: 0;
     }
-    
+
     &:last-child {
       margin-bottom: 0;
     }
   }
-  
+
   &__actions {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 3.2rem 0 0;
-  
+
     @media only screen and(max-width: $container-tablet-sm) {
       flex-direction: column;
       justify-content: center;
     }
-  
+
     @media only screen and(max-width: $container-mobile-lg) {
       align-items: stretch;
     }
-    
+
     &--offset-top-lg {
       margin: 5.6rem 0 0;
     }
-    
+
     &--left {
       justify-content: flex-start;
     }
-    
+
     .link {
       margin-right: auto;
     }
-    
+
     .btn + .btn {
       margin-left: auto;
-  
+
       @media only screen and(max-width: $container-tablet-sm) {
         margin: 2.4rem 0 0;
       }
     }
   }
-  
+
   &__item {
     padding: 3rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
-    
+
     &:last-child {
       border: none;
     }
   }
-  
+
   &__agreement {
     padding: 1.5rem 0;
     position: relative;
-    
+
     &.error {
       color: currentColor;
       font-weight: normal;
-      
+
       label {
         color: currentColor;
         font-weight: normal;
       }
-  
+
       .form__checkbox__element {
         border-color: $color-red;
       }
     }
-    
+
     &:before {
       content: '';
       position: absolute;
@@ -566,13 +570,13 @@
       bottom: 0;
       background-color: transparent;
     }
-    
+
     &.error {
       &:before {
         background-color: rgba($color-red, 0.3);
       }
     }
-    
+
     & > * {
       position: relative;
     }
@@ -583,7 +587,7 @@
   label, .form__label {
     color: $color-red;
   }
-  
+
   input, textarea, {
     color: $color-red;
   }
