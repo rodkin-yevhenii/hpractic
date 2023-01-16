@@ -1,29 +1,28 @@
 jQuery(document).ready(function($){
   var cartForm = $('#cart-form form');
   var contactsForm = $('#contacts-form form');
-  // const radioElements = $('.form__radio input[type=radio]')
+  const radioElements = $('.form__radio input[type=radio]')
 
   cartForm.on('submit', function(e){
     e.preventDefault();
   });
 
-  // radioElements.on('change', function(e) {
-  //   const input = $( this )
-  //   const formItem = input.closest('.form__item')
-  //   const collapsedItems = formItem.find('.js-radio-collapsed-item')
-  //   collapsedItems.each((key, el) => {
-  //     $(el).hide()
-  //   })
-  //
-  //   const collapsedItem = $('#' + input.val());
-  //
-  //   if (collapsedItem) {
-  //     collapsedItem.show()
-  //   }
-  // })
+  radioElements.on('change', function(e) {
+    const input = $( this )
+    const formItem = input.closest('.form__item')
+    const collapsedItems = formItem.find('.js-radio-collapsed-item')
+    collapsedItems.each((key, el) => {
+      $(el).hide()
+    })
+
+    const collapsedItem = $('#' + input.val());
+
+    if (collapsedItem) {
+      collapsedItem.show()
+    }
+  })
 
   function handleCartFormSubmit(form){
-    console.log('save')
     var formEl = $(form);
     setLoader(formEl, true);
     API.sendForm().then(function(resp){

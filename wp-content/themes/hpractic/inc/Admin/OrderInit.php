@@ -108,7 +108,7 @@ class OrderInit
         $deliveryType = $_POST['deliveryType'] ?? '';
         $city = $_POST['city'] ?? '';
         $newPostOffice = (int) $_POST['newPostOffice'] ?? '';
-        $deliveryAddress = $_POST['deliveryAddress'] ?? '';
+        $deliveryAddress = $_POST['address'] ?? '';
 
         if (!$customer || !$phone) {
             $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
@@ -118,20 +118,23 @@ class OrderInit
         }
 
         if (empty($products)) {
-            $response['message'] = __('Корзина пуста. Добавьте товары в корзину', 'hpractice');
+            $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
+            $response['error']['message'] = __('Корзина пуста. Добавьте товары в корзину', 'hpractice');
 
             wp_send_json($response);
         }
 
         if ('new-post-department' === $deliveryType && (! $city || ! $newPostOffice)) {
-            $response['message'] = __('Поля "Город" и "Номер отделения" обязательны к заполнению', 'hpractice');
+            $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
+            $response['error']['message'] = __('Поля "Город" и "Номер отделения" обязательны к заполнению', 'hpractice');
 
             wp_send_json($response);
         } elseif (
             ('new-post-address-delivery' === $deliveryType || 'local-address' === $deliveryType)
             && ! $deliveryAddress
         ) {
-            $response['message'] = __('Поле "Адрес доставки" обязательно к заполнению', 'hpractice');
+            $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
+            $response['error']['message'] = __('Поле "Адрес доставки" обязательно к заполнению', 'hpractice');
 
             wp_send_json($response);
         }

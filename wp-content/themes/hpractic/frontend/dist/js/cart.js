@@ -38,11 +38,13 @@ var API = {
       const customer = surname + ' ' + name;
       const phone = $cart.find('input[name=phone]').val();
       const email = $cart.find('input[name=email]').val();
-      const paymentType = $cart.find('input[name=payment-type]').val();
-      const deliveryType = $cart.find('input[name=delivery-type]').val();
+      const paymentType = $cart.find('input[name=payment-type]:checked').val();
+      const deliveryType = $cart.find('input[name=delivery-type]:checked').val();
       const city = $cart.find('input[name=city]').val();
       const newPostOffice = $cart.find('input[name=new-post-office]').val();
-      const deliveryAddress = $cart.find('input[name=delivery-address]').val();
+      const deliveryAddress = $cart.find('textarea[name=delivery-address]').val();
+      const deliveryLocalAddress = $cart.find('textarea[name=local-address]').val();
+      const address = deliveryAddress ? deliveryAddress : deliveryLocalAddress;
       const comment = $cart.find('textarea[name=comment]').val();
       const cartItems = cartController.getCartItems();
       let products = [];
@@ -65,12 +67,10 @@ var API = {
         deliveryType,
         city,
         newPostOffice,
-        deliveryAddress,
+        address,
         comment,
         products
       };
-
-      console.log(data);
 
       $.ajax({
         type: "POST",

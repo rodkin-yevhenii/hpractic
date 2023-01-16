@@ -68,28 +68,28 @@ $policyId = pll_get_post( $policyId );
                         <h4 class="form__title"><?php _e( 'Способ доставки', 'hpractice' ); ?></h4>
                         <div class="form__row form__row--vertical">
                             <label class="form__radio">
-                                <input type="radio" name="delivery" value="new-post-department" checked>
+                                <input type="radio" name="delivery-type" value="new-post-department" checked>
                                 <i class="form__radio__element"></i>
                                 <span>
                                     <?php _e( 'Отделение Новой почты', 'hpractice' ); ?>
                                 </span>
                             </label>
                             <label class="form__radio">
-                                <input type="radio" name="delivery" value="new-post-address-delivery">
+                                <input type="radio" name="delivery-type" value="new-post-address-delivery">
                                 <i class="form__radio__element"></i>
                                 <span>
                                     <?php _e( 'Адресная доставка Новой почтой', 'hpractice' ); ?>
                                 </span>
                             </label>
                             <label class="form__radio">
-                                <input type="radio" name="delivery" value="pickup">
+                                <input type="radio" name="delivery-type" value="pickup">
                                 <i class="form__radio__element"></i>
                                 <span>
                                     <?php _e( 'Самовывоз', 'hpractice' ); ?>
                                 </span>
                             </label>
                             <label class="form__radio">
-                                <input type="radio" name="delivery" value="local-address">
+                                <input type="radio" name="delivery-type" value="local-address">
                                 <i class="form__radio__element"></i>
                                 <span>
                                     <?php _e( 'Курьерская доставка по г. Харьков', 'hpractice' ); ?>
@@ -102,7 +102,7 @@ $policyId = pll_get_post( $policyId );
                                 <label class="form__label" for="cart-city">
                                     <?php _e( 'Город', 'hpractice' ); ?>*
                                 </label>
-                                <input type="text" name="city" id="cart-city" required>
+                                <input type="text" name="city" id="cart-city">
                             </div>
                             <div class="form__field">
                                 <label class="form__label" for="cart-new-post-office">
@@ -114,10 +114,12 @@ $policyId = pll_get_post( $policyId );
 
                         <div id="new-post-address-delivery" class="form__row js-radio-collapsed-item" style="display: none">
                             <div class="form__field">
-                                <label class="form__label" for="cart-new-post-office">
+                                <label class="form__label" for="cart-delivery-address">
                                     <?php _e( 'Адрес доставки', 'hpractice' ); ?>*
                                 </label>
-                                <textarea name="delivery-address" id="cart-delivery-address"
+                                <textarea
+                                    name="delivery-address"
+                                    id="cart-delivery-address"
                                     placeholder="<?php _e( 'Область, район, город, улица, номер дома, этаж', 'hpractice' ); ?>"
                                 ></textarea>
                             </div>
@@ -128,9 +130,11 @@ $policyId = pll_get_post( $policyId );
                                 <label class="form__label" for="cart-local-address">
                                     <?php _e( 'Адрес доставки', 'hpractice' ); ?>*
                                 </label>
-                                <textarea name="local-address" id="cart-local-address"
-                                          placeholder="<?php _e( 'Улица, номер дома, этаж', 'hpractice' ); ?>"
-                                          required></textarea>
+                                <textarea
+                                    name="local-address"
+                                    id="cart-local-address"
+                                    placeholder="<?php _e( 'Улица, номер дома, этаж', 'hpractice' ); ?>"
+                                ></textarea>
                             </div>
                         </div>
                     </div>
