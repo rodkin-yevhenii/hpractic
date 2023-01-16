@@ -33,9 +33,16 @@ var API = {
   sendForm: function(){
     return new Promise(function(resolve, reject){
       const $cart = $('#popup-cart');
-      const customer = $cart.find('input[name=name]').val();
+      const name = $cart.find('input[name=name]').val();
+      const surname = $cart.find('input[name=surname]').val();
+      const customer = surname + ' ' + name;
       const phone = $cart.find('input[name=phone]').val();
       const email = $cart.find('input[name=email]').val();
+      const paymentType = $cart.find('input[name=payment-type]').val();
+      const deliveryType = $cart.find('input[name=delivery-type]').val();
+      const city = $cart.find('input[name=city]').val();
+      const newPostOffice = $cart.find('input[name=new-post-office]').val();
+      const deliveryAddress = $cart.find('input[name=delivery-address]').val();
       const comment = $cart.find('textarea[name=comment]').val();
       const cartItems = cartController.getCartItems();
       let products = [];
@@ -54,9 +61,16 @@ var API = {
         customer,
         phone,
         email,
+        paymentType,
+        deliveryType,
+        city,
+        newPostOffice,
+        deliveryAddress,
         comment,
         products
       };
+
+      console.log(data);
 
       $.ajax({
         type: "POST",

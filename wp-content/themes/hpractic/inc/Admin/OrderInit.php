@@ -104,6 +104,11 @@ class OrderInit
         $phone = $_POST['phone'] ?? '';
         $comment = $_POST['comment'] ?? '';
         $products = $_POST['products'] ?? [];
+        $paymentType = $_POST['paymentType'] ?? '';
+        $deliveryType = $_POST['deliveryType'] ?? '';
+        $city = $_POST['city'] ?? '';
+        $newPostOffice = (int) $_POST['newPostOffice'] ?? '';
+        $deliveryAddress = $_POST['deliveryAddress'] ?? '';
 
         if (!$customer || !$phone) {
             $response['error']['title'] = __('Ошибка заполнения данных', 'hpractice');
@@ -114,6 +119,19 @@ class OrderInit
 
         if (empty($products)) {
             $response['message'] = __('Корзина пуста. Добавьте товары в корзину', 'hpractice');
+
+            wp_send_json($response);
+        }
+
+        if ('new-post-department' === $deliveryType && (! $city || ! $newPostOffice)) {
+            $response['message'] = __('Поля "Город" и "Номер отделения" обязательны к заполнению', 'hpractice');
+
+            wp_send_json($response);
+        } elseif (
+            ('new-post-address-delivery' === $deliveryType || 'local-address' === $deliveryType)
+            && ! $deliveryAddress
+        ) {
+            $response['message'] = __('Поле "Адрес доставки" обязательно к заполнению', 'hpractice');
 
             wp_send_json($response);
         }
@@ -149,6 +167,11 @@ class OrderInit
         update_field('email', $email, $orderId);
         update_field('customer_comment', $comment, $orderId);
         update_field('status', 'new', $orderId);
+        update_field('payment-type', $paymentType, $orderId);
+        update_field('delivery-type', $deliveryType, $orderId);
+        update_field('city', $city, $orderId);
+        update_field('new-post-office', $newPostOffice, $orderId);
+        update_field('delivery-address', $deliveryAddress, $orderId);
 
         foreach ($products as $product) {
             if (empty($product['id'])) {

@@ -108,7 +108,7 @@ $policyId = pll_get_post( $policyId );
                                 <label class="form__label" for="cart-new-post-office">
                                     <?php _e( 'Номер отделения', 'hpractice' ); ?>*
                                 </label>
-                                <input type="text" name="new-post-office" id="cart-new-post-office" required>
+                                <input type="text" name="new-post-office" id="cart-new-post-office">
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@ $policyId = pll_get_post( $policyId );
                                 </label>
                                 <textarea name="delivery-address" id="cart-delivery-address"
                                     placeholder="<?php _e( 'Область, район, город, улица, номер дома, этаж', 'hpractice' ); ?>"
-                                    required></textarea>
+                                ></textarea>
                             </div>
                         </div>
 
