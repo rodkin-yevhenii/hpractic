@@ -181,8 +181,7 @@
                             <div class="txtTinyMce-wrapper"
                                  style="line-height: 1.8; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 22px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.8; word-break: break-word; text-align: left; mso-line-height-alt: 25px; margin-top: 0; margin-bottom: 0;"><?php
-                                    _e('В ближайшее время с вами свяжется наш менеджер для уточнения деталей
-                                    заказа.<br/>Заказы, оформленные через корзину сайта в выходные и
+                                    _e('Заказы, оформленные через корзину сайта в выходные и
                                     праздничные дни, будут по очереди обработаны в первый рабочий день.', 'hpractice');
                                     ?></p>
                             </div>
