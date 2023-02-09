@@ -26,7 +26,7 @@ if (!$product) {
     <div class="product__list">
         <ul>
             <?php if ($product->isUnderOrder()) : ?>
-            <li><?php echo $product->getUnderOrderTime(); ?></li>
+            <li><?php echo $product->getUnderOrderTimeText(); ?></li>
             <?php endif;
 
             if ($product->isMinOrder()) : ?>
