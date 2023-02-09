@@ -109,6 +109,14 @@ class MerchantFeed
                 $this->xml->writeElement('g:price', $product->getPrice() . ' UAH');
                 $this->xml->writeElement('g:condition', 'new');
 
+                if ($product->isUnderOrder()) {
+                    $today = date('Y-m-d 00:00:00');
+                    $dateTime = new DateTime($today, new DateTimeZone("Europe/Kiev"));
+                    $dateTime->modify(sprintf('+%d day', $product->getUnderOrderTime()));
+
+                    $this->xml->writeElement('g:availability_date', $dateTime->format('c'));
+                }
+
                 // end item.
                 $this->xml->endElement();
             }

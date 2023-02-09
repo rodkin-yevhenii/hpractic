@@ -66,11 +66,7 @@ class Product extends AffiliateAbstract
                 $this->sellingType = __('В розницу', 'hpractice');
         }
 
-        $underOrderTime = (int) $fields['product_settings']['under-order-time'] ?? 0;
-        $this->underOrderTime = sprintf(
-            __('Под заказ, %d дн', 'hpractice'),
-            $underOrderTime
-        );
+        $this->underOrderTime = (int) $fields['product_settings']['under-order-time'] ?? 0;
         $minOrder = (int) $fields['product_settings']['min-order'] ?? 0;
         $this->minOrder = sprintf(
             __('Минимальный заказ %d шт.', 'hpractice'),
@@ -138,7 +134,15 @@ class Product extends AffiliateAbstract
     /**
      * @return string
      */
-    public function getUnderOrderTime(): string
+    public function getUnderOrderTimeText(): string
+    {
+        return sprintf(
+            __('Под заказ, %d дн.', 'hpractice'),
+            $this->underOrderTime
+        );
+    }
+
+    public function getUnderOrderTime(): int
     {
         return $this->underOrderTime;
     }
