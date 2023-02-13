@@ -31,6 +31,12 @@ $telegram = $footer['telegram_id'] ?? '';
                     'hpractice'
                 ); ?>
             </p>
+            <p>
+                <?php _e(
+                    'Реквизиты для оплаты 5169 3305 1897 0790.',
+                    'hpractice'
+                ); ?>
+            </p>
             <?php if (!empty($schedule)) : ?>
                 <p><?php _e('Рабочие дни', 'hpractice'); ?>:</p>
                 <div class="list">
