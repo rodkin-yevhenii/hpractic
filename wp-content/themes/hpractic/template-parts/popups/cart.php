@@ -221,7 +221,7 @@ $policyId = pll_get_post( $policyId );
                                     'Нажимая на кнопку «Оформить заказ» вы даете согласие на обработку персональных данных и соглашаетесь с ',
                                     'hpractice'
                                 ); ?>
-                                <a href="<?php echo get_permalink( $policyId ); ?>>" target="_blank">
+                                <a href="<?php echo get_permalink( $policyId ); ?>" target="_blank">
                                     <?php _e( 'политикой конфиденциальности', 'hpractice' ); ?>
                                 </a>
                             </span>
