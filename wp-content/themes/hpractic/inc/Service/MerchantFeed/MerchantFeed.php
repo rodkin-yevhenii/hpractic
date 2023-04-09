@@ -19,6 +19,8 @@ class MerchantFeed
 {
     private XMLWriter $xml;
 
+    private const EXCLUDED_PRODUCTS = [1826];
+
     /**
      * MerchantFeed constructor.
      */
@@ -85,6 +87,10 @@ class MerchantFeed
 
         if ($query->have_posts()) {
             foreach ($query->posts as $id) {
+                if (in_array($id, self::EXCLUDED_PRODUCTS)) {
+                    continue;
+                }
+
                 $product = new Product($id);
 
                 $this->xml->startElement('item');
