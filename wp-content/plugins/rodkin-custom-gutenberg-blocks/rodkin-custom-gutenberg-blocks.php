@@ -19,7 +19,7 @@ clearstatcache();
 if (file_exists($composer_path)) {
     require_once($composer_path);
 } else {
-    exit;
+    wp_die(__("GB Plugin: Php composer is required", 'hpractice-gb'));
 }
 
 if (!defined('GB_PLUGIN_URI')) {
