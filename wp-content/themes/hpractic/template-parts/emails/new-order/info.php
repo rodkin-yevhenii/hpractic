@@ -208,8 +208,7 @@
                             <div class="txtTinyMce-wrapper"
                                  style="font-size: 14px; line-height: 1.2; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    9:00 – 19:00 Пн – Пт<br/>
-                                    9:00 – 15:00 Сб
+                                    9:00 – 18:00 Пн – Пт
                                 </p>
                             </div>
                         </div>
