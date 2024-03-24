@@ -4,6 +4,7 @@ namespace Hpr\Service\MerchantFeed;
 
 use DateTime;
 use DateTimeZone;
+use Exception;
 use Hpr\Admin\ProductInit;
 use Hpr\Entity\Product;
 use WP_Query;
@@ -37,7 +38,7 @@ class MerchantFeed
     private function registerHooks(): void
     {
         add_action('wp', [$this, 'registerCrontabHooks']);
-        add_action('create_feed_file_daily_event', [$this, 'createFeedXmlFile']);
+        add_action('create_feed_file_daily_event', [$this, 'generateMerchantFeeds']);
     }
 
     /**
@@ -54,13 +55,23 @@ class MerchantFeed
         }
     }
 
+    public function generateMerchantFeeds(): void
+    {
+        $this->createFeedXmlFile('ru');
+        $this->createFeedXmlFile('uk');
+    }
+
     /**
      * Generate merchant feed xml file.
+     *
+     * @param string $lang Localization language code.
+     *
+     * @throws Exception
      */
-    public function createFeedXmlFile(): void
+    private function createFeedXmlFile(string $lang): void
     {
         $uploads = wp_get_upload_dir();
-        $file    = $uploads['basedir'] . '/merchant-feed.xml';
+        $file    = $uploads['basedir'] . "/merchant-feed-$lang.xml";
 
         ob_start();
         $this->xml->openURI('php://output');
@@ -72,7 +83,12 @@ class MerchantFeed
 
         $this->xml->startElement('channel');
         $this->xml->writeElement('g:title', get_bloginfo('name'));
-        $this->xml->writeElement('g:description', get_bloginfo('description'));
+        $this->xml->writeElement(
+            'g:description',
+            'ru' === $lang
+            ? 'Пластиковые изделия любой сложности'
+            : 'Пластикові вироби будь-якої складності'
+        );
         $this->xml->writeElement('g:link', site_url());
 
         $query = new WP_Query(
@@ -81,7 +97,7 @@ class MerchantFeed
                 'post_status' => 'publish',
                 'posts_per_page' => -1,
                 'fields'      => 'ids',
-                'lang' => 'ru'
+                'lang' => $lang
             ]
         );
 
