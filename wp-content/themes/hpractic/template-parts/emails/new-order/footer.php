@@ -112,7 +112,6 @@
                             <div class="txtTinyMce-wrapper"
                                  style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <a href="tel:80506184864" style="color: #222; font-size: 14px; text-decoration: none;">+38 (050) 618-48-64</a><br/>
                                     <a href="tel:80961724868" style="color: #222; font-size: 14px; text-decoration: none;">+38 (096) 172-48-68</a></p>
                             </div>
                         </div>
@@ -148,7 +147,7 @@
                             <div class="txtTinyMce-wrapper"
                                  style="line-height: 1.2; font-size: 12px; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14px;">
                                 <p style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: left; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-                                    <a href="mailto:hpractic@gmail.com" style="color: #222; font-size: 14px; text-decoration: none;">hpractic@gmail.com</a></p>
+                                    <a href="mailto:hpractic@gmail.com" style="color: #222; font-size: 14px; text-decoration: none;">hplastic.ua@gmail.com</a></p>
                             </div>
                         </div>
                         <!--[if mso]></td></tr></table><![endif]-->
@@ -188,18 +187,6 @@
                                         <tr align="center"
                                             style="vertical-align: top; display: inline-block; text-align: center;"
                                             valign="top">
-                                            <td style="word-break: break-word; vertical-align: top; padding-bottom: 0; padding-right: 5px; padding-left: 5px;"
-                                                valign="top"
-                                            >
-                                                <a href="viber://chat?number=+380506184864" target="_blank">
-                                                    <img alt="Custom"
-                                                         height="32"
-                                                         src="<?php echo site_url('wp-content/themes/hpractic/frontend/src/img/viber.png'); ?>"
-                                                         style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
-                                                         title="Custom"
-                                                         width="31"/>
-                                                </a>
-                                            </td>
                                             <td style="word-break: break-word; vertical-align: top; padding-bottom: 0; padding-right: 5px; padding-left: 5px;"
                                                 valign="top"
                                             >
