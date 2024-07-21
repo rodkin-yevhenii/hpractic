@@ -151,7 +151,7 @@ $footer = get_field('footer', 'option');
             </div>
         </div>
         <div class="footer__copyright">
-            <p class="text">Copyright &copy; <?php echo date('Y'); ?> Practice House, <?php
+            <p class="text">Copyright &copy; <?php echo date('Y'); ?> Plastic House, <?php
             _e('Все права защищены', 'hpractice'); ?></p>
         </div>
     </div>
