@@ -76,6 +76,7 @@ class OrderInit
         add_action('wp_ajax_nopriv_create_order', [$this, 'createOrderCallback']);
         add_action('manage_order_posts_columns', [$this, 'addOrderColumns']);
         add_action('manage_order_posts_custom_column', [$this, 'fillOrderColumns'], 10, 2);
+        add_action('admin_head', [$this, 'add_order_columns_css']);
         add_action('restrict_manage_posts', [$this, 'addTableFilters']);
         add_action('pre_get_posts', [$this, 'addTableFiltersHandler']);
         add_action('init', [$this, 'adminViewedOrder']);
@@ -210,8 +211,7 @@ class OrderInit
     public function addOrderColumns(array $columns): array
     {
         $columns['status'] = __('Статус', 'hpractice');
-        $columns['cost'] = __('Стоимость', 'hpractice');
-        $columns['isSentMail'] = __('Письмо пользователю', 'hpractice');
+        $columns['cost'] = __('Товары', 'hpractice');
 
         return $columns;
     }
@@ -230,24 +230,32 @@ class OrderInit
                 static::renderStatusColumn($status);
                 break;
             case 'cost':
-                $cost = get_field('cost', $orderId);
+                $orderItems = get_field('order-items', $orderId);
 
-                if (!empty($cost)) {
-                    echo '<strong>' . number_format($cost, 0, '.', ' ') . '</strong> грн';
-                } else {
-                    echo "<strong>0</strong> грн";
-                }
-                break;
-            case 'isSentMail':
-                $isSent = get_field('customer_email', $orderId);
+                foreach ($orderItems as $orderItem) {
+                    if (empty($orderItem)) {
+                        continue;
+                    }
 
-                if ($isSent) {
-                    echo '<span style="color: green;"><strong>' . __('Отправлено', 'hpractice') . '</strong></span>';
-                } else {
-                    echo '<span style="color: red;"><strong>' . __('Не отправлено', 'hpractice') . '</strong></span>';
+                    $id = $orderItem['id'];
+                    $title = get_the_title($id);
+
+                    printf(
+                        __('<p><a href="%s" target="_blank">%s</a> - %d шт</p>', 'hpractice'),
+                        get_permalink($id),
+                        $title,
+                        $orderItem['quantity']
+                    );
                 }
                 break;
         }
+    }
+
+    /**
+     * @return void
+     */
+    public static function add_order_columns_css(){
+        echo '<style type="text/css">.column-title{ width: 200px; } .column-status{ width: 150px; }</style>';
     }
 
     /**
@@ -309,6 +317,7 @@ class OrderInit
             case 'new':
                 return 'black';
             case 'pending-payment':
+                return 'orange';
             case 'cancelled':
                 return 'grey';
             case 'processing':

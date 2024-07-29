@@ -37,6 +37,12 @@ $telegram = $footer['telegram_id'] ?? '';
                     'hpractice'
                 ); ?>
             </p>
+            <p>
+                <?php _e(
+                    'Внимание. Обязательно отправьте квитанцию о оплате в Telegram или SMS.',
+                    'hpractice'
+                ); ?>
+            </p>
             <?php if (!empty($schedule)) : ?>
                 <p><?php _e('Рабочие дни', 'hpractice'); ?>:</p>
                 <div class="list">
@@ -88,7 +94,7 @@ $telegram = $footer['telegram_id'] ?? '';
                                                         '',
                                                         $phone['phone']
                                                     ); ?>"
-                                                    class="link link--secondary link--md"
+                                                    class="link link--primary link--md"
                                                     <?php echo $messenger; ?>
                                                 >
                                                     <?php echo $phone['phone']; ?>

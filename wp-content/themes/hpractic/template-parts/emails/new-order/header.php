@@ -40,7 +40,7 @@ use Hpr\Service\Helpers\Helpers;
                                             <img
                                                 alt="Practice house" border="0" class="left fixedwidth"
                                                 src="<?php
-                                                echo site_url('wp-content/themes/hpractic/frontend/src/img/logo.png'); ?>"
+                                                echo site_url('wp-content/themes/hpractic/frontend/src/img/logo-pl-1.png'); ?>"
                                                 style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 96px; display: block;"
                                                 title="Alternate text" width="96"
                                             />
