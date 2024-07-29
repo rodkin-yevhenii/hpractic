@@ -76,6 +76,7 @@ class OrderInit
         add_action('wp_ajax_nopriv_create_order', [$this, 'createOrderCallback']);
         add_action('manage_order_posts_columns', [$this, 'addOrderColumns']);
         add_action('manage_order_posts_custom_column', [$this, 'fillOrderColumns'], 10, 2);
+        add_action('admin_head', [$this, 'add_order_columns_css']);
         add_action('restrict_manage_posts', [$this, 'addTableFilters']);
         add_action('pre_get_posts', [$this, 'addTableFiltersHandler']);
         add_action('init', [$this, 'adminViewedOrder']);
@@ -251,6 +252,13 @@ class OrderInit
     }
 
     /**
+     * @return void
+     */
+    public static function add_order_columns_css(){
+        echo '<style type="text/css">.column-title{ width: 200px; } .column-status{ width: 150px; }</style>';
+    }
+
+    /**
      * Render order status column content.
      *
      * @param string $status
@@ -309,6 +317,7 @@ class OrderInit
             case 'new':
                 return 'black';
             case 'pending-payment':
+                return 'orange';
             case 'cancelled':
                 return 'grey';
             case 'processing':
