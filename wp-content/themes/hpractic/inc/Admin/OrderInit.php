@@ -210,8 +210,7 @@ class OrderInit
     public function addOrderColumns(array $columns): array
     {
         $columns['status'] = __('Статус', 'hpractice');
-        $columns['cost'] = __('Стоимость', 'hpractice');
-        $columns['isSentMail'] = __('Письмо пользователю', 'hpractice');
+        $columns['cost'] = __('Товары', 'hpractice');
 
         return $columns;
     }
@@ -230,21 +229,22 @@ class OrderInit
                 static::renderStatusColumn($status);
                 break;
             case 'cost':
-                $cost = get_field('cost', $orderId);
+                $orderItems = get_field('order-items', $orderId);
 
-                if (!empty($cost)) {
-                    echo '<strong>' . number_format($cost, 0, '.', ' ') . '</strong> грн';
-                } else {
-                    echo "<strong>0</strong> грн";
-                }
-                break;
-            case 'isSentMail':
-                $isSent = get_field('customer_email', $orderId);
+                foreach ($orderItems as $orderItem) {
+                    if (empty($orderItem)) {
+                        continue;
+                    }
 
-                if ($isSent) {
-                    echo '<span style="color: green;"><strong>' . __('Отправлено', 'hpractice') . '</strong></span>';
-                } else {
-                    echo '<span style="color: red;"><strong>' . __('Не отправлено', 'hpractice') . '</strong></span>';
+                    $id = $orderItem['id'];
+                    $title = get_the_title($id);
+
+                    printf(
+                        __('<p><a href="%s" target="_blank">%s</a> - %d шт</p>', 'hpractice'),
+                        get_permalink($id),
+                        $title,
+                        $orderItem['quantity']
+                    );
                 }
                 break;
         }
