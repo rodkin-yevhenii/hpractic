@@ -39,11 +39,12 @@ $telegram = $footer['telegram_id'] ?? '';
             </p>
             <p>
                 <?php _e(
-                    'Внимание. Обязательно отправьте квитанцию о оплате в Telegram или SMS.',
+                    'Внимание. Обязательно отправьте квитанцию об оплате в Telegram или SMS.',
                     'hpractice'
                 ); ?>
             </p>
             <?php if (!empty($schedule)) : ?>
+                <br>
                 <p><?php _e('Рабочие дни', 'hpractice'); ?>:</p>
                 <div class="list">
                     <div class="list__icon">
