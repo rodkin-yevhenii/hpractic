@@ -233,7 +233,10 @@ const UIController = (function(){
       } else {
         return {
           id: id,
-          count: product.find('input[name="count"]').val()
+          count: parseInt(product.find('input[name="count"]').val()),
+          title: product.data('title'),
+          sku: product.data('sku'),
+          price: product.data('price'),
         }
       }
 
@@ -338,7 +341,7 @@ const controller = (function(cartCtrl, UICtrl){
     const product = UICtrl.getProduct(id);
     if(product) {
       cartCtrl.addProduct(product);
-      $(document).trigger('add2cart', [id[lang] || null]);
+      $(document).trigger('add2cart', [product]);
       setHeaderCartCount();
     }
   }

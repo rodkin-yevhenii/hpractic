@@ -21,6 +21,9 @@ $breadcrumbs = new Breadcrumbs($id);
 <div class="product"
      data-id-ru="<?php echo pll_get_post($id, 'ru'); ?>"
      data-id-uk="<?php echo pll_get_post($id, 'uk'); ?>"
+     data-title="<?php echo $product->getTitle(); ?>"
+     data-sku="<?php echo $product->getSku(); ?>"
+     data-price="<?php echo $product->getPrice(); ?>"
 >
     <div class="product__head">
         <div class="container">
