@@ -241,7 +241,8 @@ class OrderInit
                     $title = get_the_title($id);
 
                     printf(
-                        __('<p><a href="%s" target="_blank">%s</a> - %d шт</p>', 'hpractice'),
+                        __('<p>Артикул: %s; <a href="%s" target="_blank">%s</a> - %d шт</p>', 'hpractice'),
+                        get_post_meta($orderItem['id'], 'product_settings_sku', true),
                         get_permalink($id),
                         $title,
                         $orderItem['quantity']
