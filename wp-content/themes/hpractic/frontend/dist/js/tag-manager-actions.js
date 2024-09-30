@@ -37,7 +37,7 @@ $(document).on('add2cart', function (event, product) {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({ ecommerce: null })
   window.dataLayer.push({
-    'event': 'add2cart',
+    'event': 'add_to_cart',
     'ecommerce': {
       currency: "UAH",
       value: product.price * product.count,
