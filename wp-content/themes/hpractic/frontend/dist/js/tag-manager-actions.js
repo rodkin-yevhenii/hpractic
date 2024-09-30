@@ -14,6 +14,25 @@ $(document).on('contacts_sent_successfully', function () {
   })
 })
 
+$(document).on('view_product', function (event, product) {
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({ ecommerce: null })
+  window.dataLayer.push({
+    'event': 'view_item',
+    'ecommerce': {
+      currency: "UAH",
+      value: product.price,
+      items: [
+        {
+          item_id: product.sku,
+          item_name: product.title,
+          price: product.price,
+        },
+      ],
+    }
+  })
+})
+
 $(document).on('add2cart', function (event, product) {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({ ecommerce: null })

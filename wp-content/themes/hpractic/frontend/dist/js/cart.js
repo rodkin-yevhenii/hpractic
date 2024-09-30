@@ -298,6 +298,7 @@ const controller = (function(cartCtrl, UICtrl){
     $(document).on('click', DOM.cartOpenBtn, ctrlRenderCartItems);
     $(document).on('click', DOM.countBtn, ctrlUpdateProductCount);
     $(document).on('keyup', DOM.countInput, ctrlUpdateProductCount);
+    $(window).on('load', ctrlOpenProductPage);
   }
 
   const ctrlRenderCartItems = function(){
@@ -343,6 +344,19 @@ const controller = (function(cartCtrl, UICtrl){
       cartCtrl.addProduct(product);
       $(document).trigger('add2cart', [product]);
       setHeaderCartCount();
+    }
+  }
+
+  const ctrlOpenProductPage = function(){
+    const id = {
+      ru: $(document).find('.product').attr('data-id-ru'),
+      uk: $(document).find('.product').attr('data-id-uk')
+    };
+    const product = UICtrl.getProduct(id);
+
+    if(product) {
+      console.log('open event')
+      $(document).trigger('view_product', [product]);
     }
   }
 
