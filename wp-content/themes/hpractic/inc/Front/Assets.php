@@ -65,7 +65,7 @@ class Assets
                 $style['handle'],
                 $style['src'],
                 [],
-                null,
+                CACHE_BUSTER,
             );
         }
     }
@@ -82,7 +82,7 @@ class Assets
                 $script['handle'],
                 $script['src'],
                 [$script['deps']],
-                null,
+                CACHE_BUSTER,
                 true
             );
         }
