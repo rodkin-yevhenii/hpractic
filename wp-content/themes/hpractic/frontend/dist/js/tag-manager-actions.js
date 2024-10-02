@@ -60,9 +60,30 @@ $(document).on('go2cart', function () {
   })
 })
 
-$(document).on('order_created', function () {
+$(document).on('order_created', function (event, cartItems, orderId) {
+  console.log(cartItems, orderId)
+
+  let totalPrice = 0;
+  cartItems.forEach(cartItem => {
+    totalPrice += cartItem.price * cartItem.count
+  });
+
   window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({ ecommerce: null })
   window.dataLayer.push({
-    'event': 'order'
+    'event': 'purchase',
+    'ecommerce': {
+      'transaction_id': orderId,
+      currency: "UAH",
+      value: totalPrice,
+      items: cartItems.map(cartItem => {
+        return {
+          item_id: cartItem.sku,
+          item_name: cartItem.title,
+          price: cartItem.price,
+          quantity: cartItem.count,
+        }
+      })
+    }
   })
 })

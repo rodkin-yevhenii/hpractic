@@ -86,9 +86,9 @@ var API = {
           });
         }
 
-        $(document).trigger('order_created');
-        localStorage.setItem('products', JSON.stringify([]));
-        UIController.setCartHeaderCount(0);
+        $(document).trigger('order_created', [getCartItems(products), response.data.orderId]);
+        // localStorage.setItem('products', JSON.stringify([]));
+        // UIController.setCartHeaderCount(0);
 
         resolve(response.data);
       }).fail(function (err) {
@@ -161,6 +161,20 @@ const cartController = (function(){
   }
 })();
 
+const getCartItems = function (products) {
+  return products.map(product => {
+    const cartProduct = $('#cart-form').find(`.cart__product[data-id="${product.id}"]`);
+
+    product.id = parseInt(product.id);
+    product.sku = cartProduct.data('sku');
+    product.title = cartProduct.find('.cart__product-name h4').text();
+    product.price = cartProduct.find('.cart__product-price .value').text();
+    product.price = parseInt(product.price.match(/\d+/)[0]);
+
+    return product;
+  })
+}
+
 const UIController = (function(){
   const DOMElements = {
     cart: '#cart-form',
@@ -179,7 +193,7 @@ const UIController = (function(){
       return '';
     }
 
-    return '<div class="cart__product" data-id="'+ obj.id +'">\n' +
+    return '<div class="cart__product" data-id="'+ obj.id +'"  data-sku="'+ obj.sku +'">\n' +
         '    <div class="cart__product-image">\n' +
         '        <img src="'+ obj.img +'" alt="">\n' +
         '    </div>\n' +
@@ -355,7 +369,6 @@ const controller = (function(cartCtrl, UICtrl){
     const product = UICtrl.getProduct(id);
 
     if(product) {
-      console.log('open event')
       $(document).trigger('view_product', [product]);
     }
   }

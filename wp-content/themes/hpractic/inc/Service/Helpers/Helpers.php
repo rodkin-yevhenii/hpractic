@@ -135,6 +135,7 @@ class Helpers
 
             $response['data'][] = [
                 'id' => $product->getId(),
+                'sku' => $product->getSku(),
                 'name' => $product->getTitle(),
                 'img' => empty($gallery) ? false : wp_get_attachment_image_url($gallery[0]),
                 'price' => $price
