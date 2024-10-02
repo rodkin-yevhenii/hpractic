@@ -61,9 +61,8 @@ $(document).on('go2cart', function () {
 })
 
 $(document).on('order_created', function (event, cartItems, orderId) {
-  console.log(cartItems, orderId)
-
   let totalPrice = 0;
+
   cartItems.forEach(cartItem => {
     totalPrice += cartItem.price * cartItem.count
   });
