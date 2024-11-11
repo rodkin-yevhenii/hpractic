@@ -26,7 +26,9 @@ if (!$product) {
     <div class="product__list">
         <ul>
             <?php if ($product->isUnderOrder()) : ?>
-            <li><?php echo $product->getUnderOrderTimeText(); ?></li>
+                <li><?php echo $product->getUnderOrderTimeText(); ?></li>
+            <?php else: ?>
+                <li><span class="stock-status stock-status__in-stock"><?php _e('В наличии', 'hpractice') ; ?></span></li>
             <?php endif;
 
             if ($product->isMinOrder()) : ?>

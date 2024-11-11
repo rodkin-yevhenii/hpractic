@@ -3445,6 +3445,8 @@ button.mfp-close {
       line-height: 3.4rem; }
   .product__list {
     margin: 4rem 0; }
+  .product .stock-status__in-stock {
+    color: #29A654; }
   .product__count {
     margin: 4rem 0 2.4rem; }
     @media only screen and (max-width: 560px) {
