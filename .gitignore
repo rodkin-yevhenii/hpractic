@@ -1,8 +1,11 @@
 # Ignore IDE folder
 .idea/*
 
+# Ignore ddev folder
+.ddev/
+
 # Ignore wp-config
-wp-config.php
+wp-config*
 .htaccess
 
 # Ignore composer files
