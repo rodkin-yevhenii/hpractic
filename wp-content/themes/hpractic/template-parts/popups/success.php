@@ -20,23 +20,30 @@ $telegram = $footer['telegram_id'] ?? '';
                 <?php _e('Спасибо за заказ', 'hpractice'); ?>
             </div>
             <div class="popup__order">
-                <p><strong><?php _e('Ваш заказ', 'hpractice'); ?>:</strong></p>
+                <p class="subheading subheading--center subheading--md"><?php _e('Ваш заказ', 'hpractice'); ?></p>
                 <h6 class="subheading subheading--center subheading--md">
                     № <span class="order-value-js popup-text-js"></span>
                 </h6>
             </div>
             <p>
                 <?php _e(
-                    'Заказы, оформленные через корзину сайта в выходные и праздничные дни, будут по очереди обработаны в первый рабочий день.',
+                    'Заказы, оформленные в выходные дни, будут обработаны по очереди в первый рабочий день.',
                     'hpractice'
                 ); ?>
             </p>
-            <p>
-                <?php _e(
-                    'Реквизиты для оплаты',
-                    'hpractice'
-                ); ?> UA203515330000026006052125804.
-            </p>
+            <?php if (!empty(get_field('bank_account', 'option'))) : ?>
+                <p>
+                    <?php
+                    printf (
+                        __(
+                            'Реквизиты для оплаты %s.',
+                            'hpractice'
+                        ),
+                        get_field('bank_account', 'option')
+                    );
+                    ?>
+                </p>
+            <?php endif; ?>
             <p>
                 <?php _e(
                     'Внимание. Обязательно отправьте квитанцию об оплате в Telegram или SMS.',
@@ -95,7 +102,7 @@ $telegram = $footer['telegram_id'] ?? '';
                                                         '',
                                                         $phone['phone']
                                                     ); ?>"
-                                                    class="link link--primary link--md"
+                                                    class="link link--md"
                                                     <?php echo $messenger; ?>
                                                 >
                                                     <?php echo $phone['phone']; ?>
