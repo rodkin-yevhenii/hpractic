@@ -84,13 +84,13 @@ var API = {
             title: response.error.title,
             text: response.error.message
           });
+        } else {
+          $(document).trigger('order_created', [getCartItems(products), response.data.orderId]);
+          localStorage.setItem('products', JSON.stringify([]));
+          UIController.setCartHeaderCount(0);
+
+          resolve(response.data);
         }
-
-        $(document).trigger('order_created', [getCartItems(products), response.data.orderId]);
-        // localStorage.setItem('products', JSON.stringify([]));
-        // UIController.setCartHeaderCount(0);
-
-        resolve(response.data);
       }).fail(function (err) {
         reject(err);
       });
