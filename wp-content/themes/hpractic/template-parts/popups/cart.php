@@ -145,7 +145,7 @@ $policyId = pll_get_post( $policyId );
                                 <input type="radio" name="payment-type" value="cod" checked>
                                 <i class="form__radio__element"></i>
                                 <span>
-                                    <?php _e( 'Наложенный платеж', 'hpractice' ); ?>
+                                    <?php _e( 'Наложенный платеж 50%', 'hpractice' ); ?>
                                 </span>
                             </label>
                             <label class="form__radio">
