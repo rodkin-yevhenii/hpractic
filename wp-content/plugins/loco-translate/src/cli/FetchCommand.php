@@ -5,9 +5,9 @@
 abstract class Loco_cli_FetchCommand {
 
     /**
-     * @param Loco_package_Project[] project filter
-     * @param Loco_Locale[] locale filter
-     * @param bool[] switches
+     * @param Loco_package_Project[] $projects project filter
+     * @param Loco_Locale[] $locales locale filter
+     * @param bool[] $opts switches
      */
     public static function run( array $projects, array $locales, array $opts ){
         
@@ -30,14 +30,13 @@ abstract class Loco_cli_FetchCommand {
             }
         }
 
-        /* @var Loco_package_Project $project */
         foreach( $projects as $project ){
             $type = strtolower( $project->getBundle()->getType() );
             $domain = $project->getDomain()->getName();
             $info = $project->getBundle()->getHeaderInfo();
             $version = $info->Version;
             // Currently only supporting WordPress community translation sources.
-            $args = array( 'version' => $version );
+            $args = [ 'version' => $version ];
             if( 'core' !== $type ){
                 $type.= 's';
                 if( $project->getSlug() !== $domain ){
@@ -51,7 +50,7 @@ abstract class Loco_cli_FetchCommand {
             $result = $wp->apiGet($type,$args);
 
             // pre-index installable language packs
-            $packages = array();
+            $packages = [];
             foreach( $result['translations'] as $data ){
                 $packages[$data['language']] = $data['package'];
             }
@@ -104,12 +103,12 @@ abstract class Loco_cli_FetchCommand {
                         $slug = sprintf('%u.%u.x',$major,$minor);
                     }
                     // Core projects are sub projects. plugins and themes don't have this
-                    $map = array (
+                    $map =  [
                         'default.' => '',
                         'default.admin' => '/admin',
                         'default.admin-network' => '/admin/network',
                         'continents-cities' => '/cc',
-                    );
+                    ];
                     $slug .= $map[ $project->getId() ];
                     $url = 'https://translate.wordpress.org/projects/wp/'.$slug.'/'.$team.'/'.$variant.'/export-translations/?format=po';
                 }
@@ -144,25 +143,25 @@ abstract class Loco_cli_FetchCommand {
                 
                 // keep translations if file already exists in this location.
                 $pofile = $project->initLocaleFile($dir,$locale);
-                $info = new Loco_mvc_FileParams( array(), $pofile );
+                $info = new Loco_mvc_FileParams( [], $pofile );
                 Loco_cli_Utils::debug('Saving %s..', $info->relpath );
                 $compiler = new Loco_gettext_Compiler($pofile);
                 if( $pofile->exists() ){
-                    $info = new Loco_mvc_FileParams( array(), $pofile );
+                    $info = new Loco_mvc_FileParams( [], $pofile );
                     Loco_cli_Utils::debug('PO already exists at %s (%s), merging..',$info->relpath,$info->size);
                     $original = Loco_gettext_Data::load($pofile);
-                    $matcher = new Loco_gettext_Matcher;
+                    $matcher = new Loco_gettext_Matcher($project);
                     $matcher->loadRefs($podata,true);
                     // downloaded file is in memory can be replaced with merged version
                     $podata = clone $original;
                     $podata->clear();
                     $stats = $matcher->merge($original,$podata);
                     $original = null;
-                    if( ! $stats['add'] && ! $stats['del'] && ! $stats['fuz'] && ! $stats['str'] ){
+                    if( ! $stats['add'] && ! $stats['del'] && ! $stats['fuz'] && ! $stats['trn'] ){
                         WP_CLI::log( sprintf('%s unchanged in "%s". Skipping %s', $project,$locale,$info->relpath) );
                         continue;
                     }
-                    // Overwrite merged PO, which will backup first if configured
+                    // Overwrite merged PO, which will back up first if configured
                     Loco_cli_Utils::debug('OK: %u added, %u dropped, %u fuzzy', count($stats['add']), count($stats['del']), count($stats['fuz']) );
                     $podata->localize($locale);
                     $compiler->writePo($podata);
@@ -183,8 +182,7 @@ abstract class Loco_cli_FetchCommand {
                 Loco_error_AdminNotices::get()->flush();
                 
                 // clean up memory and ready for next file
-                $podata = null;
-                $pobody = null;
+                unset($podata,$pobody);
                 $done++;
             }
         }

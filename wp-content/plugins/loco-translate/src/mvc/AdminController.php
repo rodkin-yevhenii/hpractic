@@ -24,13 +24,12 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
     /**
      * @var string[]
      */
-    private $scripts = array();
+    private $scripts = [];
     
 
     /**
      * Pre-init call invoked by router
-     * @param mixed[]
-     * @return Loco_mvc_AdminController
+     * @return static
      */    
     final public function _init( array $args ){
         if( loco_debugging() ){
@@ -50,7 +49,7 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
                 $tabs = $this->getHelpTabs();
                 // always append common help tabs
                 $tabs[ __('Help & support','loco-translate') ] = $this->view->render('tab-support');
-                // set all tabs and common side bar
+                // set all tabs and common sidebar
                 $i = 0;
                 foreach( $tabs as $title => $content ){
                     $id = sprintf('loco-help-%u', $i++ );
@@ -70,7 +69,7 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
         $this->baseurl = plugins_url( '', loco_plugin_self() );
         
         // add common admin page resources
-        $this->enqueueStyle('admin', array('wp-jquery-ui-dialog') );
+        $this->enqueueStyle('admin', ['wp-jquery-ui-dialog'] );
 
         // load colour scheme is user has non-default
         $skin = get_user_option('admin_color');
@@ -79,7 +78,7 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
         }
         
         // core minimized admin.js loaded on all pages before any other Loco scripts
-        $this->enqueueScript('admin', array('jquery-ui-dialog') );
+        $this->enqueueScript('admin', ['jquery-ui-dialog'] );
         
         $this->init();
         return $this;
@@ -129,12 +128,12 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
 
 
     /**
-     * "loco_external" filter callback, campaignizes external links
+     * "loco_external" filter callback, adds campaign identifier onto external links
      */
     public function filter_loco_external( $url ){
         $u = parse_url( $url );
         if( isset($u['host']) && 'localise.biz' === $u['host'] ){
-            $query = http_build_query( array( 'utm_medium' => 'plugin', 'utm_campaign' => 'wp', 'utm_source' => 'admin', 'utm_content' => $this->get('_route') ), null, '&' );
+            $query = http_build_query( [ 'utm_medium' => 'plugin', 'utm_campaign' => 'wp', 'utm_source' => 'admin', 'utm_content' => $this->get('_route') ] );
             $url = 'https://localise.biz'.$u['path'];
             if( isset($u['query']) ){
                 $url .= '?'. $u['query'].'&'.$query;
@@ -155,7 +154,7 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
      * @return array
      */
     public function getHelpTabs(){
-        return array();
+        return [];
     }
 
 
@@ -176,14 +175,13 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
     }
 
 
-
     /**
      * Render template for echoing into admin screen
-     * @param string template name
-     * @param array template arguments
+     * @param string $tpl template name
+     * @param array $args template arguments
      * @return string
      */
-    public function view( $tpl, array $args = array() ){
+    public function view( $tpl, array $args = [] ){
         /*if( ! $this->baseurl ){
             throw new Loco_error_Debug('Did you mean to call $this->viewSnippet('.json_encode($tpl,JSON_UNESCAPED_SLASHES).') in '.get_class($this).'?');
         }*/
@@ -205,7 +203,7 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
         if( $jsConf instanceof Loco_mvc_ViewParams ){
             // ensure config has access to latest version information
             // we will use this to ensure scripts are not cached by browser, or hijacked by other plugins
-            $jsConf->offsetSet('$v', array( loco_plugin_version(), $GLOBALS['wp_version']) );
+            $jsConf->offsetSet('$v', [ loco_plugin_version(), $GLOBALS['wp_version']] );
             $jsConf->offsetSet('$js', array_keys($this->scripts) );
             $jsConf->offsetSet('WP_DEBUG', loco_debugging() );
             // localize script if translations in memory
@@ -222,22 +220,23 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
             // localized formatting from core translations
             global $wp_locale;
             if( is_object($wp_locale) && property_exists($wp_locale,'number_format') ){
-                $jsConf->offsetSet('wpnum', array_map(array($this,'filter_number_format_i18n'),$wp_locale->number_format) );
+                $jsConf->offsetSet('wpnum', array_map([$this,'filter_number_format_i18n'],$wp_locale->number_format) );
             }
         }
         // take benchmark for debugger to be rendered in footer
         if( $this->bench ){
-            $this->set('_debug', new Loco_mvc_ViewParams( array( 
+            $this->set('_debug', new Loco_mvc_ViewParams( [ 
                 'time' => microtime(true) - $this->bench,
-            ) ) );
+            ] ) );
         }
+        
         return $view->render( $tpl );
     }
 
 
     /**
      * Shortcut to render template without full page arguments as per view
-     * @param string
+     * @param string $tpl
      * @return string
      */
     public function viewSnippet( $tpl ){
@@ -247,11 +246,11 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
 
     /**
      * Add CSS to head
-     * @param string stem name of file, e.g "editor"
-     * @param string[] dependencies of this stylesheet
-     * @return Loco_mvc_Controller
+     * @param string $name stem name of file, e.g "editor"
+     * @param string[] $deps dependencies of this stylesheet
+     * @return self
      */
-    public function enqueueStyle( $name, array $deps = array() ){
+    public function enqueueStyle( $name, array $deps = [] ){
         $base = $this->baseurl;
         if( ! $base ){
             throw new Loco_error_Exception('Too early to enqueueStyle('.var_export($name,1).')');
@@ -267,11 +266,11 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
 
     /**
      * Add JavaScript to footer
-     * @param string stem name of file, e.g "editor"
-     * @param string[] dependencies of this script
-     * @return Loco_mvc_Controller
+     * @param string $name stem name of file, e.g "editor"
+     * @param string[] $deps dependencies of this script
+     * @return string
      */
-    public function enqueueScript( $name, array $deps = array() ){
+    public function enqueueScript( $name, array $deps = [] ){
         $base = $this->baseurl;
         if( ! $base ){
             throw new Loco_error_Exception('Too early to enqueueScript('.json_encode($name).')');
@@ -282,14 +281,27 @@ abstract class Loco_mvc_AdminController extends Loco_mvc_Controller {
         $id = 'loco-translate-'.strtr($name,'/','-');
         wp_enqueue_script( $id, $href, $deps, $vers, true );
         $this->scripts[$id] = $href;
-        return $this;
+        return $id;
+    }
+
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function dequeueScript( $name ){
+        $id = 'loco-translate-'.strtr($name,'/','-');
+        if( array_key_exists($id,$this->scripts) ){
+            wp_dequeue_script($id);
+            unset($this->scripts[$id]);
+        }
     }
 
 
     /**
      * @internal
-     * @param string
-     * @param string
+     * @param string $tag
+     * @param string $id
      * @return string
      */
     public function filter_script_loader_tag( $tag, $id ) {

@@ -29,6 +29,19 @@ abstract class Loco_admin_bundle_BaseController extends Loco_mvc_AdminController
 
 
     /**
+     * Get current project's text domain if available
+     * @return string
+     */
+    public function getDomain(){
+        $project = $this->getOptionalProject();
+        if( $project instanceof Loco_package_Project ){
+            return $project->getDomain()->getName();
+        }
+        return '';
+    }
+
+
+    /**
      * Commit bundle config to database
      * @return Loco_admin_bundle_BaseController 
      */
@@ -104,17 +117,19 @@ abstract class Loco_admin_bundle_BaseController extends Loco_mvc_AdminController
         // navigate between bundle view siblings
         $tabs = new Loco_admin_Navigation;
         $this->set( 'tabs', $tabs );
-        $actions = array (
+        $actions =  [
             'view'  => __('Overview','loco-translate'),
             'setup' => __('Setup','loco-translate'),
             'conf'  => __('Advanced','loco-translate'),
-        );
-        if( loco_debugging() ){
+        ];
+        // Debugger is deprecated. It remains accessible but will be removed or replaced in future versions
+        // If you want to see the Debug button, hook in the following filter with "__return_true"
+        if( apply_filters('loco_deprecated',false) ){
             $actions['debug'] = __('Debug','loco-translate');
         }
         $suffix = $this->get('action');
         $prefix = strtolower( $this->get('type') );
-        $getarg = array_intersect_key( $_GET, array('bundle'=>'') );
+        $getarg = array_intersect_key( $_GET, ['bundle'=>''] );
         foreach( $actions as $action => $name ){
             $href = Loco_mvc_AdminRouter::generate( $prefix.'-'.$action, $getarg );
             $tabs->add( $name, $href, $action === $suffix );
@@ -127,18 +142,18 @@ abstract class Loco_admin_bundle_BaseController extends Loco_mvc_AdminController
 
     /**
      * Prepare file system connect
-     * @param string "create", "update", "delete"
-     * @param string path relative to wp-content
+     * @param string $type "create", "update", "delete"
+     * @param string $relpath Path relative to wp-content
      * @return Loco_mvc_HiddenFields
      */
     protected function prepareFsConnect( $type, $relpath ){
 
-        $fields = new Loco_mvc_HiddenFields( array(
+        $fields = new Loco_mvc_HiddenFields( [
             'auth' => $type,
             'path' => $relpath,
             'loco-nonce' => wp_create_nonce('fsConnect'),
             '_fs_nonce' => wp_create_nonce('filesystem-credentials'), // <- WP 4.7.5 added security fix
-        ) ) ;
+        ] ) ;
         $this->set('fsFields', $fields );
 
         // may have fs credentials saved in session

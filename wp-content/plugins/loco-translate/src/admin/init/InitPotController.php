@@ -21,9 +21,9 @@ class Loco_admin_init_InitPotController extends Loco_admin_bundle_BaseController
      * {@inheritdoc}
      */
     public function getHelpTabs(){
-        return array (
-            __('Overview','default') => $this->viewSnippet('tab-init-pot'),
-        );
+        return  [
+            __('Overview') => $this->viewSnippet('tab-init-pot'),
+        ];
     }
     
     
@@ -40,7 +40,6 @@ class Loco_admin_init_InitPotController extends Loco_admin_bundle_BaseController
         $bundle = $this->getBundle();
         $project = $this->getProject();
 
-        $slug = $project->getSlug();
         $domain = (string) $project->getDomain();
         $this->set('domain', $domain );
         
@@ -89,20 +88,21 @@ class Loco_admin_init_InitPotController extends Loco_admin_bundle_BaseController
                 $bytes += $fsize;
             }
         }
-        $this->set( 'scan', new Loco_mvc_ViewParams( array (
+        $this->set( 'scan', new Loco_mvc_ViewParams(  [
             'bytes' => $bytes,
             'count' => $nfiles,
             'skip' => $nskip,
             'size' => Loco_mvc_FileParams::renderBytes($bytes),
             'large' => Loco_mvc_FileParams::renderBytes($max),
             'largest' => Loco_mvc_FileParams::renderBytes($largest),
-        ) ) );
+        ] ) );
         
         // file metadata
         $this->set('pot', Loco_mvc_FileParams::create( $pot ) );
         $this->set('dir', Loco_mvc_FileParams::create( $dir ) );
         
         $title = __('New template file','loco-translate');
+        // translators: %s refers to the name of a translation set (theme, plugin or core component)
         $subhead = sprintf( __('New translations template for "%s"','loco-translate'), $project );
         $this->set('subhead', $subhead );
         
@@ -115,7 +115,7 @@ class Loco_admin_init_InitPotController extends Loco_admin_bundle_BaseController
         $target_path = $pot->getParent()->getRelativePath($content_dir);
 
         // hidden fields to pass through to Ajax endpoint
-        $this->set( 'hidden', new Loco_mvc_ViewParams( array(
+        $this->set( 'hidden', new Loco_mvc_ViewParams( [
             'action' => 'loco_json',
             'route' => 'xgettext',
             'loco-nonce' => $this->setNonce('xgettext')->value,
@@ -124,7 +124,7 @@ class Loco_admin_init_InitPotController extends Loco_admin_bundle_BaseController
             'domain' => $project->getId(),
             'path' => $target_path,
             'name' => $pot->basename(),
-        ) ) );
+        ] ) );
 
         // File system connect required if location not writable
         $relpath = $pot->getRelativePath($content_dir);

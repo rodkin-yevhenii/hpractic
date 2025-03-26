@@ -78,12 +78,19 @@ class EventsActions {
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
-		$execution = strtotime( $data['execution'] ) ? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] ) : time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
+		$execution = strtotime( $data['execution'] )
+			? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] )
+			: time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
 
 		$args = array();
-		foreach ( $data['arguments'] as $arg_raw ) {
-			if ( ! empty( $arg_raw ) ) {
-				$args[] = $arg_raw;
+
+		if ( ! empty( $data['arguments'] ) ) {
+			foreach ( $data['arguments'] as $arg_raw ) {
+				if ( ! empty( $arg_raw ) ) {
+					$args[] = wp_filter_nohtml_kses( sanitize_text_field(
+						html_entity_decode( $arg_raw, ENT_QUOTES, 'UTF-8' )
+					) );
+				}
 			}
 		}
 
@@ -161,6 +168,13 @@ class EventsActions {
 
 		// phpcs:ignore
 		$event  = $this->events->get_event_by_hash( $_REQUEST['event'] );
+
+		if ( false === $event ) {
+			$this->ajax->response( false, array(
+				__( "This event doesn't exist anymore.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		$errors = array();
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );

@@ -11,12 +11,22 @@ class Loco_admin_config_ApisController extends Loco_admin_config_BaseController 
         parent::init();
         $this->set( 'title', __('API keys','loco-translate') );
 
-        // collect support API keys
-        $apis = array();
+        // Collect configurable API keys bundled with plugin
+        $apis = [];
         foreach( Loco_api_Providers::builtin() as $api ){
             $apis[ $api['id'] ] = new Loco_mvc_ViewParams($api);
         }
+        // Add any additional API hooks for information only
+        $hooked = [];
+        foreach( Loco_api_Providers::export() as $api ){
+            $id = $api['id'];
+            if( ! array_key_exists($id,$apis) ){
+                $hooked[ $id ] = new Loco_mvc_ViewParams($api);
+            }
+        }
+
         $this->set('apis',$apis);
+        $this->set('hooked',$hooked);
 
         // handle save action
         $nonce = $this->setNonce('save-apis');
@@ -25,8 +35,8 @@ class Loco_admin_config_ApisController extends Loco_admin_config_BaseController 
                 $post = Loco_mvc_PostParams::get();
                 if( $post->has('api') ){
                     // Save only options in post. Avoids overwrite of missing site options
-                    $data = array();
-                    $filter = array();
+                    $data = [];
+                    $filter = [];
                     foreach( $apis as $id => $api ){
                         $fields = $post->api[$id];
                         if( is_array($fields) ){
@@ -61,11 +71,11 @@ class Loco_admin_config_ApisController extends Loco_admin_config_BaseController 
         $breadcrumb->add( $title );
 
         // common ui elements / labels
-        $this->set( 'ui', new Loco_mvc_ViewParams( array(
+        $this->set( 'ui', new Loco_mvc_ViewParams( [
             'api_key' => __('API key','loco-translate'),
             'api_url' => __('API URL','loco-translate'),
             'api_region' => __('API region','loco-translate'),
-        ) ) );
+        ] ) );
         
         return $this->view('admin/config/apis', compact('breadcrumb') );
     }

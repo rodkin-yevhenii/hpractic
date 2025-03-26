@@ -8,7 +8,7 @@ class Loco_data_CompiledData implements ArrayAccess, Countable, IteratorAggregat
     /**
      * @var array
      */
-    private static $reg;
+    private static $reg = [];
     
     /**
      * @var string
@@ -22,14 +22,23 @@ class Loco_data_CompiledData implements ArrayAccess, Countable, IteratorAggregat
 
     
     /**
-     * @param string
-     * @return Loco_data_CompiledData
+     * @param string $name
+     * @return self
      */
     public static function get( $name ){
         if( ! isset(self::$reg[$name]) ){
             self::$reg[$name] = new Loco_data_CompiledData($name);
         }
         return self::$reg[$name];
+    }
+
+
+    /**
+     * Remove all cached data from memory
+     * @return void
+     */
+    public static function flush(){
+        self::$reg = [];
     }
     
 
@@ -45,25 +54,30 @@ class Loco_data_CompiledData implements ArrayAccess, Countable, IteratorAggregat
     }
 
 
+    #[ReturnTypeWillChange]
     public function offsetGet( $k ){
         return isset($this->data[$k]) ? $this->data[$k] : null;
     }
-    
-    
+
+
+    #[ReturnTypeWillChange]
     public function offsetExists( $k ){
         return isset($this->data[$k]);
     }
 
 
+    #[ReturnTypeWillChange]
     public function offsetUnset( $k ){
         throw new RuntimeException('Read only');
     }
-    
-    
+
+
+    #[ReturnTypeWillChange]
     public function offsetSet( $k, $v ){
         throw new RuntimeException('Read only');
     }
 
+    #[ReturnTypeWillChange]
     public function count(){
         return count($this->data);
     }
@@ -72,6 +86,7 @@ class Loco_data_CompiledData implements ArrayAccess, Countable, IteratorAggregat
      * Implements IteratorAggregate::getIterator
      * @return ArrayIterator
      */
+    #[ReturnTypeWillChange]
     public function getIterator(){
         return new ArrayIterator( $this->data );
     }

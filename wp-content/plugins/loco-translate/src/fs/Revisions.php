@@ -32,12 +32,12 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
      * Paths to delete when object removed from memory
      * @var array
      */
-    private $trash = array();
+    private $trash = [];
     
 
     /**
      * Construct from master file (current version)
-     * @param Loco_fs_File
+     * @param Loco_fs_File $file
      */
     public function __construct( Loco_fs_File $file ){
         $this->master = $file;
@@ -105,8 +105,8 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
 
 
     /**
-     * Delete oldest backups until we have maximum of $num_backups remaining
-     * @param int
+     * Delete the oldest backups until we have maximum of $num_backups remaining
+     * @param int $num_backups
      * @return Loco_fs_Revisions
      */
     public function prune( $num_backups ){
@@ -145,13 +145,13 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
      */
     public function getPaths(){
         if( is_null($this->paths) ){
-            $this->paths = array();
+            $this->paths = [];
             $regex = $this->getRegExp();
             $finder = new Loco_fs_FileFinder( $this->master->dirname() );
             $finder->setRecursive(false);
             /* @var $file Loco_fs_File */
             foreach( $finder as $file ){
-                if( preg_match( $regex, $file->basename(), $r ) ){
+                if( preg_match( $regex, $file->basename() ) ){
                     $this->paths[] = $file->getPath();
                 }
             }
@@ -164,7 +164,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
 
     /**
      * Parse a file path into a timestamp
-     * @param string
+     * @param string $path
      * @return int
      */
     public function getTimestamp( $path ){
@@ -180,7 +180,8 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
     /**
      * Get number of backups plus master
      * @return int
-     */    
+     */
+    #[ReturnTypeWillChange]
     public function count(){
         if( ! $this->length ){
             $this->length = 1 + count( $this->getPaths() );
@@ -192,7 +193,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
     /**
      * Delete file when object removed from memory.
      * Previously unlinked on shutdown, but doesn't work with WordPress file system abstraction
-     * @param string
+     * @param string $path
      * @return void
      */
     public function unlinkLater($path){
@@ -202,7 +203,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
 
     /**
      * Execute backup of current file if enabled in settings.
-     * @param Loco_api_WordPressFileSystem Authorized file system
+     * @param Loco_api_WordPressFileSystem $api Authorized file system
      * @return Loco_fs_File|null backup file if saved
      */
     public function rotate( Loco_api_WordPressFileSystem $api ){
@@ -217,6 +218,7 @@ class Loco_fs_Revisions implements Countable/*, IteratorAggregate*/ {
             }
             catch( Exception $e ){
                 Loco_error_AdminNotices::debug( $e->getMessage() );
+                // translators: %s refers to a directory where a backup file could not be created due to file permissions
                 $message = __('Failed to create backup file in "%s". Check file permissions or disable backups','loco-translate');
                 Loco_error_AdminNotices::warn( sprintf( $message, $pofile->getParent()->basename() ) );
             }

@@ -20,12 +20,11 @@ class Loco_admin_bundle_ConfController extends Loco_admin_bundle_BaseController 
         $nonce = $this->setNonce( $this->get('_route').'-'.$this->get('bundle') );
         $this->set('nonce', $nonce );
         try {
-            // Save configuration if posted
-            if( $post->has('conf') ){
+            // Save configuration if posted, and security check passes
+            if( $post->has('conf') && $this->checkNonce($nonce->action) ){
                 if( ! $post->name ){
                     $post->name = $bundle->getName();
                 }
-                $this->checkNonce( $nonce->action );
                 $model = new Loco_config_FormModel;
                 $model->loadForm( $post );
                 // configure bundle from model in full
@@ -35,25 +34,23 @@ class Loco_admin_bundle_ConfController extends Loco_admin_bundle_BaseController 
                 $this->saveBundle();
             }
             // Delete configuration if posted
-            else if( $post->has('unconf') ){
+            else if( $post->has('unconf') && $this->checkNonce($nonce->action) ){
                 $this->resetBundle();
             }
         }
         catch( Exception $e ){
             Loco_error_AdminNotices::warn( $e->getMessage() );
         }
-
     }
 
-    
 
     /**
      * {@inheritdoc}
      */
     public function getHelpTabs(){
-        return array (
+        return  [
             __('Advanced tab','loco-translate') => $this->viewSnippet('tab-bundle-conf'),
-        );
+        ];
     }
     
     
@@ -70,10 +67,10 @@ class Loco_admin_bundle_ConfController extends Loco_admin_bundle_BaseController 
 
         // parent themes are inherited into bundle, we don't want them in the child theme config
         if( $bundle->isTheme() && ( $parent = $bundle->getParent() ) ){
-            $this->set( 'parent', new Loco_mvc_ViewParams( array(
+            $this->set( 'parent', new Loco_mvc_ViewParams( [
                 'name' => $parent->getName(),
-                'href' => Loco_mvc_AdminRouter::generate('theme-conf', array( 'bundle' => $parent->getSlug() ) + $_GET ),
-            ) ) );
+                'href' => Loco_mvc_AdminRouter::generate('theme-conf', [ 'bundle' => $parent->getSlug() ] + $_GET ),
+            ] ) );
         }
 
         // render postdata straight back to form if sent
@@ -104,7 +101,7 @@ class Loco_admin_bundle_ConfController extends Loco_admin_bundle_BaseController 
 
         // build config blocks for form
         $i = 0;
-        $conf = array();
+        $conf = [];
         foreach( $data['conf'] as $raw ){
             if( empty($raw['removed']) ){
                 $slug = $raw['slug'];
@@ -128,12 +125,12 @@ class Loco_admin_bundle_ConfController extends Loco_admin_bundle_BaseController 
         $this->set('author', $info->getAuthorLink() );
         
         // link for downloading current configuration XML file
-        $args = array ( 
+        $args =  [ 
             'path' => 'loco.xml', 
             'action' => 'loco_download', 
             'bundle' => $bundle->getHandle(), 
             'type' => $bundle->getType()  
-        );
+        ];
         $this->set( 'xmlUrl', Loco_mvc_AjaxRouter::generate( 'DownloadConf', $args ) );
         $this->set( 'manUrl', apply_filters('loco_external','https://localise.biz/wordpress/plugin/manual/bundle-config') );
         

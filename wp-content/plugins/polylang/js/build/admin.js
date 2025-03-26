@@ -49,7 +49,7 @@ jQuery(
 
 		// Inject flag image when jQuery UI selectmenu is created or an item is selected.
 		// jQuery UI 1.12 introduce a wrapper inside de li tag which is necessary to selectmenu widget to work correctly.
-		// Mainly copy from the orginal jQuery UI 1.12 selectmenu widget _renderItem method.
+		// Mainly copy from the original jQuery UI 1.12 selectmenu widget _renderItem method.
 		// Note this code works fine with jQuery UI 1.11.4 too.
 		var selectmenuRenderItem = function( ul, item ) {
 			var li = $( '<li>' );
@@ -292,10 +292,21 @@ jQuery(
 					ajaxurl,
 					data,
 					function( response ) {
-						var res = wpAjax.parseAjaxResponse( response, 'ajax-response' );
+						// Target a non existing WP HTML id to avoid a conflict with WP ajax requests.
+						var res = wpAjax.parseAjaxResponse( response, 'pll-ajax-response' );
 						$.each(
 							res.responses,
 							function() {
+								/**
+								 * Fires after saving the settings, before applying changes to the DOM.
+								 *
+								 * @since 3.6.0
+								 *
+								 * @param {Object}      response The response from the AJAX call.
+								 * @param {HTMLElement} tr       The HTML element containing the fields.
+								 */
+								wp.hooks.doAction( 'pll_settings_saved', this, tr.get( 0 ) );
+
 								switch ( this.what ) {
 									case 'license-update':
 										$( '#pll-license-' + this.data ).replaceWith( this.supplemental.html );

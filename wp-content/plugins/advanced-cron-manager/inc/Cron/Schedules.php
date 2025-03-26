@@ -28,6 +28,13 @@ class Schedules {
 	private $library = array();
 
 	/**
+	 * Single Event Schedule
+	 *
+	 * @var Element\Schedule
+	 */
+	private $single_event_schedule;
+
+	/**
 	 * Constructor
 	 *
 	 * @param SchedulesLibrary $library SchedulesLibrary object.
@@ -68,7 +75,7 @@ class Schedules {
 			}
 		}
 
-		return $this->schedules;
+		return apply_filters( 'advanced-cron-manager/schedules', $this->schedules );
 
 	}
 

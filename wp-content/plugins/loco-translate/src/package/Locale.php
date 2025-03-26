@@ -23,11 +23,10 @@ class Loco_package_Locale {
 
     /**
      * Construct with locale to filter on
-     * @param Loco_Locale|null
      */
     public function __construct( Loco_locale $locale = null ){
         $this->index =  new ArrayObject;
-        $this->match = array();
+        $this->match = [];
         if( $locale ){
             $this->addLocale( $locale );
         }
@@ -36,7 +35,6 @@ class Loco_package_Locale {
 
     /**
      * Add another locale to search on
-     * @param Loco_Locale
      * @return Loco_package_Locale
      */
     public function addLocale( Loco_Locale $locale ){
@@ -49,7 +47,6 @@ class Loco_package_Locale {
 
 
     /**
-     * @param Loco_fs_File
      * @return Loco_package_Project|null
      */
     public function getProject( Loco_fs_File $file ){
@@ -67,7 +64,7 @@ class Loco_package_Locale {
     public function getBundles(){
         $bundles = $this->bundles;
         if( ! $bundles ){
-            $bundles = array( Loco_package_Core::create() );
+            $bundles = [ Loco_package_Core::create() ];
             $bundles = array_merge( $bundles, Loco_package_Plugin::getAll() );
             $bundles = array_merge( $bundles, Loco_package_Theme::getAll() );
             $this->bundles = $bundles;

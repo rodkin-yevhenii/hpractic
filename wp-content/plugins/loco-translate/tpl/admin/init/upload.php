@@ -10,7 +10,7 @@ $this->extend('../layout');
     /* @var Loco_mvc_HiddenFields $hidden */
     $hidden->_e();?> 
 
-    <div class="notice inline notice-generic">
+    <div class="panel">
         <h2>
             <?php self::e( __('Choose a location','loco-translate') );?> 
         </h2>
@@ -40,7 +40,7 @@ $this->extend('../layout');
             </tbody>
         </table>
     </div>
-    <div class="notice inline notice-info">
+    <div class="panel panel-info">
         <h2>
             <?php  esc_html_e('Upload PO file','loco-translate')?> 
         </h2>
@@ -48,7 +48,7 @@ $this->extend('../layout');
             // translators: This is HTML formatted. (1) placeholder for language code, (2) Example language code
             echo wp_kses (
                 sprintf( __('Your file must be named as shown above where %1$s is the language code, e.g. %2$s','loco-translate'), '<code>{locale}</code>', '<code>'.$locale.'</code>' ),
-                array('code'=>array())
+                ['code'=>[]]
             )?> 
         </p>
         <p>

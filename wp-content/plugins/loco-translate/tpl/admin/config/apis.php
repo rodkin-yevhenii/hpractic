@@ -30,12 +30,6 @@ $help = apply_filters('loco_external','https://localise.biz/wordpress/plugin/man
                             <input type="text" size="50" name="api[deepl][key]" id="loco--deepl_api_key" value="<?php $api->e('key')?>" spellcheck="false" />
                         </p>
                         <p>
-                            <label for="loco--deepl_api_url">
-                                <?php $ui->e('api_url')?>:
-                            </label>
-                            <input type="text" size="50" name="api[deepl][url]" id="loco--deepl_api_url" value="<?php $api->e('url')?>" spellcheck="false" placeholder="https://api.deepl.com" />
-                        </p>
-                        <p>
                             <span class="description"><a href="https://www.deepl.com/translator" target="_blank" tabindex="-1">https://www.deepl.com/translator</a></span>
                         </p>
                     </fieldset>
@@ -58,6 +52,27 @@ $help = apply_filters('loco_external','https://localise.biz/wordpress/plugin/man
                         </p>
                         <p>
                             <span class="description"><a href="https://cloud.google.com/translate/" target="_blank" tabindex="-1">https://cloud.google.com/translate</a></span>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr><?php
+            // LECTO AI
+            $api = $apis['lecto']?> 
+            <tr>
+                <th scope="row"><?php $api->e('name')?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text">
+                            <span><?php $ui->e('api_key')?></span>
+                        </legend>
+                        <p>
+                            <label for="loco--lecto_api_key">
+                                <?php $ui->e('api_key')?>:
+                            </label>
+                            <input type="text" size="50" name="api[lecto][key]" id="loco--lecto_api_key" value="<?php $api->e('key')?>" spellcheck="false" />
+                        </p>
+                        <p>
+                            <span class="description"><a href="https://lecto.ai/?ref=loco" target="_blank" tabindex="-1">https://lecto.ai/?ref=loco</a></span>
                         </p>
                     </fieldset>
                 </td>
@@ -89,31 +104,22 @@ $help = apply_filters('loco_external','https://localise.biz/wordpress/plugin/man
                     </fieldset>
                 </td>
             </tr><?php
-            // YANDEX
-            $api = $apis['yandex']?> 
+            /* @var Loco_mvc_ViewParams[] $hooked */
+            foreach( $hooked as $api ):?> 
             <tr>
                 <th scope="row"><?php $api->e('name')?></th>
                 <td>
-                    <fieldset>
-                        <legend class="screen-reader-text">
-                            <span><?php $ui->e('api_key')?></span>
-                        </legend>
-                        <p>
-                            <label for="loco--yandex_api_key">
-                                <?php $ui->e('api_key')?>:
-                            </label>
-                            <input type="text" size="90" name="api[yandex][key]" id="loco--yandex_api_key" value="<?php $api->e('key')?>" spellcheck="false" />
-                        </p>
-                        <p>
-                            <span class="description"><a href="https://cloud.yandex.com/services/translate" target="_blank" tabindex="-1">https://cloud.yandex.com/services/translate</a></span>
-                        </p>
-                    </fieldset>
+                    <p><?php
+                        $api->key ? esc_html_e('Configured externally','loco-translate') : esc_html_e('No API key','loco-translate') ?><br />
+                        <span class="description"><a href="<?php $api->e('url')?>" target="_blank" tabindex="-1"><?php $api->e('url')?></a></span>
+                    </p>
                 </td>
-            </tr>
+            </tr><?php
+            endforeach?> 
         </tbody>
     </table>
 
-    <div class="notice inline">
+    <div class="panel">
         <p>
             <strong class="has-icon"><?php esc_html_e('Important','loco-translate')?>:</strong>
             <span>

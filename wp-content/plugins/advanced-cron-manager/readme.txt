@@ -1,9 +1,10 @@
 === Advanced Cron Manager - debug & control ===
 Contributors: bracketspace, Kubitomakita
-Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
+Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
-Tested up to: 6.0
-Stable tag: 2.5.0
+Requires PHP: 5.3
+Tested up to: 6.5
+Stable tag: 2.5.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +14,7 @@ View, pause, remove, edit and add WP Cron events and schedules.
 
 With Advanced Cron Manager you can manage WP Cron events:
 
-* view all registered events
+* view all registered events and their arguments nicely formatted
 * *search* events
 * execute manually any event
 * add new events
@@ -36,13 +37,15 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 
 PRO version includes
 
+* Better event planning - You can add a custom schedule that will fire your events at a specific time, ie. at noon on the last day of the month, or only Fridays
 * Cron Logger - log cron's execution times easily
 * Events rescheduling - change event next execution date to control server load
+* Event listeners - you can see what functions or methods are listening for a particular event
 * Error catcher - catch cron task's fatal errors and get them displayed in the log
 * Performance stats - see how much time and memory particular event took
-* Debug tool - log any useful informations from Cron callback
+* Debug tool - log any useful information from Cron callback
 
-[Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+[Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/?utm_source=wporg&utm_medium=readme&utm_campaign=readme "Advanced Cron Manager PRO")
 
 = Information about WP Cron =
 
@@ -81,7 +84,7 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 
 = Can this plugin block WP Cron and help hooking it into Server Cron like WP-Cron Control plugin? =
 
-Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful informations about added Server Cron task.
+Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful information about added Server Cron task.
 
 = Can you create a plugin for me? =
 
@@ -97,6 +100,42 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.5.10 =
+* [Fixed] Fixed security issue causing subscribers could see the schedules or events.
+
+= 2.5.9 =
+* [Fixed] Missing plugin assets in package.
+
+= 2.5.8 =
+* [Fixed] Undefined variable typo.
+
+= 2.5.7 =
+* [Fixed] Plugin package.
+
+= 2.5.6 =
+* [Fixed] Security vulnerability.
+
+= 2.5.5 =
+* [Added] Custom schedules availability info.
+
+= 2.5.4 =
+* [Added] Code filters and actions. Required by Advanced Cron Manager PRO v2.7.
+
+= 2.5.3 =
+* [Security] Some input fields were not sanitized properly.
+
+= 2.5.2 =
+* [Fixed] Warning while adding new event.
+* [Changed] Adding a proper message when you try to delete non-existing event.
+
+= 2.5.1 =
+* [Fixed] Dynamic property notices.
+* [Fixed] Notice when adding event without arguments.
+* [Fixed] Server scheduler conditional display logic.
+* [Fixed] PHP 8 deprecated dynamic property creation.
+* [Changed] Fixed typos.
+* [Added] New WordPress protected events.
 
 = 2.5.0 =
 * [Changed] Updated dependencies (Node >= 12)
@@ -244,7 +283,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * Fixed Schedules list from other plugins
 
 = 1.0 =
-* Plugin relase
+* Plugin release
 
 == Upgrade Notice ==
 
@@ -263,4 +302,4 @@ Removed debug alert and added execution button
 Fixed Schedules list from other plugins
 
 = 1.0 =
-Plugin relase
+Plugin release

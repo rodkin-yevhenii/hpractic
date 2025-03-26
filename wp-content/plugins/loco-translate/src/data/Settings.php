@@ -20,14 +20,14 @@
  * @property bool $jed_pretty Whether to pretty print JSON JED files
  * @property bool $jed_clean Whether to clean up redundant JSON files during compilation
  * @property bool $ajax_files Whether to submit PO data as concrete files (requires Blob support in Ajax)
- *
+ * 
  * @property string $deepl_api_key API key for DeepL Translator
- * @property string $deepl_api_url Base URL for DeepL Translator version
  * @property string $google_api_key API key for Google Translate
- * @property string $yandex_api_key API key for Yandex.Translate
+ * @property string $lecto_api_key API key for Lecto Translation API
  * @property string $microsoft_api_key API key for Microsoft Translator text API
  * @property string $microsoft_api_region API region for Microsoft Translator text API
- *
+ * 
+ * TODO @property bool $php_pretty Whether to pretty print .l10n.php files
  */
 class Loco_data_Settings extends Loco_data_Serializable {
 
@@ -42,15 +42,15 @@ class Loco_data_Settings extends Loco_data_Serializable {
      * Available options and their defaults
      * @var array
      */
-    private static $defaults = array (
+    private static $defaults =  [
         'version' => '',
         'gen_hash' => false,
         'use_fuzzy' => true,
         'fuzziness' => 20,
         'num_backups' => 5,
-        'pot_alias' => array( 'default.po', 'en_US.po', 'en.po' ),
-        'php_alias' => array( 'php', 'twig' ),
-        'jsx_alias' => array(),
+        'pot_alias' => [ 'default.po', 'en_US.po', 'en.po' ],
+        'php_alias' => [ 'php', 'twig' ],
+        'jsx_alias' => [],
         'fs_persist' => false,
         'fs_protect' => 1,
         'pot_protect' => 1,
@@ -62,12 +62,11 @@ class Loco_data_Settings extends Loco_data_Serializable {
         'jed_clean' => false,
         'ajax_files' => true,
         'deepl_api_key' => '',
-        'deepl_api_url' => '',
         'google_api_key' => '',
-        'yandex_api_key' => '',
         'microsoft_api_key' => '',
         'microsoft_api_region' => 'global',
-    );
+        'lecto_api_key' => '',
+    ];
 
 
     /**
@@ -172,11 +171,11 @@ class Loco_data_Settings extends Loco_data_Serializable {
         if( version_compare($old,$new,'<') ){
             $this->persist();
             $updated = true;
-            // feature alerts:
-            if( '2.5.' === substr($new,0,4) && '2.5.' !== substr($old,0,4) ){
-                Loco_error_AdminNotices::info( __('Loco Translate 2.5 adds supports for JSON language pack generation.','loco-translate') )
-                   ->addLink( apply_filters('loco_external','https://localise.biz/wordpress/plugin/manual/json'), __('Documentation','loco-translate') );
-            }
+            /*/ feature alerts:
+            if( '2.6.' === substr($new,0,4) && '2.6.' !== substr($old,0,4) ){
+                Loco_error_AdminNotices::info( __('Loco Translate 2.6 adds ......','loco-translate') )
+                   ->addLink( apply_filters('loco_external','https://localise.biz/wordpress/plugin/changelog'), __('Documentation','loco-translate') );
+            }*/
         }
         return $updated;
     }
@@ -184,8 +183,8 @@ class Loco_data_Settings extends Loco_data_Serializable {
 
     /**
      * Populate ALL settings from raw postdata.
-     * @param array posted setting values
-     * @param array optional filter to restrict modifiable values
+     * @param array $data Posted setting values
+     * @param array|null $filter Optional filter to restrict modifiable values
      * @return Loco_data_Settings
      */
     public function populate( array $data, $filter = null ){
@@ -211,7 +210,7 @@ class Loco_data_Settings extends Loco_data_Serializable {
             }
         }
         // enforce missing values that must have a default, but were passed empty
-        foreach( array('php_alias','max_php_size','po_width') as $prop ){
+        foreach( ['php_alias','max_php_size','po_width'] as $prop ){
             if( isset($data[$prop]) && '' === $data[$prop] ){
                 parent::offsetSet( $prop, self::$defaults[$prop] );
             }
@@ -223,14 +222,17 @@ class Loco_data_Settings extends Loco_data_Serializable {
 
     /**
      * Map a file extension to registered types, defaults to "php"
-     * @param string
-     * @return string php, js or twig
+     * @param string $ext File extension
+     * @param string $default Optional default
+     * @return string php, js, json, twig or $default
      */
-    public function ext2type($x){
-        $x = strtolower($x);
-        $types = array_fill_keys( $this->jsx_alias, 'js' );
-        $types['twig'] = 'twig'; // <- temporary hack in lieu of dedicated twig extractor
-        return isset($types[$x]) ? $types[$x] : 'php';
+    public function ext2type( $ext, $default = 'php' ){
+        $types = ['php'=>'php', 'js'=>'js', 'json'=>'json', 'twig'=>'twig'] // <- canonical
+               + array_fill_keys( $this->php_alias, 'php')
+               + array_fill_keys( $this->jsx_alias, 'js')
+        ;
+        $ext = strtolower($ext);
+        return isset($types[$ext]) ? $types[$ext] : $default;
     }
    
 }

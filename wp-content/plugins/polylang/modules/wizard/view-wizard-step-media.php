@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Don't access directly.
-};
+}
 
 $default_options = PLL_Install::get_default_options();
 $options = wp_parse_args( get_option( 'polylang' ), $default_options );
@@ -42,7 +42,7 @@ $help_screenshot = '/modules/wizard/images/media-screen' . ( is_rtl() ? '-rtl' :
 		</div>
 		<div class="pll-wizard-service-description">
 			<p>
-				<?php esc_html_e( 'Allow Polylang translate media', 'polylang' ); ?>
+				<?php esc_html_e( 'Allow Polylang to translate media', 'polylang' ); ?>
 			</p>
 		</div>
 	</li>

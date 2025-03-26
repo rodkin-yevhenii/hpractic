@@ -1,6 +1,8 @@
 <?php
 /**
- * Simple list of file paths
+ * Collection of unique file references
+ *
+ * @method Loco_fs_File[] getArrayCopy
  */
 class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterface {
 
@@ -8,14 +10,14 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
      * Hash map for ensuring files only added once
      * @var array
      */
-    private $unique = array();
+    private $unique = [];
     
     /**
      * Construct with initial list if files
-     * @param Loco_fs_File[]
+     * @param Loco_fs_File[] $a
      */
-    public function __construct( $a = array() ){
-        parent::__construct( array() );
+    public function __construct( $a = [] ){
+        parent::__construct();
         foreach( $a as $file ){
             $this->add( $file );
         }
@@ -37,7 +39,7 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
      * @return array
      */
     public function export(){
-        $a = array();
+        $a = [];
         foreach( $this as $file ){
             $a[] = (string) $file;
         }
@@ -56,23 +58,19 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
 
     /**
      * Generate a unique key for file
-     * @param Loco_fs_File
+     * @param Loco_fs_File $file
      * @return string
      */
     private function hash( Loco_fs_File $file ){
-        $path = $file->normalize();
-        // if file is real, we must resolve its real path
-        if( $file->exists() && ( $real = realpath($path) ) ){
-            $path = $real;
-        }
-        return $path;
+        return $file->getRealPath() ?: $file->normalize();
     }
 
 
     /**
      * {@inheritDoc}
      */
-    public function offsetSet( $index, $value ){
+    #[ReturnTypeWillChange]
+    public function offsetSet( $key, $value ){
         throw new Exception('Use Loco_fs_FileList::add');
     }
 
@@ -93,7 +91,7 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
 
     /**
      * Check if given file is already in list
-     * @param Loco_fs_File
+     * @param Loco_fs_File $file
      * @return bool
      */
     public function has( Loco_fs_File $file ){
@@ -104,8 +102,8 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
 
     /**
      * Get a copy of list with only files not contained in passed list
-     * @param Loco_fs_FileList
-     * @return Loco_fs_FileList
+     * @param self $not_in
+     * @return self
      */
     public function diff( Loco_fs_FileList $not_in ){
         $list = new Loco_fs_FileList;
@@ -119,8 +117,8 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
 
     /**
      * Merge another list of the SAME TYPE uniquely on top of current one
-     * @param Loco_fs_FileList
-     * @return Loco_fs_FileList
+     * @param self $list
+     * @return self
      */
     public function augment( loco_fs_FileList $list ){
         foreach( $list as $file ){
@@ -128,5 +126,5 @@ class Loco_fs_FileList extends ArrayIterator implements Loco_fs_FileListInterfac
         }
         return $this;
     }
-    
+
 }

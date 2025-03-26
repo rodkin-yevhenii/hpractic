@@ -14,15 +14,13 @@ abstract class Loco_admin_config_BaseController extends Loco_mvc_AdminController
         if( current_user_can('manage_options') ){
             $tabs = new Loco_admin_Navigation;
             $this->set( 'tabs', $tabs );
-            $actions = array (
+            $actions =  [
                 ''  => __('Site options','loco-translate'),
                 'user' => __('User options','loco-translate'),
                 'apis' => __('API keys','loco-translate'),
                 'version' => __('Version','loco-translate'),
-            );
-            if( loco_debugging() ){
-                $actions['debug'] = __('Debug','loco-translate');
-            }
+                'debug' => __('System','loco-translate'),
+            ];
             $suffix = (string) $this->get('action');
             foreach( $actions as $action => $name ){
                 $href = Loco_mvc_AdminRouter::generate( 'config-'.$action, $_GET );
@@ -37,10 +35,10 @@ abstract class Loco_admin_config_BaseController extends Loco_mvc_AdminController
      * {@inheritdoc}
      */
     public function getHelpTabs(){
-        return array (
-            __('Overview','default') => $this->viewSnippet('tab-config'),
+        return  [
+            __('Overview','loco-translate') => $this->viewSnippet('tab-config'),
             __('API keys','loco-translate') => $this->viewSnippet('tab-config-apis'),
-        );
+        ];
     }
     
     

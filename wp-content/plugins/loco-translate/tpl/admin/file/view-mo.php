@@ -4,9 +4,12 @@
  */
 $this->extend('view');
 $this->start('source');
+
+/* @var Loco_mvc_ViewParams $params */
+/* @var string $bin */
 ?> 
 
-     <div class="notice inline notice-info">
+     <div class="panel panel-info">
          <p>
              <?php esc_html_e('File is in binary MO format','loco-translate')?>.
          </p>
@@ -20,9 +23,9 @@ $this->start('source');
             $i = 0;
             $r = 0;
             $cols = 24;
-            $line = array();
+            $line = [];
             $bytes = strlen($bin);
-            // establish formatting of row offset, nbased on largest row number
+            // establish formatting of row offset, based on largest row number
             $rowfmt = sprintf( '%%0%uX | ', strlen( sprintf( '%02X', $cols * floor( $bytes / $cols ) ) ) );
             
             for( $b = 0; $b < $bytes; $b++ ){
@@ -47,7 +50,7 @@ $this->start('source');
                 // wrap at cols, and print plain text
                 if( ++$i === $cols ){
                     echo '  ', implode('', $line ), "\n";
-                    $line = array();
+                    $line = [];
                     $i = 0;
                     $r++;
                 }

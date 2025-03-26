@@ -29,7 +29,7 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         }
 
         // rendering hook for all menu items
-        $render = array( $this, 'renderPage' );
+        $render = [ $this, 'renderPage' ];
         
         // main loco pages, hooking only if has permission
         if( $user->has_cap($cap) ){
@@ -60,7 +60,7 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
             // translators: Page title for installed languages page
             $title = __('Languages &lsaquo; Loco', 'loco-translate');
             add_submenu_page( 'loco', $title, $label, $cap, 'loco-lang', $render );
-            
+
             // settings page only for users with manage_options permission in addition to Loco access:
             if( $user->has_cap('manage_options') ){
                 $title = __('Plugin settings','loco-translate');
@@ -71,13 +71,18 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
                 $title = __('User options','loco-translate');
                 add_submenu_page( 'loco', $title, __('Settings','loco-translate'), $cap, 'loco-config-user', $render );
             }
+
+            // string translation simulator
+            if( loco_debugging() ){
+                $label = __('Debug', 'loco-translate');
+                add_submenu_page( 'loco', $label, $label, $cap, 'loco-debug', $render );
+            }
         }
     }
 
 
     /**
      * Early hook as soon as we know what screen will be rendered
-     * @param WP_Screen
      * @return void
      */
     public function on_current_screen( WP_Screen $screen ){
@@ -90,13 +95,12 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
      * Instantiate admin page controller from current screen.
      * This is called early (before renderPage) so controller can listen on other hooks.
      * 
-     * @param WP_Screen
-     * @param string 
+     * @param string $action
      * @return Loco_mvc_AdminController|null
      */
     public function initPage( WP_Screen $screen, $action = '' ){
         $class = null;
-        $args = array ();
+        $args =  [];
         // suppress error display when establishing Loco page
         $page = self::screenToPage($screen);
         if( is_string($page) ){
@@ -121,16 +125,18 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         catch( Exception $e ){
             Loco_error_AdminNotices::debug( $e->getMessage() );
         }
-        // catch errors during controller setup
+        // Initialise controller with query string + route arguments
+        // note that $_GET is not being stripped of slashes added by WordPress.
         try {
-            $this->ctrl->_init( $_GET + $args );
+            $this->ctrl->_init($_GET+$args);
             do_action('loco_admin_init', $this->ctrl );
         }
+        // catch errors during controller setup
         catch( Loco_error_Exception $e ){
             $this->ctrl = new Loco_admin_ErrorController;
             // can't afford an error during an error
             try {
-                $this->ctrl->_init( array( 'error' => $e ) );
+                $this->ctrl->_init( [ 'error' => $e ] );
             }
             catch( Exception $_e ){
                 Loco_error_AdminNotices::debug( $_e->getMessage() );
@@ -146,13 +152,11 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
 
     /**
      * Convert WordPress internal WPScreen $id into route prefix for an admin page controller
-     * @param WP_Screen
      * @return string|null
      */
     private static function screenToPage( WP_Screen $screen ){
         // Hooked menu slug is either "toplevel_page_loco" or "{title}_page_loco-{page}"
         // Sanitized {title} prefix is not reliable as it may be localized. instead just checking for "_page_loco"
-        // TODO is there a safer WordPress way to resolve this? 
         $id = $screen->id;
         $start = strpos($id,'_page_loco');
         // not one of our pages if token not found
@@ -167,13 +171,12 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
     /**
      * Get unvalidated controller class for given route parameters
      * Abstracted from initPage so we can validate routes in self::generate
-     * @param string
-     * @param string
-     * @param array reference
+     * @param string $page
+     * @param string $action
      * @return string|null
      */
     private static function pageToClass( $page, $action, array &$args ){
-        $routes = array (
+        $routes =  [
             '' => 'Root',
             'debug' => 'Debug',
             // site-wide plugin configurations
@@ -191,7 +194,6 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
             '{type}-view' => 'bundle_View',
             '{type}-conf' => 'bundle_Conf',
             '{type}-setup' => 'bundle_Setup',
-            '{type}-debug' => 'bundle_Debug',
             'lang-view' => 'bundle_Locale',
             // file initialization
             '{type}-msginit' => 'init_InitPo',
@@ -206,8 +208,8 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
             '{type}-file-move' => 'file_Move',
             '{type}-file-delete' => 'file_Delete',
             // test routes that don't actually exist
-            'test-no-class' => 'test_NonExistantClass',
-        );
+            'test-no-class' => 'test_NonExistentClass',
+        ];
         if( ! $page ){
             $page = $action;
         }
@@ -216,7 +218,7 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         }
         $args['_route'] = $page;
         // tokenize path arguments
-        if( preg_match('/^(plugin|theme|core)-/', $page, $r ) ){
+        if( $page && preg_match('/^(plugin|theme|core)-/', $page, $r ) ){
             $args['type'] = $r[1];
             $page = substr_replace( $page, '{type}', 0, strlen($r[1]) );
         }
@@ -246,7 +248,7 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         catch( Exception $e ){
             $ctrl = new Loco_admin_ErrorController;
             try {
-                $ctrl->_init( array() );
+                $ctrl->_init( [] );
             }
             catch( Exception $_e ){
                 // avoid errors during error rendering
@@ -262,11 +264,10 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
 
     /**
      * Generate a routable link to Loco admin page
-     * @param string
-     * @param array
+     * @param string $route
      * @return string
      */
-    public static function generate( $route, array $args = array() ){
+    public static function generate( $route, array $args = [] ){
         $url = null;
         $page = null;
         $action = null;
@@ -291,13 +292,13 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         }
         // sanitize extended route in debug mode only. useful in tests
         if( loco_debugging() ){
-            $tmp = array();
+            $tmp = [];
             $class = self::pageToClass( (string) substr($page,5), $action, $tmp );
             if( ! $class ){
                 throw new UnexpectedValueException( sprintf('Invalid admin route: %s', json_encode($route) ) );
             }
             else {
-                class_exists( $class, true ); // <- autoloader will throw if not class found
+                class_exists($class,true); // <- autoloader will throw if not class found
             }
         }
         // if url found, it should contain the page
@@ -317,8 +318,8 @@ class Loco_mvc_AdminRouter extends Loco_hooks_Hookable {
         else {
             unset( $args['action'] );
         }
-        // append all arguments to base URL        
-        if( $query = http_build_query($args,null,'&') ){
+        // append all arguments to base URL
+        if( $query = http_build_query($args) ){
             $sep = false === strpos($url, '?') ? '?' : '&';
             $url .= $sep.$query;
         }

@@ -8,10 +8,10 @@ class Loco_package_Core extends Loco_package_Bundle {
      * {@inheritdoc}
      */
     public function getSystemTargets(){
-        return array (
+        return  [
             untrailingslashit( loco_constant('LOCO_LANG_DIR') ),
 	        untrailingslashit( loco_constant('WP_LANG_DIR') )
-        );
+        ];
     }
 
 
@@ -19,15 +19,15 @@ class Loco_package_Core extends Loco_package_Bundle {
      * {@inheritdoc}
      */
     public function getHeaderInfo(){
-        return new Loco_package_Header( array (
+        return new Loco_package_Header(  [
             'TextDomain' => 'default',
             'DomainPath' => '/wp-content/languages/',
             // dummy author info for core components
             'Name' => __('WordPress core','loco-translate'),
             'Version' => $GLOBALS['wp_version'],
-            'Author' => __('The WordPress Team','default'),
-            'AuthorURI' => __('https://wordpress.org/','default'),
-        ) );
+            'Author' => __('The WordPress Team'),
+            'AuthorURI' => __('https://wordpress.org/'),
+        ] );
     }
 
 
@@ -35,7 +35,7 @@ class Loco_package_Core extends Loco_package_Bundle {
      * {@inheritdoc}
      */
     public function getMetaTranslatable(){
-        return array();
+        return [];
     }
 
 
@@ -77,7 +77,7 @@ class Loco_package_Core extends Loco_package_Bundle {
     /**
      * Manually define the core WordPress translations as a single bundle
      * Projects are those included in standard WordPress downloads: [default], "admin", "admin-network" and "continents-cities"
-     * @return Loco_package_Core
+     * @return self
      */
     public static function create(){
         
@@ -148,9 +148,6 @@ class Loco_package_Core extends Loco_package_Bundle {
         $bundle->addDomain( $domain );
         
         return $bundle;
-    }     
-    
-    
-    
-    
+    }
+
 }

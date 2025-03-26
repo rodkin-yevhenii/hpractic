@@ -53,7 +53,7 @@ class AdminScreen {
 	protected $default_event_details_tabs;
 
 	/**
-	 * Contructor
+	 * Constructor
 	 *
 	 * @param Utils\View     $view      View class.
 	 * @param Utils\Ajax     $ajax      Ajax class.
@@ -87,6 +87,12 @@ class AdminScreen {
 	public function __call( $method, $args ) {
 
 		if ( strpos( $method, 'ajax_rerender_' ) !== false ) {
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				$this->ajax->error( array(
+					__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+				) );
+			}
 
 			/**
 			 * From: ajax_rerender_schedules_table
@@ -295,7 +301,9 @@ class AdminScreen {
 			} else {
 				$parsed_args[] = array(
 					'type' => gettype( $arg ),
-					'msg'  => $arg,
+					'msg'  => wp_filter_nohtml_kses( sanitize_text_field(
+						html_entity_decode( $arg, ENT_QUOTES, 'UTF-8' )
+					) ),
 				);
 			}
 

@@ -6,31 +6,38 @@
  * Quick edit
  */
 jQuery(
-	function( $ ) {
-		$( document ).on(
-			'DOMNodeInserted',
-			function( e ) {
-				var t = $( e.target );
-
-				// WP inserts the quick edit from
-				if ( 'inline-edit' == t.attr( 'id' ) ) {
-					var term_id = t.prev().attr( 'id' ).replace( "tag-", "" );
+	function ( $ ) {
+		const handleQuickEditInsertion = ( mutationsList ) => {
+			for ( const mutation of mutationsList ) {
+				const addedNodes = Array.from( mutation.addedNodes ).filter( el => el.nodeType === Node.ELEMENT_NODE )
+				const form = addedNodes[0];
+				if ( 0 < mutation.addedNodes.length && form.classList.contains( 'inline-edit-row' ) ) {
+					// WordPress has inserted the quick edit form.
+					const term_id = Number( form.id.substring( 5 ) );
 
 					if ( term_id > 0 ) {
-						// language dropdown
-						var select = t.find( ':input[name="inline_lang_choice"]' );
-						var lang = $( '#lang_' + term_id ).html();
-						select.val( lang ); // populates the dropdown
+						// Get the language dropdown.
+						const select = form.querySelector( 'select[name="inline_lang_choice"]' );
+						const lang = document.querySelector( '#lang_' + String( term_id ) ).innerHTML;
+						select.value = lang; // Populates the dropdown with the post language.
 
-						// disable the language dropdown for default categories
-						var default_cat = $( '#default_cat_' + term_id ).html();
+						// Disable the language dropdown for default categories.
+						const default_cat = document.querySelector( `#default_cat_${term_id}` )?.innerHTML;
 						if ( term_id == default_cat ) {
-							select.prop( 'disabled', true );
+							select.disabled = true;
 						}
 					}
 				}
 			}
-		);
+		}
+		const table = document.getElementById( 'the-list' );
+		if ( null !== table ) {
+			// Ensure the table is displayed before listening to any change.
+			const config = { childList: true, subtree: true };
+			const observer = new MutationObserver( handleQuickEditInsertion );
+
+			observer.observe( table, config);
+		}
 	}
 );
 
@@ -39,14 +46,14 @@ jQuery(
  * Acts on ajaxSuccess event.
  */
 jQuery(
-	function( $ ) {
+	function ( $ ) {
 		$( document ).ajaxSuccess(
-			function( event, xhr, settings ) {
+			function ( event, xhr, settings ) {
 				function update_rows( term_id ) {
 					// collect old translations
 					var translations = new Array();
 					$( '.translation_' + term_id ).each(
-						function() {
+						function () {
 							translations.push( $( this ).parent().parent().attr( 'id' ).substring( 4 ) );
 						}
 					);
@@ -65,12 +72,13 @@ jQuery(
 					$.post(
 						ajaxurl,
 						data,
-						function( response ) {
+						function ( response ) {
 							if ( response ) {
-								var res = wpAjax.parseAjaxResponse( response, 'ajax-response' );
+								// Target a non existing WP HTML id to avoid a conflict with WP ajax requests.
+								var res = wpAjax.parseAjaxResponse( response, 'pll-ajax-response' );
 								$.each(
 									res.responses,
-									function() {
+									function () {
 										if ( 'row' == this.what ) {
 											// data is built with a call to WP_Terms_List_Table::single_row method
 											// which uses internally other WordPress methods which escape correctly values.
@@ -89,10 +97,11 @@ jQuery(
 					switch ( data['action'] ) {
 						// when adding a term, the new term_id is in the ajax response
 						case 'add-tag':
-							res = wpAjax.parseAjaxResponse( xhr.responseXML, 'ajax-response' );
+							// Target a non existing WP HTML id to avoid a conflict with WP ajax requests.
+							res = wpAjax.parseAjaxResponse( xhr.responseXML, 'pll-ajax-response' );
 							$.each(
 								res.responses,
-								function() {
+								function () {
 									if ( 'term' == this.what ) {
 										update_rows( this.supplemental.term_id );
 									}
@@ -120,11 +129,11 @@ jQuery(
 );
 
 jQuery(
-	function( $ ) {
+	function ( $ ) {
 		// translations autocomplete input box
 		function init_translations() {
 			$( '.tr_lang' ).each(
-				function(){
+				function () {
 					var tr_lang = $( this ).attr( 'id' ).substring( 8 );
 					var td = $( this ).parent().parent().siblings( '.pll-edit-column' );
 
@@ -138,7 +147,7 @@ jQuery(
 								'&translation_language=' + tr_lang +
 								'&post_type=' + typenow +
 								'&_pll_nonce=' + $( '#_pll_nonce' ).val(),
-							select: function( event, ui ) {
+							select: function ( event, ui ) {
 								$( '#htr_lang_' + tr_lang ).val( ui.item.id );
 								// ui.item.link is built and come from server side and is well escaped when necessary
 								td.html( ui.item.link ); // phpcs:ignore WordPressVIPMinimum.JS.HTMLExecutingFunctions.html
@@ -149,7 +158,7 @@ jQuery(
 					// when the input box is emptied
 					$( this ).on(
 						'blur',
-						function() {
+						function () {
 							if ( ! $( this ).val() ) {
 								$( '#htr_lang_' + tr_lang ).val( 0 );
 								// Value is retrieved from HTML already generated server side
@@ -166,7 +175,7 @@ jQuery(
 		// ajax for changing the term's language
 		$( '#term_lang_choice' ).on(
 			'change',
-			function() {
+			function () {
 				var value = $( this ).val();
 				var lang  = $( this ).children( 'option[value="' + value + '"]' ).attr( 'lang' );
 				var dir   = $( '.pll-translation-column > span[lang="' + lang + '"]' ).attr( 'dir' );
@@ -184,11 +193,12 @@ jQuery(
 				$.post(
 					ajaxurl,
 					data,
-					function( response ) {
-						var res = wpAjax.parseAjaxResponse( response, 'ajax-response' );
+					function ( response ) {
+						// Target a non existing WP HTML id to avoid a conflict with WP ajax requests.
+						var res = wpAjax.parseAjaxResponse( response, 'pll-ajax-response' );
 						$.each(
 							res.responses,
-							function() {
+							function () {
 								switch ( this.what ) {
 									case 'translations': // translations fields
 										// Data is built and come from server side and is well escaped when necessary

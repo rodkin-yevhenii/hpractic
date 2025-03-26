@@ -1,10 +1,10 @@
-=== Loco Translate ===
+	=== Loco Translate ===
 Contributors: timwhitlock
-Tags: translation, translators, localization, localisation, l10n, i18n, Gettext, PO, MO, productivity, multilingual, internationalization
-Requires at least: 4.1
-Requires PHP: 5.2.4
-Tested up to: 5.7.1
-Stable tag: 2.5.3
+Tags: translation, language, multilingual, l10n, i18n
+Requires at least: 6.6
+Requires PHP: 7.2.24
+Tested up to: 6.7.1
+Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ It also provides Gettext/localization tools for developers, such as extracting s
 Features include:
 
 * Built-in translation editor within WordPress admin
-* Integration with translation APIs including DeepL, Google, Microsoft and Yandex
+* Integration with translation APIs including DeepL, Google, Microsoft and Lecto AI
 * Create and update language files directly in your theme or plugin
 * Extraction of translatable strings from your source code
 * Native MO file compilation without the need for Gettext on your system
@@ -99,6 +99,146 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 
 == Changelog ==
+
+= 2.7.1
+* Debug logging of unloaded domains reduced to a summary
+
+= 2.7.0
+* Raised minimum requirements to WordPress 6.6
+* Minimum PHP version becomes 7.2.24 as per WordPress 6.6
+* Locale-filtered bundle list now searches for base language
+* Loading helper forcefully removes prematurely loaded text domains
+* Machine translation hooks now have access to message context
+* Persistent UI state for code view and invisible character modes
+
+= 2.6.14 =
+* Critical fix: A relative path passed to `load_textdomain` no longer throws exception.
+
+= 2.6.13 =
+* Fix for direct calls to load_textdomain with custom paths
+* This resolves a regression in 2.6.12
+
+= 2.6.12 =
+* Major fix to custom load_textdomain loader. Works when original file is absent
+* Fixed bug in template comparison when JSON files need to be merged
+* CSS fixes including reinstating of unsaved "star" icon
+* Domain listener fixed for JIT loading
+* Bumped WordPress compatibility to 6.7
+
+= 2.6.11 =
+* Removed accidental console trace
+* Bumped WordPress compatibility to 6.6.0
+* Added lang_dir_for_domain fix to handle system file absence
+
+= 2.6.10 =
+* Added loco_api_provider_{id} filter
+* JSON compiler observes configured .js aliases
+* Fixed a missing security check - thanks Nosa Shandy
+* Added .blade.php tokenizer hack
+* Bumped WordPress compatibility to 6.5.4
+
+= 2.6.9 =
+* Rolled back load helper changes
+* Moved debug messages to action hooks
+* String debugger improvements
+
+= 2.6.8 =
+* Added string debugger
+* Added Zip download button instead of MO
+* Added debug messages about premature domain loading
+* Added warning when system translations not installed
+* Compiler avoids writing empty JSON translation files
+* UI promotes PO copy over msginit/xgettext routes
+* Populating msginit fields when copying a PO
+* Bumped WordPress compatibility to 6.5.3
+
+= 2.6.7 =
+* WordPress 6.5.0 compatible
+* Support for performant translation files in PHP format
+* Added block.json and theme.json extraction
+* Added theme pattern files to php string extractor
+* Fixed a bug where unused plural forms were counted as untranslated
+* Replaced CSS .notice with .panel to mitigate nag-blocker problems
+* Removed bundle debug screen (deprecated since 2.6.5)
+* Workaround for absent "source" references in JED files
+* Extension polyfills now restricted to Loco admin screens.
+
+= 2.6.6 =
+* Replaced open_basedir check with error capturing
+
+= 2.6.5 =
+* Added syntax checking function
+* Removed deepl_api_url config. Free API detected from :fx key suffix.
+* Fixed bug in relative path calculations
+* Fixed API suggestions for plural forms
+* Fixed bug clearing unsaved state icons
+* Added total strings count to PO file tables
+* Sharper flags and spinners (@x2 pixel support)
+* Handling upload_tmp_dir values outside of open_basedir
+* Suppressing E_WARNING when testing file is_readable
+* Bundle debug screen is deprecated (moving into Setup)
+* Showing System Diagnostics when debug is off
+* Bumped WordPress compatibility to 6.3.1
+
+= 2.6.4 =
+* Bumped WordPress version to 6.1.1
+* Dropped support for Internet Explorer
+* Updated JavaScript to ECMAScript 6
+* Added `loco_bundle_configured` hook
+* Fixed error icon not clearing after correction
+
+= 2.6.3 =
+* Fixed bug in plural forms comparison
+* Fixed bug generating author theme jsons
+* Fixed errors in bundle debugger
+* Extended cli type argument to filter specific bundle
+* Bumped WordPress version to 6.0.3
+
+= 2.6.2 =
+* Bumped WordPress version to 6.0.0
+* Better labelling of reverse-engineered plural forms
+* Removed undocumented loco_locale_plurals filter; use loco_po_headers
+* Added PO folder location indicator in breadcrumb
+* Added syntax validation for formatted strings
+
+= 2.6.1 =
+* Bumped WordPress version to 5.9.2
+* Fix for CVE-2022-0765 reported by Taurus Omar via wpscan
+
+= 2.6.0 =
+* Dropped support for WordPress < 5.2
+* Code upgrades for >= PHP 5.6.20
+* Bumped WordPress version to 5.9.1
+* Removed Yandex API integration
+* Added loco_compile_script_reference filter
+* Plural-Forms retained when copying PO to same language
+
+= 2.5.8 =
+* Compatible with PHP 8.1
+* Bumped WordPress version to 5.9
+* Added deprecation warning prior to v2.6
+
+= 2.5.7 = 
+* Fixed bug in 2.5.6 where remote APIs could not be used in batch mode
+* Enforcing 10k character limit per request for Microsoft and Yandex Translators
+* Style fix for revision/diff table under restore tab
+
+= 2.5.6 =
+* Added loco_api_provider_source filter
+* Fixed bug loading user preferences saved in older version
+* Refactored file finder to avoid recursive function calls
+* Fixed bug displaying two forms for zero plural languages
+* Added Lecto AI to translation API providers
+* Bumped WordPress version to 5.8.3
+
+= 2.5.5 =
+* Fixed double file extension vulnerability reported by WordFence
+* Better performance when scanning directories for file types
+
+= 2.5.4 =
+* Fixed vulnerability reported by Tomi Ashari via wpscan
+* Added filters loco_po_headers and loco_pot_headers
+* Bumped WordPress version to 5.8.1
 
 = 2.5.3 =
 * Adds option to merge JSON translations when syncing from PO
@@ -221,7 +361,7 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 * Bumped WP compatibility to 5.2.1
 
 = 2.2.2 =
-* Security fixes for reading sensitive files
+* Security fixes as per [exploit-db 46619](https://www.exploit-db.com/exploits/46619) 
 * Fixed old PHP version error in data files
 * Bumped WP compatibility to 5.1.1
 
@@ -422,8 +562,8 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 == Upgrade Notice ==
 
-= 2.5.3 =
-* Various improvements and bugfixes
+= 2.7.1 =
+* Various improvements and bug fixes
 
 
 

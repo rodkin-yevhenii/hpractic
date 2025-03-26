@@ -12,7 +12,7 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 	/**
 	 * Current language (used to filter the content).
 	 *
-	 * @var PLL_Language
+	 * @var PLL_Language|null
 	 */
 	public $curlang;
 
@@ -21,7 +21,7 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 	 *
 	 * @since 1.2
 	 *
-	 * @param object $polylang
+	 * @param object $polylang The Polylang object.
 	 */
 	public function __construct( &$polylang ) {
 		parent::__construct( $polylang );
@@ -59,7 +59,7 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 		}
 
 		// Hierarchical taxonomies
-		if ( 'edit' == $screen->base && $taxonomies = get_object_taxonomies( $screen->post_type, 'object' ) ) {
+		if ( 'edit' == $screen->base && $taxonomies = get_object_taxonomies( $screen->post_type, 'objects' ) ) {
 			// Get translated hierarchical taxonomies
 			$hierarchical_taxonomies = array();
 			foreach ( $taxonomies as $taxonomy ) {
@@ -69,7 +69,7 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 			}
 
 			if ( ! empty( $hierarchical_taxonomies ) ) {
-				$terms          = get_terms( $hierarchical_taxonomies, array( 'get' => 'all' ) );
+				$terms          = get_terms( array( 'taxonomy' => $hierarchical_taxonomies, 'get' => 'all' ) );
 				$term_languages = array();
 
 				if ( is_array( $terms ) ) {
@@ -144,57 +144,23 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 				return;
 			}
 
-			if ( current_user_can( $post_type_object->cap->edit_post, $post_id ) ) {
-				$this->model->post->set_language( $post_id, $this->model->get_language( sanitize_key( $_POST['post_lang_choice'] ) ) );
-
-				if ( isset( $_POST['post_tr_lang'] ) ) {
-					$this->save_translations( $post_id, array_map( 'absint', $_POST['post_tr_lang'] ) );
-				}
+			if ( ! current_user_can( $post_type_object->cap->edit_post, $post_id ) ) {
+				return;
 			}
-		}
-	}
 
-	/**
-	 * Saves a post language when inline editing or bulk editing.
-	 * Fixes the translations if necessary.
-	 *
-	 * @since 2.3
-	 *
-	 * @param int          $post_id Post ID.
-	 * @param PLL_Language $lang    Language.
-	 * @return void
-	 */
-	protected function inline_save_language( $post_id, $lang ) {
-		$post = get_post( $post_id );
+			$language = $this->model->get_language( sanitize_key( $_POST['post_lang_choice'] ) );
 
-		if ( empty( $post ) ) {
-			return;
-		}
-
-		$post_type_object = get_post_type_object( $post->post_type );
-
-		if ( empty( $post_type_object ) ) {
-			return;
-		}
-
-		if ( current_user_can( $post_type_object->cap->edit_post, $post_id ) ) {
-			$old_lang = $this->model->post->get_language( $post_id ); // Stores the old  language
-			$this->model->post->set_language( $post_id, $lang ); // set new language
-
-			// Checks if the new language already exists in the translation group
-			if ( $old_lang && $old_lang->slug != $lang->slug ) {
-				$translations = $this->model->post->get_translations( $post_id );
-
-				// If yes, separate this post from the translation group
-				if ( array_key_exists( $lang->slug, $translations ) ) {
-					$this->model->post->delete_translation( $post_id );
-				}
-
-				elseif ( array_key_exists( $old_lang->slug, $translations ) ) {
-					unset( $translations[ $old_lang->slug ] );
-					$this->model->post->save_translations( $post_id, $translations );
-				}
+			if ( empty( $language ) ) {
+				return;
 			}
+
+			$this->model->post->set_language( $post_id, $language );
+
+			if ( ! isset( $_POST['post_tr_lang'] ) ) {
+				return;
+			}
+
+			$this->save_translations( $post_id, array_map( 'absint', $_POST['post_tr_lang'] ) );
 		}
 	}
 
@@ -212,7 +178,9 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 			if ( $lang = $this->model->get_language( sanitize_key( $_GET['inline_lang_choice'] ) ) ) {
 				$post_ids = array_map( 'intval', (array) $_REQUEST['post'] );
 				foreach ( $post_ids as $post_id ) {
-					$this->inline_save_language( $post_id, $lang );
+					if ( current_user_can( 'edit_post', $post_id ) ) {
+						$this->model->post->set_language( $post_id, $lang );
+					}
 				}
 			}
 		}
@@ -231,8 +199,8 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 		if ( isset( $_POST['post_ID'], $_POST['inline_lang_choice'] ) ) {
 			$post_id = (int) $_POST['post_ID'];
 			$lang = $this->model->get_language( sanitize_key( $_POST['inline_lang_choice'] ) );
-			if ( $post_id && $lang ) {
-				$this->inline_save_language( $post_id, $lang );
+			if ( $post_id && $lang && current_user_can( 'edit_post', $post_id ) ) {
+				$this->model->post->set_language( $post_id, $lang );
 			}
 		}
 	}

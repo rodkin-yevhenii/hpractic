@@ -20,9 +20,9 @@ class Loco_admin_list_LocalesController extends Loco_mvc_AdminController {
      * {@inheritdoc}
      */
     public function getHelpTabs(){
-        return array (
-            __('Overview','default') => $this->viewSnippet('tab-list-locales'),
-        );
+        return  [
+            __('Overview','loco-translate') => $this->viewSnippet('tab-list-locales'),
+        ];
     }
 
 
@@ -34,8 +34,8 @@ class Loco_admin_list_LocalesController extends Loco_mvc_AdminController {
 
         $this->set( 'title', __( 'Installed languages', 'loco-translate' ) );
         
-        $used = array();
-        $locales = array();
+        $used = [];
+        $locales = [];
         $api = new Loco_api_WordPressTranslations;
         
         $active = get_locale();
@@ -65,8 +65,8 @@ class Loco_admin_list_LocalesController extends Loco_mvc_AdminController {
             if( $locale->isValid() ){
                 $tag = (string) $locale;
                 $finder->addLocale($locale);
-                $args = array( 'locale' => $tag );
-                $locales[$tag] = new Loco_mvc_ViewParams( array(
+                $args = [ 'locale' => $tag ];
+                $locales[$tag] = new Loco_mvc_ViewParams( [
                     'nfiles' => 0,
                     'time' => 0,
                     'lcode' => $tag,
@@ -75,10 +75,9 @@ class Loco_admin_list_LocalesController extends Loco_mvc_AdminController {
                     'href' => Loco_mvc_AdminRouter::generate('lang-view',$args),
                     'used' => isset($used[$tag]) ? implode( ', ', $used[$tag] ) : ( $multisite ? '--' : '' ),
                     'active' => $active === $tag,
-                ) );
+                ] );
             }
         }
-        $this->set('locales', $locales );
         
         // Count up unique PO files  
         foreach( $finder->findLocaleFiles() as $file ){
@@ -100,6 +99,12 @@ class Loco_admin_list_LocalesController extends Loco_mvc_AdminController {
                 $locales[$tag]['time'] = max( $locales[$tag]['time'], $file->modified() );
             }
         }
+        
+        // sort alphabetically by locale label
+        usort( $locales, function( ArrayAccess $a, ArrayAccess $b ):int {
+            return strcasecmp( $a['lname'], $b['lname'] );
+        } );
+        $this->set('locales', $locales );
         
        return $this->view( 'admin/list/locales' );
     }

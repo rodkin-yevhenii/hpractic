@@ -16,16 +16,16 @@ foreach( $projects as $p ): ?>
         else:?> 
         <h2><?php $p->e('name')?> <span>(<?php $p->e('short')?>)</span></h2><?php
         endif;
-        
-        echo $this->render('inc-po-links', array( 'nav' => $p->nav ) );
-        echo $this->render('inc-po-table', array( 'pairs' => $p->po, 'domain' => $p->domain ) );
+
+        echo $this->render('inc-po-links', [ 'nav' => $p->nav ] );
+        echo $this->render('inc-po-table', [ 'pairs' => $p->po, 'domain' => $p->domain, 'installed'=>$p->installed, 'warnings'=>$p->warnings ] );
         ?> 
                 
     </div><?php
 endforeach;
 if( $unknown ):?> 
     <div class="loco-project">
-        <div class="notice inline notice-info">
+        <div class="panel panel-info">
             <h2><?php esc_html_e('Additional files found','loco-translate')?></h2>
             <p>
                 <?php
@@ -33,13 +33,13 @@ if( $unknown ):?>
                 // Translators: %s is a URL. Keep the <a> tag intact
                 echo wp_kses(
                     sprintf( __('Click the <a href="%s">setup</a> tab to complete the bundle configuration','loco-translate'), $tabs[1]->href ),
-                    array('a'=>array('href'=>true)), array('http','https')
+                    ['a'=>['href'=>true]], ['http','https']
                 );?>.
             </p>
         </div>
         <?php 
         echo $this->render('../common/inc-table-filter');
-        echo $this->render('inc-po-table', array( 'pairs' => $unknown, 'domain' => null ) )?> 
+        echo $this->render('inc-po-table', [ 'pairs' => $unknown, 'domain' => null ] )?> 
     </div><?php
 endif;
    
@@ -48,21 +48,21 @@ endif;
 // showing incompatibility message if no configured projects available 
 else:?> 
 <div class="loco-project">
-    <div class="notice inline notice-error">
+    <div class="panel panel-error">
         <h2><?php $params->e('name')?> <span>(<?php esc_html_e('unconfigured','loco-translate')?>)</span></h2>
         <p>
             <?php
             esc_html_e("This bundle isn't automatically compatible and requires configuring before you can use all the functions of Loco Translate",'loco-translate')?>. <?php
             echo wp_kses(
                 sprintf( __('Click the <a href="%s">setup</a> tab to complete the bundle configuration','loco-translate'), $tabs[1]->href ),
-                array('a'=>array('href'=>true)), array('http','https')
+                ['a'=>['href'=>true]], ['http','https']
             );?>.
         </p>
     </div>
 </div><?php
 if( $unknown ):?> 
     <div class="loco-project">
-        <?php echo $this->render('inc-po-table', array( 'pairs' => $unknown, 'domain' => null ) )?> 
+        <?php echo $this->render('inc-po-table', [ 'pairs' => $unknown, 'domain' => null ] )?> 
     </div><?php
 endif;
 endif;

@@ -1,4 +1,4 @@
-/* global wp_mail_smtp_dashboard_widget, ajaxurl, moment, Chart */
+/* global wp_mail_smtp_dashboard_widget, ajaxurl, moment, WPMailSMTPChart */
 /**
  * WP Mail SMTP Dashboard Widget function.
  *
@@ -17,9 +17,13 @@ var WPMailSMTPDashboardWidget = window.WPMailSMTPDashboardWidget || ( function( 
 	 * @type {object}
 	 */
 	var el = {
-		$canvas      : $( '#wp-mail-smtp-dash-widget-chart' ),
-		$settingsBtn : $( '#wp-mail-smtp-dash-widget-settings-button' ),
-		$dismissBtn  : $( '.wp-mail-smtp-dash-widget-dismiss-chart-upgrade' ),
+		$canvas                       : $( '#wp-mail-smtp-dash-widget-chart' ),
+		$settingsBtn                  : $( '#wp-mail-smtp-dash-widget-settings-button' ),
+		$dismissBtn                   : $( '.wp-mail-smtp-dash-widget-dismiss-chart-upgrade' ),
+		$summaryReportEmailBlock      : $( '.wp-mail-smtp-dash-widget-summary-report-email-block' ),
+		$summaryReportEmailDismissBtn : $( '.wp-mail-smtp-dash-widget-summary-report-email-dismiss' ),
+		$summaryReportEmailEnableInput: $( '#wp-mail-smtp-dash-widget-summary-report-email-enable' ),
+		$emailAlertsDismissBtn        : $( '#wp-mail-smtp-dash-widget-dismiss-email-alert-block' ),
 	};
 
 	/**
@@ -51,7 +55,7 @@ var WPMailSMTPDashboardWidget = window.WPMailSMTPDashboardWidget || ( function( 
 					{
 						label: '',
 						data: [],
-						backgroundColor: 'rgba(106, 160, 139, 1)',
+						backgroundColor: 'rgba(34, 113, 177, 0.15)',
 						borderColor: 'rgba(34, 113, 177, 1)',
 						borderWidth: 2,
 						pointRadius: 4,
@@ -141,7 +145,7 @@ var WPMailSMTPDashboardWidget = window.WPMailSMTPDashboardWidget || ( function( 
 
 			ctx = el.$canvas[ 0 ].getContext( '2d' );
 
-			chart.instance = new Chart( ctx, chart.settings );
+			chart.instance = new WPMailSMTPChart( ctx, chart.settings );
 
 			chart.updateWithDummyData();
 
@@ -206,8 +210,9 @@ var WPMailSMTPDashboardWidget = window.WPMailSMTPDashboardWidget || ( function( 
 		 */
 		ready: function() {
 
-			el.$settingsBtn.on( 'click', function() {
-				$( this ).siblings( '.wp-mail-smtp-dash-widget-settings-menu' ).toggle();
+			el.$settingsBtn.on( 'click', function( e ) {
+				$( this ).toggleClass( 'open' );
+				$( this ).siblings( '.wp-mail-smtp-dash-widget-settings-menu' ).fadeToggle( 200 );
 			} );
 
 			el.$dismissBtn.on( 'click', function( event ) {
@@ -216,6 +221,50 @@ var WPMailSMTPDashboardWidget = window.WPMailSMTPDashboardWidget || ( function( 
 				app.saveWidgetMeta( 'hide_graph', 1 );
 				$( this ).closest( '.wp-mail-smtp-dash-widget-chart-block-container' ).remove();
 				$( '#wp-mail-smtp-dash-widget-upgrade-footer' ).show();
+			} );
+
+			// Hide summary report email block on dismiss icon click.
+			el.$summaryReportEmailDismissBtn.on( 'click', function( event ) {
+				event.preventDefault();
+
+				app.saveWidgetMeta( 'hide_summary_report_email_block', 1 );
+				el.$summaryReportEmailBlock.slideUp();
+			} );
+
+			// Enable summary report email on checkbox enable.
+			el.$summaryReportEmailEnableInput.on( 'change', function( event ) {
+				event.preventDefault();
+
+				var $self = $( this ),
+					$loader = $self.next( 'i' );
+
+				$self.hide();
+				$loader.show();
+
+				var data = {
+					_wpnonce: wp_mail_smtp_dashboard_widget.nonce,
+					action  : 'wp_mail_smtp_' + wp_mail_smtp_dashboard_widget.slug + '_enable_summary_report_email'
+				};
+
+				$.post( ajaxurl, data )
+					.done( function() {
+						el.$summaryReportEmailBlock.find( '.wp-mail-smtp-dash-widget-summary-report-email-block-setting' )
+							.addClass( 'hidden' );
+						el.$summaryReportEmailBlock.find( '.wp-mail-smtp-dash-widget-summary-report-email-block-applied' )
+							.removeClass( 'hidden' );
+					} )
+					.fail( function() {
+						$self.show();
+						$loader.hide();
+					} );
+			} );
+
+			// Hide email alerts banner on dismiss icon click.
+			el.$emailAlertsDismissBtn.on( 'click', function( event ) {
+				event.preventDefault();
+
+				$( '#wp-mail-smtp-dash-widget-email-alerts-education' ).remove();
+				app.saveWidgetMeta( 'hide_email_alerts_banner', 1 );
 			} );
 
 			chart.init();

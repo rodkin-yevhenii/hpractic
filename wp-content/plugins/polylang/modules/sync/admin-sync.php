@@ -15,15 +15,14 @@ class PLL_Admin_Sync extends PLL_Sync {
 	 *
 	 * @since 1.2
 	 *
-	 * @param object $polylang
+	 * @param object $polylang The Polylang object.
 	 */
 	public function __construct( &$polylang ) {
 		parent::__construct( $polylang );
 
 		add_filter( 'wp_insert_post_parent', array( $this, 'wp_insert_post_parent' ), 10, 3 );
 		add_filter( 'wp_insert_post_data', array( $this, 'wp_insert_post_data' ) );
-		add_action( 'rest_api_init', array( $this, 'new_post_translation' ) ); // Block editor
-		add_action( 'add_meta_boxes', array( $this, 'new_post_translation' ), 5 ); // Classic editor, before Types which populates custom fields in same hook with priority 10
+		add_filter( 'use_block_editor_for_post', array( $this, 'new_post_translation' ), 5000 ); // After content duplication.
 	}
 
 	/**
@@ -48,7 +47,7 @@ class PLL_Admin_Sync extends PLL_Sync {
 	}
 
 	/**
-	 * Copy menu order, comment, ping status and optionally the date when creating a new tanslation
+	 * Copy menu order, comment, ping status and optionally the date when creating a new translation
 	 *
 	 * @since 2.5
 	 *
@@ -82,14 +81,16 @@ class PLL_Admin_Sync extends PLL_Sync {
 	 * Copy post metas, and taxonomies when using "Add new" ( translation )
 	 *
 	 * @since 2.5
+	 * @since 3.1 Use of use_block_editor_for_post filter instead of rest_api_init which is triggered too early in WP 5.8.
 	 *
-	 * @return void
+	 * @param bool $is_block_editor Whether the post can be edited or not.
+	 * @return bool
 	 */
-	public function new_post_translation() {
+	public function new_post_translation( $is_block_editor ) {
 		global $post;
 		static $done = array();
 
-		if ( isset( $GLOBALS['pagenow'], $_GET['from_post'], $_GET['new_lang'] ) && 'post-new.php' === $GLOBALS['pagenow'] && $this->model->is_translated_post_type( $post->post_type ) ) {
+		if ( ! empty( $post ) && isset( $GLOBALS['pagenow'], $_GET['from_post'], $_GET['new_lang'] ) && 'post-new.php' === $GLOBALS['pagenow'] && $this->model->is_translated_post_type( $post->post_type ) ) {
 			check_admin_referer( 'new-post-translation' );
 
 			// Capability check already done in post-new.php
@@ -97,7 +98,7 @@ class PLL_Admin_Sync extends PLL_Sync {
 			$lang         = $this->model->get_language( sanitize_key( $_GET['new_lang'] ) );
 
 			if ( ! $from_post_id || ! $lang || ! empty( $done[ $from_post_id ] ) ) {
-				return;
+				return $is_block_editor;
 			}
 
 			$done[ $from_post_id ] = true; // Avoid a second duplication in the block editor. Using an array only to allow multiple phpunit tests.
@@ -109,6 +110,8 @@ class PLL_Admin_Sync extends PLL_Sync {
 				stick_post( $post->ID );
 			}
 		}
+
+		return $is_block_editor;
 	}
 
 	/**
@@ -124,7 +127,7 @@ class PLL_Admin_Sync extends PLL_Sync {
 
 		$postarr = parent::get_fields_to_sync( $post );
 
-		// For new drafts, save the date now otherwise it is overriden by WP. Thanks to JoryHogeveen. See #32.
+		// For new drafts, save the date now otherwise it is overridden by WP. Thanks to JoryHogeveen. See #32.
 		if ( in_array( 'post_date', $this->options['sync'] ) && isset( $GLOBALS['pagenow'], $_GET['from_post'], $_GET['new_lang'] ) && 'post-new.php' === $GLOBALS['pagenow'] ) {
 			check_admin_referer( 'new-post-translation' );
 

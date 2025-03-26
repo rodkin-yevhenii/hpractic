@@ -10,6 +10,13 @@ use Yoast\WP\SEO\Presentations\Indexable_Presentation;
 class Title_Presenter extends Abstract_Indexable_Tag_Presenter {
 
 	/**
+	 * The tag key name.
+	 *
+	 * @var string
+	 */
+	protected $key = 'title';
+
+	/**
 	 * The tag format including placeholders.
 	 *
 	 * @var string
@@ -37,6 +44,21 @@ class Title_Presenter extends Abstract_Indexable_Tag_Presenter {
 	}
 
 	/**
+	 * Returns a tag in the head.
+	 *
+	 * @return string The tag.
+	 */
+	public function present() {
+		$value = $this->get();
+
+		if ( \is_string( $value ) && $value !== '' ) {
+			return \sprintf( $this->tag_format, $this->escape_value( $value ) );
+		}
+
+		return '';
+	}
+
+	/**
 	 * Returns the presentation title.
 	 *
 	 * @return string The title.
@@ -47,8 +69,7 @@ class Title_Presenter extends Abstract_Indexable_Tag_Presenter {
 		/**
 		 * Filter: 'wpseo_title' - Allow changing the Yoast SEO generated title.
 		 *
-		 * @api string $title The title.
-		 *
+		 * @param string                 $title        The title.
 		 * @param Indexable_Presentation $presentation The presentation of an indexable.
 		 */
 		$title = \apply_filters( 'wpseo_title', $title, $this->presentation );

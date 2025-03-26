@@ -2,7 +2,9 @@
 /**
  * Base layout for all admin pages 
  */
-?><div class="wrap" id="loco-admin"><?php 
+/* @var Loco_mvc_View $this */
+/* @var Loco_mvc_ViewParams $params */
+?><div class="wrap" id="loco-admin"><?php
 
     if( $this->has('breadcrumb') ):?> 
     <h1>
@@ -44,7 +46,7 @@
 
     <div id="loco-notices">
         <noscript>
-            <div class="notice inline notice-danger">
+            <div class="panel panel-danger">
                 <p>
                     <strong class="has-icon icon-warn">JavaScript disabled:</strong>
                     <span>Loco Translate requires JavaScript for most functions to work as expected.</span>
@@ -68,13 +70,14 @@
 
 
 <?php 
+/* @var null|Loco_mvc_ViewParams $js */
 if( $this->has('js') && $js instanceof Loco_mvc_ViewParams ):?><script>
 /*<![CDATA[*/
 window.loco = { conf: <?php echo $js->exportJson()?> };
 document.addEventListener && document.addEventListener('DOMContentLoaded', function(loco,v,s){
     return function() {
         function enumJs(s) {
-            var i = s.length;
+            let i = s.length;
             while( 0 !== i-- ){
                 if( null == document.getElementById(s[i]+'-js') ){
                     return false;

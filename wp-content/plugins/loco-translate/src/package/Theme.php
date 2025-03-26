@@ -5,7 +5,7 @@
 class Loco_package_Theme extends Loco_package_Bundle {
 
     /**
-     * @var Loco_package_Theme
+     * @var Loco_package_Theme|null
      */
     private $parent;
 
@@ -14,10 +14,10 @@ class Loco_package_Theme extends Loco_package_Bundle {
      * {@inheritdoc}
      */
     public function getSystemTargets(){
-        return array ( 
+        return  [ 
             trailingslashit( loco_constant('LOCO_LANG_DIR') ).'themes',
             trailingslashit( loco_constant('WP_LANG_DIR') ).'themes',
-        );
+        ];
     }
 
 
@@ -60,20 +60,20 @@ class Loco_package_Theme extends Loco_package_Bundle {
      * {@inheritdoc}
      */
     public function getMetaTranslatable(){
-        return array (
+        return  [
             'Name'        => 'Name of the theme',
             'Description' => 'Description of the theme',
             'ThemeURI'    => 'URI of the theme',
             'Author'      => 'Author of the theme',
             'AuthorURI'   => 'Author URI of the theme',
             // 'Tags'        => 'Tags of the theme',
-        );
+        ];
     }
 
 
     /**
      * Get parent bundle if theme is a child
-     * @return Loco_package_Theme
+     * @return Loco_package_Theme|null
      */
     public function getParent(){
         return $this->parent;
@@ -81,11 +81,11 @@ class Loco_package_Theme extends Loco_package_Bundle {
 
 
     /**
-     * @return Loco_package_Theme[]
+     * @return static[]
      */
     public static function getAll(){
-        $themes = array();
-        foreach( wp_get_themes(array('errors'=>null)) as $theme ){
+        $themes = [];
+        foreach( wp_get_themes(['errors'=>null]) as $theme ){
             try {
                 $themes[] = self::createFromTheme($theme);
             }
@@ -100,9 +100,9 @@ class Loco_package_Theme extends Loco_package_Bundle {
     /**
      * Create theme bundle definition from WordPress theme handle 
      * 
-     * @param string short name of theme, e.g. "twentyfifteen"
-     * @param string theme root if known
-     * @return Loco_package_Theme
+     * @param string $slug Short name of theme, e.g. "twentyfifteen"
+     * @param string $root Theme root if known
+     * @return self
      */
     public static function create( $slug, $root = '' ){
         return self::createFromTheme( wp_get_theme( $slug, $root ) );
@@ -111,8 +111,7 @@ class Loco_package_Theme extends Loco_package_Bundle {
 
     /**
      * Create theme bundle definition from WordPress theme data 
-     * @param WP_Theme
-     * @return Loco_package_Theme
+     * @return self
      */
     public static function createFromTheme( WP_Theme $theme ){
         $slug = $theme->get_stylesheet();
@@ -125,23 +124,19 @@ class Loco_package_Theme extends Loco_package_Bundle {
         $bundle = new Loco_package_Theme( $slug, $name );
         
         // ideally theme has declared its TextDomain
-        $domain = $theme->get('TextDomain') or
         // if not, we can see if the Domain listener has picked it up 
-        $domain = Loco_package_Listener::singleton()->getDomain($slug);
+        $domain = $theme->get('TextDomain') ?: Loco_package_Listener::singleton()->getDomain($slug);
         // otherwise we won't try to guess as it results in silent problems when guess is wrong
         
-        // ideally theme has declared its DomainPath
-        $target = $theme->get('DomainPath') or
-        // if not, we can see if the Domain listener has picked it up 
-        $target = Loco_package_Listener::singleton()->getDomainPath($domain);
+        // ideally theme has declared its DomainPath. if not, we can see if the listener has picked it up 
         // otherwise project will use theme root by default
+        $target = $theme->get('DomainPath') ?: Loco_package_Listener::singleton()->getDomainPath($domain);
 
-        
-        $bundle->configure( $base, array (
+        $bundle->configure( $base,  [
             'Name' => $name,
             'TextDomain' => $domain,
             'DomainPath' => $target,
-        ) );
+        ] );
         
         // parent theme inheritance:
         if( $parent = $theme->parent() ){
@@ -153,10 +148,6 @@ class Loco_package_Theme extends Loco_package_Bundle {
                 Loco_error_AdminNotices::add($e);
             }
         }
-        
-        // TODO provide hook to modify bundle?
-        // do_action( 'loco_bundle_configured', $bundle );
-
         return $bundle;
     }
 
@@ -166,7 +157,7 @@ class Loco_package_Theme extends Loco_package_Bundle {
      */
     public static function fromFile( Loco_fs_File $file ){
         $find = $file->getPath();
-        foreach( wp_get_themes( array('errors'=>null) ) as $theme ){
+        foreach( wp_get_themes( ['errors'=>null] ) as $theme ){
             $base = $theme->get_stylesheet_directory();
             $path = $base.substr( $find, strlen($base) );
             if( $find === $path ){
