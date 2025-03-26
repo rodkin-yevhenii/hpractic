@@ -18,7 +18,7 @@ define('DIST_URI', THEME_URI . '/frontend/dist/');
 define('DIST_PATH', THEME_DIR . '/frontend/dist/');
 define('SRC_URI', THEME_URI . '/frontend/src/');
 define('SRC_PATH', THEME_DIR . '/frontend/src/');
-define('CACHE_BUSTER', 20250325);
+define('CACHE_BUSTER', 20250326);
 
 /***
  * Init theme functionality
