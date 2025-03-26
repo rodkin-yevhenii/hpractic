@@ -81,7 +81,7 @@ class Assets
             wp_enqueue_script(
                 $script['handle'],
                 $script['src'],
-                [$script['deps']],
+                is_array($script['deps']) ? $script['deps'] : (array) $script['deps'],
                 CACHE_BUSTER,
                 true
             );
@@ -222,7 +222,7 @@ class Assets
         $scripts[] = [
             'handle' => 'hpractice',
             'src' => DIST_URI . 'js/main.js',
-            'deps' => 'cart'
+            'deps' => ['slick', 'cart']
         ];
         $scripts[] = [
             'handle' => 'tag-manager-actions',
