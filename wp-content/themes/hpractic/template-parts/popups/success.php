@@ -72,7 +72,7 @@ $telegram = $footer['telegram_id'] ?? '';
                     </div>
                 </div>
             <?php endif; ?>
-            <p><strong><?php _e('С уважением, компания', 'hpractice'); ?> «Plastic House» </strong></p>
+            <p><strong><?php _e('С уважением, компания', 'hpractice'); ?> «Practice House» </strong></p>
             <div class="popup__contacts">
                 <p><?php _e('Если у вас возникнут вопросы, просто свяжитесь с нами', 'hpractice'); ?>:</p>
                 <div class="popup__contacts-items">
